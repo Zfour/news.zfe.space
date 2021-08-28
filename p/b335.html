@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg></a></div><div class=article-meta id=top><a title="网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI" href=/p/b335.html><img class=thumbnail src=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg></a><h1 class=title>网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/">GameRes 游资网</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/%E5%88%97%E8%A1%A8/">列表</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年7月27日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI" data-path=/p/b335.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><table cellspacing=0 cellpadding=0><tbody><tr><td class=t_f id=postmessage_2506736>北京时间7月21日，在游戏开发者大会（GDC2021）上，来自网易伏羲的雷子涵分享了在回合制纸牌游戏中应用 AlphaZero 开发AI。<br><br>网易伏羲实验室在人工智能领域积极探索，推出了游戏行业人工智能解决方案，横跨AI反外挂、AI竞技机器人、AI 对战匹配以及 AI 剧情动画制作四大AI能力，实现了AI 技术在游戏行业的新突破。本次分享的内容就是源于AI卡牌竞技机器人在游戏中的运用经验。<br><br><strong><font color=#de5650>以下为分享实录：</font></strong><br><br>我们在天谕手游的谕戏游戏中使用了 AlphaZero 来制作 AI。本次演讲主要分为以下4个部分。第一部分介绍AlphaZero的基本思想和核心算法Monte Carlo Tree Search，简称MCTS。第二部分是关于天谕手游中卡牌游戏谕戏的介绍。第三部分介绍我们如何在谕戏上应用alphazero来产生AI。最后展示我们取得的结果和展望未来的工作。<br><br><div align=center><img id=aimg_995643 aid=995643 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg referrerpolicy=no-referrer></div><br><strong><font color=#de5650>一、AlphaZero 和 MCTS</font></strong><br><br>什么是AlphaZero？<br><br>围棋一直被视为人工智能经典游戏中最具挑战性的游戏。但是 AlphaGo 在 2016 年击败了世界冠军李世石。 AlphaGo 是第一个击败围棋人类世界冠军的计算机程序，可以说是当时最强的围棋选手。<br><br>AlphaGo有如此高的成就和荣誉，那AlphaZero为什么会诞生呢？<br><br>因为在阶段性训练和网络数量方面，AlphaGo 的系统相当复杂。一年后，其作者 DeepMind 对其进行了改进，提出了一种新的围棋 AI： AlphaGo Zero，它是 AlphaGo 的简化和增强版本。由于算法的通用性和围棋知识较少，DeepMind 又将算法迁移到国际象棋和日本将棋，并推出了新的 AI：AlphaZero。<br><br><div align=center><img id=aimg_995644 aid=995644 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112503hns4bvtisv2unny3.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112503hns4bvtisv2unny3.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112503hns4bvtisv2unny3.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112503hns4bvtisv2unny3.jpg referrerpolicy=no-referrer></div><br>简单说完alpha系列的演化，我们来看看它的算法。由于算法细节繁琐复杂，这里只做简单的科普。AlphaGo的核心算法为蒙特卡罗树搜索与改进。蒙特卡罗树搜索是算法的核心。它主要通过使用随机抽样来解决确定性问题。 如下图所示，分为选择，扩展，模拟与反向传播4个步骤。每当我们需要做决策时，我们都可以通过这棵树得到蒙特卡洛算法下的最优策略。当然，它不一定是真正的最优策略。<br><br><div align=center><img id=aimg_995645 aid=995645 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112504y41gshhl4rooh4vu.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112504y41gshhl4rooh4vu.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112504y41gshhl4rooh4vu.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112504y41gshhl4rooh4vu.jpg referrerpolicy=no-referrer></div><br>原本的 MCTS 看起来很笨，而且计算量很大。 AlphaGo 对其进行了很多改进。它使用深度神经网络进行评估而不是随机搜索来评估情况，如下图所示，Alphago中有3个神经网络；同时，DeepMind 还提出了 PUCT 算法，引入了神经网络的直觉，引导 MCTS 在搜索时进行探索，大大提高了搜索效率。由于引入了神经网络，AlphaGo 变得可学习，并且可以通过训练神经网络不断提升自身实力。<br><br><div align=center><img id=aimg_995646 aid=995646 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112504c0qfzft044y2o70o.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112504c0qfzft044y2o70o.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112504c0qfzft044y2o70o.png width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112504c0qfzft044y2o70o.png referrerpolicy=no-referrer></div><br>AlphaGo 的训练过程分为两个步骤：<br><br>第一步，收集大量人类专家数据进行监督学习，学习人类思维。经过训练，神经网络已经达到了业余水平。<br><br>第二步，转化为强化学习。神经网络的数据来自自我对弈。通过不断的强化训练，AlphaGo的水平不断提升，最终达到了超越人类的水平。<br><br>2. 从AlphaGO到AlphaGo Zero<br><br><div align=center><img id=aimg_995647 aid=995647 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112504ow07sxxrdfs7flld.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112504ow07sxxrdfs7flld.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112504ow07sxxrdfs7flld.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112504ow07sxxrdfs7flld.jpg referrerpolicy=no-referrer></div><br>AlphaGo Zero 不使用人类专家数据进行监督学习。将训练简化为一个阶段，从头开始自我对弈和强化学习。基于内在的变化，AlphaGo Zero 的实力相比 AlphaGo 有了很大的提升，如上图所示。经过3天的学习，零号AlphaGo以100:0的比分超越了AlphaGo Lee的实力，21天后达到了AlphaGo Master的水平，并在40天内超越了之前的所有版本。<br><br><strong><font color=#de5650>二、谕戏介绍</font></strong><br><br><div align=center><img id=aimg_995648 aid=995648 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112504t7iz8q5ycd7n3nlj.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112504t7iz8q5ycd7n3nlj.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112504t7iz8q5ycd7n3nlj.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112504t7iz8q5ycd7n3nlj.jpg referrerpolicy=no-referrer></div><br>天谕手游是网易游戏开发的一款大型多人在线角色扮演游戏。自2021年1月8日上线以来，它在中国是一款非常成功的游戏。<br><br><div align=center><img id=aimg_995661 aid=995661 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112649qtgin9tb9kngwket.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112649qtgin9tb9kngwket.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112649qtgin9tb9kngwket.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112649qtgin9tb9kngwket.jpg referrerpolicy=no-referrer></div><br>谕戏是天谕手游中的回合制纸牌玩法，目的是让玩家熟悉世界观背景，放松心情。谕戏的玩法是两个玩家之间的1V1对战。有3种不同大小的棋盘，分别是3乘3、4乘4和6乘4。谕戏有200多张卡片，包括人物卡和法术卡。没有比赛和排行榜。玩家只能选择与 AI 或他们的朋友对战。当玩家需要测试新套牌的强度或者没有朋友可以对战时，我们的AI就会出场。<br><br><div align=center><img id=aimg_995649 aid=995649 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112505vu1v2mhhxivu2xix.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112505vu1v2mhhxivu2xix.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112505vu1v2mhhxivu2xix.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112505vu1v2mhhxivu2xix.jpg referrerpolicy=no-referrer></div><br>这是游戏中谕戏具体场景的截图，图片信息量很大。<br><br>中间是一个3乘3场地。场地上有人物卡和天气。蓝色的代表我们自己的角色，红色的代表敌人的角色。卡的具体信息将在后面详细说明。<br><br>左上角和右下角是双方玩家的坟墓。当角色卡死亡或使用法术卡时，他们会进入坟墓。<br><br>左下方和右上方是卡组，玩家将带着自己的卡组进入游戏。<br><br>上面和下面是手牌，初始手牌是从卡组中随机抽取的（数量根据场地的大小而变化）。<br><br>游戏过程类似于巫师的昆特牌。玩家不会每轮都从牌组中抽牌。一般每回合打一张手牌，用完所有手牌后游戏结束。<br><br>棋盘两边是2位玩家的点数和金钱，最右边是结束回合按钮。<br><br>左下角的换卡按钮，后面会详细说明。<br><br><div align=center><img id=aimg_995650 aid=995650 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112505qn0pmtrtddlyg0gl.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112505qn0pmtrtddlyg0gl.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112505qn0pmtrtddlyg0gl.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112505qn0pmtrtddlyg0gl.jpg referrerpolicy=no-referrer></div><br>每张卡都有自己的头衔和效果，很多效果都是在一些固定的头衔上触发的。<br><br>对于人物卡，左上角也有一个初始点。如果当前点低于初始点，则显示为红色，可被治愈；如果它更高，它将显示为绿色。人物卡还有一些临时的buff标志，比如当前技能可用，这个人物有多少钱等等。<br><br><strong><font color=#de5650>三.AlphaZero在谕戏中的应用</font></strong><br><br>接下来，我们将详细介绍我们是如何在谕戏上应用alphazero来生产AI的。<br><br><div align=center><img id=aimg_995651 aid=995651 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112506hss5kc98wdd1oddk.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112506hss5kc98wdd1oddk.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112506hss5kc98wdd1oddk.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112506hss5kc98wdd1oddk.jpg referrerpolicy=no-referrer></div><br>我们使用的深度神经网络的结构如上图所示。输入分为场地输入和向量输入。场地输入主要是场地上的信息。它是一个 3 维张量。在resnet和cnn之后，使用flatten操作将其转化为向量。向量输入通过全连接网络后直接变成向量。然后将两者拼接在一起，通过全连接得到三个输出，分别是当前情况的卡片id、位置和值估计。<br><br><div align=center><img id=aimg_995652 aid=995652 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112506oh5f1a30dpp5d7zv.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112506oh5f1a30dpp5d7zv.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112506oh5f1a30dpp5d7zv.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112506oh5f1a30dpp5d7zv.jpg referrerpolicy=no-referrer></div><br>棋盘输入的前 2 个维度是棋盘的大小。例如，3乘3板的输入大小是3乘3乘n。深度 n 是一些人工提取的特征，而不是直接使用卡片 id。这样做的好处是泛化性更好，神经网络更容易学习。这些功能分为 4 类。天气、卡片基本属性、卡片名称和卡片效果。天气包括雾、雷、冰、侵蚀。卡牌基本属性包括阵营、点数、护甲、金钱、技能冷却等。头衔和效果有很多维度，最终总深度在90左右。<br><br><div align=center><img id=aimg_995653 aid=995653 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112506yycbbio51co5ic3m.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112506yycbbio51co5ic3m.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112506yycbbio51co5ic3m.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112506yycbbio51co5ic3m.jpg referrerpolicy=no-referrer></div><br>向量输入不使用特征，因为它不如场地输入重要。它直接以卡片的id作为索引，卡片的数量作为值。主要包括4个部分，自己的手牌，牌组，坟墓和敌人的坟墓。敌人的手牌和牌组不作为输入，因为它们是不可见的。我们将这 4 个部分拼接成一个向量作为输入。例如，我手上有 2 张 ID 为 1 的卡和 1 张 ID 分别为 0、2、5 和 8 的卡，如图所示。<br><br><div align=center><img id=aimg_995654 aid=995654 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112506mc99cf66zm2cfg9h.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112506mc99cf66zm2cfg9h.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112506mc99cf66zm2cfg9h.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112506mc99cf66zm2cfg9h.jpg referrerpolicy=no-referrer></div><br>输出时，我们使用合法掩码来确保输出动作是合法的。<br><br>输出动作主要分为两步。首先，输出卡的id。合法掩码保证这个id必须是手上可以使用的卡片。然后将倒数第二层和选中卡片的id拼接输出合法位置。最后将这张牌打到指定位置。此外，我们还将结束回合按钮编码到卡号中作为卡号0。选择此操作将结束本回合，否则我们将继续出下一张卡。因为谕戏类似于巫师的昆特牌，一般来说每轮最多只能使用一张牌，但由牌产生的衍生牌，这里称为虚空牌，不受此限制。对于神经网络难以处理的不规则的情况，我们使用规则来实现后续的选择。<br><br>最后，模型也会输出一个值作为当前情况的估计。<br><br><div align=center><img id=aimg_995655 aid=995655 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112507soeishdxib3x7zuo.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112507soeishdxib3x7zuo.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112507soeishdxib3x7zuo.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112507soeishdxib3x7zuo.jpg referrerpolicy=no-referrer></div><br>在谕戏中，我们的AI会以NPC的身份与玩家对战，所以使用的套牌是固定的。我们有50多套固定卡组，每个卡组都由一个独特的模型控制。训练时，从游戏中随机抽取2套牌进行对战，可以是相同的。例如，如果第 3 副和第 7 副牌随机对战，它们将分别调用模型 3 和模型 7，并且该游戏的数据将仅用于训练模型 3 和模型 7。<br><br>当然，我们同时拥有数千个游戏进行训练。并且我们在训练期间没有使用卡片交换操作。<br><br>我们的第一次训练使用了大约 100 个 CPU 和 8 个 GPU，耗时一个月。<br><br>之后，更新迭代使用了 50 个 CPU 和 4 个 GPU，耗时一周。<br><br>因为在线使用时玩家的出牌速度较慢，所以4个CPU就可以满足要求。<br><br><div align=center><img id=aimg_995656 aid=995656 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112507x04q251t32sz5hiy.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112507x04q251t32sz5hiy.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112507x04q251t32sz5hiy.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112507x04q251t32sz5hiy.jpg referrerpolicy=no-referrer></div><br>我们知道围棋、国际象棋和将棋是具有完整信息的游戏。在这类游戏中搜索非常容易。但是在不知道对方手牌的情况下在谕戏中搜索呢？<br><br>在训练时，我们直接让对手给一个操作，并用这个操作来搜索对手。<br><br>比如刚才的模型3对战模型7。现在轮到模型3出牌了，模型3手上有两张id为1和2的牌。它不知道哪个卡更好。因此，模型3先打出一张id为1的牌，然后根据当前情况让模型7出一张牌，然后模型3再打出一张id为2的牌，直到游戏结束。而模型3也可以先是牌2，然后是牌1。以上过程都是模拟搜索。搜索结果可用后，模型 3 根据概率选择更好的策略。这些功能的实现需要依赖一个可以生成和加载快照的游戏环境。在线时，我们不搜索手牌，因为我们不能让对手采取行动。这也是上网时资源占用少的原因。<br><br>但是我们会搜索换卡。在每一轮中，都有机会将手牌与牌组中的两张牌中的一张交换。<br><br><div align=center><img id=aimg_995657 aid=995657 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112507s0lp7njchyl0nzpf.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112507s0lp7njchyl0nzpf.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112507s0lp7njchyl0nzpf.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112507s0lp7njchyl0nzpf.jpg referrerpolicy=no-referrer></div><br>因为换卡只和自己有关，所以我们可以遍历它所有可能的结果。然后将其输入网络，只取值输出，选择换卡操作后值最大的结果。<br><br><strong><font color=#de5650>三、我们的成就和未来的工作</font></strong><br><br>视频链接：https://v.qq.com/x/page/z326224991y.html<br><br>我们来看一场对抗AI的游戏。在这个游戏中，AI可以巧妙地利用螃蟹的效果互相吃掉，积分翻倍。<br><div align=center><img id=aimg_995658 aid=995658 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112507gg78818kq9qk7m8m.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112507gg78818kq9qk7m8m.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112507gg78818kq9qk7m8m.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112507gg78818kq9qk7m8m.jpg referrerpolicy=no-referrer></div><br>在游戏开发过程中训练AI不仅可以发现一些会报错的bug，还可以发现设计的bug。如以上两张图片所示。左边的一张牌具有可以回收3个棋盘上的钱币并转化为手牌的效果。另一张卡的效果是使用钱币时少使用2个钱币。但是我们发现了一个神奇的BUG，回收币也出现了少用两个币的效果。结果，棋盘上只有一枚钱币，却拿到了三张钱币卡。<br><br>右图是一张牌在雾中吃另一张牌的结果。雾的效果是卡点减半。然后我们的新卡一放下就从6分减半到3分。然后在迷雾中吃掉8分的牌，得到11分。但正确的情况是先吃到14点，减半到7点<br><br><div align=center><img id=aimg_995659 aid=995659 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112508texryfz6yrssosry.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112508texryfz6yrssosry.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112508texryfz6yrssosry.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112508texryfz6yrssosry.jpg referrerpolicy=no-referrer></div><br>不仅能发现BUG，我们的 AI 还可以帮助开发人员实现游戏平衡。在游戏结束时，第一个玩家将随机获得一个骰子的奖励积分。经过AI训练，我们发现3乘3场地的先手玩家有优势，但在6乘4场地有劣势。所以以后我们在游戏中创建谕戏房间的时候，可以设置一个规则来取消这个骰子奖励。<br><br>我们上线后，AI的调用量一直处于较高水平。AI刚开始的时候胜率是60多，后来随着玩家熟练度和套牌的增多，降到了50。经过我们的迭代，它变成了 65 以上。<br><br><div align=center><img id=aimg_995660 aid=995660 zoomfile=https://di.gameres.com/attachment/forum/202107/27/112508rocc73gcgoplig91.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/27/112508rocc73gcgoplig91.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/27/112508rocc73gcgoplig91.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/27/112508rocc73gcgoplig91.jpg referrerpolicy=no-referrer></div><br>未来，我们希望 AI 能够预测玩家的手牌和套牌。<br><br>随着卡片的更新，模型也需要手动更新，否则无法适应新的卡片。我们将使其自动化。<br><br>我们还将 AlphaZero 应用于其他回合制游戏，例如麻将和五子棋。<br><br></td></tr></tbody></table></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/b335.html>https://news.zfe.space/p/b335.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:32+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/b335.html&title=网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/b335.html&title=网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/b335.html&title=网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/27/112503h1p52dz9512zl259.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/4158.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>网易伏羲GDC分享：伏魔AI游戏外挂防控系统在网易游戏的实践经验</p><p class=content>在游戏开发者大会（GDC2021）上，来自网易伏羲的陶建容（花名风天）分享了伏羲伏魔AI游戏外挂防控系统在网易游戏的实践经验。 网易伏羲实验室在人工智能领域积极探索，推出了游戏行业人...</p></a><a class=next href=/p/b54e.html><p class=title>涂鸦秒变逼真的风景画：AI 绘图黑科技 GauGAN<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>能将涂鸦变成逼真的风景画？有一款应用专门为此打造。 NVIDIA Canvas 应用现已推出免费测试版，可为所有NVIDIA RTX GPU用户带来实时绘画工具GauGAN。 GauG...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="网易伏羲GDC分享：在回合制纸牌游戏中应用 AlphaZero 开发 AI";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

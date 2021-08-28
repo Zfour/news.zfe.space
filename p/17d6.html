@@ -1,0 +1,856 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>MethodSwizzing方法交换的坑｜伤敌一千自损八百 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title=MethodSwizzing方法交换的坑｜伤敌一千自损八百 href=/p/17d6.html><img class=thumbnail src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>MethodSwizzing方法交换的坑｜伤敌一千自损八百</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E7%83%AD%E9%97%A8/">热门</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月8日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=MethodSwizzing方法交换的坑｜伤敌一千自损八百 data-path=/p/17d6.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;color:#595959;font-size:15px;font-family:-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;background-image:linear-gradient(90deg,rgba(60,10,30,.04) 3%,transparent 0),linear-gradient(1turn,rgba(60,10,30,.04) 3%,transparent 0);background-size:20px 20px;background-position:50%&#125;.markdown-body p&#123;color:#595959;font-size:15px;line-height:2;font-weight:400&#125;.markdown-body p+p&#123;margin-top:16px&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;padding:30px 0;margin:0;color:#135ce0&#125;.markdown-body h1&#123;position:relative;text-align:center;font-size:22px;margin:50px 0&#125;.markdown-body h1:before&#123;position:absolute;content:"";top:-10px;left:50%;width:32px;height:32px;transform:translateX(-50%);background-size:100% 100%;opacity:.36;background-repeat:no-repeat;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABfVBMVEX///8Ad/8AgP8AgP8AgP8Aff8AgP8Af/8AgP8AVf8Af/8Af/8AgP8AgP8Af/8Afv8AAP8Afv8Afv8Aef8AgP8AdP8Afv8AgP8AgP8Acf8Ae/8AgP8Af/8AgP8Af/8Af/8AfP8Afv8AgP8Af/8Af/8Afv8Afv8AgP8Afv8AgP8Af/8Af/8AgP8AgP8Afv8AgP8Af/8AgP8AgP8AgP8Ae/8Afv8Af/8AgP8Af/8AgP8Af/8Af/8Aff8Af/8Abf8AgP8Af/8AgP8Af/8Af/8Afv8AgP8AgP8Afv8Afv8AgP8Af/8Aff8AgP8Afv8AgP8Aff8AgP8AfP8AgP8Ae/8AgP8Af/8AgP8AgP8AgP8Afv8AgP8AgP8AgP8Afv8AgP8AgP8AgP8AgP8AgP8Af/8AgP8Af/8Af/8Aev8Af/8AgP8Aff8Afv8AgP8AgP8AgP8Af/8AgP8Af/8Af/8AgP8Afv8AgP8AgP8AgP8AgP8Af/8AeP8Af/8Af/8Af//////rzEHnAAAAfXRSTlMAD7CCAivatxIDx5EMrP19AXdLEwgLR+6iCR/M0yLRzyFF7JupSXn8cw6v60Q0QeqzKtgeG237HMne850/6Qeq7QaZ+WdydHtj+OM3qENCMRYl1B3K2U7wnlWE/mhlirjkODa9FN/BF7/iNV/2kASNZpX1Wlf03C4stRGxgUPclqoAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gEaBzgZ4yeM3AAAAT9JREFUOMvNUldbwkAQvCAqsSBoABE7asSOBRUVVBQNNuy9996789+9cMFAMHnVebmdm+/bmdtbQv4dOFOW2UjPzgFyLfo6nweKfIMOBYWwFtmMPGz2Yj2pJI0JDq3udJW6VVbmKa9I192VQFV1ktXUAl5NB0cd4KpnORqsEO2ZIRpF9gJfE9Dckqq0KuZt7UAH5+8EPF3spjsRpCeQNO/tA/qDwIDA+OCQbBoKA8NOdjMySgcZGVM6jwcgRuUiSs0nlPFNSrEpJfU0jTLD6llqbvKxei7OzvkFNQohi0vAsj81+MoqsCaoPOQFgus/1LyxichW+hS2JWCHZ7VlF9jb187pIAYcHiViHAMnp5mTjJ8B5xeEXF4B1ze/fTh/C0h398DDI9HB07O8ci+vRBdvdGnfP4gBuM8vw7X/G3wDmFhFZEdxzjMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDEtMjZUMDc6NTY6MjUrMDE6MDA67pVWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTAxLTI2VDA3OjU2OjI1KzAxOjAwS7Mt6gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAWdEVYdFRpdGxlAGp1ZWppbl9sb2dvIGNvcHlxapmKAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC)&#125;.markdown-body h2&#123;position:relative;font-size:20px;border-left:4px solid;padding:0 0 0 10px;margin:30px 0&#125;.markdown-body h3&#123;font-size:16px&#125;.markdown-body ul&#123;list-style:disc outside;margin-left:2em;margin-top:1em&#125;.markdown-body li&#123;line-height:2;color:#595959&#125;.markdown-body img.loaded&#123;margin:0 auto;display:block&#125;.markdown-body blockquote&#123;background:#fff9f9;margin:2em 0;padding:2px 20px;border-left:4px solid #b2aec5&#125;.markdown-body blockquote p&#123;color:#666;line-height:2&#125;.markdown-body a&#123;color:#036aca;border-bottom:1px solid rgba(3,106,202,.8);font-weight:400;text-decoration:none&#125;.markdown-body em strong,.markdown-body strong&#123;color:#036aca&#125;.markdown-body hr&#123;border-top:1px solid #135ce0&#125;.markdown-body pre&#123;overflow:auto&#125;.markdown-body code,.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body table&#123;border-collapse:collapse;margin:1rem 0;overflow-x:auto&#125;.markdown-body table td,.markdown-body table th&#123;border:1px solid #dfe2e5;padding:.6em 1em&#125;.markdown-body table tr&#123;border-top:1px solid #dfe2e5&#125;.markdown-body table tr:nth-child(2n)&#123;background-color:#f6f8fa&#125;</style><p><strong>这是我参与8月更文挑战的第8天，活动详情查看：<a href=https://juejin.cn/post/6987962113788493831 title=https://juejin.cn/post/6987962113788493831 target=_blank>8月更文挑战</a></strong></p><h2 data-id=heading-0>Hi 👋</h2><ul><li>Wechat: RyukieW</li><li>📦 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fryukiedev.gitbook.io%2Fwiki%2F" target=_blank rel="nofollow noopener noreferrer" title="https://ryukiedev.gitbook.io/wiki/" ref="nofollow noopener noreferrer">技术文章归档</a></li><li>🐙 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2FRyukieSama" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/RyukieSama ref="nofollow noopener noreferrer">Github</a></li></ul><table><thead><tr><th align=center>我的个人项目</th><th align=center>扫雷Elic 无尽天梯</th><th align=center>梦见账本</th></tr></thead><tbody><tr><td align=center>类型</td><td align=center>游戏</td><td align=center>财务</td></tr><tr><td align=center><a href="https://link.juejin.cn/?target=https%3A%2F%2Fapps.apple.com%2Fcn%2Fdeveloper%2Frongqing-wang%2Fid1264542103" target=_blank rel="nofollow noopener noreferrer" title=https://apps.apple.com/cn/developer/rongqing-wang/id1264542103 ref="nofollow noopener noreferrer">AppStore</a></td><td align=center><a href="https://link.juejin.cn/?target=https%3A%2F%2Fapps.apple.com%2Fcn%2Fapp%2Fid1488204246" target=_blank rel="nofollow noopener noreferrer" title=https://apps.apple.com/cn/app/id1488204246 ref="nofollow noopener noreferrer">Elic</a></td><td align=center><a href="https://link.juejin.cn/?target=https%3A%2F%2Fapps.apple.com%2Fcn%2Fapp%2Fid1498426607" target=_blank rel="nofollow noopener noreferrer" title=https://apps.apple.com/cn/app/id1498426607 ref="nofollow noopener noreferrer">Umemi</a></td></tr></tbody></table><h2 data-id=heading-1>前言</h2><p><code>MethodSwizzing</code> 方法交换是比较常用的所谓 <code>黑魔法</code>。但正如武侠小说中的绝世武功一般，也存在使用不恰当发生 <code>伤敌一千，自损八百</code> 的情况。</p><p>本文就带你来探索一下其中的坑，避免走火入魔。</p><h2 data-id=heading-2>一、 MethodSwizzingTool</h2><p>为了方便，我们封装一下常规的方法交换逻辑</p><pre><code class="hljs language-Objc copyable" lang=Objc><span class=hljs-class><span class=hljs-keyword>@implementation</span> <span class=hljs-title>MethodSwizzingTool</span></span>
+
+<ul>
+<li>(<span class=hljs-keyword>void</span>)swizzingClass:(Class)cls oldSEL:(SEL)oldSel toNewSel:(SEL)newSel &#123;<br>  <span class=hljs-keyword>if</span> (!cls) &#123; <span class=hljs-keyword>return</span>; &#125;<br>  Method oldM = class_getInstanceMethod(cls, oldSel);<br>  Method newM = class_getInstanceMethod(cls, newSel);<br>  method_exchangeImplementations(oldM, newM);<br>&#125;</li>
+</ul>
+<p><span class=hljs-keyword>@end</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><h3 data-id=heading-3>1.1 验证是否有效</h3><pre><code class="hljs language-Objc copyable" lang=Objc><span class=hljs-class><span class=hljs-keyword>@implementation</span> <span class=hljs-title>RYModel</span></span>
+
+<p>+(<span class=hljs-keyword>void</span>)load &#123;<br>    <span class=hljs-keyword>static</span> <span class=hljs-built_in>dispatch_once_t</span> onceToken;<br>    <span class=hljs-built_in>dispatch_once</span>(&amp;onceToken, ^&#123;<br>        [MethodSwizzingTool swizzingClass:<span class=hljs-keyword>self</span> oldSEL:<span class=hljs-keyword>@selector</span>(functionA) toNewSel:<span class=hljs-keyword>@selector</span>(functionB)];<br>    &#125;);<br>&#125;</p>
+<ul>
+<li><p>(<span class=hljs-keyword>void</span>)functionA &#123;<br>  <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@”%s”</span>, <strong>func</strong>);<br>&#125;</p>
+</li>
+<li><p>(<span class=hljs-keyword>void</span>)functionB &#123;<br>  <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@”%s”</span>, <strong>func</strong>);<br>  [<span class=hljs-keyword>self</span> functionB];<br>&#125;</p>
+</li>
+</ul>
+<p><span class=hljs-keyword>@end</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><em><strong>调用：</strong></em></p><pre><code class="hljs language-Objc copyable" lang=Objc>RYModel *ry = [[RYModel alloc] init];
+[ry functionA];
+<span class=copy-code-btn>复制代码</span></code></pre><p><em><strong>输出：</strong></em></p><pre><code class=copyable>2021-08-07 17:01:53.954201+0800 MethodSwizzing[72309:15057493] -[RYModel functionB]
+2021-08-07 17:01:53.954534+0800 MethodSwizzing[72309:15057493] -[RYModel functionA]
+<span class=copy-code-btn>复制代码</span></code></pre><p>嗯～感觉封装的没问题。</p><h2 data-id=heading-4>二、 子类的坑</h2><h3 data-id=heading-5>2.1 用子类方法替换父类方法，会怎样？</h3><p><em><strong>思考：</strong></em></p><blockquote><p>在子类 <code>RYSubModel</code> 中用 <code>子类</code> 的 <code>subFunctionA</code> 替换 <code>父类</code> 的 <code>functionA</code> ，<code>子类实例</code>和<code>父类实例</code>分别调用 <code>functionA</code> 会是什么样的结果呢？（父类中未做交换）</p></blockquote><p><em><strong>子类代码如下：</strong></em></p><pre><code class="hljs language-Objc copyable" lang=Objc><span class=hljs-class><span class=hljs-keyword>@implementation</span> <span class=hljs-title>RYSubModel</span></span>
+
+<ul>
+<li>(<span class=hljs-keyword>void</span>)load &#123;<br>  <span class=hljs-keyword>static</span> <span class=hljs-built_in>dispatch_once_t</span> onceToken;<br>  <span class=hljs-built_in>dispatch_once</span>(&amp;onceToken, ^&#123;<pre><code>  [MethodSwizzingTool swizzingClass:&lt;span class=&quot;hljs-keyword&quot;&gt;self&lt;/span&gt; oldSEL:&lt;span class=&quot;hljs-keyword&quot;&gt;@selector&lt;/span&gt;(functionA) toNewSel:&lt;span class=&quot;hljs-keyword&quot;&gt;@selector&lt;/span&gt;(subFunctionA)];
+</code></pre> &#125;);<br>&#125;</li></ul><ul><li>(<span class=hljs-keyword>void</span>)subFunctionA &#123;<br> <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@”%s”</span>, <strong>func</strong>);<br>&#125;</li></ul><p><span class=hljs-keyword>@end</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><em><strong>调用：</strong></em></p><pre><code class="hljs language-Objc copyable" lang=Objc>RYModel *ry = [[RYModel alloc] init];
+[ry functionA];
+
+<p>RYSubModel *sub = [[RYSubModel alloc] init];<br>[sub functionA];<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><em><strong>输出：</strong></em></p><pre><code class=copyable>2021-08-07 17:10:37.990097+0800 MethodSwizzing[72705:15063434] -[RYSubModel subFunctionA]
+2021-08-07 17:10:37.990530+0800 MethodSwizzing[72705:15063434] -[RYSubModel subFunctionA]
+<span class=copy-code-btn>复制代码</span></code></pre><p><em><strong>分析</strong></em></p><p>用子类中的方法 <code>subFunctionA</code> 替换父类中的方法 <code>functionA</code>， <code>functionA</code> 的实现变成了 <code>subFunctionA</code>。</p><h3 data-id=heading-6>2.2 调用原实现</h3><p>一般我们交换方法后想要继续调用原本的实现一般会如<a href=https://juejin.cn/post/6993975469724925959#11-%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%9C%89%E6%95%88 target=_blank title=#11-%E9%AA%8C%E8%AF%81%E6%98%AF%E5%90%A6%E6%9C%89%E6%95%88>上文中functionB</a>那样调用一下自己。</p><p>那么我们在用子类中的方法 <code>subFunctionA</code> 替换了父类中的方法 <code>functionA</code> 后想要继续调用 <code>functionA</code> 同理应该这么写：</p><pre><code class="hljs language-Objc copyable" lang=Objc>- (<span class=hljs-keyword>void</span>)subFunctionA &#123;
+    [<span class=hljs-keyword>self</span> subFunctionA];
+    <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@"%s"</span>, __func__);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><em><strong>调用：</strong></em></p><pre><code class="hljs language-Objc copyable" lang=Objc>RYModel *ry = [[RYModel alloc] init];
+[ry functionA];
+
+<p>RYSubModel *sub = [[RYSubModel alloc] init];<br>[sub functionA];<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><em><strong>输出：</strong></em></p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19-01.png loading=lazy referrerpolicy=no-referrer></p><blockquote><p>为什么呢？居然找不到了</p></blockquote><h4 data-id=heading-7>分析</h4><p>我们在用子类中的方法 <code>subFunctionA</code> 替换了父类中的方法 <code>functionA</code> 后</p><p><em><strong>父类中：</strong></em></p><p><code>functionA</code> 调用 <code>subFunctionA</code></p><p>但是父类本身方法列表中并没有 <code>subFunctionA</code> ，所以父类就报了 <code>unrecognized selector</code> 的错误。</p><h4 data-id=heading-8>修改调用</h4><p><em><strong>如果我们只调用子类：</strong></em></p><pre><code class="hljs language-Objc copyable" lang=Objc>RYSubModel *sub = [[RYSubModel alloc] init];
+[sub functionA];
+<span class=copy-code-btn>复制代码</span></code></pre><p><em><strong>输出：</strong></em></p><pre><code class=copyable>2021-08-07 17:33:28.874108+0800 MethodSwizzing[73690:15075457] -[RYModel functionA]
+2021-08-07 17:33:28.874564+0800 MethodSwizzing[73690:15075457] -[RYSubModel subFunctionA]
+<span class=copy-code-btn>复制代码</span></code></pre><blockquote><p>这里就是正常的</p></blockquote><h2 data-id=heading-9>三、 优化 MethodSwizzingTool</h2><p>我们能不能优化 <code>MethodSwizzingTool</code> 来防止这样的问题出现呢？</p><p><em><strong>可以！</strong></em></p><h3 data-id=heading-10>3.1 优化思路</h3><ul><li>出现上面找不到方法的原因是：<em><strong>子类用自己的实现直接替换了父类的方法</strong></em></li><li>那么我们能不能为子类动态添加一个和父类一样的方法呢？子类中进行替换的时候就不会影响父类了</li></ul><h3 data-id=heading-11>3.2 编写优化代码</h3><pre><code class="hljs language-Objc copyable" lang=Objc>+ (<span class=hljs-keyword>void</span>)swizzingClassB:(Class)cls oldSEL:(SEL)oldSel toNewSel:(SEL)newSel &#123;
+    <span class=hljs-keyword>if</span> (!cls) &#123; <span class=hljs-keyword>return</span>; &#125;
+    Method oldM = class_getInstanceMethod(cls, oldSel);
+    Method newM = class_getInstanceMethod(cls, newSel);
+    
+    <span class=hljs-comment>// 先尝试给 cls 添加方法（SEL: oldSel  IMP: newM），防止子类直接替换父类中的方法</span>
+    <span class=hljs-built_in>BOOL</span> addSuccess = class_addMethod(cls, oldSel, method_getImplementation(newM), method_getTypeEncoding(oldM));
+    
+    <span class=hljs-keyword>if</span> (addSuccess) &#123; <span class=hljs-comment>// 添加成功即：原本没有 oldSel，成功为子类添加了一个 oldSel - newM 的方法</span>
+        <span class=hljs-comment>// 这里将原 newSel的imp替换为 oldM 的 IMP</span>
+        class_replaceMethod(cls, newSel, method_getImplementation(oldM), method_getTypeEncoding(oldM));
+    &#125;
+    <span class=hljs-keyword>else</span> &#123;
+        method_exchangeImplementations(oldM, newM);
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-12>3.3 优化代码流程分析</h3><p>本案例子类调用流程分析：</p><ul><li>调用方法，准备用子类中的方法 <code>subFunctionA</code> 替换的方法 <code>functionA</code></li><li><code>Method oldM</code> 是从父类获取到的方法 <code>（SEL: functionA, IMP: functionA）</code></li><li><code>Method newM</code> 是从子类自己获取到的方法 <code>（SEL: subFunctionA, IMP: subFunctionA）</code></li><li>是否可以成功添加方法：<code>（SEL: functionA, IMP: subFunctionA）</code><ul><li>否：已存在 <code>SEL: functionA</code> 的方法</li><li>是：不存在 <code>SEL: functionA</code> 的方法<ul><li>将子类的 <code>（SEL: subFunctionA, IMP: subFunctionA）</code> 替换为 <code>（SEL: subFunctionA, IMP: functionA）</code></li></ul></li></ul></li></ul><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e2d6f1d5ecc04d6782656c86cb0fb862~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e2d6f1d5ecc04d6782656c86cb0fb862~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19-02.png loading=lazy referrerpolicy=no-referrer></p><ul><li>父类实例<ul><li><code>[ry functionA]</code></li><li>调用没有受子类方法交换的影响</li></ul></li><li>子类实例<ul><li><code>[sub functionA]</code></li><li>没有出现父类调用找不到方法的情况</li></ul></li></ul><h2 data-id=heading-13>四、 如果父类的 functionA 没有实现呢？</h2><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/149646bc2adf4961a51ac9228ebce9e9~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/149646bc2adf4961a51ac9228ebce9e9~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19-03.png loading=lazy referrerpolicy=no-referrer></p><h3 data-id=heading-14>4.1 分析</h3><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee150cd69ec4184b1568ae961718450~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ee150cd69ec4184b1568ae961718450~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19-04.png loading=lazy referrerpolicy=no-referrer></p><p>由于并不存在 <code>functionA</code> 的实现，所以这里的替换方法并没有成功。 <code>subFunctionA</code> 的调用就直接递归死循环了。</p><h3 data-id=heading-15>4.2 再优化</h3><p>通过设置默认实现的方式来避免死循环，新实现也为空的情景可以类似处理，这里就不赘述了。</p><pre><code class="hljs language-Objc copyable" lang=Objc>+ (<span class=hljs-keyword>void</span>)swizzingClassB:(Class)cls oldSEL:(SEL)oldSel toNewSel:(SEL)newSel &#123;
+    <span class=hljs-keyword>if</span> (!cls) &#123; <span class=hljs-keyword>return</span>; &#125;
+    Method oldM = class_getInstanceMethod(cls, oldSel);
+    Method newM = class_getInstanceMethod(cls, newSel);
+    
+    <span class=hljs-keyword>if</span> (!oldM) &#123;
+        <span class=hljs-comment>// 先用新的实现来，临时添加一个（这里忽略新实现也为空的情况，可以类似的处理）</span>
+        class_addMethod(cls, oldSel, method_getImplementation(newM), method_getTypeEncoding(newM));
+        <span class=hljs-comment>// 对 oldM 变量重新赋值</span>
+        oldM = class_getInstanceMethod(cls, oldSel);
+        <span class=hljs-comment>// 创建默认实现，可以进行一些日志收集之类的</span>
+        IMP defaultIMP = imp_implementationWithBlock(^(<span class=hljs-keyword>id</span> <span class=hljs-keyword>self</span>, SEL _cmd)&#123;
+            <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@"一些处理"</span>);
+        &#125;);
+        <span class=hljs-comment>// 为 oldM 设置 IMP</span>
+        method_setImplementation(oldM, defaultIMP);
+    &#125;
+    
+    <span class=hljs-comment>// 先尝试给 cls 添加方法（SEL: oldSel  IMP: newM），防止子类直接替换父类中的方法</span>
+    <span class=hljs-built_in>BOOL</span> addSuccess = class_addMethod(cls, oldSel, method_getImplementation(newM), method_getTypeEncoding(oldM));
+    
+    <span class=hljs-keyword>if</span> (addSuccess) &#123; <span class=hljs-comment>// 添加成功即：原本没有 oldSel，成功为子类添加了一个 oldSel - newM 的方法</span>
+        <span class=hljs-comment>// 这里将原 newSel的imp替换为 oldM 的 IMP</span>
+        class_replaceMethod(cls, newSel, method_getImplementation(oldM), method_getTypeEncoding(oldM));
+    &#125;
+    <span class=hljs-keyword>else</span> &#123;
+        method_exchangeImplementations(oldM, newM);
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1e2bd3adbe0943719ea2efb307443a8e~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1e2bd3adbe0943719ea2efb307443a8e~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19-05.png loading=lazy referrerpolicy=no-referrer></p><h2 data-id=heading-16>总结</h2><p>黑魔法虽好，使用也得倍加小心！</p><p>尤其要对方法的本质以及方法调用的流程烂熟于心才能随心所欲，内功到家，进阶武功才不会伤及自身。</p><p>👋欢迎点赞收藏关注♥️</p><p><em><strong>拓展阅读：</strong></em></p><ul><li><a href=https://juejin.cn/post/6979935428920999967 target=_blank title=https://juejin.cn/post/6979935428920999967>objc_msgSend源码调试解读</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fryukiedev.gitbook.io%2Fwiki%2Fios%2Fqi-ios-di-ceng-zhi-shi-shu-li" target=_blank rel="nofollow noopener noreferrer" title=https://ryukiedev.gitbook.io/wiki/ios/qi-ios-di-ceng-zhi-shi-shu-li ref="nofollow noopener noreferrer">iOS底层知识梳理</a></li></ul></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/17d6.html>https://news.zfe.space/p/17d6.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:34+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/17d6.html&title=MethodSwizzing方法交换的坑｜伤敌一千自损八百 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/17d6.html&title=MethodSwizzing方法交换的坑｜伤敌一千自损八百 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/17d6.html&title=MethodSwizzing方法交换的坑｜伤敌一千自损八百 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bb085e4328d4432dbddda9552efa81c6~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/c8bf.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>分类的加载原理补充及类扩展 , 关联对象介绍</p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a><a class=next href=/p/4807.html><p class=title>OC底层原理19-KVC<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Hi 👋</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>前言</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>一、 MethodSwizzingTool</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>1.1 验证是否有效</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>二、 子类的坑</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.1 用子类方法替换父类方法，会怎样？</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.2 调用原实现</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>分析</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>修改调用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>三、 优化 MethodSwizzingTool</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.1 优化思路</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.2 编写优化代码</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.3 优化代码流程分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>四、 如果父类的 functionA 没有实现呢？</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4.1 分析</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4.2 再优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>总结</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="MethodSwizzing方法交换的坑｜伤敌一千自损八百";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

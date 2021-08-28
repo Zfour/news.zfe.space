@@ -1,0 +1,1056 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title=每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 href=/p/c2ee.html><img class=thumbnail src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%A0%87%E7%AD%BE/">标签</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年7月11日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 data-path=/p/c2ee.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;color:#383838;font-size:15px;line-height:37.5px;letter-spacing:2px;word-break:break-word;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Open Sans,Helvetica Neue,sans-serif;scroll-behavior:smooth;background-image:linear-gradient(0deg,transparent 24%,rgba(201,195,195,.329) 25%,hsla(0,8%,80.4%,.05) 26%,transparent 27%,transparent 74%,hsla(0,5.2%,81%,.185) 75%,rgba(180,176,176,.05) 76%,transparent 77%,transparent),linear-gradient(90deg,transparent 24%,rgba(204,196,196,.226) 25%,hsla(0,4%,66.1%,.05) 26%,transparent 27%,transparent 74%,hsla(0,5.2%,81%,.185) 75%,rgba(180,176,176,.05) 76%,transparent 77%,transparent);background-color:#fff;background-size:50px 50px;padding-bottom:120px&#125;.markdown-body ::selection&#123;color:#fff;background-color:#a862ea&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;margin:30px 0 15px;color:#a862ea&#125;.markdown-body h1&#123;line-height:2;font-size:1.4em&#125;.markdown-body h1~p:first-of-type:first-letter&#123;color:#a862ea;float:left;font-size:2em;margin-right:.4em;font-weight:bolder&#125;.markdown-body h2&#123;font-size:1.2em&#125;.markdown-body h3&#123;font-size:1.1em&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:2em&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;padding-left:.2em&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:10px&#125;.markdown-body li::marker&#123;color:#a862ea&#125;.markdown-body li,.markdown-body p&#123;opacity:.9;vertical-align:baseline;transition:all .1s ease&#125;.markdown-body li:hover,.markdown-body p:hover&#123;opacity:1&#125;.markdown-body a&#123;display:inline-block;color:#a862ea;cursor:pointer;padding-bottom:2px;text-decoration:none;position:relative&#125;.markdown-body a:after&#123;content:"";position:absolute;width:98%;height:2px;bottom:0;left:0;transform:scaleX(0);background-color:#a862ea;transform-origin:bottom right;transition:transform .3s ease-in-out&#125;.markdown-body a:hover:after&#123;transform:scaleX(1);transform-origin:bottom left&#125;.markdown-body a:active,.markdown-body a:link&#123;color:#a862ea&#125;.markdown-body img&#123;max-width:100%;user-select:none;margin:1em 0;box-shadow:0 0 20px 0 #e7daff;transition:transform .2s ease 0s;background-color:#f8f5ff&#125;.markdown-body img:hover&#123;opacity:1;transform:translateY(-2px)&#125;.markdown-body blockquote&#123;padding:.5em 1em;margin:15px 0;border-top-left-radius:2px;border-bottom-left-radius:2px;border-left:4px solid #a862ea;background-color:#f8f5ff&#125;.markdown-body blockquote>p&#123;margin:0&#125;.markdown-body code&#123;padding:2px .4em;overflow-x:auto;color:#a862ea;font-weight:700;word-break:break-word;font-family:Operator Mono,Consolas,Monaco,Menlo,monospace;background-color:#f8f5ff&#125;.markdown-body pre&#123;margin:2em 0;box-shadow:0 0 20px #e7daff&#125;.markdown-body pre>code&#123;display:block;padding:1.5em;word-break:normal;font-size:.9em;font-style:normal;font-weight:400;font-family:Operator Mono,Consolas,Monaco,Menlo,monospace;line-height:22.5px;color:#383838;border-radius:3px;scroll-behavior:smooth&#125;.markdown-body pre>code::-webkit-scrollbar&#123;height:6px;background-color:#f8f5ff&#125;.markdown-body pre>code::-webkit-scrollbar-thumb&#123;background-color:#e7daff;border-bottom-left-radius:3px;border-bottom-right-radius:3px&#125;.markdown-body hr&#123;margin:2em 0;border-top:1px solid #a862ea&#125;.markdown-body table&#123;font-size:12px;max-width:100%;overflow:auto;border-collapse:collapse;border:1px solid #e7daff&#125;.markdown-body thead&#123;color:#a862ea;background:#f8f5ff&#125;.markdown-body td,.markdown-body th&#123;padding:1em .5em&#125;.markdown-body tr&#123;background-color:#fcfcfc&#125;@media (max-width:720px)&#123;.markdown-body&#123;font-size:12px&#125;&#125;</style><blockquote><p>⚠️本文为掘金社区首发签约文章，未获授权禁止转载</p></blockquote><blockquote><p>大家好，我是洛竹🎋，一只住在杭城的木系前端🧚🏻‍♀️，如果你喜欢我的文章📚，可以通过点赞帮我聚集灵力⭐️。</p></blockquote><p>洛竹有一个朋友小黑最近在面试时被问到如何设计一个前端组件库。没啥经验的小黑回答了业务提取封装成库以及基于 antd 结合业务二次封装。最后小黑被 HR 以灵力不够挂掉了。其实这个问题考察的并不是假大空的概念，而是有关开发者仓库管理、组件设计、单元测试、持续集成、协作管理等等能力。那么为了赋能小黑完美回答这个问题呢，我决定带领小黑一步一步建设一个 React Native 组件库。</p><p>这是一篇干货比较多的组件库搭建实战教程，不仅有通用的代码规范、提交规范、文档维护、单元测试、GitHub Action 配置的讲解，还涉及基于 lerna 的多包管理架构、React Native 图标库建设、React Native 组件库开发调试、按需加载原理及实现。工程化的思想是通用的，所以无论是你用的框架是什么，本文都值得一读。</p><blockquote><p>如果电脑前的掘友也对组件库开发感兴趣，不妨先给个点赞，再持续关注洛竹和小黑的组件库开发之旅。PS：配合<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fvant-react-native" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/vant-react-native ref="nofollow noopener noreferrer">仓库</a>和<a href="https://link.juejin.cn/?target=https%3A%2F%2Fvant-react-native.js.org%2F" target=_blank rel="nofollow noopener noreferrer" title="https://vant-react-native.js.org/" ref="nofollow noopener noreferrer">组件库文档</a>阅读本文效果更佳喲！</p></blockquote><h2 data-id=heading-0>站在 Vant Design 的肩膀上</h2><p>维护开发一个组件库无疑是需要投入很多时间和精力的，Flag 立了倒，倒了又立。可谓万事开头难，首先我们要有自知之明，在没有设计师和业余开发的情况下，我选择了给现有 UI Design 实现 React Native 版本的方式开启组件库开发之旅。在调研了 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyouzan%2Fvant" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youzan/vant ref="nofollow noopener noreferrer">vant</a>、<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2FNSFI%2Ffishd-mobile%2F" target=_blank rel="nofollow noopener noreferrer" title="https://github.com/NSFI/fishd-mobile/" ref="nofollow noopener noreferrer">fishd-mobile</a> 和 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-mobile" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-mobile ref="nofollow noopener noreferrer">antd-mobile</a> 后我选择了 vant。这是几个仓库的现状对比：</p><table><thead><tr><th>组件库</th><th>团队</th><th>Github Star</th><th>Npm 周下载量</th><th>维护度</th></tr></thead><tbody><tr><td>vant</td><td>有赞</td><td>17.7K</td><td>27,789</td><td>维高度高，流行度也高</td></tr><tr><td>antd-mobile</td><td>Ant Design Team</td><td>8.9K</td><td>31,470</td><td>几乎不维护，据说蚂蚁内部也不用了</td></tr><tr><td>fishd-mobile</td><td>网易云商前端</td><td>29</td><td>22</td><td>看起来是个 KPI 项目无疑了</td></tr></tbody></table><p>确定了旅程的方向，就是给我们的组件库起一个合适的名字和口号，用前端工程师的方式表述就是 <code>package.json</code> 的 <code>name</code> 和 <code>description</code> 字段：</p><pre><code class="hljs language-json copyable" lang=json><span class=hljs-comment>// package.json</span>
+&#123;
+    <span class=hljs-attr>"name"</span>: <span class=hljs-string>"vant-react-native"</span>,
+    <span class=hljs-attr>"description"</span>: <span class=hljs-string>"Lightweight React Native UI Components inspired on Vant"</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><blockquote><p>由于我们的组件库定位是 vant 的 RN 版，参照 lottie-react-native、styled-react-native、jpush-react-native 的命名方式我们将组件库命名为 vant-react-native，同时也是希望组件库完成时能获得 vant 官方的支持。</p></blockquote><h2 data-id=heading-1>基于 Lerna 的多包管理架构</h2><p>Lerna 是一个管理工具，用于管理包含多个软件包（package）的 JavaScript 项目。由 Lerna 管理的仓库我们一般称之为单体仓库（monorepo）。基于 Lerna 的多包管理架构的优点在于：</p><ul><li>组件级别解耦，独立版本控制，每个组件都有版本记录可追溯</li><li>组件单独发布，支持灰度、版本回滚以及平滑升降级</li><li>按需引用，用户安装具体某个组件包，无需配置即可实现按需加载的效果。</li><li>关注点分离，降低大型复杂度、组件之间依赖清晰且可控制</li><li>单一职责原则，降低开源基友的参与和贡献难度</li></ul><pre><code class="hljs language-sh copyable" lang=sh>.
+└── packages
+    ├── button <span class=hljs-comment># @vant-react-native/button</span>
+    └── icons <span class=hljs-comment># @vant-react-native/icon</span>
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-2>初始化 lerna 项目</h3><pre><code class="hljs language-sh copyable" lang=sh>$ mkdir vant-react-native && lerna init --independent
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-3>yarn workspaces</h3><p>使用 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fyarnpkg.com%2Flang%2Fzh-Hans%2Fdocs%2Fworkspaces%2F" target=_blank rel="nofollow noopener noreferrer" title="https://yarnpkg.com/lang/zh-Hans/docs/workspaces/" ref="nofollow noopener noreferrer">yarn workspaces</a> 结合 Lerna <code>useWorkspaces</code> 可以实现 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Flerna%2Flerna%2Fblob%2Fmain%2Fdoc%2Fhoist.md" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/lerna/lerna/blob/main/doc/hoist.md ref="nofollow noopener noreferrer">Lerna Hoisting</a>。这并不是多此一举，这可以让你在统一的地方（根目录）管理依赖，这即节省时间又节省空间。</p><p>配置 <code>lerna.json</code>:</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  ...
+  <span class=hljs-attr>"npmClient"</span>: <span class=hljs-string>"yarn"</span>,
+  <span class=hljs-attr>"useWorkspaces"</span>: <span class=hljs-literal>true</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>托管给 yarn wrokspace 之后，lerna 的 <code>packages</code> 将会被顶级 <code>package.json</code> 的 <code>workspaces</code> 覆盖:</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"private"</span>: <span class=hljs-literal>true</span>,
+  ...
+  <span class=hljs-attr>"workspaces"</span>: [
+    <span class=hljs-string>"packages/*"</span>
+  ],
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-4>lerna publish config</h3><p>如果你不想在所有 <code>package.json</code> 文件中单独明确设置你的注册表配置，例如使用私有注册表时，设置 <code>command.publish.registry</code> 很有用。配置 <code>ignoreChanges</code> 则是为了避免不必要的版本升级。</p><pre><code class="hljs language-json copyable" lang=json><span class=hljs-string>"ignoreChanges"</span>: [
+  <span class=hljs-string>"ignored-file"</span>,
+  <span class=hljs-string>"**/__tests__/**"</span>,
+  <span class=hljs-string>"**/*.md"</span>
+],
+<span class=hljs-string>"command"</span>: &#123;
+  <span class=hljs-attr>"publish"</span>: &#123;
+    <span class=hljs-attr>"registry"</span>: <span class=hljs-string>"https://registry.npmjs.org"</span>
+  &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><blockquote><p>除此之外，如果你的包名是带 scope 的，需要在那个包的 <code>package.json</code> 中设置 <code>publishConfig.access</code> 为 <code>"public"</code>。</p></blockquote><h3 data-id=heading-5>lerna version config</h3><p>当配置 <code>conventionalCommits</code> 为 <code>true</code> 后，lerna 版本将使用 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fconventionalcommits.org%2F" target=_blank rel="nofollow noopener noreferrer" title="https://conventionalcommits.org/" ref="nofollow noopener noreferrer">Conventional Commits Specification</a> 来确定版本升级并 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fconventional-changelog%2Fconventional-changelog%2Ftree%2Fmaster%2Fpackages%2Fconventional-changelog-cli" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/conventional-changelog/conventional-changelog/tree/master/packages/conventional-changelog-cli ref="nofollow noopener noreferrer">生成 CHANGELOG.md 文件</a>。</p><pre><code class="hljs language-json copyable" lang=json><span class=hljs-string>"command"</span>: &#123;
+  <span class=hljs-attr>"version"</span>: &#123;
+    <span class=hljs-attr>"conventionalCommits"</span>: <span class=hljs-literal>true</span>,
+    <span class=hljs-attr>"message"</span>: <span class=hljs-string>"chore(release): publish"</span>
+  &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h2 data-id=heading-6>规范化提交</h2><p>规范化 <code>git commit</code> 对于提高 <code>git log</code> 可读性、可控的版本控制和 changelog 生成都有着重要的作用。洛竹之前在 <a href=https://juejin.cn/post/6877462747631026190 target=_blank title=https://juejin.cn/post/6877462747631026190>一文搞定规范化Git Commit</a> 中详细讲述了 Conventional Commits 的概念以及 commitizen、cz-customizable、@commitlint/cli、yorkie 和 commitlint-config-cz 等工具的配置。</p><p>由于配置繁琐，我在 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fcli%23%25E4%25B8%2580%25E9%2594%25AE%25E9%2585%258D%25E7%25BD%25AE-conventional-commit" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/cli#%E4%B8%80%E9%94%AE%E9%85%8D%E7%BD%AE-conventional-commit ref="nofollow noopener noreferrer">@youngjuning/cli</a> 中添加了 <code>init-commit</code> 命令一键配置 conventional commit。可以打开这个 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fvant-react-native%2Fcommit%2Fd49f4203eacd37d3908306d309783ed5c11fb565" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/vant-react-native/commit/d49f4203eacd37d3908306d309783ed5c11fb565 ref="nofollow noopener noreferrer">commit</a> 查看配置信息。</p><blockquote><p>注意：husky 高版本用法不向后兼容，我在这个 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fvant-react-native%2Fcommit%2F174c7fd883dd5dc7a0c4f5d8fcb25ed605680b12" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/vant-react-native/commit/174c7fd883dd5dc7a0c4f5d8fcb25ed605680b12 ref="nofollow noopener noreferrer">commit</a> 中用尤大的 yorkie 代替了 husky。</p></blockquote><h2 data-id=heading-7>代码规范化</h2><p>代码规范化的重要性不言而喻，代码规范化涉及的工具有 editorconfig、eslint、prettier 等，在 <a href=https://juejin.cn/post/6854573217320075278 target=_blank title=https://juejin.cn/post/6854573217320075278>装它|再也不用操心ESLint配置</a> 一文中我介绍了如何一步一步建设属于自己的 eslint config 插件并产出了 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Feslint-config" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/eslint-config ref="nofollow noopener noreferrer">@youngjuning/eslint-config</a> 和 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fprettier-config" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/prettier-config ref="nofollow noopener noreferrer">@youngjuning/prettier-config</a>。</p><p>vant-react-native 暂时使用 @youngjuning/eslint-config、@youngjuning/prettier-config 约束项目代码规范。相关配置如下文。</p><h3 data-id=heading-8>eslint</h3><p>首先安装 react-native 所需的插件。</p><pre><code class="hljs language-sh copyable" lang=sh>yarn add -D eslint-plugin-react \
+  eslint-plugin-react-hooks \
+  eslint-plugin-jsx-a11y \
+  eslint-plugin-import \
+  eslint-plugin-react-native
+<span class=copy-code-btn>复制代码</span></code></pre><p>然后配置 <code>.eslintrc.js</code></p><pre><code class="hljs language-js copyable" lang=js><span class=hljs-comment>// .eslintrc.js</span>
+<span class=hljs-built_in>module</span>.exports = &#123;
+  <span class=hljs-attr>extends</span>: [<span class=hljs-string>'@youngjuning/eslint-config/react-native'</span>]
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-9>prettier</h3><pre><code class="hljs language-js copyable" lang=js><span class=hljs-comment>// .prettierrc.js</span>
+<span class=hljs-built_in>module</span>.exports = <span class=hljs-built_in>require</span>(<span class=hljs-string>'@youngjuning/prettier-config'</span>);
+<span class=copy-code-btn>复制代码</span></code></pre><blockquote><p>@youngjuning/eslint-config 计划也用 lerna 管理，产出 @youngjuning/eslint-config-react、@youngjuning/eslint-config-react-native、@youngjuning/eslint-config-vue 让开发者无需过多配置开箱即用。</p></blockquote><h3 data-id=heading-10>editorconfig</h3><pre><code class=copyable># .editorconfig
+# EditorConfig is awesome: http://EditorConfig.org
+
+<h1 id=top-most-EditorConfig-file><a href=#top-most-EditorConfig-file class=headerlink title="top-most EditorConfig file"></a>top-most EditorConfig file</h1><p>root = true</p>
+<h1 id=Unix-style-newlines-with-a-newline-ending-every-file><a href=#Unix-style-newlines-with-a-newline-ending-every-file class=headerlink title="Unix-style newlines with a newline ending every file"></a>Unix-style newlines with a newline ending every file</h1><p>[*]<br>indent_style = space<br>indent_size = 2<br>end_of_line = lf<br>charset = utf-8<br>trim_trailing_whitespace = true<br>insert_final_newline = true</p>
+<p>[*.md]<br>trim_trailing_whitespace = false</p>
+<p>[*.gradle]<br>indent_size = 4</p>
+<p>[BUCK]<br>indent_size = 4<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><h3 data-id=heading-11>yorkie & lint-staged</h3><pre><code class="hljs language-sh copyable" lang=sh>$ yarn add -D yorkie lint-staged
+<span class=copy-code-btn>复制代码</span></code></pre><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"gitHooks"</span>: &#123;
+    <span class=hljs-attr>"commit-msg"</span>: <span class=hljs-string>"commitlint -e -V"</span>,
+    <span class=hljs-attr>"pre-commit"</span>: <span class=hljs-string>"lint-staged"</span>
+  &#125;,
+  <span class=hljs-attr>"lint-staged"</span>: &#123;
+    <span class=hljs-attr>"**/*.&#123;js,jsx,ts,tsx&#125;"</span>: [
+      <span class=hljs-string>"eslint --fix"</span>,
+      <span class=hljs-string>"git add ."</span>
+    ]
+  &#125;,
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h2 data-id=heading-12>第一个组件从 Icon 开始</h2><p>一个成熟的组件库都会拥有自己的一套 Icon，Icon 一般由设计师通过 Sketch 设计，然后导出 svg 文件。</p><p>ant-design-icons 的 svg 文件是 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-icons%2Ftree%2Fmaster%2Fpackages%2Ficons-svg%2Fsvg%2Ffilled" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-svg/svg/filled ref="nofollow noopener noreferrer">保存在本地</a>，然后通过脚本生成 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-icons%2Ftree%2Fmaster%2Fpackages%2Ficons-react%2Fsrc%2Ficons" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-react/src/icons ref="nofollow noopener noreferrer">react 组件</a>、<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-icons%2Ftree%2Fmaster%2Fpackages%2Ficons-vue" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-vue ref="nofollow noopener noreferrer">vue 组件</a> 和 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-icons%2Ftree%2Fmaster%2Fpackages%2Ficons-react-native" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-react-native ref="nofollow noopener noreferrer">icons-react-native</a> 等组件，由于支持的框架比较完备我们无需自己实现，RN 我们直接使用 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-icons%2Ftree%2Fmaster%2Fpackages%2Ficons-react-native" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-icons/tree/master/packages/icons-react-native ref="nofollow noopener noreferrer">icons-react-native</a>。</p><p>vant 以及 fishd-mobile 则是通过 Iconfont 维护 svg 文件，然后通过设置 <code>@font-face</code> 的方式实现 Icon 组件，如图所示：</p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>有了 ttf 文件，我们可以像 @ant-design/icons-react-native 一样基于 ttf 文件使用脚本生成 Icon 组件，但是使用 ttf 字体有一个弊端，就是每次更新图标，都要相应的更新 ttf 文件，然后再次打包发布 APP。而且 ttf 不支持多种色彩的图标，导致所有图标都是单色。如果你是借助 react-native-vector-icons，该库内置了 10 多套 ttf 文件，合起来有 2M 左右；你可能用不到它们，但是它们仍然会被打包进你的 APP 里，这也是我认为 react-native-elements 这个库外强中干的一大原因。</p><p>那么只有 Iconfont 链接我们如何实现 vant-icons 的 React Native 版本呢？这里洛竹没有自己写脚本，而是使用了一款叫 react-native-iconfont-cli 的工具，<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ffwh1990" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/fwh1990 ref="nofollow noopener noreferrer">fwh1990</a> 大佬针对以上痛点用纯 Javascript 实现 iconfont 到 React 组件的转换操作，不需要依赖 ttf 字体文件，不需要手动下载图标到本地。</p><h3 data-id=heading-13>创建 lerna 子包</h3><pre><code class="hljs language-sh copyable" lang=sh><span class=hljs-comment># 创建主包，主包用来统一导出所有的组件</span>
+$ lerna create vant-react-native -y
+<span class=hljs-comment># 创建 icons 包，我们的第一个组件！</span>
+$ lerna create @vant-react-native/icons -y
+<span class=copy-code-btn>复制代码</span></code></pre><p>我们的目录结构看起来是这样的：</p><pre><code class="hljs language-sh copyable" lang=sh>.
+└── packages
+    ├── icons
+    │   ├── README.md
+    │   └── package.json
+    └── vant-react-native
+        ├── README.md
+        └── package.json
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-14>生成 icons</h3><h4 data-id=heading-15>安装插件</h4><pre><code class="hljs language-sh copyable" lang=sh>yarn workspace @vant-react-native/icons add -D react-native-svg react-native-iconfont-cli
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-16>生成配置文件</h4><p>我们在 <code>packages/icons</code> 目录下使用 <code>npx iconfont-init</code> 命令会生成 <code>iconfont.json</code> 文件，自定义后内容如下：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"symbol_url"</span>: <span class=hljs-string>"https://at.alicdn.com/t/font_2553510_7cds497uxwn.js"</span>,
+  <span class=hljs-attr>"use_typescript"</span>: <span class=hljs-literal>false</span>,
+  <span class=hljs-attr>"save_dir"</span>: <span class=hljs-string>"./lib"</span>,
+  <span class=hljs-attr>"trim_icon_prefix"</span>: <span class=hljs-string>"van-icon"</span>,
+  <span class=hljs-attr>"default_icon_size"</span>: <span class=hljs-number>18</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-17>生成 React Native 标准组件</h4><p>执行 <code>npx iconfont-rn</code> 命令即可生成标准 React Native 组件。由于图标文件比较多，我们不将图标产物加入 git 管理。所以我们需要在 npm 发布前执行构建命令：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"build"</span>: <span class=hljs-string>"npx iconfont-rn"</span>,
+  <span class=hljs-attr>"prepublishOnly"</span>: <span class=hljs-string>"yarn build"</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-18>配置 react-native-vant</h3><p>我们前面提到 <code>packages/vant-react-native</code> 是主包的目录，我们需要将 <code>@vant-react-native/icons</code> 包添加到主包的依赖中并导出。</p><h4 data-id=heading-19>添加依赖</h4><pre><code class="hljs language-sh copyable" lang=sh>$ lerna add @vant-react-native/icons --scope vant-react-native
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-20>导出 Icon 组件</h4><pre><code class="hljs language-js copyable" lang=js><span class=hljs-comment>// packages/vant-react-native/src/index.ts</span>
+<span class=hljs-keyword>export</span> &#123; <span class=hljs-keyword>default</span> <span class=hljs-keyword>as</span> Icon &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+<span class=hljs-keyword>export</span> * <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-21>tsconfig 配置</h4><p>对与每个子包我们期望使用一样的配置，所以我们会先在整个项目的根目录新建 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fvant-react-native%2Fblob%2Fmain%2Ftsconfig.base.json" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/vant-react-native/blob/main/tsconfig.base.json ref="nofollow noopener noreferrer">tsconfig. base.json</a>，在子包继承即可。</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"extends"</span>: <span class=hljs-string>"../../tsconfig.base.json"</span>,
+  <span class=hljs-attr>"compilerOptions"</span>: &#123;
+    <span class=hljs-attr>"outDir"</span>: <span class=hljs-string>"lib"</span>,
+  &#125;,
+  <span class=hljs-attr>"include"</span>: [<span class=hljs-string>"src/**/*"</span>]
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-22>配置发布脚本</h4><p>和 <code>@vant-react-native/icons</code> 子包一样，我们需要添加 <code>build</code> 和 <code>prepublishOnly</code> 脚本：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"build"</span>: <span class=hljs-string>"tsc"</span>,
+  <span class=hljs-attr>"prepublishOnly"</span>: <span class=hljs-string>"yarn build"</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-23>发布包</h3><p>第一次发布的话，注意使用的是 <code>lerna publish 0.0.1</code>，因为 lerna 的发布命令没有第一次发布这个参数，所以需要显示指定初始版本。或者可以将初始版本设置为 <code>0.0.0</code> 然后执行 <code>lerna publish</code>。</p><blockquote><p>小技巧：如果发布后想查看包内容，可以通过 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.jsdelivr.com%2F" target=_blank rel="nofollow noopener noreferrer" title="https://www.jsdelivr.com/" ref="nofollow noopener noreferrer">jsdelivr</a> 查看。比如刚发布的 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2Fvant-react-native%2F" target=_blank rel="nofollow noopener noreferrer" title="https://cdn.jsdelivr.net/npm/vant-react-native/" ref="nofollow noopener noreferrer">vant-react-native</a> 和 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fcdn.jsdelivr.net%2Fnpm%2F%40vant-react-native%2Ficons%2F" target=_blank rel="nofollow noopener noreferrer" title="https://cdn.jsdelivr.net/npm/@vant-react-native/icons/" ref="nofollow noopener noreferrer">@vant-react-native/icons</a></p></blockquote><h2 data-id=heading-24>开发调试</h2><p>一个完善且体验良好的调试流程不仅能够满足在开发阶段验证组件是否符合预期，还可以降低开源社区基友的参与难度。React Native 组件库的调试和其他技术栈流程大体没有区别，只不过因为 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ffacebook%2Fmetro%2Fissues%2F1" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/facebook/metro/issues/1 ref="nofollow noopener noreferrer">Metro 不支持软连接</a> 以及 vant-react-native 是基于 lerna 的单体仓库项目，我们的配置会有不同。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3856a691a73409c8533fa9dd1966357~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f3856a691a73409c8533fa9dd1966357~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><h3 data-id=heading-25>初始化 React Native App</h3><p>由于是 React Native 项目，我们需要初始化一个 React Native 项目。首先找一个地方使用 <code>react-native init vantapp --template react-native-template-typescript</code> 创建一个新的 React Native App。然后将生成的 App 与我们的主项目合并。合并后的项目结构如下：</p><pre><code class="hljs language-sh copyable" lang=sh>.
+├── App.tsx
+├── __tests__
+│   └── App-test.tsx
+├── android
+│   ├── app
+│   ├── build.gradle
+│   ├── gradle
+│   ├── gradle.properties
+│   ├── gradlew
+│   ├── gradlew.bat
+│   └── settings.gradle
+├── app.json
+├── babel.config.js
+├── commitlint.config.js
+├── index.js
+├── ios
+│   ├── Podfile
+│   ├── Podfile.lock
+│   ├── Pods
+│   ├── vantapp
+│   ├── vantapp.xcodeproj
+│   ├── vantapp.xcworkspace
+│   └── vantappTests
+├── lerna.json
+├── metro.config.js
+├── package.json
+├── packages
+│   ├── icons
+│   └── vant-react-native
+├── tsconfig.base.json
+├── tsconfig.json
+└── yarn.lock
+<span class=copy-code-btn>复制代码</span></code></pre><p>主要冲突的是 Prettier、eslint 等工具的配置，合并没那么难。在运行项目之前，我们一般需要编译项目。我们可以借助 <code>lerna run build</code> 命令批量运行子包里的 <code>build</code> npm script。</p><blockquote><p>注意📢：由于子包之间有依赖关系，不要使用 <code>--parallel</code> 参数并行执行打包脚本。</p></blockquote><p>现在我们编写一个九宫格 Demo 验证一下：</p><pre><code class="hljs language-tsx copyable" lang=tsx><span class=hljs-comment>// App.tsx</span>
+<span class=hljs-keyword>import</span> React, &#123; Component &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'react'</span>;
+<span class=hljs-keyword>import</span> &#123; View, Text, SafeAreaView, ScrollView &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'react-native'</span>;
+<span class=hljs-keyword>import</span> &#123; Icon &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'vant-react-native'</span>;
+<span class=hljs-comment>// 我们也可以只安装 @vant-react-native/icons 包</span>
+<span class=hljs-comment>// import &#123; VanIconAdd &#125; from '@vant-react-native/icons'</span>
+
+<p><span class=hljs-keyword>type</span> IconNameType = React.ComponentProps&lt;<span class=hljs-keyword>typeof</span> Icon&gt;[<span class=hljs-string>‘name’</span>];</p>
+<p><span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>App</span> <span class=hljs-keyword>extends</span> <span class=hljs-title>Component</span> </span>&#123;<br>  <span class=hljs-function><span class=hljs-title>render</span>(<span class=hljs-params></span>)</span> &#123;<br>    <span class=hljs-keyword>return</span> (<br>      <span class=xml><span class=hljs-tag>&lt;<span class=hljs-name>SafeAreaView</span>&gt;</span><br>        <span class=hljs-tag>&lt;<span class=hljs-name>ScrollView</span>&gt;</span><br>          <span class=hljs-tag>&lt;<span class=hljs-name>Text</span><br>            <span class=hljs-attr>style</span>=<span class=hljs-string>&#123;&#123;</span> <span class=hljs-attr>textAlign:</span> ‘<span class=hljs-attr>center</span>‘, <span class=hljs-attr>paddingVertical:</span> <span class=hljs-attr>20</span>, <span class=hljs-attr>fontSize:</span> <span class=hljs-attr>25</span>, <span class=hljs-attr>color:</span> ‘#<span class=hljs-attr>007fff</span>‘ &#125;&#125;<br>          &gt;</span><br>            vant-react-native<br>          <span class=hljs-tag>&lt;/<span class=hljs-name>Text</span>&gt;</span><br>          <span class=hljs-tag>&lt;<span class=hljs-name>View</span> <span class=hljs-attr>style</span>=<span class=hljs-string>&#123;&#123;</span> <span class=hljs-attr>flexWrap:</span> ‘<span class=hljs-attr>wrap</span>‘, <span class=hljs-attr>flexDirection:</span> ‘<span class=hljs-attr>row</span>‘ &#125;&#125;&gt;</span><br>            &#123;data.map((item, index) =&gt; &#123;<br>              const lastLineLength = data.length % 4 || 4;<br>              return (<br>                <span class=hljs-tag>&lt;<span class=hljs-name>View</span><br>                  <span class=hljs-attr>key</span>=<span class=hljs-string>&#123;item&#125;</span><br>                  <span class=hljs-attr>style</span>=<span class=hljs-string>&#123;&#123;</span><br>                    <span class=hljs-attr>width:</span> ‘<span class=hljs-attr>25</span>%’,<br>                    <span class=hljs-attr>marginBottom:</span> <span class=hljs-attr>index</span> &lt; <span class=hljs-attr>data.length</span> <span class=hljs-attr>-</span> <span class=hljs-attr>lastLineLength</span> ? <span class=hljs-attr>40</span> <span class=hljs-attr>:</span> <span class=hljs-attr>0</span>,<br>                    <span class=hljs-attr>alignItems:</span> ‘<span class=hljs-attr>center</span>‘,<br>                  &#125;&#125;<br>                &gt;</span><br>                  <span class=hljs-tag>&lt;<span class=hljs-name>Icon</span> <span class=hljs-attr>name</span>=<span class=hljs-string>&#123;item&#125;</span> <span class=hljs-attr>size</span>=<span class=hljs-string>&#123;40&#125;</span> /&gt;</span><br>                  <span class=hljs-tag>&lt;<span class=hljs-name>Text</span> <span class=hljs-attr>style</span>=<span class=hljs-string>&#123;&#123;</span> <span class=hljs-attr>color:</span> ‘#<span class=hljs-attr>646566</span>‘, <span class=hljs-attr>marginTop:</span> <span class=hljs-attr>10</span> &#125;&#125;&gt;</span>&#123;item&#125;<span class=hljs-tag>&lt;/<span class=hljs-name>Text</span>&gt;</span><br>                <span class=hljs-tag>&lt;/<span class=hljs-name>View</span>&gt;</span><br>              );<br>            &#125;)&#125;<br>          <span class=hljs-tag>&lt;/<span class=hljs-name>View</span>&gt;</span><br>        <span class=hljs-tag>&lt;/<span class=hljs-name>ScrollView</span>&gt;</span><br>      <span class=hljs-tag>&lt;/<span class=hljs-name>SafeAreaView</span>&gt;</span></span><br>    );<br>  &#125;<br>&#125;</p>
+<p><span class=hljs-keyword>const</span> data: IconNameType[] = [<span class=hljs-string>‘location-o’</span>, <span class=hljs-string>‘like-o’</span>, <span class=hljs-string>‘star-o’</span>, <span class=hljs-string>‘phone-o’</span>, <span class=hljs-string>‘setting-o’</span>, <span class=hljs-string>‘fire-o’</span>, <span class=hljs-string>‘coupon-o’</span>, <span class=hljs-string>‘cart-o’</span>, <span class=hljs-string>‘shopping-cart-o’</span>, <span class=hljs-string>‘cart-circle-o’</span>, <span class=hljs-string>‘friends-o’</span>, <span class=hljs-string>‘comment-o’</span>, <span class=hljs-string>‘gem-o’</span>, <span class=hljs-string>‘gift-o’</span>, <span class=hljs-string>‘point-gift-o’</span>, <span class=hljs-string>‘send-gift-o’</span>, <span class=hljs-string>‘service-o’</span>, <span class=hljs-string>‘bag-o’</span>, <span class=hljs-string>‘todo-list-o’</span>, <span class=hljs-string>‘balance-list-o’</span>, <span class=hljs-string>‘close’</span>, <span class=hljs-string>‘clock-o’</span>, <span class=hljs-string>‘question-o’</span>, <span class=hljs-string>‘passed’</span>];<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>然后执行 <code>yarn ios</code> 查看实际效果（之后我们就可以执行 <code>yarn start --reset-cache</code> 快速开始调试）：</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d2828ea83804d3bb53a0563eaf429bd~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d2828ea83804d3bb53a0563eaf429bd~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>上面的示例代码中我们可以看到我们直接使用了 <code>import &#123; Icon &#125; from 'vant-react-native';</code> 而不是相对路径引用 packages 下的模块。可是我们的项目并没与安装这个依赖，编译器是怎么找到的呢？这里也没有什么银弹，这是因为 lerna 会把子包软链接到 node_modules 中，我们可以使用 <code>ls -al</code> 发现看到包的实际指向：</p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7857ecd166a74331befe791dc677257b~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7857ecd166a74331befe791dc677257b~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>我们也可以在类型提示中看到实际指向的是 packages 下的文件：</p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba82260550904406b4224734761c2f5e~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ba82260550904406b4224734761c2f5e~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><blockquote><p>注意📢：<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ffacebook%2Fmetro%2Fissues%2F1" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/facebook/metro/issues/1 ref="nofollow noopener noreferrer">Metro 不支持符号链接</a> 指的是软连接的目录不在项目根目录下，这里我们软连接指向的位置还在根目录下，所以可以正确工作✅。这个特性保证了调试与生产开发的一致性和便利性。</p></blockquote><h3 data-id=heading-26>实时编译</h3><p>现在我们的调试流程是：</p><ol><li>修改代码</li><li>执行 <code>lerna run build</code> 编译每个子包</li><li>执行 <code>yarn ios</code> 调试项目</li><li>修改代码</li><li>执行 <code>lerna run build</code> 重新编译</li><li>执行 <code>yarn start --reset-cache</code> 运行项目</li><li>循环 4、5、6。</li></ol><p>尽管 React Native 有 Fast Refresh 功能，但是由于我们的代码是需要编译的，所以我们需要重复编译运行的动作。</p><p>任何重复的工作都可以用脚本代替。首先我们需要给每个子包添加实时编译的 script，像 rollup、babel、webpack、typescript 都有参数可以实现实时编译：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"scripts"</span>: &#123;
+    <span class=hljs-attr>"dev"</span>: <span class=hljs-string>"tsc -w"</span>,
+    <span class=hljs-attr>"build"</span>: <span class=hljs-string>"tsc"</span>,
+    <span class=hljs-attr>"prepublishOnly"</span>: <span class=hljs-string>"yarn build"</span>
+  &#125;,
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>而我们的 @vant-react-native/icons 包使用的 <code>npx iconfont</code> 没有实时编译选项，经过调研，我引入了 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fonchange" target=_blank rel="nofollow noopener noreferrer" title=https://www.npmjs.com/package/onchange ref="nofollow noopener noreferrer">onchange</a> 这个库可以基于 glob 模式监听文件改动后执行一个命令：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"scripts"</span>: &#123;
+    <span class=hljs-attr>"dev"</span>: <span class=hljs-string>"onchange -i 'iconfont.json' -- yarn build"</span>,
+  &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>然后我们需要使用 <code>lerna run dev --parallel</code> 批量执行实时编译脚本，这里加 <code>--parallel</code> 是因为子包如果是实时编译，进程会卡住。为了补救，我们不得不预先编译 <code>@vant-react-native/icons</code> 包，然后因为同样的原因我引入了 <code>npm-run-all</code> 来并行执行 <code>lerna run dev</code> 和 <code>react-native start</code>，完整脚本如下：</p><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"predev"</span>: <span class=hljs-string>"lerna run build --scope @vant-react-native/icons"</span>,
+  <span class=hljs-attr>"dev"</span>: <span class=hljs-string>"lerna run dev --parallel"</span>,
+  <span class=hljs-attr>"start"</span>: <span class=hljs-string>"react-native start"</span>,
+  <span class=hljs-attr>"debug"</span>: <span class=hljs-string>"run-p dev start"</span>,
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h2 data-id=heading-27>按需加载</h2><blockquote><p>小黑：“洛竹哥哥，我之前为了使用 react-native-elements 的其中几个组件而引入了整个组件库。因为这个组件库依赖了 react-native-vector-icons 导致 bundle 包变大。如果我就是想用整套 vant-react-native，如何解决这个问题呢？”</p></blockquote><p>众所周知，React Native 的打包工具 Metro <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ffacebook%2Fmetro%2Fissues%2F227%23issuecomment-583358386" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/facebook/metro/issues/227#issuecomment-583358386 ref="nofollow noopener noreferrer">不支持 tree-shaking</a>。解决这个问题的方式其实很简单，机智的你可能知道配合 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fbabel-plugin-import" target=_blank rel="nofollow noopener noreferrer" title=https://www.npmjs.com/package/babel-plugin-import ref="nofollow noopener noreferrer">babel-plugin-import</a> 是可以实现按需加载的需求的。但由于我们是多包管理架构，需要针对多包的架构设计一个方案。</p><h3 data-id=heading-28>react-naitve bundle 包</h3><p>为了比对优化前后包大小，我们需要使用 <code>react-native bundle</code> 命令看一下纯 JS 包的大小，我们来简单看下这个命令：</p><pre><code class="hljs language-sh copyable" lang=sh>react-native bundle --platform ios --entry-file index.js --bundle-output ./bundle/ios/index.ios.jsbundle --assets-dest ./bundle/ios --dev <span class=hljs-literal>false</span> --reset-cache
+<span class=copy-code-btn>复制代码</span></code></pre><ul><li><code>--entry</code>：入口 js 文件</li><li><code>--bundle-output</code>：生成的 bundle 文件路径</li><li><code>--platform</code>：平台</li><li><code>--assets-dest</code>：图片资源的输出目录</li><li><code>--dev</code>：是否为开发版本，打正式版的安装包时我们将其赋值为 false</li><li><code>--reset-cache</code>：重置缓存，避免打包使用旧的缓存</li></ul><h3 data-id=heading-29>按需加载原理</h3><p>前面我们提到 <code>packages/vant-react-native</code> 只有一个文件 <code>src/index.ts</code> 用来导出所有子包，现在我们添加一个新的包 Button，看上去就是这样：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>export</span> &#123; <span class=hljs-keyword>default</span> <span class=hljs-keyword>as</span> Icon &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+<span class=hljs-keyword>export</span> * <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+<span class=hljs-keyword>export</span> &#123; <span class=hljs-keyword>default</span> <span class=hljs-keyword>as</span> Button &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这种导出方式，用户只能通过 <code>import Button from '@vant-react-native/button';</code> 或 <code>import Button from 'vant-react-native/lib/button';</code> 的方式手动实现按需加载，这不仅不方便开发者使用，从打包产物来说也增加了很多字节。那么问题来了，怎么样的组织形式才能满足按需加载呢？答案就在 babel-plugin-import 插件的文档中：</p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d8bd23d28b0413b8b3da8119d32dd35~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d8bd23d28b0413b8b3da8119d32dd35~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>从图中我们看出 babel-plugin-import 插件是在编译阶段将引用指向了模块所在文件夹。用户使用时安装插件并做如下配置就完成了按需加载。</p><pre><code class="hljs language-json copyable" lang=json><span class=hljs-string>"plugins"</span>: [
+  [<span class=hljs-string>"import"</span>, &#123; libraryName: <span class=hljs-string>"antd"</span>, style: <span class=hljs-literal>true</span> &#125;]
+]
+<span class=copy-code-btn>复制代码</span></code></pre><p>依然没有银弹，插件做的工作只是代替了你的右手。知道了原理我们就可以按照文档要求的格式重新组织我们的 vant-react-native 包：</p><pre><code class="hljs language-sh copyable" lang=sh>.
+├── CHANGELOG.md
+├── lib                    <span class=hljs-comment># 上传到 NPM 的编译产物 </span>
+│   ├── button             <span class=hljs-comment># 符合 babel-plugin-import 的默认配置要求</span>
+│   │   ├── index.d.ts
+│   │   └── index.js
+│   ├── icon
+│   │   ├── index.d.ts
+│   │   └── index.js
+│   ├── index.d.ts
+│   └── index.js          <span class=hljs-comment># export * from './button';</span>
+├── package.json
+├── src                   <span class=hljs-comment># 源码目录</span>
+│   ├── button
+│   │   └── index.ts
+│   ├── icon
+│   │   └── index.ts
+│   └── index.ts
+└── tsconfig.json         <span class=hljs-comment># 编译配置，将 ts 文件编译到 lib 文件夹下</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>vant-react-native/src/button/index.ts：</strong></p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>import</span> Button <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/button'</span>;
+<span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> Button;
+<span class=hljs-keyword>export</span> &#123; Button &#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>vant-react-native/src/icon/index.ts：</strong></p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>import</span> Icon <span class=hljs-keyword>from</span> <span class=hljs-string>'@vant-react-native/icons'</span>;
+
+<p><span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> Icon;<br><span class=hljs-keyword>export</span> &#123; Icon &#125;;<br><span class=hljs-keyword>export</span> * <span class=hljs-keyword>from</span> <span class=hljs-string>‘@vant-react-native/icons’</span>;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><strong>vant-react-native/src/index.ts：</strong></p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>export</span> * <span class=hljs-keyword>from</span> <span class=hljs-string>'./icon'</span>;
+<span class=hljs-keyword>export</span> * <span class=hljs-keyword>from</span> <span class=hljs-string>'./button'</span>;
+<span class=copy-code-btn>复制代码</span></code></pre><p>然后项目中修改 babel.config.js：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-built_in>module</span>.exports = &#123;
+  <span class=hljs-attr>presets</span>: [<span class=hljs-string>'module:metro-react-native-babel-preset'</span>],
+  <span class=hljs-attr>plugins</span>: [
+    [<span class=hljs-string>"import"</span>, &#123;<span class=hljs-attr>libraryName</span>: <span class=hljs-string>'vant-react-native'</span>&#125;]
+  ],
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-30>编写 Babel 插件？</h3><p>虽然通过修改主包的导出方式可以完成需求，但是却极大地增加了项目本身的复杂度。前面我们已经知道 babel-plugin-import 的原理是转换引用路径。那么我们是不是可以通过插件动态把 <code>import &#123;Button&#125; from 'vant-react-native'</code> 转成 <code>import Button from '@vant-react-native/button'</code> 呢？答案是肯定的，下面是我基于 babel-plugin-import 的 <code>customName</code> 配置编写了一套配置并封装在 babel-plugin-import-vant 包中：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>import</span> camelCase <span class=hljs-keyword>from</span> <span class=hljs-string>'camelcase'</span>;
+
+<p><span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> (): <span class=hljs-built_in>any</span>[] =&gt; [<br>  [<br>    <span class=hljs-string>‘import’</span>,<br>    &#123;<br>      <span class=hljs-attr>libraryName</span>: <span class=hljs-string>‘vant-react-native’</span>,<br>      <span class=hljs-attr>customName</span>: <span class=hljs-function>(<span class=hljs-params>name: <span class=hljs-built_in>string</span></span>) =&gt;</span> &#123;<br>        <span class=hljs-keyword>if</span> (name === <span class=hljs-string>‘icon’</span>) &#123;<br>          <span class=hljs-keyword>return</span> <span class=hljs-string>‘@vant-react-native/icons’</span>;<br>        &#125;<br>        <span class=hljs-keyword>if</span> (name.match(<span class=hljs-regexp>/^van-icon-/</span>)) &#123;<br>          <span class=hljs-keyword>return</span> <span class=hljs-string><code>@vant-react-native/icons/lib/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;camelCase(name, &amp;#123; pascalCase: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt; &amp;#125;)&amp;#125;&lt;/span&gt;</code></span>;<br>        &#125;<br>        <span class=hljs-keyword>return</span> <span class=hljs-string><code>@vant-react-native/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;name&amp;#125;&lt;/span&gt;</code></span>;<br>      &#125;,<br>    &#125;,<br>    <span class=hljs-string>‘vant-react-native’</span>,<br>  ],<br>  [<br>    <span class=hljs-string>‘import’</span>,<br>    &#123;<br>      <span class=hljs-attr>libraryName</span>: <span class=hljs-string>‘@vant-react-native/icons’</span>,<br>      <span class=hljs-attr>customName</span>: <span class=hljs-function>(<span class=hljs-params>name: <span class=hljs-built_in>string</span></span>) =&gt;</span> &#123;<br>        <span class=hljs-keyword>return</span> <span class=hljs-string><code>@vant-react-native/icons/lib/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;camelCase(name, &amp;#123; pascalCase: &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt; &amp;#125;)&amp;#125;&lt;/span&gt;</code></span>;<br>      &#125;,<br>    &#125;,<br>    <span class=hljs-string>‘@vant-react-native/icons’</span>,<br>  ],<br>];<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>在项目的 <code>babel.config.js</code> 配置中添加 <code>plugins: [...require('babel-plugin-import-vant').default()]</code> 即可实现按需加载。</p><p>还有可以优化的地方吗？机智的你可能又发现我只是通过函数导出了一个配置而已，并不是真正的插件，所以未来我会定制一个 vant-react-native 自己的按需加载 babel 插件。</p><blockquote><p><code>name.match(/^van-icon-/)</code> 这个判断条件是因为 <code>@vant-react-native/icons</code> 包除了包含一个默认导出的 Icon 组件，还导出了很多单个图标组件，为了进一步减小打包体积，我们对这个子包也进行了按需加载处理。</p><p><strong>我们已经知道按需加载的原理是没有中间商赚差价直接和卖家谈</strong>，所以后面我们遇见类似的需求通过转换返回卖家地址即可。不需要破坏性地改项目结构。</p></blockquote><h3 data-id=heading-31>成果展示</h3><table><thead><tr><th>初始包大小</th><th>未配置按需加载（引入 Button）</th><th>按需加载（引入 Button）</th><th>按需加载（引入 Icon）</th><th>按需加载（引入 VanIconAdd）</th></tr></thead><tbody><tr><td>723KB</td><td>1.8M</td><td>725KB</td><td>1.8M</td><td>1.22M</td></tr></tbody></table><p>之所以 Icon 包会大，是因为 react-native-svg 这个库大，所以不建议直接使用 Icon 组件，而是使用 VanIconAdd、VanIconEye 这种单独的图标组件，少了 593KB 还是挺香的。</p><h2 data-id=heading-32>组件库文档</h2><p>组件库文档比较重要的是有可以交互的 Demo 演示，我是 Dumi 的资深用户，借助 dumi-theme-mobile 和 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fyoungjuning%2Fumi-plugin-react-native" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/youngjuning/umi-plugin-react-native ref="nofollow noopener noreferrer">umi-plugin-react-native</a> 我们可以很好地满足 React Native 组件库文档的搭建。</p><h3 data-id=heading-33>集成 Dumi 到项目中</h3><p><strong>安装依赖：</strong></p><pre><code class="hljs language-sh copyable" lang=sh>$ yarn add dumi dumi-theme-mobile umi-plugin-react-native -D
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>配置文件：</strong></p><p>在项目根目录添加 <code>.umirc.ts</code></p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>import</span> &#123; defineConfig, IConfig &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'dumi'</span>;
+
+<p><span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> defineConfig(&#123;<br>  <span class=hljs-attr>title</span>: <span class=hljs-string>‘vant-react-native’</span>,<br>  <span class=hljs-attr>mode</span>: <span class=hljs-string>‘site’</span>,<br>  <span class=hljs-attr>logo</span>: <span class=hljs-string>‘<a target=_blank rel=noopener href=https://img01.yzcdn.cn/vant/logo.png&#39;>https://img01.yzcdn.cn/vant/logo.png&#39;</a></span>,<br>  <span class=hljs-attr>favicon</span>: <span class=hljs-string>‘<a target=_blank rel=noopener href=https://img01.yzcdn.cn/vant/logo.png&#39;>https://img01.yzcdn.cn/vant/logo.png&#39;</a></span>,<br>  <span class=hljs-attr>resolve</span>: &#123;<br>    <span class=hljs-attr>includes</span>: [<span class=hljs-string>‘docs’</span>, <span class=hljs-string>‘packages/button’</span>, <span class=hljs-string>‘packages/icons’</span>],<br>  &#125;,<br>  <span class=hljs-comment>// more config: <a target=_blank rel=noopener href=https://d.umijs.org/config>https://d.umijs.org/config</a></span><br>&#125; <span class=hljs-keyword>as</span> IConfig);<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>值得一提的是，Dumi 是支持 Lerna 仓库的，它默认会以 <code>packages/[包名]/src</code> 为基础路径搜寻所有子包的 Markdown 文档并生成路由。通过 <code>resolve.includes</code> 可以配置 dumi 嗅探的文档目录，dumi 会尝试在配置的目录中递归寻找 markdown 文件。</p><p><strong>添加 NPM 脚本：</strong></p><blockquote><p>注意📢：由于实际依赖的是 packages 下的包，我们必须先编译所有的包，否则部署的时候会报 <code>This dependency was not found:</code> 的错误。</p></blockquote><pre><code class="hljs language-json copyable" lang=json>&#123;
+  <span class=hljs-attr>"scripts"</span>: &#123;
+    <span class=hljs-attr>"start:dumi"</span>: <span class=hljs-string>"dumi dev"</span>,
+    <span class=hljs-attr>"build:dumi"</span>: <span class=hljs-string>"lerna run build && dumi build"</span>
+  &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>忽略文件（.gitignore）：</strong></p><pre><code class=copyable># umi
+.umi
+.umi-production
+.env.local
+dist/
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-34>部署到 GitHub Pages</h3><p>在根目录新建 <code>.github/workflows/gh-pages</code>：</p><pre><code class="hljs language-yml copyable" lang=yml><span class=hljs-attr>name:</span> <span class=hljs-string>github</span> <span class=hljs-string>pages</span>
+<span class=hljs-attr>on:</span>
+  <span class=hljs-attr>push:</span>
+    <span class=hljs-attr>branches:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-string>main</span> <span class=hljs-comment># default branch</span>
+<span class=hljs-attr>jobs:</span>
+  <span class=hljs-attr>deploy:</span>
+    <span class=hljs-attr>runs-on:</span> <span class=hljs-string>ubuntu-18.04</span>
+    <span class=hljs-attr>steps:</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>uses:</span> <span class=hljs-string>actions/checkout@v2</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>run:</span> <span class=hljs-string>yarn</span> <span class=hljs-string>install</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>run:</span> <span class=hljs-string>yarn</span> <span class=hljs-string>build:dumi</span>
+      <span class=hljs-bullet>-</span> <span class=hljs-attr>name:</span> <span class=hljs-string>Deploy</span>
+        <span class=hljs-attr>uses:</span> <span class=hljs-string>peaceiris/actions-gh-pages@v3</span>
+        <span class=hljs-attr>with:</span>
+          <span class=hljs-attr>github_token:</span> <span class=hljs-string>$&#123;&#123;</span> <span class=hljs-string>secrets.GITHUB_TOKEN</span> <span class=hljs-string>&#125;&#125;</span>
+          <span class=hljs-attr>publish_dir:</span> <span class=hljs-string>./dist</span>
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-35>预览</h3><p>现在我们可以访问 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fyoungjuning.js.org%2Fvant-react-native%2F" target=_blank rel="nofollow noopener noreferrer" title="https://youngjuning.js.org/vant-react-native/" ref="nofollow noopener noreferrer">youngjuning.js.org/vant-react-…</a> 查看效果了：</p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9faf0889b6d64238922bb02c51cf02ff~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9faf0889b6d64238922bb02c51cf02ff~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a11e9ce535c54f8bb038599533f0ef9a~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a11e9ce535c54f8bb038599533f0ef9a~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bed86245d8f485894b0c5e3d9767e9c~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8bed86245d8f485894b0c5e3d9767e9c~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><h3 data-id=heading-36>配置优化</h3><p>现在基于 dumi 的文档站点只是初始化，很多配置（.umirc.ts）可以优化，比如：</p><ol><li>基于 jsdeliver 配置 CDN 加速</li></ol><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>const</span> isProd = process.env.NODE_ENV === <span class=hljs-string>'production'</span>;
+...
+<span class=hljs-attr>publicPath</span>: isProd ? <span class=hljs-string>'https://cdn.jsdelivr.net/gh/youngjuning/vant-react-native@gh-pages/'</span>: <span class=hljs-string>'/'</span>,
+<span class=copy-code-btn>复制代码</span></code></pre><ol start=2><li>增量发布和避免浏览器加载缓存</li></ol><pre><code class="hljs language-ts copyable" lang=ts>&#123;
+  <span class=hljs-attr>hash</span>: <span class=hljs-literal>true</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><ol start=3><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.umeng.com%2Fweb" target=_blank rel="nofollow noopener noreferrer" title=https://www.umeng.com/web ref="nofollow noopener noreferrer">友盟网站统计</a></li></ol><pre><code class="hljs language-ts copyable" lang=ts>&#123;
+  <span class=hljs-attr>scripts</span>: [<span class=hljs-string>'https://s9.cnzz.com/z_stat.php?id=1280093214&web_id=1280093214'</span>],
+  <span class=hljs-attr>styles</span>: [<span class=hljs-string>'a[title=站长统计] &#123; display: none; &#125;'</span>],
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><ol start=4><li>配置 <code>exportStatic: &#123;&#125;</code> 将所有路由输出为 HTML 目录结构，以免刷新页面时 404。</li></ol><h3 data-id=heading-37>Pull Request 预发预览</h3><p>考虑到后期社区会贡献代码和文档。在 pr 合进主分支之前，我们需要预览文档或组件。满足这一需求的是一个叫 surge.sh 的静态托管服务，surge 支持在命令行通过简单的命令免费发布 HTML、CSS 和 JS 文件到 web。</p><h4 data-id=heading-38>申请 Surge Token</h4><p><strong>安装 surge cli：</strong></p><pre><code class="hljs language-sh copyable" lang=sh>npm install --global surge
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>注册 surge 账号：</strong></p><pre><code class="hljs language-sh copyable" lang=sh>suerge login
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>获取 token：</strong></p><pre><code class="hljs language-sh copyable" lang=sh>suerge token
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-39>配置 CI</h4><p>由于 GitHub 的安全问题，surge-preview Action 插件无法使用，我们参考 dumi 官方的配置自定义了 CI，首先我们拷贝下图中的三个文件到项目中。</p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e3d3e61ac1c4019ac393b2d1b2c5719~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9e3d3e61ac1c4019ac393b2d1b2c5719~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>然后修改 <code>preview-build.yml</code> 中的 <code>build step</code>：</p><pre><code class="hljs language-diff copyable" lang=diff><span class=hljs-deletion>- NODE_OPTIONS='--max-old-space-size=4096' yarn build</span>
+<span class=hljs-addition>+ NODE_OPTIONS='--max-old-space-size=4096' PREVIEW_PR=true yarn build:dumi</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p>添加环境变量 <code>PREVIEW_PR=true</code> 是为了让 dumi 打包时识别出不是生产环境打包，<code>.umirc.ts</code> 需要相应修改为：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>const</span> isProd =
+  process.env.NODE_ENV === <span class=hljs-string>'production'</span> && process.env.PREVIEW_PR !== <span class=hljs-string>"true"</span>;
+...
+<span class=hljs-attr>publicPath</span>: isProd ? <span class=hljs-string>'https://cdn.jsdelivr.net/gh/youngjuning/vant-react-native@gh-pages/'</span>: <span class=hljs-string>'/'</span>,
+...
+<span class=copy-code-btn>复制代码</span></code></pre><p>再然后，修改 <code>preview-deploy.yml</code> 文件中的部署域名 <code>dumi-preview</code> 为 <code>vant-react-native-preview</code>。</p><p>最后我们把前面获取的 Surge Token 添加到仓库的 Secrets 即可。</p><h4 data-id=heading-40>成果展示</h4><p><strong>正在部署 PR 预览状态：</strong></p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/193ac9e16cca408383ca7ae2ec503613~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/193ac9e16cca408383ca7ae2ec503613~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p><strong>部署成功状态：</strong></p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1659de97aafd4f87a93993c35ef93195~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1659de97aafd4f87a93993c35ef93195~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>访问 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fvant-react-native-preview-pr-1.surge.sh%2F" target=_blank rel="nofollow noopener noreferrer" title="https://vant-react-native-preview-pr-1.surge.sh/" ref="nofollow noopener noreferrer">vant-react-native-preview-pr-1.surge.sh/</a> 即可验证文档的正确性✅。</p><h2 data-id=heading-41>单元测试</h2><p>我在 <a href=https://juejin.cn/post/6937983077209604127 target=_blank title=https://juejin.cn/post/6937983077209604127>使用 Jest 和 Enzyme 进行 React Native 单元测试|技术点评</a> 一文中曾提交单元测试和文档一样，是保障程序最小单元质量的重要一环。诚然一个成熟的组件库是必然有单元测试的身影。本章就不展开讲单元测试了，主要讲 vant-react-native 是如何配置单元测试的。</p><h3 data-id=heading-42>安装依赖</h3><p>jest、babel-jest、@types/jest 这些依赖都已经安装了，我们需要安装的是 enzyme 这个基于 jest 的单元测试框架。</p><pre><code class="hljs language-sh copyable" lang=sh>$ yarn add enzyme jest-enzyme enzyme-adapter-react-16 enzyme-to-json @types/enzyme react-native-mock-render -DW
+<span class=copy-code-btn>复制代码</span></code></pre><blockquote><p>Enzyme 是用于 React 的 JavaScript 测试实用程序，可以更轻松地测试 React 组件的输出。您还可以根据给定的输出进行操作，遍历并以某种方式模拟运行时。</p></blockquote><h3 data-id=heading-43>配置</h3><p><strong>jest.config.js：</strong></p><pre><code class="hljs language-js copyable" lang=js><span class=hljs-built_in>module</span>.exports = &#123;
+  <span class=hljs-attr>preset</span>: <span class=hljs-string>'react-native'</span>,
+  <span class=hljs-attr>verbose</span>: <span class=hljs-literal>true</span>,
+  <span class=hljs-attr>collectCoverage</span>: <span class=hljs-literal>true</span>, <span class=hljs-comment>// 生成测试覆盖率报告</span>
+  <span class=hljs-attr>moduleNameMapper</span>: &#123;
+    <span class=hljs-comment>// for https://github.com/facebook/jest/issues/919</span>
+    <span class=hljs-string>'^image![a-zA-Z0-9$_-]+$'</span>: <span class=hljs-string>'GlobalImageStub'</span>,
+    <span class=hljs-string>'^[@./a-zA-Z0-9$_-]+\\.(png|gif)$'</span>: <span class=hljs-string>'RelativeImageStub'</span>,
+  &#125;,
+  <span class=hljs-attr>setupFilesAfterEnv</span>: [<span class=hljs-string>'<rootdir>/jest.setup.js'</rootdir></span>], <span class=hljs-comment>// 使用 Jest 运行安装文件以配置 Enzyme 和适配器（如下文jest.setup.js中所示），之前是setupTestFrameworkScriptFile，也可以使用setupFiles</span>
+  <span class=hljs-attr>snapshotSerializers</span>: [<span class=hljs-string>'enzyme-to-json/serializer'</span>], <span class=hljs-comment>// 推荐使用序列化程序使用 enzyme-to-json，它的安装和使用非常简单，并允许您编写简洁的快照测试。</span>
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p><strong>jest.setup.js：</strong></p><pre><code class="hljs language-js copyable" lang=js><span class=hljs-keyword>import</span> <span class=hljs-string>'react-native'</span>;
+<span class=hljs-keyword>import</span> Enzyme <span class=hljs-keyword>from</span> <span class=hljs-string>'enzyme'</span>;
+<span class=hljs-keyword>import</span> Adapter <span class=hljs-keyword>from</span> <span class=hljs-string>'enzyme-adapter-react-16'</span>;
+
+<p>Enzyme.configure(&#123; <span class=hljs-attr>adapter</span>: <span class=hljs-keyword>new</span> Adapter() &#125;);<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><strong>一个简单的示例：</strong></p><pre><code class="hljs language-js copyable" lang=js><span class=hljs-comment>// packages/button/__test__/index.tsx</span>
+<span class=hljs-keyword>import</span> React <span class=hljs-keyword>from</span> <span class=hljs-string>'react'</span>;
+<span class=hljs-keyword>import</span> &#123; shallow &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'enzyme'</span>;
+<span class=hljs-keyword>import</span> Button <span class=hljs-keyword>from</span> <span class=hljs-string>'../src/index'</span>;
+
+<p><span class=hljs-function><span class=hljs-keyword>function</span> <span class=hljs-title>setup</span>(<span class=hljs-params>props = &#123;&#125;</span>) </span>&#123;<br>  <span class=hljs-keyword>const</span> wrapper = shallow(<span class=xml><span class=hljs-tag>&lt;<span class=hljs-name>Button</span> /&gt;</span></span>);<br>  <span class=hljs-keyword>const</span> instance = wrapper.instance();<br>  <span class=hljs-keyword>return</span> &#123; wrapper, instance &#125;;<br>&#125;</p>
+<p>describe(<span class=hljs-string>‘Button Component’</span>, <span class=hljs-function>() =&gt;</span> &#123;<br>  it(<span class=hljs-string>‘renders correctly’</span>, <span class=hljs-function>() =&gt;</span> &#123;<br>    <span class=hljs-keyword>const</span> &#123; wrapper &#125; = setup();<br>    expect(wrapper).toMatchSnapshot();<br>  &#125;);<br>&#125;);<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>执行 <code>jest</code> 命令后可以查看覆盖率如下：</p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/358737fa32f549f4a9b06a9bcf8903d4~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/358737fa32f549f4a9b06a9bcf8903d4~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><h2 data-id=heading-44>写给勇士</h2><p>能写长文的不算勇士，能坚持看到这里的才是勇士。洛竹在此感谢您的阅读。然而组件库工程化这只是一个起点，如果本文反响好，组件库具体组件的设计实现、完整的 React Native 单元测试教程等等洛竹会在后续的文章中展开讲。</p><h2 data-id=heading-45>推荐的 UI 库</h2><p>当然了，vant-react-native 并不是你唯一的选择，下面的几个 UI 库都是很优秀的项目。在实现 vant-react-native 时我也多少借鉴了前人优秀的设计。</p><ul><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fant-design%2Fant-design-mobile-rn" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/ant-design/ant-design-mobile-rn ref="nofollow noopener noreferrer">antd-mobile-rn</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Freact-native-elements%2Freact-native-elements" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/react-native-elements/react-native-elements ref="nofollow noopener noreferrer">react-native-elements</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fakveo%2Freact-native-ui-kitten" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/akveo/react-native-ui-kitten ref="nofollow noopener noreferrer">react-native-ui-kitten</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fwix%2Freact-native-ui-lib" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/wix/react-native-ui-lib ref="nofollow noopener noreferrer">react-native-ui-lib</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fzarm.design%2F" target=_blank rel="nofollow noopener noreferrer" title="https://zarm.design/" ref="nofollow noopener noreferrer">Zarm</a></li></ul></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/c2ee.html>https://news.zfe.space/p/c2ee.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:31+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/c2ee.html&title=每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 - 小冰 RSSHub&pics=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/c2ee.html&title=每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 - 小冰 RSSHub&pics=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/c2ee.html&title=每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉 - 小冰 RSSHub&pics=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9b3f6212f0124f4fab8b70dfeeb40c25~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/d2f1.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>【有奖征文】参加雪球直播节，畅聊未来十年投资机遇</p><p class=content>#2021雪球直播节# 在经历了跌宕起伏的10年后，资本市场进入了21世纪的第3个十年。经济学家@管清友 曾说，未来十年是中国股票价值投资的黄金时代。未来的十年十倍股，有可能是新兴消费股...</p></a><a class=next href=/p/37d3.html><p class=title>4images 跨站脚本漏洞 【CVE-2021-27308】<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>编号:CVE-2021-27308 | 平台:未知</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>站在 Vant Design 的肩膀上</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>基于 Lerna 的多包管理架构</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>初始化 lerna 项目</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>yarn workspaces</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>lerna publish config</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>lerna version config</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>规范化提交</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>代码规范化</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>eslint</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>prettier</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>editorconfig</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>yorkie &amp; lint-staged</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>第一个组件从 Icon 开始</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>创建 lerna 子包</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>生成 icons</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>安装插件</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>生成配置文件</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>生成 React Native 标准组件</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>配置 react-native-vant</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>添加依赖</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>导出 Icon 组件</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>tsconfig 配置</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>配置发布脚本</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>发布包</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>开发调试</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>初始化 React Native App</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>实时编译</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>按需加载</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>react-naitve bundle 包</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>按需加载原理</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>编写 Babel 插件？</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>成果展示</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>组件库文档</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>集成 Dumi 到项目中</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>部署到 GitHub Pages</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>预览</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>配置优化</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Pull Request 预发预览</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>申请 Surge Token</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>配置 CI</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>成果展示</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>单元测试</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>安装依赖</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>写给勇士</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>推荐的 UI 库</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="每个前端都值得拥有自己的组件库，就像每个夏天都拥有西瓜🍉";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

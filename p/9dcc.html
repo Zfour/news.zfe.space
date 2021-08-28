@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>客户心智的三大底层逻辑 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg></a></div><div class=article-meta id=top><a title=客户心智的三大底层逻辑 href=/p/9dcc.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg></a><h1 class=title>客户心智的三大底层逻辑</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/">人人都是产品经理</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86/%E7%83%AD%E9%97%A8%E6%96%87%E7%AB%A0/">热门文章</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月27日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=客户心智的三大底层逻辑 data-path=/p/9dcc.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><blockquote><p>编辑导读：如果客户在产生某些特定消费需求时，能够联想到你的品牌，恭喜你，你已经抢占了客户心智。什么是客户心智？客户心智的底层逻辑是什么？本文作者对此进行了分析，与你分享。</p></blockquote><p><img data-action=zoom class="size-full wp-image-5113167 aligncenter lazyload" src=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg data-srcset=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=900 height=420 referrerpolicy=no-referrer></p><p>抢占客户心智几乎是所有消费品牌的终极梦想。</p><p>抢占客户心智有什么好处呢？就是心智预售。</p><p>什么叫心智预售？就是当客户有某些特定消费需求时，从客户心智中，在第一时间里，就能联想到我们的品牌。</p><p><strong>那究竟什么是客户心智？</strong></p><p>我们给出一个底层逻辑：</p><p><strong>客户心智始于需求定位，成于长期记忆，终于心理账户。</strong></p><h2 id=toc-1>一、客户心智始于需求定位</h2><p>做一款产品之前，首先要站在客户的角度来看产品逻辑。</p><p>PMF是互联网术语，Product Market Fit的缩写，指的是产品市场匹配。我们借用PMF这个术语，但是把它的内涵改成：商业概念产品。</p><p>针对PMF设计，我们通常会问三个问题：</p><ul><li><strong>谁是第一目标客户群？</strong></li><li><strong>什么是第一客户决策点？</strong></li><li><strong>卖点与买点有没有化学反应？</strong></li></ul><p>我们来看一下电动牙刷的案例。</p><p><strong>PMF1：</strong><strong>有</strong><strong>牙病的人。</strong></p><p>第一目标客户群是谁？有牙病的人。</p><p>客户为什么购买？因为有医生推荐。</p><p>如果主治医师告诉他，你的牙齿现在有问题，必须每半年洗一次牙，吃完饭之后使用牙线，及时漱口。你的刷牙效果不好，试试用电动牙刷。他就会有一定的概率改变手动刷牙的习惯，去用电动牙刷。</p><p>这里的医生是KOL，医生推荐是因果性卖货。</p><p><strong>PMF</strong><strong>2</strong><strong>：</strong><strong>美业爱好者</strong><strong>。</strong></p><p>爱美的年轻人往往具有好奇心，愿意尝试新生事物，希望自己的生活有情调更精致。买美妆产品的人也有可能成为电动牙刷的客户。</p><p>这里需要解释一下：</p><p>美妆与电动牙刷之间不是因果性关系，是相关性关系。相关性也是可以卖货的，不一定要因果性才可以卖货。</p><p>客户决策点是什么？颜值高的小家电小家居小装饰，都是精致生活的闪光点缀。</p><p><strong>PMF</strong><strong>3</strong><strong>：</strong><strong>家里有小孩子的家长</strong><strong>。</strong></p><p>小孩子是不是也要得牙病，家长才会买电动牙刷？不一定。</p><p>假设某幼儿园1个班上有20个孩子。幼儿园组织去看牙医，其中有3个孩子要做窝沟封闭。因为幼儿园特别小，妈妈们之间的互动能力又特别强，剩余17个妈妈很快就会知道这个消息。</p><p>这时候妈妈们就产生一种焦虑，自家孩子也喜欢吃糖，照这样下去，孩子如果不好好刷牙，迟早也会出问题。</p><p><strong>小孩是使用者，决策者是妈妈，客户决策点是什么？</strong></p><p>显然这是一款带有浓厚焦虑情绪的产品。</p><p>假设就上面3款PMF（其实远远不止的，这里仅仅是一个演示），下一步，我们从4个维度来分析，如何做需求定位？</p><p><strong>第一个维度</strong><strong>：需求，是需，还是求？</strong></p><p>需求怎么定位？</p><p style="text-align: center;"><strong>需求= 需（需要） + 求（想要）</strong></p><p>需求其实是两个方面组成的，一个是需，一个是求。</p><p><img data-action=zoom class="rich_pages wxw-img aligncenter lazyload" src=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/ulPQchfx44ip1fgqS3Kt.png data-srcset=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/ulPQchfx44ip1fgqS3Kt.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>需是需要，缺少之后就会有落差。客户需要的东西我能卖得快，但是可能卖不贵。</p><p>求是想要，没有无所谓，有是一种精神奖励。能卖得贵，但是不能卖得快。</p><p>对于电动牙刷，是需，还是求呢？</p><p><strong>PMF1：</strong><strong>有</strong><strong>牙病的人</strong>是需还是求？是需。</p><p><strong>PMF</strong><strong>2</strong><strong>：美业爱好者</strong>是需还是求？是求。</p><p><strong>PMF</strong><strong>3</strong><strong>：</strong><strong>家里有小孩子的家长</strong>是需还是求？是需。</p><p>由于决策触发机制不同，第一个是因果性的需，第二个是相关性的求，第三个是情绪性的需。</p><p><strong>第二个维度：</strong><strong>小众还是大众？</strong></p><p><strong>PMF1：</strong><strong>有</strong><strong>牙病的人</strong>是小众需。</p><p><strong>PMF</strong><strong>2</strong><strong>：美业爱好者</strong>是大众求。</p><p><strong>PMF</strong><strong>3</strong><strong>：</strong><strong>家里有小孩子的家长</strong>是大众需。</p><p>创业公司在这三个里面选择哪个更好？当然大众需最好。大众需订单密度大，客户传播能力强，营销成本低。</p><p>那大众求，就不好么？不是的。大众求，需要天猫、京东线上流量红利的大势来支持。恰恰这一批电动牙刷新锐品牌，大多是走的这个流量路线+颜值营销成长起来的。</p><p><strong>第三个维度：</strong><strong>增量市场</strong><strong>还是存量市场</strong><strong>？</strong></p><p>如果把时光推到2018年及之前，以上三个都是增长市场。但是放到2021年，这三个都快变成存量市场了。</p><p>增量还是存量，取决于时间点。</p><p>增量和存量竞争激烈程度，哪一个营销成本高？</p><p>增量往往是小众认知，缺点是需要市场教育。</p><p>存量往往是大众认知，缺点是产品同质化。</p><p>所以，哪个营销成本高，高度依赖于单个企业的基因和核心能力。</p><p><strong>第四个维度：是品类需求，还是品牌需求</strong><strong>？</strong></p><ul><li><strong>PMF1：</strong><strong>有</strong><strong>牙病的人</strong>是品牌需。如果从牙科诊所这个渠道去推广，很可能是牙病专业的依附型产品。品牌力来自于牙科的专业能力和KOL的影响力。</li><li><strong>PMF</strong><strong>2</strong><strong>：美业爱好者</strong>是品牌求。如果品牌没有时尚感，没有精致生活感，光产品本身颜值好也不行，对客户没有灵魂吸引力。</li><li><strong>PMF</strong><strong>3</strong><strong>：</strong><strong>家里有小孩子的家长</strong>是品类需。</li></ul><p>如果把时光推到2018年，那个时候大家打的全是流量+颜值，PMF3是一个市场空白点，一个大家都错失时机的品类需。</p><p><strong>品类需求跟品牌需求之间是什么关系？</strong></p><p>品类需的营销成本，比品牌需要低；品类求的营销成本，比品牌求要高。</p><p>讲到这里，估计大家就明白了。</p><p>什么叫以客户为中心？就是，所谓战略定位，所谓产品逻辑，所谓客户心智，它的起点都是需求定位。</p><h2 id=toc-2>二、客户心智成于长期记忆</h2><p>电动牙刷的店铺流量是怎么来的？</p><p>我们来简单地列举一下，比如：</p><p><strong>第一，直接搜索品牌名</strong>，这叫<strong>心智预售</strong>。</p><p><strong>第二，搜索因果性关键词</strong>，比如：牙刷。</p><p><strong>第三，搜索相关性关键词</strong>，比如：美容。</p><p><strong>第四，看强关系的短视频</strong>，这叫<strong>粉丝经济</strong>。</p><p><strong>第五，阅读兴趣性的文章</strong>，这叫<strong>内容营销</strong>。</p><p><strong>第六，线下门店导购推荐</strong>，这叫<strong>流量拦截</strong>。</p><p><strong>第七，微信群里三人拼团</strong>，这叫<strong>价格动销</strong>。</p><p>显然，这里有一个规律，就是从1到7，客户购物的概率，或者叫必然性在逐渐下降，偶然性在逐渐增加。</p><p>这里在门店流量端，呈现出某些统计规律；同理，在客户行为端，也呈现出某些统计规律。这种客户行为端的统计规律，我们把它叫做<strong>路径依赖</strong>。</p><p>更进一步，我们会得出结论：</p><p><strong>门店流量结构，来自于客户路径依赖；</strong></p><p><strong>客户路径依赖，来自于客户长期记忆。</strong></p><p>这样，我们又会产生出一个问题：</p><p><strong>什么是广告？</strong>广告，是把瞬间注意力，转化成长期记忆的工具之一。</p><p>注意，这里只是之一，而不是唯一。为什么？因为传统产业擅长广告，而互联网擅长行为诱导，也就是说转化成长期记忆的工具是很多的。</p><p><strong>那长期记忆又分为几种？</strong>分为五种：深层次、浅层次、表层次、显层次、重层次。</p><p>前三者，都是潜意识。后二者，是意识。</p><p>情感，是深层次记忆；</p><p>情绪，是浅层次记忆；</p><p>体感，是表层次记忆；</p><p>逻辑，是显层次记忆；</p><p>内容，是重层次记忆。</p><p>对于个人来说，没有记忆，就没有智力决策。</p><p>对于商家来说，没有记忆，就没有客户决策。</p><p><strong>电动牙刷的三个PMF的长期记忆点在哪呢？</strong></p><p>PMF1的记忆点是<strong>KOL驱动</strong>，是情绪（事态严重性）+逻辑（牙病因果性）+内容（牙病后果）。</p><p>PMF2的记忆点是<strong>颜值驱动</strong>，是体感（颜值）+情绪（放飞自我）+逻辑（每天的点点滴滴事件触发）。</p><p>PMF3的记忆点是<strong>大众焦虑</strong>，是情绪（习惯性焦虑+社交性焦虑）+逻辑（因果性）+事件触发（生活圈的其他小朋友已经出现问题了）。</p><h2 id=toc-3>三、客户心智终于心理账户</h2><p>在网上看过一个小视频，女儿打电话跟爸爸说，晚上我回家吃饭。她爸爸没当一回事，下个水饺呗。女儿就说，女婿也回来吃，老岳父一听，那得加个菜，拍个黄瓜。</p><p>女儿又说，小外孙也回来吃。外公情绪立马就激动起来，冲进厨房，外孙也回来吃啊，他喜欢吃大虾，喜欢吃鸡腿……这还没准备呢，赶紧去准备啊。</p><p>按道理来说，家里吃饭，多一个人只是多一双筷子，菜的分量再多一点。实际上因为隔代亲，外公把外孙放在一个极其特殊的心理账户中，决策的重要性、优先级都是重中之重。</p><p>同样是吃饭这一件事情，三个不同的心理账户就得出三种不同的决策。</p><p>我们经常说，<strong>销售有三大痛点：</strong></p><p><strong>目标客户是谁？</strong></p><p><strong>为什么买？</strong></p><p><strong>买的是什么？</strong></p><p><strong>那么，电动牙刷目标客户的心理账户是什么？</strong></p><p><strong>PMF1：</strong><strong>有</strong><strong>牙病的人</strong></p><p>买的是什么？显然买的是治病。</p><p>那为什么买呢？医生建议就是客户决策点。</p><p><strong>PMF</strong><strong>2</strong><strong>：美业爱好者</strong></p><p>买的是什么？买的是精致生活。高颜值的小家电、小家具、小装饰是点亮精致生活的闪光点。</p><p>为什么买呢？潜层次是颜值，深层次是品牌调性和悦己。</p><p><strong>PMF</strong><strong>3</strong><strong>：</strong><strong>家里有小孩子的家长</strong></p><p>买的是什么？买的是妈妈的关爱和妈妈的情绪舒缓。</p><p>为什么买呢？主要是事件触发的妈妈焦虑，既有孩子不好好刷牙的事件，也有幼儿园小朋友牙齿有问题的事件，还有妈妈们在一起聊天的事件。</p><p>我们不禁要问，<strong>心理账户</strong><strong>与客户决策是什么关系？</strong></p><p>传统产业的客户买产品主要在两个方面，一个看产品本身的功能，另外一个有情感，认这个牌子。</p><p>新经济则不同了，客户心理账户除了传统产业的产品功能和品牌情感影响之外，还受内容消费和和服务消费的影响。</p><p><strong>内容消费有两大作用：一是改变客户认知，二是增加客户触点。</strong>不知不觉改变我们对很多事物的看法，放大了和一些事物的接触点。</p><p><strong>服务消费有两大作用：一是</strong><strong>强化客户体验，二是增加客户记忆</strong><strong>点。</strong>客户体验可以触发情绪记忆，而客户记忆点设计，可以形成客户行为上的路径依赖。</p><p>这些都能影响客户决策时的心理账户。</p><p>比如说，卖得好的汉堡，都是卖亲子关系；卖得好的白酒，都是卖身份面子。</p><p>汉堡，本来心理账户是食品，现在变成了家长陪伴孩子的欢乐时光。</p><p>白酒，本来心理账户是餐饮，现在变成了主人陪同客户的商务仪式。</p><h2 id=toc-4>四、小结</h2><p>互联网思维其实并不复杂，简单地说，就是我们不能只是从产品视角看产品增长逻辑，还要学会从客户视角反过来看产品增长逻辑。</p><p><img data-action=zoom class="rich_pages wxw-img aligncenter lazyload" src=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/igTlVO9n4BNYAuKzqPwl.png data-srcset=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/igTlVO9n4BNYAuKzqPwl.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>从心智预售，到心智导航，到心智关系，到心智流量，客户行为概率（路径依赖）是从高到低的。也就是越往上，必然性越高；越往下，偶然性越大。</p><p>路径依赖，既可以是行为诱导，也可以是长期记忆。最终沉淀下来的，还是长期记忆。</p><p>客户行为和客户决策的终极动力，都来自于消费者立场（心理账户）。消费者立场强的，就是非你不买。消费者立场弱的，会在销售场景中货比三家。</p><p>客户心智，始于需求定位，成于长期记忆，终于心理账户。</p><h3>#专栏作家#</h3><p>曹升灰度认知社创始人。主业是创新增长服务商，擅长从客户视角透视传统产业+互联网的增长逻辑与战略机会。工作之余，潜心研修生活禅10多年。研发出大量独家原创方法论，可能是国内唯一一个把正念禅修与商业决策融合起来的跨界导师，通晓客户决策+增长策略+禅修创新的底层逻辑。</p><p>本文整理发布于人人都是产品经理。未经许可，禁止转载</p><p>题图来自 Unsplash，基于 CC0 协议</p><div class=support-author><div class=support-title>给作者打赏，鼓励TA抓紧创作！</div><button class=button--pay data-post-id=5111354 data-author=235651 data-avatar=http://image.woshipm.com/wp-files/2017/04/GpIPzdLGEhcNiBzXqKSS.jpg><svg width=13 height=16 class=svgIcon--use viewbox="0 0 13 16"><path d="M9.113 4.571C9.951 3.771 10.895 2.742 10.685 2.057 10.475 1.485 10.056.799 9.427.571 8.903.342 8.379.456 7.75.799 7.54.342 7.016.114 6.596-.001 5.863-.001 5.234.228 4.814.914 4.08.571 3.451.685 2.927 1.028 2.613 1.256 2.298 1.713 2.298 2.628 2.298 3.542 3.137 4.228 3.766 4.685 2.508 5.599-.218 7.885-.008 12.228-.218 15.656 2.613 15.999 2.613 15.999L10.371 15.999C11.314 15.885 12.991 14.971 12.991 12.571L12.991 12.228C13.201 7.771 10.371 5.371 9.113 4.571L9.113 4.571ZM8.932 11.835 6.94 11.835 6.94 13.207C6.94 13.435 6.731 13.549 6.521 13.549 6.311 13.549 6.102 13.435 6.102 13.207L6.102 11.835 4.11 11.835C3.9 11.835 3.795 11.606 3.795 11.378 3.795 11.149 3.9 10.921 4.11 10.921L6.102 10.921 6.102 10.121 4.949 10.121C4.739 10.121 4.634 9.892 4.634 9.664 4.634 9.435 4.739 9.206 4.949 9.206L5.892 9.206 4.739 7.95C4.634 7.835 4.739 7.606 4.949 7.492 5.158 7.378 5.368 7.264 5.473 7.378L6.521 8.635 7.674 7.264C7.779 7.149 7.989 7.264 8.198 7.378 8.408 7.492 8.408 7.721 8.408 7.835L7.15 9.321 8.094 9.321C8.303 9.321 8.408 9.549 8.408 9.778 8.408 10.007 8.303 10.235 8.094 10.235L6.94 10.235 6.94 11.035 8.932 11.035C9.142 11.035 9.247 11.264 9.247 11.493 9.247 11.606 9.037 11.835 8.932 11.835L8.932 11.835Z"></path></svg>赞赏</button></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/9dcc.html>https://news.zfe.space/p/9dcc.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:15+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/9dcc.html&title=客户心智的三大底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/9dcc.html&title=客户心智的三大底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/9dcc.html&title=客户心智的三大底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://image.woshipm.com/wp-files/2021/08/TX45tgNyuP3AYm8xOzLP.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/d725.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>黄庙村地宫美人</p><p class=content>该片讲述了民国年间，坊间相传芜镇有恶鬼专吃少女，警探谭辉认定此事并非鬼怪，乃是人为。他一路小心翼翼的搜集证据，发现民国少女惨遭囚禁的秘密，却没想到其背后竟掩藏着一个巨大的惊天阴谋......</p></a><a class=next href=/p/b446.html><p class=title>我怎么也没想到，孩子会轻易相信一个陌生网友.....<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>💻 💻 💻你家孩子开始上网了吗？你放心让孩子直面复杂又危机四伏的网络空间吗？关于未成年人沉迷网络、网恋、被骗等触网发生问题的报道，屡见不鲜。2020年发布的《青少年蓝皮书：中国未成...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#toc-1><span class=toc-text>一、客户心智始于需求定位</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#toc-2><span class=toc-text>二、客户心智成于长期记忆</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#toc-3><span class=toc-text>三、客户心智终于心理账户</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#toc-4><span class=toc-text>四、小结</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>#专栏作家#</span></a></li></ol></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="客户心智的三大底层逻辑";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

@@ -1,0 +1,944 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint） - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image></a></div><div class=article-meta id=top><a title="一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint）" href=/p/4fa9.html><img class=thumbnail src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image></a><h1 class=title>一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint）</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%94%B6%E8%97%8F%E9%9B%86/">收藏集</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2019年4月24日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint）" data-path=/p/4fa9.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><p>团队开发中，多人开发同一个项目，由于个人编码习惯不同，一个项目中最终的代码风格可能差别很大，所以需要通过工具进行约束来保证代码风格的统一。同时也希望通过工具尽可能的减少低级错误出现，并且能帮助修正，所以有了各种各样的 lint 和 formatter。</p><p>本篇的目标是使用 vscode 编辑器，使用 prettier 插件，结合使用 eslint 对代码进行校验和修正，并使用 eslint-config-airbnb-base 规则来实现代码风格的统一。</p><p>一般情况下，我们小公司、小 team 可能没有能力和精力来制订一套详尽规则，那么采用大厂已经制订好的规则就是很自然的选择（同时也必要争论你的好还是我的好了，人家大厂都这么干了，我们就按人家来吧！:)）</p><h2 data-id=heading-0>名词解释</h2><ul><li>vscode</li></ul><blockquote><p>一个文本编辑器 <a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fcode.visualstudio.com%2F" title="https://code.visualstudio.com/" ref="nofollow noopener noreferrer">code.visualstudio.com/</a></p></blockquote><ul><li>prettier</li></ul><blockquote><p>vscode 插件，官方的说明是：Opinionated Code Formatter</p></blockquote><ul><li>eslint</li></ul><blockquote><p>代码校验和修复工具，官方说明是：The pluggable linting utility for JavaScript and JSX</p></blockquote><ul><li>eslint-config-airbnb-base</li></ul><blockquote><p>一组预先定义好的 eslint 规则，官方说明是：This package provides Airbnb's base JS .eslintrc (without React plugins) as an extensible shared config.</p></blockquote><p>下面一步一步，通过 vscode 的格式化的使用，到和 prettier 的结合，eslint 使用， prettier 结合 eslint 对 js 和 vue 文件校验，完成对项目代码校验和 fix，力求能以最简洁的方式把问题说清楚。</p><h2 data-id=heading-1>vscode 开箱即用的 code formatter 功能</h2><p>vscode 提供开箱即用的代码样式化功能（没有 css 格式化功能），下面在当前文件夹下创建测试文件：<code>./src/demo.html</code>、<code>./src/fun.js</code>、<code>./src/style.css</code>，格式化代码的快捷键是(win)：alt + shift + f</p><p>HTML 格式化前：</p><pre><code lang=html class=copyable><span><!DOCTYPE html></span>
+<span><<span>html</span> <span>lang</span>=<span>"en"</span>></span>
+<span><<span>head</span>></span>
+<span><<span>meta</span> <span>charset</span>=<span>"UTF-8"</span>></span>
+<span><<span>meta</span> <span>name</span>=<span>"viewport"</span> <span>content</span>=<span>"width=device-width, initial-scale=1.0"</span>></span>
+<span><<span>meta</span> <span>http-equiv</span>=<span>"X-UA-Compatible"</span> <span>content</span>=<span>"ie=edge"</span>></span>
+<span><<span>title</span>></span>Demo page<span>title</span>>
+<span>head</span>>
+<span><<span>body</span>></span><span><<span>h1</span>></span>This is a test page<span>h1</span>>
+<span><<span>p</span>></span>Page content<span>p</span>>
+<span>body</span>>
+<span>html</span>>
+<span class=copy-code-btn>复制代码</span></code></pre><p>格式化后：</p><pre><code lang=html class=copyable><span><!DOCTYPE html></span>
+<span><<span>html</span> <span>lang</span>=<span>"en"</span>></span>
+
+<p><span>&lt;<span>head</span>&gt;</span><br>    <span>&lt;<span>meta</span> <span>charset</span>=<span>“UTF-8”</span>&gt;</span><br>    <span>&lt;<span>meta</span> <span>name</span>=<span>“viewport”</span> <span>content</span>=<span>“width=device-width, initial-scale=1.0”</span>&gt;</span><br>    <span>&lt;<span>meta</span> <span>http-equiv</span>=<span>“X-UA-Compatible”</span> <span>content</span>=<span>“ie=edge”</span>&gt;</span><br>    <span>&lt;<span>title</span>&gt;</span>Demo page<span>&lt;/<span>title</span>&gt;</span><br><span>&lt;/<span>head</span>&gt;</span></p>
+<p><span>&lt;<span>body</span>&gt;</span><br>    <span>&lt;<span>h1</span>&gt;</span>This is a test page<span>&lt;/<span>h1</span>&gt;</span><br>    <span>&lt;<span>p</span>&gt;</span>Page content<span>&lt;/<span>p</span>&gt;</span><br><span>&lt;/<span>body</span>&gt;</span></p>
+<p><span>&lt;/<span>html</span>&gt;</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>JS 格式化前：</p><p></p><pre><code lang=javascript class=copyable><span><span>function</span> <span>getUserInfo</span>(<span>name</span>) </span>&#123;<span>let</span> HelloStr = <span>"Hello, your name is: "</span>
+<span>return</span> HelloStr + name
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>格式化后：</p><pre><code lang=javascript class=copyable><span><span>function</span> <span>getUserInfo</span>(<span>name</span>) </span>&#123;
+    <span>let</span> HelloStr = <span>"Hello, your name is: "</span>
+    <span>return</span> HelloStr + name
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>CSS:</p><p></p><figure><img alt="CSS 文件的格式化" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><p>可以看到，CSS 文件默认情况下是不能被格式化的，这个时间轮到 prettier 登场~</p><h2 data-id=heading-2>用 prettier 对代码进行格式化</h2><p>prettier 的官方解释是：</p><ul><li>An opinionated code formatter</li><li>Supports many languages</li><li>Integrates with most editors</li><li>Has few options</li></ul><p>它能和多种编辑器结合，对多种语言进行 format，所以 css 也不是话下。</p><p>由于 vscode 默认有格式化的功能，安装了 prettier 插件后，prettier 也有格式化的功能以会造成冲突（对于html, js），这里编辑器会提示你，可以进行配置。</p><p></p><figure><img alt="Prettier 格式化 html" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56f9e97ab~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56f9e97ab~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><p>需要注意的是，vscode 和 prettier 会有很多默认配置，可以通过 <code>CTRL + ,</code> 快捷键进入配置界面进行管理，所有修改后的结果会保存在 <code>settings.json</code> 文件里。</p><p>刚刚由于 vscode 默认的格式化程序和 prettier 冲突，经过选择后形成配置文件并写入 <code>settings.json</code>，如下：</p><pre><code lang=json class=copyable>&#123;
+    <span>"[html]"</span>: &#123;
+        <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+    &#125;,
+    <span>"[javascript]"</span>: &#123;
+        <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+    &#125;,
+    <span>"[jsonc]"</span>: &#123;
+        <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>上面是指针不同类型的文件，分别指定 formatter，当然你也可以一次性指定<strong>所有类型</strong>文件的 formatter，修改后的配置文件 <code>settings.json</code> 如下：</p><pre><code lang=json class=copyable>&#123;
+    <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>经过如上配置， <code>css</code> 及其他类型的文件，拥有了通过 prettier 进行格式化的能力。</p><h2 data-id=heading-3>用 eslint 对 javascript 代码进行校验</h2><p>经过如上配置，可以对代码进行格式化了，但是如果要想去代码风格进行校验和修复，就要用到 eslint 了，下面分两步将 eslint 功能集成了项目中：</p><ol><li>在项目内安装 eslint 及相关的包</li><li>给 vscode 安装 eslint 插件</li></ol><p>下面分别来说</p><h3 data-id=heading-4>在项目内安装 eslint 及相关的包</h3><p></p><figure><img alt="安装 eslint" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fc91f2a~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fc91f2a~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><p>经过上面的操作，将 eslint 及相关的包安装到项目里了 <code>package.json</code>如下：</p><pre><code lang=json class=copyable>&#123;
+  ...
+  "dependencies": &#123;
+    "eslint-plugin-vue": "^5.2.2"
+  &#125;,
+  "devDependencies": &#123;
+    "eslint": "^5.16.0"
+  &#125;
+  ...
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>项目目录下多了一个 eslint 的配置文件 <code>.eslintrc.js</code> :</p><pre><code lang=javascript class=copyable><span>module</span>.exports = &#123;
+    <span>"env"</span>: &#123;
+        <span>"browser"</span>: <span>true</span>,
+        <span>"es6"</span>: <span>true</span>
+    &#125;,
+    <span>"extends"</span>: [
+        <span>"eslint:recommended"</span>,
+        <span>"plugin:vue/essential"</span>
+    ],
+    <span>"globals"</span>: &#123;
+        <span>"Atomics"</span>: <span>"readonly"</span>,
+        <span>"SharedArrayBuffer"</span>: <span>"readonly"</span>
+    &#125;,
+    <span>"parserOptions"</span>: &#123;
+        <span>"ecmaVersion"</span>: <span>2018</span>,
+        <span>"sourceType"</span>: <span>"module"</span>
+    &#125;,
+    <span>"plugins"</span>: [
+        <span>"vue"</span>
+    ],
+    <span>"rules"</span>: &#123;
+    &#125;
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这个配置文件的内容，是通过 <code>npx eslint --init</code> 自动生成的，当然你也可以手动配置，所有的选项这里都有中文说明：<a target=_blank href="https://link.juejin.cn/?target=http%3A%2F%2Feslint.cn%2Fdocs%2Fuser-guide%2Fconfiguring" title=http://eslint.cn/docs/user-guide/configuring ref="nofollow noopener noreferrer">eslint.cn/docs/user-g…</a></p><p>接下来就可以手动执行校验了：</p><p></p><figure><img alt="eslint lint" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fa87b6a~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fa87b6a~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><p>在执行的时候可能会有包未安装的提示</p><blockquote><p>Failed to load plugin vue: Cannot find module 'eslint-plugin-vue'</p></blockquote><p>手动安装一下就好了，从执行结果来看，funs.js 文件有一个错误提示，说明校验程序已经能正常跑进来了。</p><p>现在采用的规则是 <code>eslint:recommended</code> ，我们的目标是采用 'eslint-config-airbnb-base'，所以再安装相应的包：</p><pre><code lang=bash class=copyable>npm i -D eslint-config-airbnb-base eslint-plugin-import
+<span class=copy-code-btn>复制代码</span></code></pre><p>然后对 <code>.eslintrc.js</code> 进行配置：</p><pre><code lang=javascript class=copyable><span>module</span>.exports = &#123;
+  <span>env</span>: &#123;
+    <span>browser</span>: <span>true</span>,
+    <span>es6</span>: <span>true</span>,
+  &#125;,
+  <span>extends</span>: <span>'airbnb-base'</span>,
+  <span>globals</span>: &#123;
+    <span>Atomics</span>: <span>'readonly'</span>,
+    <span>SharedArrayBuffer</span>: <span>'readonly'</span>,
+  &#125;,
+  <span>parserOptions</span>: &#123;
+    <span>ecmaVersion</span>: <span>2018</span>,
+    <span>sourceType</span>: <span>'module'</span>,
+  &#125;,
+  <span>plugins</span>: [
+    <span>'vue'</span>,
+  ],
+  <span>rules</span>: &#123;
+    <span>'linebreak-style'</span>: [<span>"error"</span>, <span>"windows"</span>]
+  &#125;,
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p>再进行校验：</p><pre><code lang=bash class=copyable>D:\works\secoo\<span>test</span>\code-formatter> npx eslint .\src\funs.js
+
+<p>D:\works\secoo&lt;span&gt;test\code-formatter\src\funs.js<br>  1:10  error  <span>‘getUserInfo’</span> is defined but never used              no-unused-vars<br>  2:7   error  <span>‘HelloStr’</span> is never reassigned. Use <span>‘const’</span> instead  prefer-const<br>  3:7   error  <span>‘age’</span> is assigned a value but never used             no-unused-vars<br>  3:7   error  <span>‘age’</span> is never reassigned. Use <span>‘const’</span> instead       prefer-const<br>  3:15  error  Missing semicolon                                    semi</p>
+<p>✖ 5 problems (5 errors, 0 warnings)<br>  3 errors and 0 warnings potentially fixable with the <code>--fix</code> option.<br><span class=copy-code-btn>复制代码</span></p></code></pre><p>可以看到明显比之前的错误要多，Aribnb 的规则相对较为严格，可以规避很多低级错误。</p><p></p><p>这里要重点说一下的是，我们在 <code>.eslintrc.js</code> 的 <code>rules</code> 里加了 <code>'linebreak-style': ["error", "windows"]</code>，是由于不同系统间对换行的处理不同导致的，加这个规则来处理这个问题。</p><h3 data-id=heading-5>给 vscode 安装 eslint 插件</h3><p>走到这里我们已经可以校验 js 文件了，通过校验也发现了很多问题，但在 vscode里并没有错误提示，这就用到了 <strong><code>vscode</code></strong> 的另一个插件 <code>eslint</code>，安装完插件以后，在 vscode 里可以看到错误提示了：</p><p></p><figure><img alt="eslint lint" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fb1182b~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4e2b56fb1182b~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><p>走到这里，我们离成功已经很近啦！</p><h2 data-id=heading-6>让 pretter 根据 eslint 校验结果，对代码进行样式化</h2><p>到目前为上，已经可以对 js 文件进行校验，甚至可以对 js 文件按规则进行修复了：</p><pre><code lang=bash class=copyable>D:\works\secoo\<span>test</span>\code-formatter> npx eslint --fix .\src\funs.js
+
+<p>D:\works\secoo&lt;span&gt;test\code-formatter\src\funs.js<br>  1:10  error  <span>‘getUserInfo’</span> is defined but never used   no-unused-vars<br>  3:9   error  <span>‘age’</span> is assigned a value but never used  no-unused-vars</p>
+<p>✖ 2 problems (2 errors, 0 warnings)<br><span class=copy-code-btn>复制代码</span></p></code></pre><p>但是如果你用 vscode（如前述，vscode 使用 prettier） 进行修复，发现并没有应用 Airbnb 的规则，这里需要手动配置一下：</p><p></p><ul><li><code>CTRL + ,</code> 打开配置界面</li><li>扩展 -> Prettier 里打到 Eslint Integration 并勾选 得到 vscode 的配置文件 <code>settings.json</code> 如下</li></ul><pre><code lang=json class=copyable>&#123;
+    <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>,
+    <span>"prettier.eslintIntegration"</span>: <span>true</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这时再对 js 文件进行格式化，就能按照指定的规则执行了，具体操作如下：</p><p></p><figure><img alt="prettier format follow eslint" src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4ee945b11b14b~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4ee945b11b14b~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><h2 data-id=heading-7>校验并且格式化 vue 代码</h2><p>这部分是最麻烦的，很多同学都在这里翻车......</p><p>首先，要想 <code>vscode</code> 认识 <code>vue</code> 文件，需要安装插件 <code>vetur</code>，基本上安装好此插件后就可以开心的撸 vue 代码了，vetur 的默认配置如下：</p><pre><code lang=json class=copyable>&#123;
+  <span>"vetur.format.defaultFormatter.html"</span>: <span>"prettyhtml"</span>,
+  <span>"vetur.format.defaultFormatter.css"</span>: <span>"prettier"</span>,
+  <span>"vetur.format.defaultFormatter.postcss"</span>: <span>"prettier"</span>,
+  <span>"vetur.format.defaultFormatter.scss"</span>: <span>"prettier"</span>,
+  <span>"vetur.format.defaultFormatter.less"</span>: <span>"prettier"</span>,
+  <span>"vetur.format.defaultFormatter.stylus"</span>: <span>"stylus-supremacy"</span>,
+  <span>"vetur.format.defaultFormatter.js"</span>: <span>"prettier"</span>,
+  <span>"vetur.format.defaultFormatter.ts"</span>: <span>"prettier"</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>以上是默认配置，看着很开以的以为可以按着如下方式对代码进行格式化：</p><pre><code lang=bash class=copyable>发出格式化命令
+    |
+    | next
+    |
+vetur 收到命令 将格式化任务转交给 prettier
+    |
+    | next
+    |
+prettier 收到命令 将格式化任务转交给 eslint
+    |
+    | next
+    |
+eslint 收到命令，将代码格式化
+<span class=copy-code-btn>复制代码</span></code></pre><p>看似美好的结局被现实打破，当我们对 vue 文件进行格式化的时候，发它参考的规则是 prettier 规则，而非 eslint 规则。</p><p>如果想按着上述规则对 vue 进行格式化需要做两个事： <code>settings.json</code></p><ul><li>将 vetur 中 js 的 formatter 设置为 prettier-eslint</li></ul><pre><code lang=json class=copyable>&#123;
+  ...
+  "vetur.format.defaultFormatter.js": "prettier-eslint"
+  ...
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><ul><li>安装 prettier-eslint 包</li></ul><pre><code lang=bash class=copyable>npm i -D prettier-eslint
+<span class=copy-code-btn>复制代码</span></code></pre><p>对于这个问题，prettier-eslint <a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fprettier%2Fprettier-eslint" title=https://github.com/prettier/prettier-eslint ref="nofollow noopener noreferrer">官网</a>上说的很清楚：</p><blockquote><p>This formats your code via prettier, and then passes the result of that to eslint --fix. This way you can get the benefits of prettier's superior formatting capabilities, but also benefit from the configuration capabilities of eslint.</p></blockquote><p>但就是这么一个问题，我在网上看把无数的同学绕进去了，确实直线理解的话会有两个坑：</p><ol><li>prettier 不是已经按着 eslint 来格式化 js 了吗，vetur 指给 prettier 按说没问题啊！现实是需要传递给 <code>prettier-eslint</code></li><li>很多同学跨过了第一道坎，但不曾想 <code>prettier-eslint</code> 需要手动安装一个包啊！</li></ol><p>所以导致在最后一步走不下去了。</p><p>至此配置基本已经完成，效果如下：</p><p></p><figure><img alt=eslint-vue-fix src=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4f08c6f302185~tplv-t2oaga2asx-watermark.image class=lazyload data-srcset=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4f08c6f302185~tplv-t2oaga2asx-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer><figcaption></figcaption></figure><p></p><h2 data-id=heading-8>最后总结</h2><p>最后总结一下，总共需要做那些工作</p><ol><li>安装 vscode 插件 <code>eslint</code>、 <code>prettier</code>、 <code>vetur</code></li><li>配置 eslint 规则</li><li>配置 prettier ，使其按着 eslint 工作</li><li>配置 vetur</li></ol><p>最终的配置文件如下： settings.json</p><pre><code lang=json class=copyable>&#123;
+  <span>"extensions.autoUpdate"</span>: <span>false</span>,
+  <span>"eslint.validate"</span>: [<span>"javascript"</span>, <span>"javascriptreact"</span>, <span>"vue"</span>],
+  <span>"prettier.eslintIntegration"</span>: <span>true</span>,
+  <span>"vetur.format.defaultFormatterOptions"</span>: &#123;
+    <span>"prettier"</span>: &#123;
+      <span>"eslintIntegration"</span>: <span>true</span>
+    &#125;
+  &#125;,
+  <span>"vetur.format.defaultFormatter.js"</span>: <span>"prettier-eslint"</span>,
+  <span>"[javascript]"</span>: &#123;
+    <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+  &#125;,
+  <span>"[jsonc]"</span>: &#123;
+    <span>"editor.defaultFormatter"</span>: <span>"esbenp.prettier-vscode"</span>
+  &#125;,
+  <span>"vetur.format.defaultFormatter.html"</span>: <span>"prettier"</span>
+&#125;
+
+<p><span class=copy-code-btn>复制代码</span></p></code></pre><p>.eslintrc.js</p><p></p><pre><code lang=javascript class=copyable><span>module</span>.exports = &#123;
+  <span>env</span>: &#123;
+    <span>browser</span>: <span>true</span>,
+    <span>es6</span>: <span>true</span>
+  &#125;,
+  <span>extends</span>: [<span>'airbnb-base'</span>, <span>'plugin:vue/recommended'</span>],
+  <span>globals</span>: &#123;
+    <span>Atomics</span>: <span>'readonly'</span>,
+    <span>SharedArrayBuffer</span>: <span>'readonly'</span>
+  &#125;,
+  <span>parserOptions</span>: &#123;
+    <span>ecmaVersion</span>: <span>2018</span>,
+    <span>sourceType</span>: <span>'module'</span>
+  &#125;,
+  <span>plugins</span>: [<span>'vue'</span>],
+  <span>rules</span>: &#123;
+    <span>'linebreak-style'</span>: [<span>'error'</span>, <span>'windows'</span>],
+    <span>'comma-dangle'</span>: [<span>'error'</span>, <span>'never'</span>], <span>// 修正 eslint-plugin-vue 带来的问题</span>
+  &#125;
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p>源代码在 <a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fwfzong%2Fvue-vscode-format" title=https://github.com/wfzong/vue-vscode-format ref="nofollow noopener noreferrer">这里</a></p><p>参考文章：</p><ul><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fvuejs.github.io%2Fvetur%2Fformatting.html" title=https://vuejs.github.io/vetur/formatting.html ref="nofollow noopener noreferrer">Vetur 官方文档</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fprettier%2Fprettier-eslint" title=https://github.com/prettier/prettier-eslint ref="nofollow noopener noreferrer">prettier-eslint github rep</a></li><li><a target=_blank href="https://link.juejin.cn/?target=http%3A%2F%2Feslint.cn%2Fdocs%2Fuser-guide%2Fconfiguring" title=http://eslint.cn/docs/user-guide/configuring ref="nofollow noopener noreferrer">eslint configuring</a></li><li><a target=_blank href="https://link.juejin.cn/?target=http%3A%2F%2Feslint.cn%2Fdocs%2Frules%2F" title="http://eslint.cn/docs/rules/" ref="nofollow noopener noreferrer">eslint rules</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgit-scm.com%2Fdocs%2Fgitignore" title=https://git-scm.com/docs/gitignore ref="nofollow noopener noreferrer">gitignore</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fprettier.io%2Fdocs%2Fen%2Fintegrating-with-linters.html" title=https://prettier.io/docs/en/integrating-with-linters.html ref="nofollow noopener noreferrer">Prettier Integrating with Linters</a></li><li><a target=_blank href="https://link.juejin.cn/?target=http%3A%2F%2Fstariveer.coding.me%2Ffe-doc%2F" title="http://stariveer.coding.me/fe-doc/" ref="nofollow noopener noreferrer">He Xing 的 blog</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fblog.jongallant.com%2F2019%2F02%2Fvuejs-vetur-vscode-format-eslint-issues%2F" title="https://blog.jongallant.com/2019/02/vuejs-vetur-vscode-format-eslint-issues/" ref="nofollow noopener noreferrer">How I Resolved Vue.js, VSCode, Vetur, Prettyhtml, and Prettier Formatting and ES Lint Issues</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fbeautify-web%2Fjs-beautify" title=https://github.com/beautify-web/js-beautify ref="nofollow noopener noreferrer">js-beautify github rep 及说明</a></li></ul><blockquote><p>Tips</p></blockquote><ul><li>由于 vetur 最新版本出现 bug，需要回退到 0.18.1 版本，具体信息见：<a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fvuejs%2Fvetur%2Fissues%2F1220" title=https://github.com/vuejs/vetur/issues/1220 ref="nofollow noopener noreferrer">github.com/vuejs/vetur…</a></li></ul></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/4fa9.html>https://news.zfe.space/p/4fa9.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:32+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/4fa9.html&title=一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint） - 小冰 RSSHub&pics=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/4fa9.html&title=一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint） - 小冰 RSSHub&pics=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/4fa9.html&title=一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint） - 小冰 RSSHub&pics=https://p1-jj.byteimg.com/tos-cn-i-t2oaga2asx/gold-user-assets/2019/4/24/16a4d7d10616b385~tplv-t2oaga2asx-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/2936.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>【虎嗅早报】郭台铭：太太反对我参选台地区领导人，已离家出走一周</p><p class=content>题图及部分配图来自东方IC早上好。已经周五了，再坚持一下就可以休息了。新的一天还是从虎嗅早报开始吧。美团打车又“现身”了@腾讯新闻【美团打车在上海、南京上线“聚合模式”，近期试点更多城市...</p></a><a class=next href=/p/1af3.html><p class=title>【虎嗅早报】巴黎圣母院遭遇大火；北京银监局对奔驰汽车金融开展调查<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>周二早~今天一大早，听到了一个令人惋惜的消息——巴黎圣母院遭遇大火，难过@新华网【巴黎圣母院突遇大火受损严重】当地时间15日下午6点50分左右，法国巴黎的著名地标巴黎圣母院突然遭遇大火，...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>名词解释</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>vscode 开箱即用的 code formatter 功能</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>用 prettier 对代码进行格式化</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>用 eslint 对 javascript 代码进行校验</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>在项目内安装 eslint 及相关的包</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>给 vscode 安装 eslint 插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>让 pretter 根据 eslint 校验结果，对代码进行样式化</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>校验并且格式化 vue 代码</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>最后总结</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="一步一步，统一项目中的编码规范（vue, vscode, vetur, prettier, eslint）";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

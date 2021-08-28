@@ -1,0 +1,1307 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>OC底层原理19-KVC - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title=OC底层原理19-KVC href=/p/4807.html><img class=thumbnail src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>OC底层原理19-KVC</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E7%83%AD%E9%97%A8/">热门</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月8日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=OC底层原理19-KVC data-path=/p/4807.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><p>“<strong>这是我参与8月更文挑战的第3天，活动详情查看：<a href=https://juejin.cn/post/6987962113788493831 title=https://juejin.cn/post/6987962113788493831 target=_blank>8月更文挑战</a></strong>”</p><h1 data-id=heading-0>前言</h1><p><code>KVC</code>又称键值编码 <code>（Key-Value-Coding）</code>，在iOS开发中是一个比较常见的技术点，相信很多开发人员都使用过<code>KVC</code>，其主要的两个方法就是如下两个，分别对应设置值和取值：</p><ul><li><code>(void)setValue:(nullable id)value forKey:(NSString *)key;</code></li><li><code>(nullable id)valueForKey:(NSString *)key;</code></li></ul><h1 data-id=heading-1>一.<code>KVC</code>简单应用</h1><pre><code class="hljs language-js copyable" lang=js>    LGPerson *person = [[LGPerson alloc] init];
+
+<p>    <span class=hljs-comment>// 一般setter 方法</span></p>
+<p>    person.name      = @<span class=hljs-string>“LG_Cooci”</span>; <span class=hljs-comment>// setter – llvm</span></p>
+<p>    person.age       = <span class=hljs-number>18</span>;</p>
+<p>    person-&gt;myName   = @<span class=hljs-string>“cooci”</span>;</p>
+<p>    NSLog(@<span class=hljs-string>“%@ - %d - %@”</span>,person.name,person.age,person-&gt;myName);</p>
+<p>   </p>
+<p>    <span class=hljs-comment>// 1:Key-Value Coding (KVC) : 基本类型 - 看底层原理</span></p>
+<p>    <span class=hljs-comment>// 非正式协议 - 间接访问</span></p>
+<p>    [person setValue:@<span class=hljs-string>“KC”</span> forKey:@<span class=hljs-string>“name”</span>];</p>
+<p>    </p>
+<p>    <span class=hljs-comment>// 2:KVC - 集合类型</span></p>
+<p>    person.array = @[@<span class=hljs-string>“1”</span>,@<span class=hljs-string>“2”</span>,@<span class=hljs-string>“3”</span>];</p>
+<p>    <span class=hljs-comment>// 修改数组</span></p>
+<p>    <span class=hljs-comment>// person.array[0] = @”100”;</span></p>
+<p>    <span class=hljs-comment>// 第一种:搞一个新的数组 - KVC 赋值就OK</span></p>
+<p>    NSArray *array = [person valueForKey:@<span class=hljs-string>“array”</span>];</p>
+<p>    array = @[@<span class=hljs-string>“100”</span>,@<span class=hljs-string>“2”</span>,@<span class=hljs-string>“3”</span>];</p>
+<p>    [person setValue:array forKey:@<span class=hljs-string>“array”</span>];</p>
+<p>    NSLog(@<span class=hljs-string>“%@”</span>,[person valueForKey:@<span class=hljs-string>“array”</span>]);</p>
+<p>    <span class=hljs-comment>// 第二种</span></p>
+<p>    NSMutableArray *mArray = [person mutableArrayValueForKey:@<span class=hljs-string>“array”</span>];</p>
+<p>    mArray[<span class=hljs-number>0</span>] = @<span class=hljs-string>“200”</span>;</p>
+<p>    NSLog(@<span class=hljs-string>“%@”</span>,[person valueForKey:@<span class=hljs-string>“array”</span>]);<br>    <span class=hljs-comment>// 3:KVC - 集合操作符</span><br>    <span class=hljs-comment>// 4:KVC - 访问非对象属性 - 面试可能问到</span><br>    <span class=hljs-comment>// 结构体</span></p>
+<p>    ThreeFloats floats = &#123;<span class=hljs-number>1.</span>,<span class=hljs-number>2.</span>,<span class=hljs-number>3.</span>&#125;;</p>
+<p>    NSValue *value     = [NSValue valueWithBytes:&amp;floats objCType: <strong>@encode</strong>(ThreeFloats)];</p>
+<p>    [person setValue:value forKey:@<span class=hljs-string>“threeFloats”</span>];</p>
+<p>    NSValue *value1    = [person valueForKey:@<span class=hljs-string>“threeFloats”</span>];</p>
+<p>    NSLog(@<span class=hljs-string>“%@”</span>,value1);</p>
+<p>    ThreeFloats th;</p>
+<p>    [value1 getValue:&amp;th];</p>
+<p>    NSLog(@<span class=hljs-string>“%f-%f-%f”</span>,th.x,th.y,th.z);</p>
+<p>    <span class=hljs-comment>// 5:KVC - 层层访问 - keyPath</span></p>
+<p>    LGStudent *student = [LGStudent alloc];</p>
+<p>    student.subject    = @<span class=hljs-string>“大师班”</span>;</p>
+<p>    person.student     = student;</p>
+<p>    [person setValue:@<span class=hljs-string>“Swift”</span> forKeyPath:@<span class=hljs-string>“student.subject”</span>];</p>
+<p>    NSLog(@<span class=hljs-string>“%@”</span>,[person valueForKeyPath:@<span class=hljs-string>“student.subject”</span>]);<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><pre><code class="hljs language-js copyable" lang=js>#pragma mark **- array取值**
+
+- (**<span class=hljs-keyword>void</span>**)arrayDemo&#123;
+
+    LGStudent *p = [LGStudent <span class=hljs-keyword>new</span>];
+
+    p.penArr = [NSMutableArray arrayWithObjects:@<span class=hljs-string>"pen0"</span>, @<span class=hljs-string>"pen1"</span>, @<span class=hljs-string>"pen2"</span>, @<span class=hljs-string>"pen3"</span>, **nil**];
+
+    NSArray *arr = [p valueForKey:@<span class=hljs-string>"pens"</span>]; <span class=hljs-comment>// 动态成员变量</span>
+
+    NSLog(@<span class=hljs-string>"pens = %@"</span>, arr);
+
+    <span class=hljs-comment>//NSLog(@"%@",arr[0]);</span>
+
+    NSLog(@<span class=hljs-string>"%d"</span>,[arr containsObject:@<span class=hljs-string>"pen9"</span>]);
+
+    <span class=hljs-comment>// 遍历</span>
+
+    NSEnumerator *enumerator = [arr objectEnumerator];
+
+    NSString* str = **nil**;
+
+    **<span class=hljs-keyword>while</span>** (str = [enumerator nextObject]) &#123;
+
+        NSLog(@<span class=hljs-string>"%@"</span>, str);
+
+    &#125;
+
+&#125;
+
+#pragma mark **- 字典操作**
+- (**<span class=hljs-keyword>void</span>**)dictionaryTest&#123;
+
+    
+
+    NSDictionary* dict = @&#123;
+
+                           @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Cooci"</span>,
+
+                           @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"KC"</span>,
+
+                           @<span class=hljs-string>"subject"</span>:@<span class=hljs-string>"iOS"</span>,
+
+                           @<span class=hljs-string>"age"</span>:@<span class=hljs-number>18</span>,
+
+                           @<span class=hljs-string>"length"</span>:@<span class=hljs-number>180</span>
+
+                           &#125;;
+
+    LGStudent *p = [[LGStudent alloc] init];
+
+    <span class=hljs-comment>// 字典转模型</span>
+
+    [p setValuesForKeysWithDictionary:dict];
+
+    NSLog(@<span class=hljs-string>"%@"</span>,p);
+
+    <span class=hljs-comment>// 键数组转模型到字典</span>
+
+    NSArray *array = @[@<span class=hljs-string>"name"</span>,@<span class=hljs-string>"age"</span>];
+
+    NSDictionary *dic = [p dictionaryWithValuesForKeys:array];
+
+    NSLog(@<span class=hljs-string>"%@"</span>,dic);
+
+&#125;
+#pragma mark **- KVC消息传递**
+
+- (**<span class=hljs-keyword>void</span>**)arrayMessagePass&#123;
+
+    NSArray *array = @[@<span class=hljs-string>"Hank"</span>,@<span class=hljs-string>"Cooci"</span>,@<span class=hljs-string>"Kody"</span>,@<span class=hljs-string>"CC"</span>];
+
+    NSArray *lenStr= [array valueForKeyPath:@<span class=hljs-string>"length"</span>];
+
+    NSLog(@<span class=hljs-string>"%@"</span>,lenStr);<span class=hljs-comment>// 消息从array传递给了string</span>
+
+    NSArray *lowStr= [array valueForKeyPath:@<span class=hljs-string>"lowercaseString"</span>];
+
+    NSLog(@<span class=hljs-string>"%@"</span>,lowStr);
+
+&#125;
+#pragma mark **- 聚合操作符**
+
+<span class=hljs-comment>// @avg、@count、@max、@min、@sum</span>
+
+- (**<span class=hljs-keyword>void</span>**)aggregationOperator&#123;
+
+    NSMutableArray *personArray = [NSMutableArray array];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGStudent *p = [LGStudent <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [p setValuesForKeysWithDictionary:dict];
+
+        [personArray addObject:p];
+
+    &#125;
+
+    NSLog(@<span class=hljs-string>"%@"</span>, [personArray valueForKey:@<span class=hljs-string>"length"</span>]);
+
+    
+
+    <span class=hljs-comment>/// 平均身高</span>
+
+    **float** avg = [[personArray valueForKeyPath:@<span class=hljs-string>"@avg.length"</span>] floatValue];
+
+    NSLog(@<span class=hljs-string>"%f"</span>, avg);
+
+    
+
+    **int** count = [[personArray valueForKeyPath:@<span class=hljs-string>"@count.length"</span>] intValue];
+
+    NSLog(@<span class=hljs-string>"%d"</span>, count);
+
+    
+
+    **int** sum = [[personArray valueForKeyPath:@<span class=hljs-string>"@sum.length"</span>] intValue];
+
+    NSLog(@<span class=hljs-string>"%d"</span>, sum);
+
+    
+
+    **int** max = [[personArray valueForKeyPath:@<span class=hljs-string>"@max.length"</span>] intValue];
+
+    NSLog(@<span class=hljs-string>"%d"</span>, max);
+
+    
+
+    **int** min = [[personArray valueForKeyPath:@<span class=hljs-string>"@min.length"</span>] intValue];
+
+    NSLog(@<span class=hljs-string>"%d"</span>, min);
+
+&#125;
+
+<span class=hljs-comment>// 数组操作符 @distinctUnionOfObjects @unionOfObjects</span>
+
+- (**<span class=hljs-keyword>void</span>**)arrayOperator&#123;
+
+    NSMutableArray *personArray = [NSMutableArray array];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGStudent *p = [LGStudent <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [p setValuesForKeysWithDictionary:dict];
+
+        [personArray addObject:p];
+
+    &#125;
+
+    NSLog(@<span class=hljs-string>"%@"</span>, [personArray valueForKey:@<span class=hljs-string>"length"</span>]);
+
+    <span class=hljs-comment>// 返回操作对象指定属性的集合</span>
+
+    NSArray* arr1 = [personArray valueForKeyPath:@<span class=hljs-string>"@unionOfObjects.length"</span>];
+
+    NSLog(@<span class=hljs-string>"arr1 = %@"</span>, arr1);
+
+    <span class=hljs-comment>// 返回操作对象指定属性的集合 -- 去重</span>
+
+    NSArray* arr2 = [personArray valueForKeyPath:@<span class=hljs-string>"@distinctUnionOfObjects.length"</span>];
+
+    NSLog(@<span class=hljs-string>"arr2 = %@"</span>, arr2);
+
+    
+
+&#125;
+<span class=hljs-comment>// 嵌套集合(array&set)操作 @distinctUnionOfArrays @unionOfArrays @distinctUnionOfSets</span>
+
+- (**<span class=hljs-keyword>void</span>**)arrayNesting&#123;
+
+    
+
+    NSMutableArray *personArray1 = [NSMutableArray array];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGStudent *student = [LGStudent <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [student setValuesForKeysWithDictionary:dict];
+
+        [personArray1 addObject:student];
+
+    &#125;
+
+    
+
+    NSMutableArray *personArray2 = [NSMutableArray array];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGPerson *person = [LGPerson <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [person setValuesForKeysWithDictionary:dict];
+
+        [personArray2 addObject:person];
+
+    &#125;
+
+    
+
+    <span class=hljs-comment>// 嵌套数组</span>
+
+    NSArray* nestArr = @[personArray1, personArray2];
+
+    
+
+    NSArray* arr = [nestArr valueForKeyPath:@<span class=hljs-string>"@distinctUnionOfArrays.length"</span>];
+
+    NSLog(@<span class=hljs-string>"arr = %@"</span>, arr);
+
+    
+
+    NSArray* arr1 = [nestArr valueForKeyPath:@<span class=hljs-string>"@unionOfArrays.length"</span>];
+
+    NSLog(@<span class=hljs-string>"arr1 = %@"</span>, arr1);
+
+&#125;
+- (**<span class=hljs-keyword>void</span>**)setNesting&#123;
+
+    
+
+    NSMutableSet *personSet1 = [NSMutableSet set];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGStudent *person = [LGStudent <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [person setValuesForKeysWithDictionary:dict];
+
+        [personSet1 addObject:person];
+
+    &#125;
+
+    NSLog(@<span class=hljs-string>"personSet1 = %@"</span>, [personSet1 valueForKey:@<span class=hljs-string>"length"</span>]);
+
+    
+
+    NSMutableSet *personSet2 = [NSMutableSet set];
+
+    **<span class=hljs-keyword>for</span>** (**int** i = <span class=hljs-number>0</span>; i <<span class=hljs-number>6</span>; i++) &#123;
+
+        LGPerson *person = [LGPerson <span class=hljs-keyword>new</span>];
+
+        NSDictionary* dict = @&#123;
+
+                               @<span class=hljs-string>"name"</span>:@<span class=hljs-string>"Tom"</span>,
+
+                               @<span class=hljs-string>"age"</span>:@(<span class=hljs-number>18</span>+i),
+
+                               @<span class=hljs-string>"nick"</span>:@<span class=hljs-string>"Cat"</span>,
+
+                               @<span class=hljs-string>"length"</span>:@(<span class=hljs-number>175</span> + <span class=hljs-number>2</span>*arc4random_uniform(<span class=hljs-number>6</span>)),
+
+                               &#125;;
+
+        [person setValuesForKeysWithDictionary:dict];
+
+        [personSet2 addObject:person];
+
+    &#125;
+
+    NSLog(@<span class=hljs-string>"personSet2 = %@"</span>, [personSet2 valueForKey:@<span class=hljs-string>"length"</span>]);
+    <span class=hljs-comment>// 嵌套set</span>
+    NSSet* nestSet = [NSSet setWithObjects:personSet1, personSet2, **nil**];
+    <span class=hljs-comment>// 交集</span>
+    NSArray* arr1 = [nestSet valueForKeyPath:@<span class=hljs-string>"@distinctUnionOfSets.length"</span>];
+    NSLog(@<span class=hljs-string>"arr1 = %@"</span>, arr1);
+&#125;
+
+<span class=copy-code-btn>复制代码</span></code></pre><h1 data-id=heading-2>二.<code>KVC</code>简介-苹果官方文档重要</h1><p><a href="https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.apple.com%2Fios%2F" target=_blank rel="nofollow noopener noreferrer" title="https://developer.apple.com/ios/" ref="nofollow noopener noreferrer">苹果开发iOS地址</a></p><h1 data-id=heading-3>三.苹果官方文档解释<code>KVC</code></h1><p><a href="https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.apple.com%2Flibrary%2Farchive%2Fdocumentation%2FCocoa%2FConceptual%2FKeyValueCoding%2Findex.html%23%2F%2Fapple_ref%2Fdoc%2Fuid%2F10000107i" target=_blank rel="nofollow noopener noreferrer" title=https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/KeyValueCoding/index.html#//apple_ref/doc/uid/10000107i ref="nofollow noopener noreferrer">KVC地址</a></p><h1 data-id=heading-4>四.<code>KVC</code>设值和取值过程</h1><p><code>KVC</code>设置</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-00-28.jpg loading=lazy referrerpolicy=no-referrer></p><p><code>KVC</code>设置值的过程</p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b3cc089cf0ea4aed89a6625afad69245~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b3cc089cf0ea4aed89a6625afad69245~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-06-56.jpg loading=lazy referrerpolicy=no-referrer></p><p>执行的优先顺序按照苹果官方文档所示<code>set<key>:</key></code>-> <code>_set<key>:</key></code></p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d01c683c044448aa6e4659df7dafbe8~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8d01c683c044448aa6e4659df7dafbe8~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-10-03.jpg loading=lazy referrerpolicy=no-referrer></p><p>当 <code>accessInstanceVariablesDirectly</code> 设置为<code>YES</code>时 获取实例变量的顺序为顺序查找名称为<code>_<key></key></code>-><code>_is<key></key></code>-><code><key></key></code>-><code>is<key></key></code></p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3cb4f281931487da1b31129eec63303~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d3cb4f281931487da1b31129eec63303~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-15-32.jpg loading=lazy referrerpolicy=no-referrer></p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3bcdd1e8ccb44203ae902357d5d89621~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3bcdd1e8ccb44203ae902357d5d89621~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-15-58.jpg loading=lazy referrerpolicy=no-referrer></p><p><code>_<key></key></code> <img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/155aa12c74604e819f72cd6c32787fad~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/155aa12c74604e819f72cd6c32787fad~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-16-45.jpg loading=lazy referrerpolicy=no-referrer> <code>_is<key></key></code></p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9913fc5e6c4542a3866269867f491fbb~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/9913fc5e6c4542a3866269867f491fbb~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-17-37.jpg loading=lazy referrerpolicy=no-referrer><code><key></key></code></p><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bce746346dd94af3989ab57a5300c787~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bce746346dd94af3989ab57a5300c787~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-18-03.jpg loading=lazy referrerpolicy=no-referrer></p><p><code>is<key></key></code></p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f6347c84c7d1467b84f477ddd4cb8746~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f6347c84c7d1467b84f477ddd4cb8746~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-18-29.jpg loading=lazy referrerpolicy=no-referrer></p><p>按照官方文档说 如果没有以上都没有 就会进入下面这个方法 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/862dbbcddbd54d9987f19641ea154217~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/862dbbcddbd54d9987f19641ea154217~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-24-00.jpg loading=lazy referrerpolicy=no-referrer></p><p><code>KVC</code>取值的过程</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90db784aee244ff7aa69aa58e9a7a1e5~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90db784aee244ff7aa69aa58e9a7a1e5~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-26-47.jpg loading=lazy referrerpolicy=no-referrer></p><p>执行顺序按照官方文档 <code>get<key></key></code>-><code><key></key></code>-><code>is<key></key></code>-><code>_<key></key></code></p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7db8df330e4b44bb9560632ce92ccb08~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7db8df330e4b44bb9560632ce92ccb08~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-31-10.jpg loading=lazy referrerpolicy=no-referrer></p><p>如果以上都没有 按照<code>_<key></key></code>-><code>_is<key></key></code>-><code><key></key></code>-><code>is<key></key></code>取</p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ab88e4304db48b39ed2597d0ffe07ef~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/6ab88e4304db48b39ed2597d0ffe07ef~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-40-37.jpg loading=lazy referrerpolicy=no-referrer></p><p>细节当我们注释掉<code>_name</code> 打印<code>name</code> 显示的是<code>_isName</code> 顺序问题</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24eb0a01c216444db3616d7fb05c294c~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/24eb0a01c216444db3616d7fb05c294c~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_15-42-40.jpg loading=lazy referrerpolicy=no-referrer></p><p>如果都没有的话 就会调用 <code>valueForUndefinedKey:</code>这个方法</p><h1 data-id=heading-5>五.<code>KVC</code>自定义实现</h1><pre><code class="hljs language-js copyable" lang=js>- (**<span class=hljs-keyword>void</span>**)lg_setValue:(**nullable** **id**)value forKey:(NSString *)key&#123;
+
+<p>    <span class=hljs-comment>// KVC 自定义</span></p>
+<p>    <span class=hljs-comment>// 1: 判断什么 key</span></p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> (key == <strong>nil</strong> || key.length == <span class=hljs-number>0</span>) &#123;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<br>    <span class=hljs-comment>// 2: setter set<key>: or _set<key>,</key></key></span></p>
+<p>    <span class=hljs-comment>// key 要大写</span></p>
+<p>    NSString *Key = key.capitalizedString;</p>
+<p>    <span class=hljs-comment>// 拼接方法</span></p>
+<p>    NSString *setKey = [NSString stringWithFormat:@<span class=hljs-string>“set%@:”</span>,Key];</p>
+<p>    NSString *_setKey = [NSString stringWithFormat:@<span class=hljs-string>“_set%@:”</span>,Key];</p>
+<p>    NSString *setIsKey = [NSString stringWithFormat:@<span class=hljs-string>“setIs%@:”</span>,Key];</p>
+<p>    </p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> lg_performSelectorWithMethodName:setKey value:value]) &#123;</p>
+<p>        NSLog(@<span class=hljs-string>“<em><strong><strong><strong><strong>%@</strong></strong></strong></strong></em>*”</span>,setKey);</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> lg_performSelectorWithMethodName:_setKey value:value]) &#123;</p>
+<p>        NSLog(@<span class=hljs-string>“<em><strong><strong><strong><strong>%@</strong></strong></strong></strong></em>*”</span>,_setKey);</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> lg_performSelectorWithMethodName:setIsKey value:value]) &#123;</p>
+<p>        NSLog(@<span class=hljs-string>“<em><strong><strong><strong><strong>%@</strong></strong></strong></strong></em>*”</span>,setIsKey);</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;</p>
+<p>    </p>
+<p>    <span class=hljs-comment>// 3: 判断是否响应 accessInstanceVariablesDirectly 返回YES NO 奔溃</span></p>
+<p>    <span class=hljs-comment>// 3:判断是否能够直接赋值实例变量</span></p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> (![<strong>self</strong>.class accessInstanceVariablesDirectly] ) &#123;</p>
+<p>        <strong>@<span class=hljs-keyword>throw</span></strong> [NSException exceptionWithName:@<span class=hljs-string>“LGUnknownKeyException”</span> reason:[NSString stringWithFormat:@<span class=hljs-string>“<strong><strong>[%@ valueForUndefinedKey:]: this class is not key value coding-compliant for the key name.</strong></strong>“</span>,<strong>self</strong>] userInfo:<strong>nil</strong>];</p>
+<p>    &#125;<br>    <span class=hljs-comment>// 4: 间接变量</span></p>
+<p>    <span class=hljs-comment>// 获取 ivar -&gt; 遍历 containsObjct -</span></p>
+<p>    <span class=hljs-comment>// 4.1 定义一个收集实例变量的可变数组</span></p>
+<p>    NSMutableArray *mArray = [<strong>self</strong> getIvarListName];</p>
+<p>    <span class=hljs-comment>// _<key> _is<key> <key> is<key></key></key></key></key></span></p>
+<p>    NSString *<em>key = [NSString stringWithFormat:@<span class=hljs-string>“</span></em>%@”,key];</p>
+<p>    NSString *_isKey = [NSString stringWithFormat:@<span class=hljs-string>“_is%@”</span>,Key];</p>
+<p>    NSString *isKey = [NSString stringWithFormat:@<span class=hljs-string>“is%@”</span>,Key];</p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:_key]) &#123;</p>
+<p>        <span class=hljs-comment>// 4.2 获取相应的 ivar</span></p>
+<p>       Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>_key</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>        <span class=hljs-comment>// 4.3 对相应的 ivar 设置值</span></p>
+<p>       object_setIvar(<strong>self</strong> , ivar, value);</p>
+<p>       <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:_isKey]) &#123;</p>
+<p>       Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>_isKey</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>       object_setIvar(<strong>self</strong> , ivar, value);</p>
+<p>       <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:key]) &#123;</p>
+<p>       Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>key</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>       object_setIvar(<strong>self</strong> , ivar, value);</p>
+<p>       <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:isKey]) &#123;</p>
+<p>       Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>isKey</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>       object_setIvar(<strong>self</strong> , ivar, value);</p>
+<p>       <strong><span class=hljs-keyword>return</span></strong>;</p>
+<p>    &#125;<br>    <span class=hljs-comment>// 5:如果找不到相关实例</span></p>
+<p>    <strong>@<span class=hljs-keyword>throw</span></strong> [NSException exceptionWithName:@<span class=hljs-string>“LGUnknownKeyException”</span> reason:[NSString stringWithFormat:@<span class=hljs-string>“<strong><strong>[%@ %@]: this class is not key value coding-compliant for the key name.</strong></strong>“</span>,<strong>self</strong>,NSStringFromSelector( <strong>_cmd</strong>)] userInfo:<strong>nil</strong>];</p>
+<p>    </p>
+<p>&#125;</p>
+<ul>
+<li>(<strong>nullable</strong> <strong>id</strong>)lg_valueForKey:(NSString *)key&#123;</li>
+</ul>
+<p>    </p>
+<p>    <span class=hljs-comment>// 1:刷选key 判断非空</span></p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> (key == <strong>nil</strong>  || key.length == <span class=hljs-number>0</span>) &#123;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> <strong>nil</strong>;</p>
+<p>    &#125;</p>
+<p>    <span class=hljs-comment>// 2:找到相关方法 get<key> <key> countOf<key>  objectIn<key>AtIndex</key></key></key></key></span></p>
+<p>    <span class=hljs-comment>// key 要大写</span></p>
+<p>    NSString *Key = key.capitalizedString;</p>
+<p>    <span class=hljs-comment>// 拼接方法</span></p>
+<p>    NSString *getKey = [NSString stringWithFormat:@<span class=hljs-string>“get%@”</span>,Key];</p>
+<p>    NSString *countOfKey = [NSString stringWithFormat:@<span class=hljs-string>“countOf%@”</span>,Key];</p>
+<p>    NSString *objectInKeyAtIndex = [NSString stringWithFormat:@<span class=hljs-string>“objectIn%@AtIndex:”</span>,Key];</p>
+<p>        </p>
+<p>#pragma clang diagnostic push</p>
+<p>#pragma clang diagnostic ignored <span class=hljs-string>“-Warc-performSelector-leaks”</span></p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(getKey)]) &#123;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> [<strong>self</strong> performSelector:NSSelectorFromString(getKey)];</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(key)])&#123;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> [<strong>self</strong> performSelector:NSSelectorFromString(key)];</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(countOfKey)])&#123;</p>
+<p>        <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(objectInKeyAtIndex)]) &#123;</p>
+<p>            <strong>int</strong> num = (<strong>int</strong>)[<strong>self</strong> performSelector:NSSelectorFromString(countOfKey)];</p>
+<p>            NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:<span class=hljs-number>1</span>];</p>
+<p>            <strong><span class=hljs-keyword>for</span></strong> (<strong>int</strong> i = <span class=hljs-number>0</span>; i&lt;num-<span class=hljs-number>1</span>; i++) &#123;</p>
+<p>                num = (<strong>int</strong>)[<strong>self</strong> performSelector:NSSelectorFromString(countOfKey)];</p>
+<p>            &#125;</p>
+<p>            <strong><span class=hljs-keyword>for</span></strong> (<strong>int</strong> j = <span class=hljs-number>0</span>; j&lt;num; j++) &#123;</p>
+<p>                <strong>id</strong> objc = [<strong>self</strong> performSelector:NSSelectorFromString(objectInKeyAtIndex) withObject:@(num)];</p>
+<p>                [mArray addObject:objc];</p>
+<p>            &#125;</p>
+<p>            <strong><span class=hljs-keyword>return</span></strong> mArray;</p>
+<p>        &#125;</p>
+<p>    &#125;</p>
+<p>#pragma clang diagnostic pop</p>
+<p>    </p>
+<p>    <span class=hljs-comment>// 3:判断是否能够直接赋值实例变量</span></p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> (![<strong>self</strong>.class accessInstanceVariablesDirectly] ) &#123;</p>
+<p>        <strong>@<span class=hljs-keyword>throw</span></strong> [NSException exceptionWithName:@<span class=hljs-string>“LGUnknownKeyException”</span> reason:[NSString stringWithFormat:@<span class=hljs-string>“<strong><strong>[%@ valueForUndefinedKey:]: this class is not key value coding-compliant for the key name.</strong></strong>“</span>,<strong>self</strong>] userInfo:<strong>nil</strong>];</p>
+<p>    &#125;</p>
+<p>    </p>
+<p>    <span class=hljs-comment>// 4.找相关实例变量进行赋值</span></p>
+<p>    <span class=hljs-comment>// 4.1 定义一个收集实例变量的可变数组</span></p>
+<p>    NSMutableArray *mArray = [<strong>self</strong> getIvarListName];</p>
+<p>    <span class=hljs-comment>// _<key> _is<key> <key> is<key></key></key></key></key></span></p>
+<p>    <span class=hljs-comment>// _name -&gt; _isName -&gt; name -&gt; isName</span></p>
+<p>    NSString *<em>key = [NSString stringWithFormat:@<span class=hljs-string>“</span></em>%@”,key];</p>
+<p>    NSString *_isKey = [NSString stringWithFormat:@<span class=hljs-string>“_is%@”</span>,Key];</p>
+<p>    NSString *isKey = [NSString stringWithFormat:@<span class=hljs-string>“is%@”</span>,Key];</p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:_key]) &#123;</p>
+<p>        Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>_key</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> object_getIvar(<strong>self</strong>, ivar);;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:_isKey]) &#123;</p>
+<p>        Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>_isKey</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> object_getIvar(<strong>self</strong>, ivar);;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:key]) &#123;</p>
+<p>        Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>key</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> object_getIvar(<strong>self</strong>, ivar);;</p>
+<p>    &#125;<strong><span class=hljs-keyword>else</span></strong> <strong><span class=hljs-keyword>if</span></strong> ([mArray containsObject:isKey]) &#123;</p>
+<p>        Ivar ivar = class_getInstanceVariable([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], <span class=hljs-title>isKey</span>.<span class=hljs-title>UTF8String</span>)</span>;</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> object_getIvar(<strong>self</strong>, ivar);;</p>
+<p>    &#125;<br>    <strong><span class=hljs-keyword>return</span></strong> @<span class=hljs-string>“”</span>;</p>
+<p>&#125;<br>#pragma mark <strong>- 相关方法</strong></p>
+<ul>
+<li>(<strong>BOOL</strong>)lg_performSelectorWithMethodName:(NSString *)methodName value:(<strong>id</strong>)value&#123;</li>
+</ul>
+<p> </p>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(methodName)]) &#123;</p>
+<p>        </p>
+<p>#pragma clang diagnostic push</p>
+<p>#pragma clang diagnostic ignored <span class=hljs-string>“-Warc-performSelector-leaks”</span></p>
+<p>        [<strong>self</strong> performSelector:NSSelectorFromString(methodName) withObject:value];</p>
+<p>#pragma clang diagnostic pop</p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> <strong>YES</strong>;</p>
+<p>    &#125;</p>
+<p>    <strong><span class=hljs-keyword>return</span></strong> <strong>NO</strong>;</p>
+<p>&#125;</p>
+<ul>
+<li>(<strong>id</strong>)performSelectorWithMethodName:(NSString *)methodName&#123;</li>
+</ul>
+<p>    <strong><span class=hljs-keyword>if</span></strong> ([<strong>self</strong> respondsToSelector:NSSelectorFromString(methodName)]) &#123;</p>
+<p>#pragma clang diagnostic push</p>
+<p>#pragma clang diagnostic ignored <span class=hljs-string>“-Warc-performSelector-leaks”</span></p>
+<p>        <strong><span class=hljs-keyword>return</span></strong> [<strong>self</strong> performSelector:NSSelectorFromString(methodName) ];</p>
+<p>#pragma clang diagnostic pop</p>
+<p>    &#125;</p>
+<p>    <strong><span class=hljs-keyword>return</span></strong> <strong>nil</strong>;</p>
+<p>&#125;</p>
+<ul>
+<li>(NSMutableArray *)getIvarListName&#123;</li>
+</ul>
+<p>    </p>
+<p>    NSMutableArray *mArray = [NSMutableArray arrayWithCapacity:<span class=hljs-number>1</span>];</p>
+<p>    <strong>unsigned</strong> <strong>int</strong> count = <span class=hljs-number>0</span>;</p>
+<p>    Ivar *ivars = class_copyIvarList([<strong>self</strong> <span class=hljs-class><span class=hljs-keyword>class</span>], &amp;<span class=hljs-title>count</span>)</span>;</p>
+<p>    <strong><span class=hljs-keyword>for</span></strong> (<strong>int</strong> i = <span class=hljs-number>0</span>; i&lt;count; i++) &#123;</p>
+<p>        Ivar ivar = ivars[i];</p>
+<p>        <strong><span class=hljs-keyword>const</span></strong> <strong>char</strong> *ivarNameChar = ivar_getName(ivar);</p>
+<p>        NSString *ivarName = [NSString stringWithUTF8String:ivarNameChar];</p>
+<p>        NSLog(@<span class=hljs-string>“ivarName == %@”</span>,ivarName);</p>
+<p>        [mArray addObject:ivarName];</p>
+<p>    &#125;</p>
+<p>    free(ivars);</p>
+<p>    <strong><span class=hljs-keyword>return</span></strong> mArray;</p>
+<p>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><h1 data-id=heading-6>六.KVC拓展和总结</h1><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90d7667c1c8e4844bec94164353406db~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/90d7667c1c8e4844bec94164353406db~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=Xnip2021-08-08_16-11-31.jpg loading=lazy referrerpolicy=no-referrer></p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/4807.html>https://news.zfe.space/p/4807.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:34+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/4807.html&title=OC底层原理19-KVC - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/4807.html&title=OC底层原理19-KVC - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/4807.html&title=OC底层原理19-KVC - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b69a14ef523a49619878d30d48b56d65~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/17d6.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>MethodSwizzing方法交换的坑｜伤敌一千自损八百</p><p class=content>.markdown-body&#123;color:#595959;font-size:15px;font-family:-apple-system,system-ui,BlinkMac...</p></a><a class=next href=/p/18b1.html><p class=title>iOS底层探索之KVO(五)—facebook的 KVO 框架FBKVOController分析<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.8;font-weight:400;font-size:16px;word...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="OC底层原理19-KVC";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

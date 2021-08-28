@@ -1,0 +1,927 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>OC底层原理探索之GCD源码分析下篇 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title=OC底层原理探索之GCD源码分析下篇 href=/p/9096.html><img class=thumbnail src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>OC底层原理探索之GCD源码分析下篇</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E7%83%AD%E9%97%A8/">热门</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月10日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=OC底层原理探索之GCD源码分析下篇 data-path=/p/9096.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><p><strong>这是我参与8月更文挑战的第6天，活动详情查看：<a href=https://juejin.cn/post/6987962113788493831 title=https://juejin.cn/post/6987962113788493831 target=_blank>8月更文挑战</a></strong></p><h4 data-id=heading-0>同步函数死锁</h4><p>主线程因为你同步函数的原因等着先执⾏任务</p><p>主队列等着主线程的任务执⾏完毕再执⾏⾃⼰的任务 主队列和主线程相互等待会造成死锁</p><pre><code class="hljs language-c copyable" lang=c>- (<span class=hljs-keyword>void</span>)textDemo2&#123;
+    <span class=hljs-comment>// </span>
+    <span class=hljs-keyword>dispatch_queue_t</span> <span class=hljs-built_in>queue</span> = dispatch_queue_create(<span class=hljs-string>"cooci"</span>, DISPATCH_QUEUE_SERIAL);
+    NSLog(@<span class=hljs-string>"1"</span>);
+    <span class=hljs-comment>// 异步函数</span>
+    dispatch_async(<span class=hljs-built_in>queue</span>, ^&#123;
+        NSLog(@<span class=hljs-string>"2"</span>);
+        <span class=hljs-comment>// 串行队列和同步函数会造成死锁问题，本题是这个原因，但是不能说串行队列和同步函数一定会造成死锁问题</span>
+        dispatch_sync(<span class=hljs-built_in>queue</span>, ^&#123;
+        &#125;);
+    &#125;);
+    NSLog(@<span class=hljs-string>"5"</span>);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>上面造成死锁之后，bt一下看下调用栈 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 我们顺着源码也来分析下：</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-function><span class=hljs-keyword>void</span>
+<span class=hljs-title>dispatch_sync</span><span class=hljs-params>(<span class=hljs-keyword>dispatch_queue_t</span> dq, <span class=hljs-keyword>dispatch_block_t</span> work)</span>
+</span>&#123;
+<span class=hljs-keyword>uintptr_t</span> dc_flags = DC_FLAG_BLOCK;
+<span class=hljs-keyword>if</span> (unlikely(_dispatch_block_has_private_data(work))) &#123;
+<span class=hljs-keyword>return</span> _dispatch_sync_block_with_privdata(dq, work, dc_flags);
+&#125;
+_dispatch_sync_f(dq, work, _dispatch_Block_invoke(work), dc_flags);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这个流程比较熟悉，我们上一篇也讲过， <code>_dispatch_sync_f</code> -> <code>_dispatch_sync_f_inline</code>在这个函数中我们知道，同步函数的<code>dq_width = 1</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>if</span> (likely(dq->dq_width == <span class=hljs-number>1</span>)) &#123;
+<span class=hljs-keyword>return</span> _dispatch_barrier_sync_f(dq, ctxt, func, dc_flags);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>所以我们定位到了<code>_dispatch_barrier_sync_f</code> -> <code>_dispatch_barrier_sync_f_inline</code> 我们看下上面的死锁时候的调用栈，发现有个<code>_dispatch_sync_f_slow</code>,好的那么我们就在<code>_dispatch_barrier_sync_f_inline</code>中定位到<code>_dispatch_sync_f_slow</code>发现了报错的时候的函数<code>__DISPATCH_WAIT_FOR_QUEUE__</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>void</span>
+__DISPATCH_WAIT_FOR_QUEUE__(<span class=hljs-keyword>dispatch_sync_context_t</span> dsc, <span class=hljs-keyword>dispatch_queue_t</span> dq)
+&#123;
+<span class=hljs-keyword>uint64_t</span> dq_state = _dispatch_wait_prepare(dq);
+    <span class=hljs-comment>// 第二个参数   .dsc_waiter  = _dispatch_tid_self()也就是线程的id</span>
+<span class=hljs-keyword>if</span> (unlikely(_dq_state_drain_locked_by(dq_state, dsc->dsc_waiter))) &#123;
+DISPATCH_CLIENT_CRASH((<span class=hljs-keyword>uintptr_t</span>)dq_state,
+<span class=hljs-string>"dispatch_sync called on queue "</span>
+<span class=hljs-string>"already owned by current thread"</span>);
+&#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><code>_dq_state_drain_locked_by(dq_state, dsc->dsc_waiter)</code>这里的第二个参数 <code>.dsc_waiter = _dispatch_tid_self()</code>也就是线程的id</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-meta>#<span class=hljs-meta-keyword>define</span> _dispatch_tid_self()((dispatch_tid)_dispatch_thread_port())</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p><code>_dq_state_drain_locked_by</code> -> <code>_dispatch_lock_is_locked_by</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>inline</span> <span class=hljs-keyword>bool</span>
+_dispatch_lock_is_locked_by(dispatch_lock lock_value, dispatch_tid tid)
+&#123;
+<span class=hljs-comment>// equivalent to _dispatch_lock_owner(lock_value) == tid</span>
+<span class=hljs-keyword>return</span> ((lock_value ^ tid) & DLOCK_OWNER_MASK) == <span class=hljs-number>0</span>;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><code>DLOCK_OWNER_MASK</code>是一个极大值，意思是说只要<code>lock_value ^ tid</code> 不为0，那么这个就不成立。相反如果要成立的话，也就是死锁的话，<code>lock_value ^ tid = 0</code>那么异或的两个值什么情况下为0呢，答案当然是相等。也就是说当前等待线程的tid和当前准备要调用的线程tid相等就会造成死锁</p><h4 data-id=heading-1>同步函数 + 全局队列</h4><p><code>dispatch_sync</code> + <code>global_queue</code></p><pre><code class="hljs language-objectivec copyable" lang=objectivec>   <span class=hljs-built_in>dispatch_queue_t</span> queue1 = dispatch_get_global_queue(<span class=hljs-number>0</span>, <span class=hljs-number>0</span>);
+   <span class=hljs-built_in>dispatch_sync</span>(queue1, ^&#123;
+        <span class=hljs-built_in>NSLog</span>(<span class=hljs-string>@"%@"</span>,[<span class=hljs-built_in>NSThread</span> currentThread]);
+   &#125;);
+<span class=copy-code-btn>复制代码</span></code></pre><p>同时bt一下 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76cdbf6d9e3344c5806b97e44762dff8~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/76cdbf6d9e3344c5806b97e44762dff8~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 我们可以在第三行的时候下符号断点，在<code>_dispatch_sync_f_inline</code>函数中 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/79899d3da7af4d57988020045d0e5c83~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/79899d3da7af4d57988020045d0e5c83~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 在工程中符号断点这3个方法 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ee283916181471bbf36c8b27e380109~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/7ee283916181471bbf36c8b27e380109~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 发现来到了这个方法结合上面bt的调用栈发现<code>_dispatch_sync_function_invoke</code>这个方法。接下来的流程就比较简单了。<code>_dispatch_sync_function_invoke</code> -> <code>_dispatch_sync_function_invoke_inline</code> -><code>_dispatch_client_callout</code> ​</p><h4 data-id=heading-2>异步函数 + 全局队列/并发队列</h4><p><code>dispatch_async</code> + <code>DISPATCH_QUEUE_CONCURRENT</code> <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1498c50ad3c745d697fe89588f71c1cd~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1498c50ad3c745d697fe89588f71c1cd~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> <code>dispatch_async</code> + <code>global_queue</code> <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b379589982534cecab3215535e51287f~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b379589982534cecab3215535e51287f~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-function><span class=hljs-keyword>void</span>
+<span class=hljs-title>dispatch_async</span><span class=hljs-params>(<span class=hljs-keyword>dispatch_queue_t</span> dq, <span class=hljs-keyword>dispatch_block_t</span> work)</span>
+</span>&#123;
+<span class=hljs-keyword>dispatch_continuation_t</span> dc = _dispatch_continuation_alloc();
+<span class=hljs-keyword>uintptr_t</span> dc_flags = DC_FLAG_CONSUME;
+<span class=hljs-keyword>dispatch_qos_t</span> qos;
+
+<p>qos = _dispatch_continuation_init(dc, dq, work, <span class=hljs-number>0</span>, dc_flags);<br>_dispatch_continuation_async(dq, dc, qos, dc-&gt;dc_flags);<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><code>dispatch_async</code> -> <code>_dispatch_continuation_async</code> -> <code>dx_push</code>这个流程比较熟悉上一篇已经讲过的。<code>.dq_push = _dispatch_root_queue_push</code></p><pre><code class="hljs language-c copyable" lang=c>DISPATCH_VTABLE_SUBCLASS_INSTANCE(queue_concurrent, lane,
+.do_type        = DISPATCH_QUEUE_CONCURRENT_TYPE,
+.do_dispose     = _dispatch_lane_dispose,
+.do_debug       = _dispatch_queue_debug,
+.do_invoke      = _dispatch_lane_invoke,
+
+<p>.dq_activate    = _dispatch_lane_activate,<br>.dq_wakeup      = _dispatch_lane_wakeup,<br>.dq_push        = _dispatch_lane_concurrent_push,<br>);</p>
+<p>DISPATCH_VTABLE_SUBCLASS_INSTANCE(queue_global, lane,<br>.do_type        = DISPATCH_QUEUE_GLOBAL_ROOT_TYPE,<br>.do_dispose     = _dispatch_object_no_dispose,<br>.do_debug       = _dispatch_queue_debug,<br>.do_invoke      = _dispatch_object_no_invoke,</p>
+<p>.dq_activate    = _dispatch_queue_no_activate,<br>.dq_wakeup      = _dispatch_root_queue_wakeup,<br>.dq_push        = _dispatch_root_queue_push,<br>);<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>这里全局队列对应的是<code>_dispatch_root_queue_push</code>,并发队列对应的是<code>dispatch_lane_concurrent_push</code>，全局队列对应的是<code>_dispatch_root_queue_push</code>，我们先看复杂一点的并发队列吧</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>void</span>
+_dispatch_lane_concurrent_push(<span class=hljs-keyword>dispatch_lane_t</span> dq, <span class=hljs-keyword>dispatch_object_t</span> dou,
+<span class=hljs-keyword>dispatch_qos_t</span> qos)
+&#123;
+<span class=hljs-comment>// <rdar: problem 24738102&24743140> reserving non barrier width</rdar:></span>
+<span class=hljs-comment>// doesn't fail if only the ENQUEUED bit is set (unlike its barrier</span>
+<span class=hljs-comment>// width equivalent), so we have to check that this thread hasn't</span>
+<span class=hljs-comment>// enqueued anything ahead of this call or we can break ordering</span>
+<span class=hljs-keyword>if</span> (dq->dq_items_tail == <span class=hljs-literal>NULL</span> &&
+!_dispatch_object_is_waiter(dou) &&
+!_dispatch_object_is_barrier(dou) &&
+_dispatch_queue_try_acquire_async(dq)) &#123;
+<span class=hljs-keyword>return</span> _dispatch_continuation_redirect_push(dq, dou, qos);
+&#125;
+
+<p>_dispatch_lane_push(dq, dou, qos);<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p><code>_dispatch_lane_push</code>这个其实也是串行队列的<code>.dq_push</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>void</span>
+_dispatch_lane_push(<span class=hljs-keyword>dispatch_lane_t</span> dq, <span class=hljs-keyword>dispatch_object_t</span> dou,
+<span class=hljs-keyword>dispatch_qos_t</span> qos)
+&#123;
+<span class=hljs-comment>//...</span>
+<span class=hljs-keyword>if</span> (unlikely(_dispatch_object_is_waiter(dou))) &#123;
+<span class=hljs-keyword>return</span> _dispatch_lane_push_waiter(dq, dou._dsc, qos);
+&#125;
+
+<p><span class=hljs-comment>//…</span><br><span class=hljs-keyword>if</span> (flags) &#123;<br><span class=hljs-keyword>return</span> dx_wakeup(dq, qos, flags);<br>&#125;<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>可以看到这里面其实只有两个<code>return</code>,在demo中下符号断点。<code>dx_wakeup</code>全局搜索定位到是一个宏</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-meta>#<span class=hljs-meta-keyword>define</span> dx_wakeup(x, y, z) dx_vtable(x)->dq_wakeup(x, y, z)</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p>搜索<code>dq_wakeup</code>,由于现在研究的是并发队列所以<code>.dq_wakeup = _dispatch_lane_wakeup,</code> <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4dfb1658bfb74879862a2ef46859f89c~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4dfb1658bfb74879862a2ef46859f89c~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 由符号断点可以知道并没有走<code>_dispatch_lane_push_waiter</code>这个方法，所以异步并发流程链路应该是：<code>dispatch_async</code> -> <code>_dispatch_continuation_async</code> -> <code>dx_push</code> -> <code>_dispatch_lane_concurrent_push</code> -> <code>_dispatch_lane_push</code> -> <code>dx_wakeup</code> -> <code>_dispatch_lane_wakeup</code> -> <code>_dispatch_queue_wakeup</code> 在<code>_dispatch_queue_wakeup</code>中一共有四个函数返回，我们分别下符号断点 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fef296b2e094a6ea7b4fa517422e2df~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4fef296b2e094a6ea7b4fa517422e2df~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 在<code>_dispatch_lane_class_barrier_complete</code>中发现已经到了系统级别的函数了。我们知道全局队列的<code>.dq_push = _dispatch_root_queue_push</code>我们试着下个断点，发现确实走到了这一步。所以可以这么总结：手动系统创建的并发队列<code>_dispatch_lane_concurrent_push</code>经过一段复杂的逻辑计算之后合流到了全局并发队列<code>_dispatch_root_queue_push</code>这里。这也从侧方便验证了全局队列是一种特殊的并发队列。 <code>_dispatch_root_queue_push_inline</code> -> <code>_dispatch_root_queue_poke</code> -> <code>_dispatch_root_queue_poke_slow</code> -> <code>_dispatch_root_queues_init</code> 说到这个<code>_dispatch_root_queues_init</code>就适当插入另外的一个单例知识 ​</p><h4 data-id=heading-3>单例底层原理</h4><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>inline</span> <span class=hljs-keyword>void</span>
+_dispatch_root_queues_init(<span class=hljs-keyword>void</span>)
+&#123;
+dispatch_once_f(&_dispatch_root_queues_pred, <span class=hljs-literal>NULL</span>,
+_dispatch_root_queues_init_once);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这就是单例，我们上层调用的<code>dispatch_once</code>底层就是<code>dispatch_once_f</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-function><span class=hljs-keyword>void</span>
+<span class=hljs-title>dispatch_once</span><span class=hljs-params>(<span class=hljs-keyword>dispatch_once_t</span> *val, <span class=hljs-keyword>dispatch_block_t</span> block)</span>
+</span>&#123;
+dispatch_once_f(val, block, _dispatch_Block_invoke(block));
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><pre><code class="hljs language-c copyable" lang=c><span class=hljs-function><span class=hljs-keyword>void</span>
+<span class=hljs-title>dispatch_once_f</span><span class=hljs-params>(<span class=hljs-keyword>dispatch_once_t</span> *val, <span class=hljs-keyword>void</span> *ctxt, <span class=hljs-keyword>dispatch_function_t</span> func)</span>
+</span>&#123;
+<span class=hljs-keyword>dispatch_once_gate_t</span> l = (<span class=hljs-keyword>dispatch_once_gate_t</span>)val;
+
+<p><span class=hljs-meta>#<span class=hljs-meta-keyword>if</span> !DISPATCH_ONCE_INLINE_FASTPATH || DISPATCH_ONCE_USE_QUIESCENT_COUNTER</span><br><span class=hljs-keyword>uintptr_t</span> v = os_atomic_load(&amp;l-&gt;dgo_once, acquire);<br><span class=hljs-keyword>if</span> (likely(v == DLOCK_ONCE_DONE)) &#123;<br><span class=hljs-keyword>return</span>;<br>&#125;<br><span class=hljs-meta>#<span class=hljs-meta-keyword>if</span> DISPATCH_ONCE_USE_QUIESCENT_COUNTER</span><br><span class=hljs-keyword>if</span> (likely(DISPATCH_ONCE_IS_GEN(v))) &#123;<br><span class=hljs-keyword>return</span> _dispatch_once_mark_done_if_quiesced(l, v);<br>&#125;<br><span class=hljs-meta>#<span class=hljs-meta-keyword>endif</span></span><br><span class=hljs-meta>#<span class=hljs-meta-keyword>endif</span></span><br><span class=hljs-keyword>if</span> (_dispatch_once_gate_tryenter(l)) &#123;<br><span class=hljs-keyword>return</span> _dispatch_once_callout(l, ctxt, func);<br>&#125;<br><span class=hljs-keyword>return</span> _dispatch_once_wait(l);<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>第一次调用的时候会来到<code>_dispatch_once_gate_tryenter(l)</code>那里，<code>_dispatch_once_gate_tryenter</code>进行一些原子操作加锁当前的线程，所以单例也是线程安全的<code>_dispatch_lock_value_for_self()</code>,<code>_dispatch_once_callout</code> -> <code>_dispatch_once_gate_broadcast</code> -> <code>_dispatch_once_mark_done</code></p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>inline</span> <span class=hljs-keyword>uintptr_t</span>
+_dispatch_once_mark_done(<span class=hljs-keyword>dispatch_once_gate_t</span> dgo)
+&#123;
+<span class=hljs-keyword>return</span> os_atomic_xchg(&dgo->dgo_once, DLOCK_ONCE_DONE, release);
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这里全局标记<code>DLOCK_ONCE_DONE</code>所以下次进入的时候直接到了上面的<code>likely(v == DLOCK_ONCE_DONE</code>代码<code>return</code> ​</p><h4 data-id=heading-4>异步函数 + 全局队列/并发队列</h4><p>回到上面的流程，这里意思就是让<code>_dispatch_root_queues_init_once</code>这个函数只执行一次，那么<code>_dispatch_root_queues_init_once</code>做了什么？我们在这里发现了<code>_dispatch_worker_thread2</code>为了方便阅读，把之前异步并发的调用栈再贴一下 <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d771028951174879a8823304c706941e~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d771028951174879a8823304c706941e~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 可以看出下面就到了<code>libsystem_pthread.dylib</code>下层api，也就是说GCD就是在pthread之上封装改变而来。回到之前的函数</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>void</span>
+_dispatch_root_queue_poke_slow(<span class=hljs-keyword>dispatch_queue_global_t</span> dq, <span class=hljs-keyword>int</span> n, <span class=hljs-keyword>int</span> <span class=hljs-built_in>floor</span>)
+&#123;
+<span class=hljs-comment>//从外面传递的参数知道 n=1,floor=0</span>
+    <span class=hljs-keyword>int</span> remaining = n;
+_dispatch_root_queues_init();
+ <span class=hljs-comment>// ...</span>
+<span class=hljs-keyword>int</span> can_request, t_count;
+t_count = os_atomic_load2o(dq, dgq_thread_pool_size, ordered);
+<span class=hljs-keyword>do</span> &#123;
+        <span class=hljs-comment>// 剩下的可获取的线程数量</span>
+can_request = t_count <<span class=hljs-built_in>floor</span> ? <span class=hljs-number>0</span> : t_count - <span class=hljs-built_in>floor</span>;
+        <span class=hljs-comment>// 需要的数量 > 剩下的数量 报异常</span>
+<span class=hljs-keyword>if</span> (remaining > can_request) &#123;
+_dispatch_root_queue_debug(<span class=hljs-string>"pthread pool reducing request from %d to %d"</span>,
+remaining, can_request);
+os_atomic_sub2o(dq, dgq_pending, remaining - can_request, relaxed);
+remaining = can_request;
+&#125;
+<span class=hljs-keyword>if</span> (remaining == <span class=hljs-number>0</span>) &#123;
+_dispatch_root_queue_debug(<span class=hljs-string>"pthread pool is full for root queue: "</span>
+<span class=hljs-string>"%p"</span>, dq);
+<span class=hljs-keyword>return</span>;
+&#125;
+&#125; <span class=hljs-keyword>while</span> (!os_atomic_cmpxchgv2o(dq, dgq_thread_pool_size, t_count,
+t_count - remaining, &t_count, acquire));
+<span class=hljs-comment>// ...</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>这里面的do whlie循环<code>dgq_thread_pool_size</code> = 1,而上一篇提到过线程数量</p><pre><code class="hljs language-c copyable" lang=c>  _dispatch_queue_init(dq, dqf, dqai.dqai_concurrent ?
+      DISPATCH_QUEUE_WIDTH_MAX : <span class=hljs-number>1</span>, DISPATCH_QUEUE_ROLE_INNER |
+      (dqai.dqai_inactive ? DISPATCH_QUEUE_INACTIVE : <span class=hljs-number>0</span>))
+<span class=copy-code-btn>复制代码</span></code></pre><pre><code class="hljs language-c copyable" lang=c><span class=hljs-meta>#<span class=hljs-meta-keyword>define</span> DISPATCH_QUEUE_WIDTH_POOL (DISPATCH_QUEUE_WIDTH_FULL - 1)</span>
+<span class=hljs-meta>#<span class=hljs-meta-keyword>define</span> DISPATCH_QUEUE_WIDTH_MAX  (DISPATCH_QUEUE_WIDTH_FULL - 2)</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p>所以这里的<code>DISPATCH_QUEUE_WIDTH_POOL</code> - <code>DISPATCH_QUEUE_WIDTH_MAX</code> = 1</p><pre><code class="hljs language-c copyable" lang=c><span class=hljs-class><span class=hljs-keyword>struct</span> <span class=hljs-title>dispatch_queue_global_s</span> _<span class=hljs-title>dispatch_mgr_root_queue</span> =</span> &#123;
+.dq_atomic_flags = DQF_WIDTH(DISPATCH_QUEUE_WIDTH_POOL),
+.dgq_thread_pool_size = <span class=hljs-number>1</span>,
+&#125;;
+<span class=copy-code-btn>复制代码</span></code></pre><p>所以从这里可以得出： 全局并发队列<code>dq_atomic_flags</code> - <code>_dispatch_queue_init</code>创建的并发队列<code>dq_atomic_flags</code> =1 全局并发队列<code>.dgq_thread_pool_size =1</code>，而创建的并发队列<code>.dgq_thread_pool_size=0</code> 所以上面的do while就是线程池调度的规则。那么到底可以开辟多少线程呢？ ​</p><h4 data-id=heading-5>dgq_thread_pool_size 线程池大小</h4><pre><code class="hljs language-c copyable" lang=c><span class=hljs-keyword>static</span> <span class=hljs-keyword>inline</span> <span class=hljs-keyword>void</span>
+_dispatch_root_queue_init_pthread_pool(<span class=hljs-keyword>dispatch_queue_global_t</span> dq,
+<span class=hljs-keyword>int</span> pool_size, <span class=hljs-keyword>dispatch_priority_t</span> pri)
+&#123; 
+    <span class=hljs-comment>//...</span>
+<span class=hljs-keyword>int</span> thread_pool_size = DISPATCH_WORKQ_MAX_PTHREAD_COUNT;
+dq->dgq_thread_pool_size = thread_pool_size;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><pre><code class="hljs language-c copyable" lang=c><span class=hljs-meta>#<span class=hljs-meta-keyword>define</span> DISPATCH_WORKQ_MAX_PTHREAD_COUNT 255</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p>也就是线程池的最大数量是255 查找苹果官方文档pthread说明，512kb的大小但是最小能开16kb <img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8af14d83524b4f9b9a1b5979ceef95e5~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/8af14d83524b4f9b9a1b5979ceef95e5~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer> 我们知道栈的内存是一定的，如果一个线程占的空间越大那么可以开辟的数量就越少，所以当是线程大小是16kb的时候此时开的线程数量是最多的。假如内核态1gb全部用来开线程的话，那么数量就在</p><ul><li>最大：1024 * 1024 / 16 = 64 * 1024</li><li>最小：1024 * 1024 /512 = 2048</li></ul><p>所以这个线程数量是不固定的。</p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/9096.html>https://news.zfe.space/p/9096.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:34+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/9096.html&title=OC底层原理探索之GCD源码分析下篇 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/9096.html&title=OC底层原理探索之GCD源码分析下篇 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/9096.html&title=OC底层原理探索之GCD源码分析下篇 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1cf14fae36bb4b988011428779a66499~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/f2c4.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>Parallels Desktop 17 最新版下载 - Mac 系统最强虚拟机 (支持M1_Win11_macOS Monterey)</p><p class=content>热点优惠：115 网盘 11.5 年超长会员 | Apple 官网返校优惠 - 免费送 AirPods 无线耳机Parallels Desktop 被称为 macOS 上最强大的...</p></a><a class=next href=/p/dab9.html><p class=title>iOS开发的几个知识点<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>同步函数死锁</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>同步函数 + 全局队列</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>异步函数 + 全局队列&#x2F;并发队列</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>单例底层原理</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>异步函数 + 全局队列&#x2F;并发队列</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>dgq_thread_pool_size 线程池大小</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="OC底层原理探索之GCD源码分析下篇";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

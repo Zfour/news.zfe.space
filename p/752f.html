@@ -1,0 +1,865 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>对混乱的数据进行聚类 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png></a></div><div class=article-meta id=top><a title=对混乱的数据进行聚类 href=/p/752f.html><img class=thumbnail src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png></a><h1 class=title>对混乱的数据进行聚类</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/AI-%E7%A0%94%E4%B9%A0%E7%A4%BE/">AI 研习社</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/AI-%E7%A0%94%E4%B9%A0%E7%A4%BE/%E9%A6%96%E9%A1%B5/">首页</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2019年1月3日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=对混乱的数据进行聚类 data-path=/p/752f.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><table><tbody><tr><td width=50%>Clustering on mixed type data</td><td>对混乱的数据进行聚类</td></tr><tr><td><section><h1>Clustering on mixed type data</h1><h2>A proposed approach using R</h2><h4>ABOUT</h4><p>Clustering <a target=_blank rel=noopener href=https://en.wikipedia.org/wiki/Unsupervised_learning>unsupervised data</a> is not an easy task. Indeed, data crunching and exploration is in such a context often driven by domain knowledge, if not pure intuition, and made difficult as there is no way to measure the accuracy of the resulting segmentation (as opposed to supervised learning).</p><p>In addition, introductory courses to unsupervised learning quite often discuss ideal use cases, such as k-means tutorials, which only apply to numerical features.</p><p>However, real business situations often deviate from these ideal use cases, and need to analyze datasets made of mixed-type data, where numeric (the difference between two values is meaningful), nominal(categorical, not ordered) or ordinal (categorical, ordered) features coexist.</p><p>In this post, I’m focusing on such situations, in the context of unsupervised classification exercise using R.</p><ul class=list-paddingleft-2><li><p>The first part covers methodology: I’m discussing the issue of measuring similarity across individuals, using the mathematical concept of distance. I then introduce the PAM clustering algorithm (partitioning around medoids) as well as a way to select optimal number of clusters(silhouette coefficient). I lastly close with a word on interpretation.</p></li><li><p>In the second part, I’m illustrating the approach using a bank marketing dataset available on uci's <a target=_blank rel=noopener href=https://archive.ics.uci.edu/ml/datasets/Bank+Marketing>machine learning repository</a>, and some useful functions from <code>cluster</code> and <code>Rtsne</code> packages. This dataset is related with direct marketing campaigns (phone calls) of a Portuguese banking institution and is traditionally used for supervised learning disussion (the classification goal is to predict if the client will subscribe a term deposit). However it contains some information about bank clients, which we will try to cluster ‘a priori’.</p></li></ul><p>Let’s get started!</p></section><p><br></p><section></section></td><td><p><style>
+@font-face&#123;
+font-family:"Times New Roman";
+&#125;
+
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体 style="font-weight: bold; font-size: xx-large;">对混合型数据进行聚类</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<span style="font-weight: bold; font-size: x-large;"><font face=宋体>基于</font>R<font face=宋体>语言</font></span>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<span style="font-weight: bold; font-size: x-large;"><font face=宋体><br></font></span>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体 style="font-size: large; font-weight: bold;">关于</font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>无监督的聚类不是一个简单的任务。实际上，在无标签数据上的聚类和数据探索常常需要大量相关领域的知识，如果不是纯凭直觉，很难有办法来测量分割结果的准确度（与监督学习的方法相反）</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体><br></font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>此外，无监督学习的入门课程常常讨论的是理想化的用例，比如</font>kmeans<font face=宋体>的教程仅仅是在数值型特征上的使用。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体><br></font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>然而，现实的商业情境常常不同于这些理想化的用例，而且需要分析由混合型数据组成的数据集，其中数值型（两个值的差是有意义的）和定类型（表示类别，且无顺序）或者是定序型（表示类别，且有顺序）数据特征共存。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体><br></font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>在本文中，我会重点谈谈这个情况下，基于</font>R<font face=宋体>的无监督分类方法。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal><br></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>1.</font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;<font face=宋体 style="font-size: 10.5pt;">第一部分包含了方法论：我会探讨使用数学概念上的距离来测量个体相似度的问题。随后介绍了</font><span style="font-size: 10.5pt;">PAM</span><font face=宋体 style="font-size: 10.5pt;">聚类算法（</font><font face=Calibri style="font-size: 10.5pt;">Partitioning</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;” style=”font-size: 10.5pt;”&gt; Around &lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;Medoids&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>）和一种选择最优聚类数的方法</font>——轮廓系数（<font face=Calibri>silhouette coefficient</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>）。最后我将会以简短的解释和说明收尾。</font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;” style=”font-size: 10.5pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体><br></font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;” style=”font-size: 10.5pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>2.在第二部分中，我用了一个可在</font>UCI<font face=宋体>机器学习库中下载的</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>银行</font>&lt;spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>营销</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>数据，和一些有用的，在</font><span style="font-style: italic;">cluster</span><font face=宋体>和</font><font face=Calibri style="font-style: italic;">Rtsne</font><font face=宋体>库上的函数。这个数据集是一家葡萄牙银行机构开展的营销活动（电话营销）有关，并且通常用在监督学习的讨论中。（分类的目标是预测是否客户是否会认购一份定期存款）。不过，这份数据包含了一些关于银行客户的，这也是我们将会尝试用来聚类的“先验知识”。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体><br></font>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:calibri;mso-fareast-font-family:宋体;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>让我们开始吧！</font>վ’<font face=宋体>ᴗ</font><font face=Calibri>‘ ի</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p></td></tr><tr><td><h3>PART I: METHODOLOGY</h3><h4>HOW TO MEASURE SIMILARITY</h4><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p><p>Data Scientists aiming at clustering ‘unknown’ data, sometimes without business knowledge, use distance to avoid subjectivity and ensure consistent approach to all features</p><p>Distance is a numerical measurement of how far apart individuals are, i.e. a metrics used to measure proximity or similarity across individuals. Many distance metrics exist, and one is actually quite useful to crack our case, the Gower distance (1971).</p></td><td><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;” style=”font-size: xx-large; font-weight: bold;”&gt;<font face=宋体>第一部分：方法论</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体 style="font-size: x-large; font-weight: bold;">如何测量相似度</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer><br></p><p class=MsoNormal><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>对未知数据进行聚类的数据科学家有时不考虑商业知识而直接使用距离来避免主观性，并确保对所有特征采用相同的方法。距离是一种对个体相差多远的数值化测量方法，即用于测量个体间的接近度或相似度的指标。存在许多距离度量，其中之一实际上非常有助于破解我们的情况，</font>Gower<font face=宋体>距离（</font><font face=Calibri>1971</font><font face=宋体>）。有很多的距离度量方法，其中一个十分有助于解决我们这个问题的就是，</font><font face=Calibri>Gower</font><font face=宋体>距离（</font><font face=Calibri>1971</font><font face=宋体>）。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal><br></p></td></tr><tr><td><p>Gower distance is computed as the average of partial dissimilarities across individuals. Each partial dissimilarity (and thus Gower distance) ranges in [0 1].</p><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186831355.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186831355.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p><p>Gower distance’s formula</p><p>Partial dissimilarities (<code>d_ij^f</code>) computation depend on the type of variable being evaluated. This implies that a particular standardization will be applied to each feature, and the distance between two individuals is the average of all feature-specific distances.</p><ul class=list-paddingleft-2><li><p>For a numerical feature <code>f</code>, partial dissimilarity is the ratio between 1) absolute difference of observations <code>x_i</code> and <code>x_j</code>and 2) maximum range observed from all individuals: <code>d_ij^f = |x_i — x_j| / |(max_N(x) — min_N(x))|</code> , N being the number of individuals in the dataset.</p></li></ul><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186138747.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186138747.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p><p>Partial dissimilarity computation for numerical features (R_f = maximal range observed)</p><ul class=list-paddingleft-2><li><p>For a qualitative feature <code>f</code> partial dissimilarity equals 1 only if observations <code>y_i</code> and <code>y_j</code> have different value. Zero otherwise.</p></li></ul><p>Note: Gower distance is available in R using <code>daisy()</code>function from the <code>cluster </code>package. Features are first automatically standardized (i.e. rescaled to fall in a [0 1] range).</p></td><td><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>高尔距离计算公式如上。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>局部相似度</font>d_ij^f<font face=宋体>的计算取决于要估计的变量类型。这意味着在每个特征上都会被加上一种特殊的标准化方式，且两个独立样本间的高尔距离既是所有具体特征的平均距离。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt; -<font face=宋体>对于数值特征</font><font face=Calibri>f</font><font face=宋体>，局部差异性是 观测值</font><font face=Calibri>x_i</font><font face=宋体>与</font><font face=Calibri>x_j</font><font face=宋体>做差的绝对值 与 所有独立样本中的最大观测范围</font><font face=Calibri>: d_if^f = |x_i - x_j | / |max_N(x) - min_N(y) |</font><font face=宋体>二者之比。</font><font face=Calibri>N</font><font face=宋体>是 数据集中样本个数。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>局部差异性特征被用于计算数值特征</font>R<font face=宋体>（</font><font face=Calibri>R_f =</font><font face=宋体>最大观测值范围）</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt; -<font face=宋体>对于定性的特征</font><font face=Calibri>f</font><font face=宋体>，局部差异性只有在</font><font face=Calibri>y_i</font><font face=宋体>与</font><font face=Calibri>y_j</font><font face=宋体>在观测值上不同时等于</font><font face=Calibri>1</font><font face=宋体>，否则等于</font><font face=Calibri>0</font><font face=宋体>。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>margin-top:72.0000pt;<br>margin-bottom:72.0000pt;<br>margin-left:90.0000pt;<br>margin-right:90.0000pt;<br>size:595.3000pt 841.9000pt;<br>layout-grid:15.6000pt;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>小提示：如果你使用</font>R<font face=宋体>语言编程，可以在从</font><font face=Calibri>cluster</font><font face=宋体>包中的</font><font face=Calibri>daisy</font><font face=宋体>函数计算高尔距离。在使用前，特征会自动标准化（被规范到</font><font face=Calibri>0:1</font><font face=宋体>）</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<br clear=all>&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p></td></tr><tr><td><h4>CLUSTERING ALGORITHM: PARTITIONING AROUND MEDOIDS (PAM)<br></h4><p>The Gower distance fits well with the <a target=_blank rel=noopener href=https://en.wikipedia.org/wiki/K-medoids>k-medoids algorithm</a>. k-medoid is a classical partitioning technique of clustering that clusters the data set of n objects into k clusters known a priori.</p><p>Pretty similar to <a target=_blank rel=noopener href=https://en.wikipedia.org/wiki/K-means_clustering>k-means algorithm</a>, PAM has the following caracteristics:</p><ul class=list-paddingleft-2><li><p>Pros: it’s intuitive, more robust to noise and outliers compared to k-means (due to the properties of distances being used), and it produces a “typical individual” for each cluster (useful for interpretation).</p></li><li><p>Cons: it’s time consuming and computer intensive (run time and memory are quadratic).</p></li></ul></td><td><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>聚类算法：</font>MEDOIDS<font face=宋体>分割</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>高尔距离在</font>k-medoids<font face=宋体>算法中得到了很好的应用。</font><font face=Calibri>K-medoids</font><font face=宋体>是一种经典的聚类算法。该算法主要用于将含有</font><font face=Calibri>n</font><font face=宋体>类样本的数据集 转化</font><font face=Calibri>k</font><font face=宋体>类样本的 聚类问题。其中</font><font face=Calibri>k</font><font face=宋体>作为先验知识已知。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>与</font>k-means<font face=宋体>算法相似，</font><font face=Calibri>PAM</font><font face=宋体>算法有以下特点：</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt; -<font face=宋体>优点： 从直觉上而言，</font><font face=Calibri>PAM</font><font face=宋体>相对于</font><font face=Calibri>k-means</font><font face=宋体>对于噪声与离群点数据有着更好的鲁棒性。（由于算法使用了特征距离），而且算法对于结果中的每个类别都对应一个“代表性样本”（用于对算法结果进行解释）</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt; -<font face=宋体>缺点：算法计算比较耗时并且本身是密集型计算。（时间与空间复杂度都是</font><font face=Calibri>n^2</font><font face=宋体>）</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p></td></tr><tr><td><h4>ASSESS CONSISTENCY WITHIN CLUSTERS OF DATA<br></h4><p>Unless you have a good a priori rationale to force a specific number of clusters k, you might be interested in asking the computer for a recommendation based on statistics. <a target=_blank rel=noopener href=https://en.wikipedia.org/wiki/Cluster_analysis#Evaluation_and_assessment>Several approaches exist</a> to qualify the relevancy of chosen number of clusters. In part II, we use the silhouette coefficient.</p><p>The <a target=_blank rel=noopener href=https://en.wikipedia.org/wiki/Silhouette_%28clustering%29>silhouette coefficient</a> contrasts the average distance to elements in the same cluster with the average distance to elements in other clusters. Objects with a high silhouette value are considered well clustered, objects with a low value may be outliers. This index works well with k-medoids clustering, and is also used to determine the optimal number of clusters. Please read the Wikipedia page for further details around computation and interpretation.</p><h4>INTERPRETATION</h4><p>There are basically two ways to investigate the results of such a clustering exercise, in order to derive some business-relevant interpretation.</p><ul class=list-paddingleft-2><li><p>1. Summary of each cluster, using <code>summary()</code> function in R.</p></li><li><p>2. Visualization in a lower dimensional space, with <a target=_blank rel=noopener href="https://lvdmaaten.github.io/tsne/">t-SNE</a>, using <code>Rtsne()</code> function in R. t-Distributed Stochastic Neighbor Embedding (t-SNE) is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.</p></li></ul><p>We cover both cases in the use case (Part II). Enough for the theory, let’s apply and illustrate!</p><section></section></td><td><h4><b>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:14.0000pt;mso-font-kerning:1.0000pt;”&gt;<font face=黑体>评估数据组内的一致性</font>&lt;/spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</b><b>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:14.0000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</b></h4><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>除非你有一个很强的先验能够使你确定聚类类别</font>K<font face=宋体>，否则你可能更希望计算机通过一些统计学的方法来给你一些推荐。目前有一些算法可以限定选择聚类数目的相关性。在第二部分中，我们将使用轮廓系数法。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>在同一类别中的元素与在不同类别中的元素，其平均轮廓系数有着很大的差别。有着高轮廓系数的样本会更有可能被归到同一类别，低轮廓系数的样本可能会被归到类外。这种度量指标非常适用于</font>k-medoids<font face=宋体>，而且也被应用于确定最佳聚类个数。有关计算和解释的更多细节，请阅读维基百科网页。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><h2><b>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:16.0000pt;mso-font-kerning:1.0000pt;”&gt;<font face=黑体>解释说明</font>&lt;/spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</b><b>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:16.0000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</b></h2><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>为了给出一些业务相关的解释，对于聚类问题，有两种基本的评估方法：</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spantimes new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<span>1.<span></span></span>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>在</font>R<font face=宋体>中使用</font><font face=Calibri>summary()</font><font face=宋体>函数，统计每一类包含的样本。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spantimes new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<span>2.<span></span></span>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>使用</font>Rtsne()<font face=宋体>函数在低维空间中做数据可视化。</font><font face=Calibri>t-</font><font face=宋体>分布随机邻居嵌入</font><font face=Calibri>(t-sne)</font><font face=宋体>是一种降维技术，特别适用于高维数据集的可视化。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt; &lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p><p><style><br>@font-face&#123;<br>font-family:”Times New Roman”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”宋体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Arial”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”黑体”;<br>&#125;</p>
+<p>@font-face&#123;<br>font-family:”Calibri”;<br>&#125;</p>
+<p>@list l0:level1&#123;<br>mso-level-number-format:decimal;<br>mso-level-suffix:space;<br>mso-level-text:”%1.”;<br>mso-level-tab-stop:none;<br>mso-level-number-position:left;<br>margin-left:5.2500pt;text-indent:0.0000pt;text-indent:0.0000pt;<br>font-family:’Times New Roman’;&#125;</p>
+<p>p.MsoNormal&#123;<br>mso-style-name:正文;<br>mso-style-parent:””;<br>margin:0pt;<br>margin-bottom:.0001pt;<br>mso-pagination:none;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>font-family:Calibri;<br>mso-fareast-font-family:宋体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-size:10.5000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>h2&#123;<br>mso-style-name:”标题 2”;<br>mso-style-noshow:yes;<br>mso-style-next:正文;<br>margin-top:13.0000pt;<br>margin-bottom:13.0000pt;<br>mso-para-margin-top:0.0000gd;<br>mso-para-margin-bottom:0.0000gd;<br>page-break-after:avoid;<br>mso-pagination:lines-together;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>mso-outline-level:2;<br>line-height:172%;<br>font-family:Arial;<br>mso-fareast-font-family:黑体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-weight:bold;<br>font-size:16.0000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>h4&#123;<br>mso-style-name:”标题 4”;<br>mso-style-noshow:yes;<br>mso-style-next:正文;<br>margin-top:14.0000pt;<br>margin-bottom:14.5000pt;<br>mso-para-margin-top:0.0000gd;<br>mso-para-margin-bottom:0.0000gd;<br>page-break-after:avoid;<br>mso-pagination:lines-together;<br>text-align:justify;<br>text-justify:inter-ideograph;<br>mso-outline-level:4;<br>line-height:155%;<br>font-family:Arial;<br>mso-fareast-font-family:黑体;<br>mso-bidi-font-family:’Times New Roman’;<br>font-weight:bold;<br>font-size:14.0000pt;<br>mso-font-kerning:1.0000pt;<br>&#125;</p>
+<p>span.msoIns&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:underline;<br>text-underline:single;<br>color:blue;<br>&#125;</p>
+<p>span.msoDel&#123;<br>mso-style-type:export-only;<br>mso-style-name:””;<br>text-decoration:line-through;<br>color:red;<br>&#125;<br>@page&#123;mso-page-border-surround-header:no;<br>mso-page-border-surround-footer:no;&#125;@page Section0&#123;<br>&#125;<br>div.Section0&#123;page:Section0;&#125;</style></p><p class=MsoNormal>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;<font face=宋体>我们在用下面的例子中</font>(<font face=宋体>第二部分</font><font face=Calibri>)</font><font face=宋体>介绍了这两个方法。理论知识部分已经足够了，下面我们来加以应用和说明。</font>&lt;spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times new roman’;font-size:10.5000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;&lt;/spanyes’;font-family:宋体;mso-ascii-font-family:calibri;mso-hansi-font-family:calibri;mso-bidi-font-family:’times&gt;</p></td></tr><tr><td><h3>PART II: USE CASE</h3><p>In this use case, we will try to cluster bank clients according to the following characteristics:</p><ul class=list-paddingleft-2><li><p>age (numeric)</p></li><li><p>type of job (categorical): ‘admin.’, ’blue collar’, ’entrepreneur’, ’housemaid’, ’management’, ’retired’, ’self-employed’, ’services’, ’student’, ’technician’, ’unemployed’, ’unknown’</p></li><li><p>marital status (categorical): ‘divorced’, ’married’, ’single’, ’unknown’</p></li><li><p>education (categorical): ‘primary’, ‘secondary’, ‘tertiary’, ‘unknown’</p></li><li><p>default: has credit in default? (categorical): ‘no’, ’yes’, ’unknown’</p></li><li><p>balance (numeric): average yearly balance, in euros</p></li><li><p>housing: has housing loan? (categorical): ‘no’, ’yes’, ’unknown’</p></li></ul><pre>#' Load useful packages<br>library(cluster)<br>library(dplyr)<br>library(ggplot2)<br>library(readr)<br>library(Rtsne)</pre><pre>#' Load data<br>df <- read_csv2(".. data 001_unsupervised_mixed_types_data bank.csv")< pre><p>Most similar and dissimilar clients according to Gower distance:</p><pre>#' Compute Gower distance<br>gower_dist <- daisy(df, metric = "gower")< pre><pre>gower_mat <- as.matrix(gower_dist)< pre><pre>#' Print most similar clients<br>df[which(gower_mat == min(gower_mat[gower_mat != min(gower_mat)]), arr.ind = TRUE)[1, ], ]</pre><pre># A tibble: 2 x 7<br>    age job        marital education default balance housing<br>  <int> <fct>      <fct>   <fct>     <fct>     <int> <fct>  <br>1    52 technician married secondary no          196 yes    <br>2    52 technician married secondary no          195 yes</fct></int></fct></fct></fct></fct></int></pre><pre>#' Print most dissimilar clients<br>df[which(gower_mat == max(gower_mat[gower_mat != max(gower_mat)]), arr.ind = TRUE)[1, ], ]</pre><pre># A tibble: 2 x 7<br>    age job     marital  education default balance housing<br>  <int> <fct>   <fct>    <fct>     <fct>     <int> <fct>  <br>1    60 retired married  primary   no        71188 no     <br>2    26 admin.  divorced secondary yes          -3 yes</fct></int></fct></fct></fct></fct></int></pre></- as.matrix(gower_dist)<></pre></- daisy(df, metric = "gower")<></pre></- read_csv2("..></pre></td><td><p>&lt;ahelp_5” name=”help_5”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;/ahelp_5”&gt;</p><h3>第II部分: 用例</h3><p>&lt;ahelp_5” name=”help_5”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;/ahelp_5”&gt;</p><p>在该用例中，我们将尝试根据以下特征对银行客户进行集群：</p>&lt;ahelp_5” name=”help_5”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<ul><li><p>age（年龄） (</p><p>&lt;spanmicrosoft yahei’, 微软雅黑, 宋体, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;数值的 )</p></li><li><p>type of job （工作类型 ）(</p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: 200; letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;分类的 ): ‘admin.’（行政）, ’blue collar’（蓝领）, ’entrepreneur’（创业家）, ’housemaid’（家庭主妇）, ’management’（管理）, ’retired’（退休的）, ’self-employed’（自雇）, ’services’（服务业）, ’student’（学生）, ’technician’（技工）, ’unemployed’（失业）, ’unknown’（未知）</p></li><li><p>marital status（婚姻状况） (</p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: 200; letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;分类的 ): ‘divorced’（离异）, ’married’（已婚）, ’single’（单身）, ’unknown’（未知）</p></li><li><p>education（教育） (</p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: 200; letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;分类的 ): ‘primary’（小学）, ‘secondary’（初中）, ‘tertiary’（大学）, ‘unknown’（未知）</p></li><li><p>default（违约）: 信用卡是否违约? (</p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: 200; letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;分类的 ): ‘no’（否）, ’yes’（是）, ’unknown’（未知）</p></li><li><p>balance（余额） (</p><p>&lt;spanmicrosoft yahei’, 微软雅黑, 宋体, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;数值的 ): 平均年余额（欧元）</p></li><li><p>housing（房屋状况）: 是否有房贷? (</p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: 200; letter-spacing: line-height: 16.80000114440918px; orphans: auto; text-align: left; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(255, 255, 255); display: inline !important; float: none;”&gt;分类的 ): ‘no’（否）, ’yes’（是）, ’unknown’（未知）</p></li></ul><pre>#' Load useful packages<br>library(cluster)<br>library(dplyr)<br>library(ggplot2)<br>library(readr)<br>library(Rtsne)</pre><pre>#' Load data<br>df <- read_csv2(".. data 001_unsupervised_mixed_types_data bank.csv")< pre><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250); display: inline !important; float: none;”&gt;根据高尔距离得出的最相似和最不同的客户:  <br></p><pre>#' Compute Gower distance<br>gower_dist <- daisy(df, metric = "gower")< p>
+<p>gower_mat &lt;- as.matrix(gower_dist)</p>
+<p>#’ Print most similar clients<br>df[which(gower_mat == min(gower_mat[gower_mat != min(gower_mat)]), arr.ind = TRUE)[1, ], ]</p></- daisy(df, metric = "gower")<></pre><pre># A tibble: 2 x 7<br>    age job        marital education default balance housing<br>  <int> <fct>      <fct>   <fct>     <fct>     <int> <fct>  <br>1    52 technician married secondary no          196 yes    <br>2    52 technician married secondary no          195 yes<p></p>
+<p>#’ Print most dissimilar clients<br>df[which(gower_mat == max(gower_mat[gower_mat != max(gower_mat)]), arr.ind = TRUE)[1, ], ]</p></fct></int></fct></fct></fct></fct></int></pre><pre># A tibble: 2 x 7<br>    age job     marital  education default balance housing<br>  <int> <fct>   <fct>    <fct>     <fct>     <int> <fct>  <br>1    60 retired married  primary   no        71188 no     <br>2    26 admin.  divorced secondary yes          -3 yes</fct></int></fct></fct></fct></fct></int></pre>&lt;/ahelp_5”&gt;</- read_csv2("..></pre></td></tr><tr><td><p>In business situation, we usually search for a number of clusters both meaningful and easy to remember, i.e. 2 to 8 maximum. The silhouette figure helps us identify the best option(s).<br></p><pre>sil_width <- c(na)<br>for(i in 2:8)&#123;  <br>  pam_fit <- pam(gower_dist, diss = true, k = i)  <br>  sil_width[i] <- pam_fit$silinfo$avg.width  <br>&#125;</- pam_fit$silinfo$avg.width  <br></- pam(gower_dist, diss = true, k = i)  <br></- c(na)<br></pre><pre>plot(1:10, sil_width,<br>     xlab = "Number of clusters",<br>     ylab = "Silhouette Width")<br>lines(1:10, sil_width)</pre><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186719459.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186719459.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p></td><td><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;在商业情况下，我们通常会搜索2到8个既有意义又容易记忆的集群。用&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;轮廓图形帮助我们识别最佳选项。</p><pre>sil_width <- c(na)<br>for(i in 2:8)&#123;  <br>  pam_fit <- pam(gower_dist, diss = true, k = i)  <br>  sil_width[i] <- pam_fit$silinfo$avg.width  <br>&#125;<br>plot(1:10, sil_width,<br>     xlab = "Number of clusters",<br>     ylab = "Silhouette Width")<br>lines(1:10, sil_width)</- pam_fit$silinfo$avg.width  <br></- pam(gower_dist, diss = true, k = i)  <br></- c(na)<br></pre><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186719459.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186719459.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: start; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;ahelp_6” name=”help_6”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<br>&lt;/ahelp_6”&gt;</p></td></tr><tr><td><p>7 clusters has the highest silhouette width. 5 is simpler and almost as good. Let’s pick k = 5<br></p><p>Interpretation</p><ul class=list-paddingleft-2><li><p>Summary of each cluster</p></li></ul><pre>k <- 5<br>pam_fit <- pam(gower_dist, diss = true, k)<br>pam_results <- df %>%<br>  mutate(cluster = pam_fit$clustering) %>%<br>  group_by(cluster) %>%<br>  do(the_summary = summary(.))<br>pam_results$the_summary</-></- pam(gower_dist, diss = true, k)<br></- 5<br></pre><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187394485.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187394485.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p><p>Clusters’ scorcard</p><p>Here one can attempt to derive some common patterns for clients within a cluster. As an example, cluster 1 is made of “management x tertiary x no default x no housing” clients, cluster 2 is made of “blue-collar x secondary x no default x housing” clients, etc.</p><ul class=list-paddingleft-2><li><p>Visualization in a lower dimensional space</p></li></ul><pre>tsne_obj <- rtsne(gower_dist, is_distance = true)< pre><pre>tsne_data <- tsne_obj$y %>%<br>  data.frame() %>%<br>  setNames(c("X", "Y")) %>%<br>  mutate(cluster = factor(pam_fit$clustering))</-></pre><pre>ggplot(aes(x = X, y = Y), data = tsne_data) +<br>  geom_point(aes(color = cluster))</pre><p><br></p><p><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186865310.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186865310.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p><br></p><p>Clients observed in a lower dimensional space</p><p>Although not perfect (especially cluster 3), colors are mostly located in similar areas, confirming the relevancy of the segmentation.</p><section></section></- rtsne(gower_dist, is_distance = true)<></pre></td><td><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;7个集群具有最高的轮廓宽度。&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;5更简单，几乎同样好。&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;我们选k = 5。</p>&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<p>解释</p><ul><li><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250); display: inline !important; float: none;”&gt;每个集群的摘要</p></li></ul>&lt;/ahelp_7”&gt;&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<pre>k <- 5<br>pam_fit <- pam(gower_dist, diss = true, k)<br>pam_results <- df %>%<br>  mutate(cluster = pam_fit$clustering) %>%<br>  group_by(cluster) %>%<br>  do(the_summary = summary(.))<br>pam_results$the_summary</-></- pam(gower_dist, diss = true, k)<br></-></pre><div>&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<br>&lt;/ahelp_7”&gt;</div><img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187394485.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187394485.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer>&lt;/ahelp_7”&gt;<div><div style="text-align: center;">集群的积分卡</div><div style="text-align: center;">&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<br><p></p>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<p></p>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<div style="text-align: left;">在这里，可以尝试对某一集群中的客户寻找一些共同特征。例如，集群1由“管理 x 大学 x 无违约 x 无房贷”客户构成，集群2由“蓝领x 中学 x 无违约 x 有房贷”客户构成，等等。</div><div style="text-align: left;"><br></div><div style="text-align: left;">&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<ul><li><p>&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250); display: inline !important; float: none;”&gt;在低维空间中的可视化<br></p></li></ul>&lt;/ahelp_7”&gt;</div></div><div>&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<pre>tsne_obj <- rtsne(gower_dist, is_distance = true)<br>tsne_data <- tsne_obj$y %>%<br>  data.frame() %>%<br>  setNames(c("X", "Y")) %>%<br>  mutate(cluster = factor(pam_fit$clustering))<br>ggplot(aes(x = X, y = Y), data = tsne_data) +<br>  geom_point(aes(color = cluster))</-></- rtsne(gower_dist, is_distance = true)<br></pre>&lt;/ahelp_7”&gt;&lt;/ahelp_7”&gt;</div><div>&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt; <img src=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186865310.png class=lazyload data-srcset=https://static.leiphone.com/uploads/new/sns/article/201808/1534230186865310.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer><br>&lt;/ahelp_7”&gt;</div></div><div style="text-align: center;">&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250); display: inline !important; float: none;”&gt;在较低维度空间中观察到的客户&lt;/ahelp_7”&gt;</div><br><div>&lt;ahelp_7” name=”help_7”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;spanmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: line-height: 25.987503051757813px; orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250); display: inline !important; float: none;”&gt;虽然不是很完美(尤其是集群3)，但是颜色大多分布在相似的区域，这也证实了细分的恰当性。<br>&lt;/ahelp_7”&gt;</div></td></tr><tr><td><h4>CONCLUSION</h4><p>This article is a recap on my thoughts while trying to perform a clustering exercise on mixed type unsupervised datasets. I thought it could be of added value to other data scientists, thus the sharing.</p><p>Several challenges remain however, including:</p><ul class=list-paddingleft-2><li><p>How to deal with massive datasets (cf memory intensiveness)?</p></li><li><p>One hot encoding might be a solution; what are the pros and cons of these two approaches?</p></li></ul><p>Please do not hesitate to comment and share your vision on how to tackle this challenge and improve this proposed methodology.</p><section></section></td><td><p>&lt;ahelp_8” name=”help_8”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;/ahelp_8”&gt;</p><h4>结论</h4><p>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<span>本文是我在尝试对混合类型的无监督数据集执行聚类练习时的想法的概述。</span><span>我认为它可以为其他数据科学家增加价值，所以在这共享。</span></p><p></p><p></p><p>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<span></span>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;<span>然而我仍面临一些挑战：</span></p><p></p><p></p><ul><li>如何处理海量数据集(cf内存强度)?<br></li><li>一种热编码可能是一种解决方案；这两种方法的优缺点是什么?<br></li></ul><p></p><p></p><p></p><p></p><p>&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;&lt;pmicrosoft yahei’, ‘\5fae软雅黑’, ‘\5b8b体’, ‘malgun gothic’, meiryo, sans-serif; font-size: 13.600001335144043px; font-style: normal; font-variant: font-weight: letter-spacing: orphans: auto; text-align: justify; text-indent: 0px; text-transform: none; white-space: widows: word-spacing: -webkit-text-stroke-width: background-color: rgb(247, 248, 250);”&gt;如果您对如何应对这个挑战和改进这个提议方法有想法，请发表和分享您的看法，不要犹豫！</p><p></p></td></tr><tr><td><h4>SOURCES</h4><ul class=list-paddingleft-2><li><p><a target=_blank rel=noopener href=https://dpmartin42.github.io/posts/r/cluster-mixed-types>Clustering mixed data types in R</a> | Daniel P. Martin | 2016</p></li><li><p><a target=_blank rel=noopener href=https://stats.stackexchange.com/questions/55798/what-is-the-optimal-distance-function-for-individuals-when-attributes-are-nomina/55802#55802>What is the optimal distance function for individuals when attributes are nominal?</a> | <a target=_blank rel=noopener href=https://stats.stackexchange.com/users/3277/ttnphns>ttnphns</a> | stats.stackexchange.com</p></li><li><p><a target=_blank rel=noopener href=http://larmarange.github.io/analyse-R/classification-ascendante-hierarchique.html>Classification ascendante hierarchique</a> |Joseph Larmarange | 2018 (in French)</p></li></ul><p><br></p><p><br></p></td><td><p>&lt;ahelp_9” name=”help_9”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;&lt;/ahelp_9”&gt;</p><h4>来源</h4><ul><li><p><a href=https://dpmartin42.github.io/posts/r/cluster-mixed-types target=_blank style="font-size: 16px;">在R中对混合数据类型进行聚类</a> | Daniel P. Martin | 2016</p></li><li><p><a href=https://stats.stackexchange.com/questions/55798/what-is-the-optimal-distance-function-for-individuals-when-attributes-are-nomina/55802#55802 target=_blank style="font-size: 16px;">当属性为分类的时，个体的最优距离函数是什么?</a> | <a target=_blank rel=noopener href=https://stats.stackexchange.com/users/3277/ttnphns>ttnphns</a> | stats.stackexchange.com</p></li><li><p><a target=_blank rel=noopener href=http://larmarange.github.io/analyse-R/classification-ascendante-hierarchique.html>上升层级分类</a> |Joseph Larmarange | 2018 (法国)</p></li></ul><p>&lt;ahelp_9” name=”help_9”&gt;&lt;divpara-item clr”&gt;&lt;divitem-area item-en edroll”&gt;<br>&lt;/ahelp_9”&gt;</p></td></tr></tbody></table><br><style><br>                    table,<br>                    table tr th,<br>                    table tr td &#123;<br>                        border: 1px solid #000000;<br>                        padding: 10px;<br>                    &#125;<br>                    table &#123;<br>                        border-collapse: collapse;<br>                    &#125;<br>                </style><p></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/752f.html>https://news.zfe.space/p/752f.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:31+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/752f.html&title=对混乱的数据进行聚类 - 小冰 RSSHub&pics=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/752f.html&title=对混乱的数据进行聚类 - 小冰 RSSHub&pics=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/752f.html&title=对混乱的数据进行聚类 - 小冰 RSSHub&pics=https://static.leiphone.com/uploads/new/sns/article/201808/1534230187124455.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/b0d8.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>这星球上最有钱的人们是什么样的？让我们用大数据一窥究竟</p><p class=content>世界上最有钱的人们都长啥样？你不好奇吗？有一位数据侠就通过爬取富豪榜的数据，把2018年的富豪们的财富密码给扒了一扒！</p></a><a class=next href=/p/a476.html><p class=title>AI戒毒：被机器监控的毒品_心瘾_<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>AI应用场景不断被挖掘出来，除了商业场景，AI技术也正在凸显其社会价值。“珍爱生命，远离毒品”人人都听过，却不是人人都能做到，于是，戒毒成了吸毒人员的“痛点”和戒毒所工作人员的“难点”，...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>A proposed approach using R</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>ABOUT</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>PART I: METHODOLOGY</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>HOW TO MEASURE SIMILARITY</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>CLUSTERING ALGORITHM: PARTITIONING AROUND MEDOIDS (PAM)</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>ASSESS CONSISTENCY WITHIN CLUSTERS OF DATA</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>INTERPRETATION</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:14.0000pt;mso-font-kerning:1.0000pt;”&gt;评估数据组内的一致性&lt;&#x2F;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:14.0000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;&#x2F;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:16.0000pt;mso-font-kerning:1.0000pt;”&gt;解释说明&lt;&#x2F;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;&lt;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times new roman’;font-weight:bold;font-size:16.0000pt;mso-font-kerning:1.0000pt;”&gt;&lt;o:p&gt;&lt;&#x2F;spanyes’;font-family:黑体;mso-ascii-font-family:arial;mso-hansi-font-family:arial;mso-bidi-font-family:’times&gt;</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>PART II: USE CASE</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>第II部分: 用例</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>CONCLUSION</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>结论</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>SOURCES</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>来源</span></a></li></ol></li></ol></li></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="对混乱的数据进行聚类";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

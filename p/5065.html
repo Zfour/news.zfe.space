@@ -1,0 +1,867 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>「一探究竟」Java SPI机制 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title="「一探究竟」Java SPI机制" href=/p/5065.html><img class=thumbnail src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>「一探究竟」Java SPI机制</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%A0%87%E7%AD%BE/">标签</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月25日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="「一探究竟」Java SPI机制" data-path=/p/5065.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;color:#595959;font-size:15px;font-family:-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;background-image:linear-gradient(90deg,rgba(60,10,30,.04) 3%,transparent 0),linear-gradient(1turn,rgba(60,10,30,.04) 3%,transparent 0);background-size:20px 20px;background-position:50%&#125;.markdown-body p&#123;color:#595959;font-size:15px;line-height:2;font-weight:400&#125;.markdown-body p+p&#123;margin-top:16px&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;padding:30px 0;margin:0;color:#135ce0&#125;.markdown-body h1&#123;position:relative;text-align:center;font-size:22px;margin:50px 0&#125;.markdown-body h1:before&#123;position:absolute;content:"";top:-10px;left:50%;width:32px;height:32px;transform:translateX(-50%);background-size:100% 100%;opacity:.36;background-repeat:no-repeat;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABfVBMVEX///8Ad/8AgP8AgP8AgP8Aff8AgP8Af/8AgP8AVf8Af/8Af/8AgP8AgP8Af/8Afv8AAP8Afv8Afv8Aef8AgP8AdP8Afv8AgP8AgP8Acf8Ae/8AgP8Af/8AgP8Af/8Af/8AfP8Afv8AgP8Af/8Af/8Afv8Afv8AgP8Afv8AgP8Af/8Af/8AgP8AgP8Afv8AgP8Af/8AgP8AgP8AgP8Ae/8Afv8Af/8AgP8Af/8AgP8Af/8Af/8Aff8Af/8Abf8AgP8Af/8AgP8Af/8Af/8Afv8AgP8AgP8Afv8Afv8AgP8Af/8Aff8AgP8Afv8AgP8Aff8AgP8AfP8AgP8Ae/8AgP8Af/8AgP8AgP8AgP8Afv8AgP8AgP8AgP8Afv8AgP8AgP8AgP8AgP8AgP8Af/8AgP8Af/8Af/8Aev8Af/8AgP8Aff8Afv8AgP8AgP8AgP8Af/8AgP8Af/8Af/8AgP8Afv8AgP8AgP8AgP8AgP8Af/8AeP8Af/8Af/8Af//////rzEHnAAAAfXRSTlMAD7CCAivatxIDx5EMrP19AXdLEwgLR+6iCR/M0yLRzyFF7JupSXn8cw6v60Q0QeqzKtgeG237HMne850/6Qeq7QaZ+WdydHtj+OM3qENCMRYl1B3K2U7wnlWE/mhlirjkODa9FN/BF7/iNV/2kASNZpX1Wlf03C4stRGxgUPclqoAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gEaBzgZ4yeM3AAAAT9JREFUOMvNUldbwkAQvCAqsSBoABE7asSOBRUVVBQNNuy9996789+9cMFAMHnVebmdm+/bmdtbQv4dOFOW2UjPzgFyLfo6nweKfIMOBYWwFtmMPGz2Yj2pJI0JDq3udJW6VVbmKa9I192VQFV1ktXUAl5NB0cd4KpnORqsEO2ZIRpF9gJfE9Dckqq0KuZt7UAH5+8EPF3spjsRpCeQNO/tA/qDwIDA+OCQbBoKA8NOdjMySgcZGVM6jwcgRuUiSs0nlPFNSrEpJfU0jTLD6llqbvKxei7OzvkFNQohi0vAsj81+MoqsCaoPOQFgus/1LyxichW+hS2JWCHZ7VlF9jb187pIAYcHiViHAMnp5mTjJ8B5xeEXF4B1ze/fTh/C0h398DDI9HB07O8ci+vRBdvdGnfP4gBuM8vw7X/G3wDmFhFZEdxzjMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDEtMjZUMDc6NTY6MjUrMDE6MDA67pVWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTAxLTI2VDA3OjU2OjI1KzAxOjAwS7Mt6gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAWdEVYdFRpdGxlAGp1ZWppbl9sb2dvIGNvcHlxapmKAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC)&#125;.markdown-body h2&#123;position:relative;font-size:20px;border-left:4px solid;padding:0 0 0 10px;margin:30px 0&#125;.markdown-body h3&#123;font-size:16px&#125;.markdown-body ul&#123;list-style:disc outside;margin-left:2em;margin-top:1em&#125;.markdown-body li&#123;line-height:2;color:#595959&#125;.markdown-body img.loaded&#123;margin:0 auto;display:block&#125;.markdown-body blockquote&#123;background:#fff9f9;margin:2em 0;padding:2px 20px;border-left:4px solid #b2aec5&#125;.markdown-body blockquote p&#123;color:#666;line-height:2&#125;.markdown-body a&#123;color:#036aca;border-bottom:1px solid rgba(3,106,202,.8);font-weight:400;text-decoration:none&#125;.markdown-body em strong,.markdown-body strong&#123;color:#036aca&#125;.markdown-body hr&#123;border-top:1px solid #135ce0&#125;.markdown-body pre&#123;overflow:auto&#125;.markdown-body code,.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body table&#123;border-collapse:collapse;margin:1rem 0;overflow-x:auto&#125;.markdown-body table td,.markdown-body table th&#123;border:1px solid #dfe2e5;padding:.6em 1em&#125;.markdown-body table tr&#123;border-top:1px solid #dfe2e5&#125;.markdown-body table tr:nth-child(2n)&#123;background-color:#f6f8fa&#125;</style><blockquote><p>⚠️本文为掘金社区首发签约文章，未获授权禁止转载</p></blockquote><br><h2 data-id=heading-0>事件起因</h2><p>七月中旬，我司的系统潜在风险排查工作在如火如荼的进行，其中我发现当前系统的调用源缺少Token信息，难以做到具体的识别和监控，因此需要对其优化。</p><p>针对刚提到的两个问题，我只需要实现某个框架基类，然后做一点业务处理即可，根据框架的说明文档，按步骤实现以下内容即可：</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>开发、调试一气呵成之后，我对这种实现方式起了好奇之心，非常疑惑它们是如何在框架中实例化并发挥作用的，有兴趣的话就跟我一起一探究竟吧（😜）</p><br><h2 data-id=heading-1>什么是SPI</h2><p>最初我甚至都不知道这种技术/方案是Java自身支持的，还以为是框架自身设计的骚操作，后来询问其他同事才知晓这种灵活的提供服务能力的方式被称为<strong>SPI</strong>，官方一点的解释如下：</p><blockquote><p>SPI：全称为 Service Provider Interface。是Java提供的一套用来被第三方实现或者扩展的接口，多用于<strong>框架扩展、插件开发</strong>等等。</p></blockquote><p>例如上文中提到的实现参数过滤器就属于框架扩展范畴，简单了解后我们来整一个小Demo吧。</p><br><h2 data-id=heading-2>SPI的工作方式</h2><p>SPI的发现能力是不需要依赖于其他类库，主要有两种实现方式：</p><ul><li>sun.misc.Service Sun公司提供的加载能力</li><li>java.util.ServiceLoader#load JDK自身提供的加载能力</li></ul><blockquote><p>因为方法二是JDK内部代码，包含源码，因此后续都默认使用该方法进行说明</p></blockquote><p>基本使用步骤：</p><ol><li><p>定义一个需要对外提供能力的接口</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>interface</span> <span class=hljs-title>SPIInterface</span> </span>&#123;
+    <span class=hljs-function>String <span class=hljs-title>handle</span><span class=hljs-params>()</span></span>;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p>定义实现类，实现指定接口</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>SPIInterfaceImpl</span> <span class=hljs-keyword>implements</span> <span class=hljs-title>SPIInterface</span> </span>&#123;
+    <span class=hljs-meta>@Override</span>
+    <span class=hljs-function><span class=hljs-keyword>public</span> String <span class=hljs-title>handle</span><span class=hljs-params>()</span> </span>&#123;
+        <span class=hljs-keyword>return</span> <span class=hljs-string>"当前时间为: "</span> + LocalDateTime.now();
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p>在指定位置配置相关的实现类：<strong>resource/META-INF/services</strong></p><p>注意 <strong>resource</strong>为资源文件</p><pre><code class="hljs language-bash copyable" lang=bash><span class=hljs-comment># 文件位置（resource/META-INF/services/com.mine.spi.SPIInterface）</span>
+<span class=hljs-comment># 内容（实现类的全类名）</span>
+com.mine.spi.impl.SPIInterfaceImpl
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p>使用JDK提供的初始化能力，直接调用即可</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>SpiApp</span> </span>&#123;
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>static</span> <span class=hljs-keyword>void</span> <span class=hljs-title>main</span><span class=hljs-params>(String[] args)</span> </span>&#123;
+        ServiceLoader<spiinterface> load = ServiceLoader.load(SPIInterface.class);
+        <span class=hljs-keyword>for</span> (SPIInterface ser : load) &#123;
+            System.out.println(ser.handle());
+        &#125;
+    &#125;
+&#125;
+
+<p><span class=hljs-comment>// 响应</span><br><span class=hljs-comment>// 当前时间为: 2021-08-24T03:30:52.397</span><br><span class=copy-code-btn>复制代码</span></p></spiinterface></code></pre><p></p></li></ol><p>简单到爆炸，关键还是在于JDK已经帮助我们实现了这一套发现和初始化的步骤，下面咱们来深入分析一下它的基本源码 😁</p><p>从方法：<code>java.util.ServiceLoader#load</code> 为入口，将当前接口Class类型及其类加载器传入至Loader变量中：</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-comment>/**
+ * service：接口类型
+ * loader：类加载器
+ * acc：安全管理器
+ */</span>
+<span class=hljs-function><span class=hljs-keyword>private</span> <span class=hljs-title>ServiceLoader</span><span class=hljs-params>(Class<s> svc, ClassLoader cl)</s></span> </span>&#123;
+    service = Objects.requireNonNull(svc, <span class=hljs-string>"Service interface cannot be null"</span>);
+    loader = (cl == <span class=hljs-keyword>null</span>) ? ClassLoader.getSystemClassLoader() : cl;
+    acc = (System.getSecurityManager() != <span class=hljs-keyword>null</span>) ? AccessController.getContext() : <span class=hljs-keyword>null</span>;
+    reload();
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><br><p>变量传入之后，初始化类：<code>LazyIterator</code>，从名称就可以看出来这是一个懒加载的迭代器，只有真正使用触发时才会进行实例的初始化，核心初始化逻辑在方法：<code>java.util.ServiceLoader.LazyIterator#nextService</code>中。</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-function><span class=hljs-keyword>private</span> S <span class=hljs-title>nextService</span><span class=hljs-params>()</span> </span>&#123;
+    <span class=hljs-comment>// 省略其他代码...</span>
+    
+    Class<?> c = <span class=hljs-keyword>null</span>;
+    <span class=hljs-keyword>try</span> &#123;
+        c = Class.forName(cn, <span class=hljs-keyword>false</span>, loader);
+    &#125; <span class=hljs-keyword>catch</span> (ClassNotFoundException x) &#123;
+        fail(service,
+             <span class=hljs-string>"Provider "</span> + cn + <span class=hljs-string>" not found"</span>);
+    &#125;
+    
+    <span class=hljs-comment>// 省略其他代码...</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>因为拿到了接口类型及其全类名，所以通过反射构建出实例对象还是非常容易的，拿到实例化的对象后，就和普通的代码没有什么区别了。</p><p>下面我们再看看几个框架实际使用SPI的例子，瞻仰一下前辈们的代码 😎</p><br><h2 data-id=heading-3>SPI使用案例分析</h2><h3 data-id=heading-4>Log4j-Api</h3><p>以Log4j日志框架为例，<code>log4j-api-2.13.3.jar</code> 版本就基于 <code>SPI</code>实现了 <code>PropertySource</code>接口，用以收集当前服务器相关的配置信息，如下图所示：</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5feaff93e6d440a893f0c51442acfa48~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/5feaff93e6d440a893f0c51442acfa48~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><br><p>同样的，<code>log4j-core-2.13.3.jar</code>基于 <code>SPI</code>实现了日志门面的绑定，核心代码如下所示：</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-comment>/**
+ * Binding for the Log4j API.
+ */</span>
+<span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>Log4jProvider</span> <span class=hljs-keyword>extends</span> <span class=hljs-title>Provider</span> </span>&#123;
+    <span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-title>Log4jProvider</span><span class=hljs-params>()</span> </span>&#123;
+        <span class=hljs-keyword>super</span>(<span class=hljs-number>10</span>, <span class=hljs-string>"2.6.0"</span>, Log4jContextFactory.class);
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-5>JDBC驱动</h3><p>以我们常用的JDBC驱动 <code>mysql-connector-java-5.1.43.jar</code>为例，它同样实现了SPI接口，驱动类分别为：<code>Driver</code>，<code>FabricMySQLDriver</code>，其底层实现是向驱动管理类注册自身，核心代码如下，它帮我们自动做了 <code>Class.forName("com.mysql.jdbc.Driver")</code>这一步加载动作。</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>Driver</span> <span class=hljs-keyword>extends</span> <span class=hljs-title>NonRegisteringDriver</span> <span class=hljs-keyword>implements</span> <span class=hljs-title>java</span>.<span class=hljs-title>sql</span>.<span class=hljs-title>Driver</span> </span>&#123;
+    <span class=hljs-comment>//</span>
+    <span class=hljs-comment>// Register ourselves with the DriverManager</span>
+    <span class=hljs-comment>//</span>
+    <span class=hljs-keyword>static</span> &#123;
+        <span class=hljs-keyword>try</span> &#123;
+            java.sql.DriverManager.registerDriver(<span class=hljs-keyword>new</span> Driver());
+        &#125; <span class=hljs-keyword>catch</span> (SQLException E) &#123;
+            <span class=hljs-keyword>throw</span> <span class=hljs-keyword>new</span> RuntimeException(<span class=hljs-string>"Can't register driver!"</span>);
+        &#125;
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p><code>FabricMySQLDriver</code>类则同理，当然了，我们也可以主动破坏这种加载的机制，比如自行实现一个MySQLDriver，来实现数据库连接，核心代码如下：</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-keyword>public</span> <span class=hljs-class><span class=hljs-keyword>class</span> <span class=hljs-title>CustomDriver</span> <span class=hljs-keyword>extends</span> <span class=hljs-title>NonRegisteringDriver</span> <span class=hljs-keyword>implements</span> <span class=hljs-title>Driver</span> </span>&#123;
+
+<pre><code>&lt;span class=&quot;hljs-keyword&quot;&gt;static&lt;/span&gt; &amp;#123;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;try&lt;/span&gt; &amp;#123;
+        java.sql.DriverManager.registerDriver(&lt;span class=&quot;hljs-keyword&quot;&gt;new&lt;/span&gt; CustomDriver());
+    &amp;#125; &lt;span class=&quot;hljs-keyword&quot;&gt;catch&lt;/span&gt; (SQLException ignored) &amp;#123;&amp;#125;
+&amp;#125;
+
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;hljs-title&quot;&gt;CustomDriver&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;throws&lt;/span&gt; SQLException &lt;/span&gt;&amp;#123; &amp;#125;
+
+&lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; Connection &lt;span class=&quot;hljs-title&quot;&gt;connect&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(String url, Properties info)&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;throws&lt;/span&gt; SQLException &lt;/span&gt;&amp;#123;
+    System.out.println(&lt;span class=&quot;hljs-string&quot;&gt;&quot;[Kerwin] 执行数据库连接...&quot;&lt;/span&gt;);
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;super&lt;/span&gt;.connect(url, info);
+&amp;#125;
+
+&lt;span class=&quot;hljs-meta&quot;&gt;@Override&lt;/span&gt;
+&lt;span class=&quot;hljs-function&quot;&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;public&lt;/span&gt; Logger &lt;span class=&quot;hljs-title&quot;&gt;getParentLogger&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;throws&lt;/span&gt; SQLFeatureNotSupportedException &lt;/span&gt;&amp;#123;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;null&lt;/span&gt;;
+&amp;#125;
+</code></pre><p>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>然后将 <code>CustomDriver</code>注入到SPI中即可。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b4b4152af6c4093b1d3d0d7ad674a1f~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1b4b4152af6c4093b1d3d0d7ad674a1f~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>需要注意的是 <code>CustomDriver</code>类需要实现继承 <code>NonRegisteringDriver</code>类，否则会被默认的Driver优先注册，完成之后使用上古的JDBC代码调用，即可模拟破坏SPI的情况，如图：</p><pre><code class="hljs language-java copyable" lang=java><span class=hljs-function><span class=hljs-keyword>public</span> <span class=hljs-keyword>void</span> <span class=hljs-title>customDriver</span><span class=hljs-params>()</span> <span class=hljs-keyword>throws</span> SQLException </span>&#123;
+    Connection conn = DriverManager.getConnection(<span class=hljs-string>"jdbc:mysql://127.0.0.1:3306/db_file?characterEncoding=UTF-8&useSSL=false"</span>, <span class=hljs-string>"root"</span>, <span class=hljs-string>""</span>);
+    Statement stmt = conn.createStatement();
+    ResultSet rs = stmt.executeQuery(<span class=hljs-string>"SELECT * FROM script_dir LIMIT 1"</span>);
+    <span class=hljs-keyword>while</span> (rs.next()) &#123;
+        System.out.println(rs.getString(<span class=hljs-number>1</span>));
+    &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>可以看到，我们使用自定义驱动类成功获取到数据库连接，替换了原本的Driver驱动类，具体细节需要大家再Debug看看，因为涉及接口类型，拿到连接后Return等等。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a5cae10eb234eaea07ab6d0e9b0be6a~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a5cae10eb234eaea07ab6d0e9b0be6a~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>控制台输出：</p><pre><code class="hljs language-bash copyable" lang=bash>[Kerwin] 执行数据库连接...
+<span class=copy-code-btn>复制代码</span></code></pre><br><h2 data-id=heading-6>SPI的应用场景</h2><p>了解完它的基本使用方法和原理之后，<code>SPI</code>的神秘感顿时化为虚有，说到底就是<strong>基于约定在指定位置选择性配置接口实现类，由JDK动态初始化及执行的机制</strong>。</p><br><h3 data-id=heading-7>日常开发要不要使用SPI？</h3><p>我们从上文中能直接体会到<code>SPI</code>机制的好处，它可以起到策略选择、动态初始化、解耦的作用，那我们在普通项目开发中要不要使用呢？我个人是不推荐使用SPI的方式，主要原因还是我们可以使用更优雅的方式来替代<code>SPI</code>机制，比如：</p><ul><li>动态初始化、策略选择 =》我们可以使用策略+工厂模式实现策略的动态选择，配合ZK来实现动态初始化（启用/禁用）</li><li>解耦 =》基于良好的设计，可以很容易的实现解耦</li></ul><p>基于上述的方案，可以保证项目代码具备SPI的好处的同时更加易读，降低理解成本。</p><br><h3 data-id=heading-8>框架/组件工具开发要不要使用SPI？</h3><p>答案是毋庸置疑的，现在的诸多框架及工具就是使用SPI来实现的，引入了SPI机制后，服务接口与服务实现就会达成分离的状态，可以实现解耦以及可扩展机制。</p><p>例如<code>Sharding-jdbc</code>的加密算法接口，原生仅提供了AES和MD5两种加密方式，需要其他加密方式的项目就可以使用SPI机制将自己需要的加密方式写入框架内，然后根据需要调用即可，无论是使用还是维护都更加方便。</p><p>因为Java实现的SPI版本相对比较粗糙和暴力，导致它会把所有接口实现类全部实例化一遍，所以还有框架会对Java的SPI进行封装和优化，比如<code>Dubbo</code>，它将配置文件中的全类名修改为了键值对的方式，以满足按需加载的需要，同时增加了IOC及AOP的特性，自适应扩展等机制。</p><p>通过上文的工作方式我们就可以了解到SPI的机制并不神秘，如果个人需要简单封装的话，还是轻而易举的。</p><br><h2 data-id=heading-9>学习SPI的思想</h2><p>SPI机制有一定的必然性，以上文提到的<code>Sharding-jdbc</code>的加密算法为例，只有真正的使用者才知道自己到底需要什么，因此<strong>把一部分决定权（实现）交给用户的能力</strong>是必须要具备的，不然的话框架也好，工具也罢，为了满足所有的情况，代码势必都会变的非常臃肿。这其中最关键的设计原则即：</p><blockquote><p>依赖倒置原则（要针对抽象层编程，而不要针对具体类编程）</p></blockquote><p>我们在日常开发中同样要思考如何设计接口，如何依赖抽象层进行编程，减少与实现类之间的耦合，同样的，为了实现这一要求，我们必然会去学习设计模式、设计原则之类的知识，去了解各种设计模式的最佳实践，一步步的去优化代码，在此推荐一下我之前的文章：<a href=https://juejin.cn/post/6846687591425638413 target=_blank title=https://juejin.cn/post/6846687591425638413>设计模式总篇：从为什么需要原则到实际落地（附知识图谱）</a>。</p><br><h2 data-id=heading-10>总结</h2><p>截止到这里，我们明白了什么是SPI及其工作的原理，熟悉了它的典型案例，也了解了它的应用场景、设计理念等等，下面是一些针对性的建议：</p><ol><li>SPI机制是框架/工具级项目必备的能力之一，立志于高级工程师的小伙伴一定要吃透它的设计理念和实现原理</li><li>SPI的核心思想：<strong>把一部分决定权（实现）交给用户，即依赖倒置</strong></li><li>了解SPI的优势和特点后，在单体项目中我们完全可以使用别的方案达到更好的效果，切忌为了使用而去用它</li><li>未来在开发或使用某些中间件/工具时，可以多加留意它是否提供了相关的SPI接口，可能会起到事半功倍的效果。</li></ol><br><p>如果觉得这篇内容对你有帮助的话：</p><ol><li>当然要点赞支持一下啦~</li><li>另外，可以搜索并关注公众号「<strong>是Kerwin啊</strong>」，一起在技术的路上走下去吧~ 😋</li></ol><br><h2 data-id=heading-11>参考文章</h2><ol><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fdocs.oracle.com%2Fjavase%2F8%2Fdocs%2Fapi%2Fjava%2Futil%2FServiceLoader.html" target=_blank rel="nofollow noopener noreferrer" title=https://docs.oracle.com/javase/8/docs/api/java/util/ServiceLoader.html ref="nofollow noopener noreferrer">ServiceLoader</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fcxis.me%2F2017%2F04%2F17%2FJava%25E4%25B8%25ADSPI%25E6%259C%25BA%25E5%2588%25B6%25E6%25B7%25B1%25E5%2585%25A5%25E5%258F%258A%25E6%25BA%2590%25E7%25A0%2581%25E8%25A7%25A3%25E6%259E%2590%2F" target=_blank rel="nofollow noopener noreferrer" title="https://cxis.me/2017/04/17/Java%E4%B8%ADSPI%E6%9C%BA%E5%88%B6%E6%B7%B1%E5%85%A5%E5%8F%8A%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/" ref="nofollow noopener noreferrer">Java中SPI机制深入及源码解析</a></li></ol></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/5065.html>https://news.zfe.space/p/5065.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:31+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/5065.html&title=「一探究竟」Java SPI机制 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/5065.html&title=「一探究竟」Java SPI机制 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/5065.html&title=「一探究竟」Java SPI机制 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2f7ae0f25b2d4f5eadf2bcb5a61f79d1~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/d997.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>错过的夏天</p><p class=content></p></a><a class=next href=/p/56e9.html><p class=title>Canalys_ Mac shipments up 24% thanks to M1 chip, but iPad sales slowing<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>New data from Canalys today shows that while PC shipments in the United States were up 17% l...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>事件起因</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>什么是SPI</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>SPI的工作方式</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>SPI使用案例分析</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Log4j-Api</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>JDBC驱动</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>SPI的应用场景</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>日常开发要不要使用SPI？</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>框架&#x2F;组件工具开发要不要使用SPI？</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>学习SPI的思想</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>总结</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>参考文章</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="「一探究竟」Java SPI机制";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

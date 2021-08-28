@@ -1,0 +1,1075 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>Javascript装饰器的妙用 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src="https://picsum.photos/400/300?random=6201"></a></div><div class=article-meta id=top><a title=Javascript装饰器的妙用 href=/p/fb80.html><img class=thumbnail src="https://picsum.photos/400/300?random=6201"></a><h1 class=title>Javascript装饰器的妙用</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%94%B6%E8%97%8F%E9%9B%86/">收藏集</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2018年7月8日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=Javascript装饰器的妙用 data-path=/p/fb80.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><p>最近新开了一个Node项目，采用TypeScript来开发，在数据库及路由管理方面用了不少的装饰器，发觉这的确是一个好东西。<br>装饰器是一个还处于草案中的特性，目前木有直接支持该语法的环境，但是可以通过 babel 之类的进行转换为旧语法来实现效果，所以在TypeScript中，可以放心的使用<code>@Decorator</code>。</p><h2 data-id=heading-0>什么是装饰器</h2><p>装饰器是对类、函数、属性之类的一种装饰，可以针对其添加一些额外的行为。<br>通俗的理解可以认为就是在原有代码外层包装了一层处理逻辑。<br>个人认为装饰器是一种解决方案，而并非是狭义的<code>@Decorator</code>，后者仅仅是一个语法糖罢了。</p><p>装饰器在身边的例子随处可见，一个简单的例子，水龙头上边的起泡器就是一个装饰器，在装上以后就会把空气混入水流中，掺杂很多泡泡在水里。<br>但是起泡器安装与否对水龙头本身并没有什么影响，即使拆掉起泡器，也会照样工作，水龙头的作用在于阀门的控制，至于水中掺不掺杂气泡则不是水龙头需要关心的。</p><p>所以，对于装饰器，可以简单地理解为是非侵入式的行为修改。</p><h2 data-id=heading-1>为什么要用装饰器</h2><p>可能有些时候，我们会对传入参数的类型判断、对返回值的排序、过滤，对函数添加节流、防抖或其他的功能性代码，基于多个类的继承，各种各样的与函数逻辑本身无关的、重复性的代码。</p><h3 data-id=heading-2>函数中的作用</h3><p>可以想像一下，我们有一个工具类，提供了一个获取数据的函数：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Model1</span> </span>&#123;
+  getData() &#123;
+    <span>// 此处省略获取数据的逻辑</span>
+    <span>return</span> [&#123;
+      <span>id</span>: <span>1</span>,
+      <span>name</span>: <span>'Niko'</span>
+    &#125;, &#123;
+      <span>id</span>: <span>2</span>,
+      <span>name</span>: <span>'Bellic'</span>
+    &#125;]
+  &#125;
+&#125;
+
+<p><span>console</span>.log(<span>new</span> Model1().getData())     <span>// [ &#123; id: 1, name: ‘Niko’&#125;, &#123; id: 2, name: ‘Bellic’ &#125; ]</span><br><span>console</span>.log(Model1.prototype.getData()) <span>// [ &#123; id: 1, name: ‘Niko’&#125;, &#123; id: 2, name: ‘Bellic’ &#125; ]</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>现在我们想要添加一个功能，记录该函数执行的耗时。<br><br>因为这个函数被很多人使用，在调用方添加耗时统计逻辑是不可取的，所以我们要在<code>Model1</code>中进行修改：</p><p></p><pre><code lang=diff class=copyable>class Model1 &#123;
+  getData() &#123;
+<span>+   let start = new Date().valueOf()</span>
+<span>+   try &#123;</span>
+      // 此处省略获取数据的逻辑
+      return [&#123;
+        id: 1,
+        name: 'Niko'
+      &#125;, &#123;
+        id: 2,
+        name: 'Bellic'
+      &#125;]
+<span>+   &#125; finally &#123;</span>
+<span>+     let end = new Date().valueOf()</span>
+<span>+     console.log(`start: $&#123;start&#125; end: $&#123;end&#125; consume: $&#123;end - start&#125;`)</span>
+<span>+   &#125;</span>
+  &#125;
+&#125;
+
+// start: XXX end: XXX consume: XXX
+console.log(new Model1().getData())     // [ &#123; id: 1, name: 'Niko'&#125;, &#123; id: 2, name: 'Bellic' &#125; ]
+// start: XXX end: XXX consume: XXX
+console.log(Model1.prototype.getData()) // [ &#123; id: 1, name: 'Niko'&#125;, &#123; id: 2, name: 'Bellic' &#125; ]
+<span class=copy-code-btn>复制代码</span></code></pre><p>这样在调用方法后我们就可以在控制台看到耗时的输出了。<br></p><p>但是这样直接修改原函数代码有以下几个问题：</p><p></p><ol><li>统计耗时的相关代码与函数本身逻辑并无一点关系，影响到了对原函数本身的理解，对函数结构造成了破坏性的修改</li><li>如果后期还有更多类似的函数需要添加统计耗时的代码，在每个函数中都添加这样的代码显然是低效的，维护成本太高</li></ol><p>所以，为了让统计耗时的逻辑变得更加灵活，我们将创建一个新的工具函数，用来包装需要设置统计耗时的函数。<br>通过将<code>Class</code>与目标函数的<code>name</code>传递到函数中，实现了通用的耗时统计：</p><pre><code lang=javascript class=copyable><span><span>function</span> <span>wrap</span>(<span>Model, key</span>) </span>&#123;
+  <span>// 获取Class对应的原型</span>
+  <span>let</span> target = Model.prototype
+
+<p>  <span>// 获取函数对应的描述符</span><br>  <span>let</span> descriptor = <span>Object</span>.getOwnPropertyDescriptor(target, key)</p>
+<p>  <span>// 生成新的函数，添加耗时统计逻辑</span><br>  <span>let</span> log = <span><span>function</span> (<span>…arg</span>) </span>&#123;<br>    <span>let</span> start = <span>new</span> <span>Date</span>().valueOf()<br>    <span>try</span> &#123;<br>      <span>return</span> descriptor.value.apply(<span>this</span>, arg) <span>// 调用之前的函数</span><br>    &#125; <span>finally</span> &#123;<br>      <span>let</span> end = <span>new</span> <span>Date</span>().valueOf()<br>      <span>console</span>.log(<span><code>start: &lt;span&gt;$&amp;#123;start&amp;#125;&lt;/span&gt; end: &lt;span&gt;$&amp;#123;end&amp;#125;&lt;/span&gt; consume: &lt;span&gt;$&amp;#123;end - start&amp;#125;&lt;/span&gt;</code></span>)<br>    &#125;<br>  &#125;</p>
+<p>  <span>// 将修改后的函数重新定义到原型链上</span><br>  <span>Object</span>.defineProperty(target, key, &#123;<br>    …descriptor,<br>    <span>value</span>: log      <span>// 覆盖描述符重的value</span><br>  &#125;)<br>&#125;</p>
+<p>wrap(Model1, <span>‘getData’</span>)<br>wrap(Model2, <span>‘getData’</span>)</p>
+<p><span>// start: XXX end: XXX consume: XXX</span><br><span>console</span>.log(<span>new</span> Model1().getData())     <span>// [ &#123; id: 1, name: ‘Niko’&#125;, &#123; id: 2, name: ‘Bellic’ &#125; ]</span><br><span>// start: XXX end: XXX consume: XXX</span><br><span>console</span>.log(Model2.prototype.getData()) <span>// [ &#123; id: 1, name: ‘Niko’&#125;, &#123; id: 2, name: ‘Bellic’ &#125; ]</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>接下来，我们想控制其中一个<code>Model</code>的函数不可被其他人修改覆盖，所以要添加一些新的逻辑：</p><p></p><pre><code lang=javascript class=copyable><span><span>function</span> <span>wrap</span>(<span>Model, key</span>) </span>&#123;
+  <span>// 获取Class对应的原型</span>
+  <span>let</span> target = Model.prototype
+
+  <span>// 获取函数对应的描述符</span>
+  <span>let</span> descriptor = <span>Object</span>.getOwnPropertyDescriptor(target, key)
+
+  <span>Object</span>.defineProperty(target, key, &#123;
+    ...descriptor,
+    <span>writable</span>: <span>false</span>      <span>// 设置属性不可被修改</span>
+  &#125;)
+&#125;
+
+wrap(Model1, <span>'getData'</span>)
+
+Model1.prototype.getData = <span>1</span> <span>// 无效</span>
+<span class=copy-code-btn>复制代码</span></code></pre><p>可以看出，两个<code>wrap</code>函数中有不少重复的地方，而修改程序行为的逻辑，实际上依赖的是<code>Object.defineProperty</code>中传递的三个参数。<br></p><p>所以，我们针对<code>wrap</code>在进行一次修改，将其变为一个通用类的转换：</p><p></p><pre><code lang=javascript class=copyable><span><span>function</span> <span>wrap</span>(<span>decorator</span>) </span>&#123;
+  <span>return</span> <span><span>function</span> (<span>Model, key</span>) </span>&#123;
+    <span>let</span> target = Model.prototype
+    <span>let</span> dscriptor = <span>Object</span>.getOwnPropertyDescriptor(target, key)
+
+    decorator(target, key, descriptor)
+  &#125;
+&#125;
+
+<span>let</span> log = <span><span>function</span> (<span>target, key, descriptor</span>) </span>&#123;
+  <span>// 将修改后的函数重新定义到原型链上</span>
+  <span>Object</span>.defineProperty(target, key, &#123;
+    ...descriptor,
+    <span>value</span>: <span><span>function</span> (<span>...arg</span>) </span>&#123;
+      <span>let</span> start = <span>new</span> <span>Date</span>().valueOf()
+      <span>try</span> &#123;
+        <span>return</span> descriptor.value.apply(<span>this</span>, arg) <span>// 调用之前的函数</span>
+      &#125; <span>finally</span> &#123;
+        <span>let</span> end = <span>new</span> <span>Date</span>().valueOf()
+        <span>console</span>.log(<span>`start: <span>$&#123;start&#125;</span> end: <span>$&#123;end&#125;</span> consume: <span>$&#123;end - start&#125;</span>`</span>)
+      &#125;
+    &#125;
+  &#125;)
+&#125;
+
+<span>let</span> seal = <span><span>function</span> (<span>target, key, descriptor</span>) </span>&#123;
+  <span>Object</span>.defineProperty(target, key, &#123;
+    ...descriptor,
+    <span>writable</span>: <span>false</span>
+  &#125;)
+&#125;
+
+<span>// 参数的转换处理</span>
+log = wrap(log)
+seal = warp(seal)
+
+<span>// 添加耗时统计</span>
+log(Model1, <span>'getData'</span>)
+log(Model2, <span>'getData'</span>)
+
+<span>// 设置属性不可被修改</span>
+seal(Model1, <span>'getData'</span>)
+<span class=copy-code-btn>复制代码</span></code></pre><p>到了这一步以后，我们就可以称<code>log</code>和<code>seal</code>为装饰器了，可以很方便的让我们对一些函数添加行为。<br></p><p>而拆分出来的这些功能可以用于未来可能会有需要的地方，而不用重新开发一遍相同的逻辑。</p><p></p><h3 data-id=heading-3>Class 中的作用</h3><p>就像上边提到了，现阶段在JS中继承多个<code>Class</code>是一件头疼的事情，没有直接的语法能够继承多个 Class。</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>A</span> </span>&#123; say () &#123; <span>return</span> <span>1</span> &#125; &#125;
+<span><span>class</span> <span>B</span> </span>&#123; hi () &#123; <span>return</span> <span>2</span> &#125; &#125;
+<span><span>class</span> <span>C</span> <span>extends</span> <span>A</span>, <span>B</span> </span>&#123;&#125;        <span>// Error</span>
+<span><span>class</span> <span>C</span> <span>extends</span> <span>A</span> <span>extends</span> <span>B</span> </span>&#123;&#125; <span>// Error</span>
+
+<p><span>// 这样才是可以的</span><br><span><span>class</span> <span>C</span> </span>&#123;&#125;<br><span>for</span> (<span>let</span> key <span>of</span> <span>Object</span>.getOwnPropertyNames(A.prototype)) &#123;<br>  <span>if</span> (key === <span>‘constructor’</span>) <span>continue</span><br>  <span>Object</span>.defineProperty(C.prototype, key, <span>Object</span>.getOwnPropertyDescriptor(A.prototype, key))<br>&#125;<br><span>for</span> (<span>let</span> key <span>of</span> <span>Object</span>.getOwnPropertyNames(B.prototype)) &#123;<br>  <span>if</span> (key === <span>‘constructor’</span>) <span>continue</span><br>  <span>Object</span>.defineProperty(C.prototype, key, <span>Object</span>.getOwnPropertyDescriptor(B.prototype, key))<br>&#125;</p>
+<p><span>let</span> c = <span>new</span> C()<br><span>console</span>.log(c.say(), c.hi()) <span>// 1, 2</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>所以，在<code>React</code>中就有了一个<code>mixin</code>的概念，用来将多个<code>Class</code>的功能复制到一个新的<code>Class</code>上。<br><br>大致思路就是上边列出来的，但是这个<code>mixin</code>是<code>React</code>中内置的一个操作，我们可以将其转换为更接近装饰器的实现。<br><br>在不修改原<code>Class</code>的情况下，将其他<code>Class</code>的属性复制过来：</p><p></p><pre><code lang=javascript class=copyable><span><span>function</span> <span>mixin</span>(<span>constructor</span>) </span>&#123;
+  <span>return</span> <span><span>function</span> (<span>...args</span>) </span>&#123;
+    <span>for</span> (<span>let</span> arg <span>of</span> args) &#123;
+      <span>for</span> (<span>let</span> key <span>of</span> <span>Object</span>.getOwnPropertyNames(arg.prototype)) &#123;
+        <span>if</span> (key === <span>'constructor'</span>) <span>continue</span> <span>// 跳过构造函数</span>
+        <span>Object</span>.defineProperty(<span>constructor</span>.prototype, key, Object.getOwnPropertyDescriptor(arg.prototype, key))
+      &#125;
+    &#125;
+  &#125;
+&#125;
+
+mixin(C)(A, B)
+
+let c = new C()
+console.log(c.say(), c.hi()) // 1, 2
+<span class=copy-code-btn>复制代码</span></code></pre><p>以上，就是装饰器在函数、<code>Class</code>上的实现方法（至少目前是的），但是草案中还有一颗特别甜的语法糖，也就是<code>@Decorator</code>了。<br></p><p>能够帮你省去很多繁琐的步骤来用上装饰器。</p><p></p><h2 data-id=heading-4>@Decorator的使用方法</h2><p>草案中的装饰器、或者可以说是TS实现的装饰器，将上边的两种进一步地封装，将其拆分成为更细的装饰器应用，目前支持以下几处使用：</p><ol><li>Class</li><li>函数</li><li>get set访问器</li><li>实例属性、静态函数及属性</li><li>函数参数</li></ol><p>@Decorator的语法规定比较简单，就是通过<code>@</code>符号后边跟一个装饰器函数的引用：</p><pre><code lang=javascript class=copyable>@tag
+<span><span>class</span> <span>A</span> </span>&#123; 
+  @method
+  hi () &#123;&#125;
+&#125;
+
+<p><span><span>function</span> <span>tag</span>(<span>constructor</span>) </span>&#123;<br>  <span>console</span>.log(<span>constructor</span> === A) // true<br>&#125;</p>
+<p>function method(target) &#123;<br>  <span>console</span>.log(target.constructor === A, target === A.prototype) <span>// true, true</span><br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p>函数<code>tag</code>与<code>method</code>会在<code>class A</code>定义的时候执行。</p><p></p><h3 data-id=heading-5>@Decorator 在 Class 中的使用</h3><p>该装饰器会在class定义前调用，如果函数有返回值，则会认为是一个新的构造函数来替代之前的构造函数。</p><p>函数接收一个参数：</p><ol><li>constructor 之前的构造函数</li></ol><p>我们可以针对原有的构造函数进行一些改造:</p><h4 data-id=heading-6>新增一些属性</h4><p>如果想要新增一些属性之类的，有两种方案可以选择：</p><ol><li>创建一个新的<code>class</code>继承自原有<code>class</code>，并添加属性</li><li>针对当前<code>class</code>进行修改</li></ol><p>后者的适用范围更窄一些，更接近mixin的处理方式。</p><pre><code lang=javascript class=copyable>@name
+<span><span>class</span> <span>Person</span> </span>&#123;
+  sayHi() &#123;
+    <span>console</span>.log(<span>`My name is: <span>$&#123;<span>this</span>.name&#125;</span>`</span>)
+  &#125;
+&#125;
+
+<p><span>// 创建一个继承自Person的匿名类</span><br><span>// 直接返回并替换原有的构造函数</span><br><span><span>function</span> <span>name</span>(<span>constructor</span>) </span>&#123;<br>  <span>return</span> <span><span>class</span> <span>extends</span> <span>constructor</span> </span>&#123;<br>    name = <span>‘Niko’</span><br>  &#125;<br>&#125;</p>
+<p><span>new</span> Person().sayHi()<br><span class=copy-code-btn>复制代码</span></p></code></pre><h4 data-id=heading-7>修改原有属性的描述符</h4><p></p><pre><code lang=javascript class=copyable>@seal
+<span><span>class</span> <span>Person</span> </span>&#123;
+  sayHi() &#123;&#125;
+&#125;
+
+<span><span>function</span> <span>seal</span>(<span>constructor</span>) </span>&#123;
+  <span>let</span> descriptor = <span>Object</span>.getOwnPropertyDescriptor(<span>constructor</span>.prototype, 'sayHi')
+  Object.defineProperty(<span>constructor</span>.prototype, 'sayHi', &#123;
+    ...descriptor,
+    <span>writable</span>: <span>false</span>
+  &#125;)
+&#125;
+
+Person.prototype.sayHi = <span>1</span> <span>// 无效</span>
+<span class=copy-code-btn>复制代码</span></code></pre><h4 data-id=heading-8>使用闭包来增强装饰器的功能</h4><blockquote><p>在TS文档中被称为装饰器工厂</p></blockquote><p>因为<code>@</code>符号后边跟的是一个函数的引用，所以对于mixin的实现，我们可以很轻易的使用闭包来实现：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>A</span> </span>&#123; say() &#123; <span>return</span> <span>1</span> &#125; &#125;
+<span><span>class</span> <span>B</span> </span>&#123; hi() &#123; <span>return</span> <span>2</span> &#125; &#125;
+
+<p>@mixin(A, B)<br><span><span>class</span> <span>C</span> </span>&#123; &#125;</p>
+<p><span><span>function</span> <span>mixin</span>(<span>…args</span>) </span>&#123;<br>  <span>// 调用函数返回装饰器实际应用的函数</span><br>  <span>return</span> <span><span>function</span>(<span>constructor</span>) </span>&#123;<br>    <span>for</span> (<span>let</span> arg <span>of</span> args) &#123;<br>      <span>for</span> (<span>let</span> key <span>of</span> <span>Object</span>.getOwnPropertyNames(arg.prototype)) &#123;<br>        <span>if</span> (key === <span>‘constructor’</span>) <span>continue</span> <span>// 跳过构造函数</span><br>        <span>Object</span>.defineProperty(<span>constructor</span>.prototype, key, Object.getOwnPropertyDescriptor(arg.prototype, key))<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;</p>
+<p>let c = new C()<br>console.log(c.say(), c.hi()) // 1, 2<br><span class=copy-code-btn>复制代码</span></p></code></pre><h4 data-id=heading-9>多个装饰器的应用</h4><p></p><p>装饰器是可以同时应用多个的（不然也就失去了最初的意义）。<br>用法如下：</p><pre><code lang=javascript class=copyable>@decorator1
+@decorator2
+<span><span>class</span> </span>&#123; &#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>执行的顺序为<code>decorator2</code> -> <code>decorator1</code>，离<code>class</code>定义最近的先执行。<br>可以想像成函数嵌套的形式：</p><pre><code lang=javascript class=copyable>decorator1(decorator2(<span><span>class</span> </span>&#123;&#125;))
+<span class=copy-code-btn>复制代码</span></code></pre><h3 data-id=heading-10>@Decorator 在 Class 成员中的使用</h3><p>类成员上的 @Decorator 应该是应用最为广泛的一处了，函数，属性，<code>get</code>、<code>set</code>访问器，这几处都可以认为是类成员。<br>在TS文档中被分为了<code>Method Decorator</code>、<code>Accessor Decorator</code>和<code>Property Decorator</code>，实际上如出一辙。</p><p>关于这类装饰器，会接收如下三个参数：</p><ol><li>如果装饰器挂载于静态成员上，则会返回构造函数，如果挂载于实例成员上则会返回类的原型</li><li>装饰器挂载的成员名称</li><li>成员的描述符，也就是<code>Object.getOwnPropertyDescriptor</code>的返回值</li></ol><blockquote><p><code>Property Decorator</code>不会返回第三个参数，但是可以自己手动获取<br>前提是静态成员，而非实例成员，因为装饰器都是运行在类创建时，而实例成员是在实例化一个类的时候才会执行的，所以没有办法获取对应的descriptor</p></blockquote><h4 data-id=heading-11>静态成员与实例成员在返回值上的区别</h4><p>可以稍微明确一下，静态成员与实例成员的区别：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Model</span> </span>&#123;
+  <span>// 实例成员</span>
+  method1 () &#123;&#125;
+  method2 = <span><span>()</span> =></span> &#123;&#125;
+
+<p>  <span>// 静态成员</span><br>  <span>static</span> method3 () &#123;&#125;<br>  <span>static</span> method4 = <span><span>()</span> =&gt;</span> &#123;&#125;<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p><code>method1</code>和<code>method2</code>是实例成员，<code>method1</code>存在于<code>prototype</code>之上，而<code>method2</code>只在实例化对象以后才有。<br><br>作为静态成员的<code>method3</code>和<code>method4</code>，两者的区别在于是否可枚举描述符的设置，所以可以简单地认为，上述代码转换为ES5版本后是这样子的：</p><p></p><pre><code lang=javascript class=copyable><span><span>function</span> <span>Model</span> (<span></span>) </span>&#123;
+  <span>// 成员仅在实例化时赋值</span>
+  <span>this</span>.method2 = <span><span>function</span> (<span></span>) </span>&#123;&#125;
+&#125;
+
+<span>// 成员被定义在原型链上</span>
+<span>Object</span>.defineProperty(Model.prototype, <span>'method1'</span>, &#123;
+  <span>value</span>: <span><span>function</span> (<span></span>) </span>&#123;&#125;, 
+  <span>writable</span>: <span>true</span>, 
+  <span>enumerable</span>: <span>false</span>,  <span>// 设置不可被枚举</span>
+  configurable: <span>true</span>
+&#125;)
+
+<span>// 成员被定义在构造函数上，且是默认的可被枚举</span>
+Model.method4 = <span><span>function</span> (<span></span>) </span>&#123;&#125;
+
+<span>// 成员被定义在构造函数上</span>
+<span>Object</span>.defineProperty(Model, <span>'method3'</span>, &#123;
+  <span>value</span>: <span><span>function</span> (<span></span>) </span>&#123;&#125;, 
+  <span>writable</span>: <span>true</span>, 
+  <span>enumerable</span>: <span>false</span>,  <span>// 设置不可被枚举</span>
+  configurable: <span>true</span>
+&#125;)
+<span class=copy-code-btn>复制代码</span></code></pre><p>可以看出，只有<code>method2</code>是在实例化时才赋值的，一个不存在的属性是不会有<code>descriptor</code>的，所以这就是为什么TS在针对<code>Property Decorator</code>不传递第三个参数的原因，至于为什么静态成员也没有传递<code>descriptor</code>，目前没有找到合理的解释，但是如果明确的要使用，是可以手动获取的。</p><p>就像上述的示例，我们针对四个成员都添加了装饰器以后，<code>method1</code>和<code>method2</code>第一个参数就是<code>Model.prototype</code>，而<code>method3</code>和<code>method4</code>的第一个参数就是<code>Model</code>。</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Model</span> </span>&#123;
+  <span>// 实例成员</span>
+  @instance
+  method1 () &#123;&#125;
+  @instance
+  method2 = <span><span>()</span> =></span> &#123;&#125;
+
+<p>  <span>// 静态成员</span><br>  @<span>static</span><br>  <span>static</span> method3 () &#123;&#125;<br>  @<span>static</span><br>  <span>static</span> method4 = <span><span>()</span> =&gt;</span> &#123;&#125;<br>&#125;</p>
+<p><span><span>function</span> <span>instance</span>(<span>target</span>) </span>&#123;<br>  <span>console</span>.log(target.constructor === Model)<br>&#125;</p>
+<p><span><span>function</span> <span>static</span>(<span>target</span>) </span>&#123;<br>  <span>console</span>.log(target === Model)<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><h3 data-id=heading-12>函数，访问器，和属性装饰器三者之间的区别</h3><p></p><h4 data-id=heading-13>函数</h4><p>首先是函数，函数装饰器的返回值会默认作为属性的<code>value</code>描述符存在，如果返回值为<code>undefined</code>则会忽略，使用之前的<code>descriptor</code>引用作为函数的描述符。<br>所以针对我们最开始的统计耗时的逻辑可以这么来做：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Model</span> </span>&#123;
+  @log1
+  getData1() &#123;&#125;
+  @log2
+  getData2() &#123;&#125;
+&#125;
+
+<p><span>// 方案一，返回新的value描述符</span><br><span><span>function</span> <span>log1</span>(<span>tag, name, descriptor</span>) </span>&#123;<br>  <span>return</span> &#123;<br>    …descriptor,<br>    value(…args) &#123;<br>      <span>let</span> start = <span>new</span> <span>Date</span>().valueOf()<br>      <span>try</span> &#123;<br>        <span>return</span> descriptor.value.apply(<span>this</span>, args)<br>      &#125; <span>finally</span> &#123;<br>        <span>let</span> end = <span>new</span> <span>Date</span>().valueOf()<br>        <span>console</span>.log(<span><code>start: &lt;span&gt;$&amp;#123;start&amp;#125;&lt;/span&gt; end: &lt;span&gt;$&amp;#123;end&amp;#125;&lt;/span&gt; consume: &lt;span&gt;$&amp;#123;end - start&amp;#125;&lt;/span&gt;</code></span>)<br>      &#125;<br>    &#125;<br>  &#125;<br>&#125;</p>
+<p><span>// 方案二、修改现有描述符</span><br><span><span>function</span> <span>log2</span>(<span>tag, name, descriptor</span>) </span>&#123;<br>  <span>let</span> func = descriptor.value <span>// 先获取之前的函数</span></p>
+<p>  <span>// 修改对应的value</span><br>  descriptor.value = <span><span>function</span> (<span>…args</span>) </span>&#123;<br>    <span>let</span> start = <span>new</span> <span>Date</span>().valueOf()<br>    <span>try</span> &#123;<br>      <span>return</span> func.apply(<span>this</span>, args)<br>    &#125; <span>finally</span> &#123;<br>      <span>let</span> end = <span>new</span> <span>Date</span>().valueOf()<br>      <span>console</span>.log(<span><code>start: &lt;span&gt;$&amp;#123;start&amp;#125;&lt;/span&gt; end: &lt;span&gt;$&amp;#123;end&amp;#125;&lt;/span&gt; consume: &lt;span&gt;$&amp;#123;end - start&amp;#125;&lt;/span&gt;</code></span>)<br>    &#125;<br>  &#125;<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><h4 data-id=heading-14>访问器</h4><p></p><p>访问器就是添加有<code>get</code>、<code>set</code>前缀的函数，用于控制属性的赋值及取值操作，在使用上与函数没有什么区别，甚至在返回值的处理上也没有什么区别。<br>只不过我们需要按照规定设置对应的<code>get</code>或者<code>set</code>描述符罢了：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Modal</span> </span>&#123;
+  _name = <span>'Niko'</span>
+
+<p>  @prefix<br>  get name() &#123; <span>return</span> <span>this</span>._name &#125;<br>&#125;</p>
+<p><span><span>function</span> <span>prefix</span>(<span>target, name, descriptor</span>) </span>&#123;<br>  <span>return</span> &#123;<br>    …descriptor,<br>    get () &#123;<br>      <span>return</span> <span><code>wrap_&lt;span&gt;$&amp;#123;&lt;span&gt;this&lt;/span&gt;._name&amp;#125;&lt;/span&gt;</code></span><br>    &#125;<br>  &#125;<br>&#125;</p>
+<p><span>console</span>.log(<span>new</span> Modal().name) <span>// wrap_Niko</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><h4 data-id=heading-15>属性</h4><p></p><p>对于属性的装饰器，是没有返回<code>descriptor</code>的，并且装饰器函数的返回值也会被忽略掉，如果我们想要修改某一个静态属性，则需要自己获取<code>descriptor</code>：</p><pre><code lang=javascript class=copyable><span><span>class</span> <span>Modal</span> </span>&#123;
+  @prefix
+  <span>static</span> name1 = <span>'Niko'</span>
+&#125;
+
+<p><span><span>function</span> <span>prefix</span>(<span>target, name</span>) </span>&#123;<br>  <span>let</span> descriptor = <span>Object</span>.getOwnPropertyDescriptor(target, name)</p>
+<p>  <span>Object</span>.defineProperty(target, name, &#123;<br>    …descriptor,<br>    <span>value</span>: <span><code>wrap_&lt;span&gt;$&amp;#123;descriptor.value&amp;#125;&lt;/span&gt;</code></span><br>  &#125;)</p>
+<p>  <span>return</span> target<br>&#125;</p>
+<p><span>console</span>.log(Modal.name1) <span>// wrap_Niko</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>对于一个实例的属性，则没有直接修改的方案，不过我们可以结合着一些其他装饰器来曲线救国。</p><p></p><p>比如，我们有一个类，会传入姓名和年龄作为初始化的参数，然后我们要针对这两个参数设置对应的格式校验：</p><pre><code lang=javascript class=copyable><span>const</span> validateConf = &#123;&#125; <span>// 存储校验信息</span>
+
+<p>@validator<br><span><span>class</span> <span>Person</span> </span>&#123;<br>  @validate(<span>‘string’</span>)<br>  name<br>  @validate(<span>‘number’</span>)<br>  age</p>
+<p>  <span>constructor</span>(name, age) &#123;<br>    <span>this</span>.name = name<br>    <span>this</span>.age = age<br>  &#125;<br>&#125;</p>
+<p><span><span>function</span> <span>validator</span>(<span>constructor</span>) </span>&#123;<br>  <span>return</span> <span><span>class</span> <span>extends</span> <span>constructor</span> </span>&#123;<br>    <span>constructor</span>(…args) &#123;<br>      <span>super</span>(…args)</p>
+<pre><code>  &lt;span&gt;// 遍历所有的校验信息进行验证&lt;/span&gt;
+  &lt;span&gt;for&lt;/span&gt; (&lt;span&gt;let&lt;/span&gt; [key, type] &lt;span&gt;of&lt;/span&gt; &lt;span&gt;Object&lt;/span&gt;.entries(validateConf)) &amp;#123;
+    &lt;span&gt;if&lt;/span&gt; (&lt;span&gt;typeof&lt;/span&gt; &lt;span&gt;this&lt;/span&gt;[key] !== type) &lt;span&gt;throw&lt;/span&gt; &lt;span&gt;new&lt;/span&gt; &lt;span&gt;Error&lt;/span&gt;(&lt;span&gt;`&lt;span&gt;$&amp;#123;key&amp;#125;&lt;/span&gt; must be &lt;span&gt;$&amp;#123;type&amp;#125;&lt;/span&gt;`&lt;/span&gt;)
+  &amp;#125;
+&amp;#125;
+</code></pre><p> &#125;<br>&#125;</p><p><span><span>function</span> <span>validate</span>(<span>type</span>)</span> &#123;<br> <span>return</span> <span><span>function</span> (<span>target, name, descriptor</span>)</span> &#123;<br> <span>// 向全局对象中传入要校验的属性名及类型</span><br> validateConf[name] = type<br> &#125;<br>&#125;</p><p><span>new</span> Person(<span>‘Niko’</span>, <span>‘18’</span>) <span>// throw new error: [age must be number]</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><p>首先，在类上边添加装饰器<code>@validator</code>，然后在需要校验的两个参数上添加<code>@validate</code>装饰器，两个装饰器用来向一个全局对象传入信息，来记录哪些属性是需要进行校验的。<br><br>然后在<code>validator</code>中继承原有的类对象，并在实例化之后遍历刚才设置的所有校验信息进行验证，如果发现有类型错误的，直接抛出异常。<br><br>这个类型验证的操作对于原<code>Class</code>来说几乎是无感知的。</p><p></p><h3 data-id=heading-16>函数参数装饰器</h3><p>最后，还有一个用于函数参数的装饰器，这个装饰器也是像实例属性一样的，没有办法单独使用，毕竟函数是在运行时调用的，而无论是何种装饰器，都是在声明类时（可以认为是伪编译期）调用的。</p><p>函数参数装饰器会接收三个参数：</p><ol><li>类似上述的操作，类的原型或者类的构造函数</li><li>参数所处的函数名称</li><li>参数在函数中形参中的位置（函数签名中的第几个参数）</li></ol><p>一个简单的示例，我们可以结合着函数装饰器来完成对函数参数的类型转换：</p><pre><code lang=javascript class=copyable><span>const</span> parseConf = &#123;&#125;
+<span><span>class</span> <span>Modal</span> </span>&#123;
+  @parseFunc
+  addOne(@parse(<span>'number'</span>) num) &#123;
+    <span>return</span> num + <span>1</span>
+  &#125;
+&#125;
+
+<p><span>// 在函数调用前执行格式化操作</span><br><span><span>function</span> <span>parseFunc</span> (<span>target, name, descriptor</span>) </span>&#123;<br>  <span>return</span> &#123;<br>    …descriptor,<br>    value (…arg) &#123;<br>      <span>// 获取格式化配置</span><br>      <span>for</span> (<span>let</span> [index, type] <span>of</span> parseConf) &#123;<br>        <span>switch</span> (type) &#123;<br>          <span>case</span> <span>‘number’</span>:  arg[index] = <span>Number</span>(arg[index])             <span>break</span><br>          <span>case</span> <span>‘string’</span>:  arg[index] = <span>String</span>(arg[index])             <span>break</span><br>          <span>case</span> <span>‘boolean’</span>: arg[index] = <span>String</span>(arg[index]) === <span>‘true’</span>  <span>break</span><br>        &#125;<br>      &#125;</p>
+<pre><code>  &lt;span&gt;return&lt;/span&gt; descriptor.value.apply(&lt;span&gt;this&lt;/span&gt;, arg)
+&amp;#125;
+</code></pre><p> &#125;<br>&#125;</p><p><span>// 向全局对象中添加对应的格式化信息</span><br><span><span>function</span> <span>parse</span>(<span>type</span>)</span> &#123;<br> <span>return</span> <span><span>function</span> (<span>target, name, index</span>)</span> &#123;<br> parseConf[index] = type<br> &#125;<br>&#125;</p><p><span>console</span>.log(<span>new</span> Modal().addOne(<span>‘10’</span>)) <span>// 11</span><br><span class=copy-code-btn>复制代码</span></p></code></pre><h2 data-id=heading-17>使用装饰器实现一个有趣的Koa封装</h2><p></p><p>比如在写Node接口时，可能是用的<code>koa</code>或者<code>express</code>，一般来说可能要处理很多的请求参数，有来自<code>headers</code>的，有来自<code>body</code>的，甚至有来自<code>query</code>、<code>cookie</code>的。<br>所以很有可能在<code>router</code>的开头数行都是这样的操作：</p><pre><code lang=javascript class=copyable>router.get(<span>'/'</span>, <span>async</span> (ctx, next) => &#123;
+  <span>let</span> id = ctx.query.id
+  <span>let</span> uid = ctx.cookies.get(<span>'uid'</span>)
+  <span>let</span> device = ctx.header[<span>'device'</span>]
+&#125;)
+<span class=copy-code-btn>复制代码</span></code></pre><p>以及如果我们有大量的接口，可能就会有大量的<code>router.get</code>、<code>router.post</code>。<br>以及如果要针对模块进行分类，可能还会有大量的<code>new Router</code>的操作。</p><p>这些代码都是与业务逻辑本身无关的，所以我们应该尽可能的简化这些代码的占比，而使用装饰器就能够帮助我们达到这个目的。</p><h3 data-id=heading-18>装饰器的准备</h3><pre><code lang=javascript class=copyable><span>// 首先，我们要创建几个用来存储信息的全局List</span>
+<span>export</span> <span>const</span> routerList      = []
+<span>export</span> <span>const</span> controllerList  = []
+<span>export</span> <span>const</span> parseList       = []
+<span>export</span> <span>const</span> paramList       = []
+
+<p><span>// 虽说我们要有一个能够创建Router实例的装饰器</span><br><span>// 但是并不会直接去创建，而是在装饰器执行的时候进行一次注册</span><br><span>export</span> <span><span>function</span> <span>Router</span>(<span>basename = <span>‘’</span></span>) </span>&#123;<br>  <span>return</span> <span>(<span>constrcutor</span>) =&gt;</span> &#123;<br>    routerList.push(&#123;<br>      constrcutor,<br>      basename<br>    &#125;)<br>  &#125;<br>&#125;</p>
+<p><span>// 然后我们在创建对应的Get Post请求监听的装饰器</span><br><span>// 同样的，我们并不打算去修改他的任何属性，只是为了获取函数的引用</span><br><span>export</span> <span><span>function</span> <span>Method</span>(<span>type</span>) </span>&#123;<br>  <span>return</span> <span>(<span>path</span>) =&gt;</span> (target, name, descriptor) =&gt; &#123;<br>    controllerList.push(&#123;<br>      target,<br>      type,<br>      path,<br>      <span>method</span>: name,<br>      <span>controller</span>: descriptor.value<br>    &#125;)<br>  &#125;<br>&#125;</p>
+<p><span>// 接下来我们还需要用来格式化参数的装饰器</span><br><span>export</span> <span><span>function</span> <span>Parse</span>(<span>type</span>) </span>&#123;<br>  <span>return</span> <span>(<span>target, name, index</span>) =&gt;</span> &#123;<br>    parseList.push(&#123;<br>      target,<br>      type,<br>      <span>method</span>: name,<br>      index<br>    &#125;)<br>  &#125;<br>&#125;</p>
+<p><span>// 以及最后我们要处理的各种参数的获取</span><br><span>export</span> <span><span>function</span> <span>Param</span>(<span>position</span>) </span>&#123;<br>  <span>return</span> <span>(<span>key</span>) =&gt;</span> (target, name, index) =&gt; &#123;<br>    paramList.push(&#123;<br>      target,<br>      key,<br>      position,<br>      <span>method</span>: name,<br>      index<br>    &#125;)<br>  &#125;<br>&#125;</p>
+<p><span>export</span> <span>const</span> Body   = Param(<span>‘body’</span>)<br><span>export</span> <span>const</span> Header = Param(<span>‘header’</span>)<br><span>export</span> <span>const</span> Cookie = Param(<span>‘cookie’</span>)<br><span>export</span> <span>const</span> Query  = Param(<span>‘query’</span>)<br><span>export</span> <span>const</span> Get    = Method(<span>‘get’</span>)<br><span>export</span> <span>const</span> Post   = Method(<span>‘post’</span>)<br><span class=copy-code-btn>复制代码</span></p></code></pre><h3 data-id=heading-19>Koa服务的处理</h3><p></p><p>上边是创建了所有需要用到的装饰器，但是也仅仅是把我们所需要的各种信息存了起来，而怎么利用这些装饰器则是下一步需要做的事情了：</p><pre><code lang=javascript class=copyable><span>const</span> routers = []
+
+<p><span>// 遍历所有添加了装饰器的Class，并创建对应的Router对象</span><br>routerList.forEach(<span><span>item</span> =&gt;</span> &#123;<br>  <span>let</span> &#123; basename, constrcutor &#125; = item<br>  <span>let</span> router = <span>new</span> Router(&#123;<br>    <span>prefix</span>: basename<br>  &#125;)</p>
+<p>  controllerList<br>    .filter(<span><span>i</span> =&gt;</span> i.target === constrcutor.prototype)<br>    .forEach(<span><span>controller</span> =&gt;</span> &#123;<br>      router[controller.type](controller.path, <span>async</span> (ctx, next) =&gt; &#123;<br>        <span>let</span> args = []<br>        <span>// 获取当前函数对应的参数获取</span><br>        paramList<br>          .filter( <span><span>param</span> =&gt;</span> param.target === constrcutor.prototype &amp;&amp; param.method === controller.method )<br>          .map(<span><span>param</span> =&gt;</span> &#123;<br>            <span>let</span> &#123; index, key &#125; = param<br>            <span>switch</span> (param.position) &#123;<br>              <span>case</span> <span>‘body’</span>:    args[index] = ctx.request.body[key] <span>break</span><br>              <span>case</span> <span>‘header’</span>:  args[index] = ctx.headers[key]      <span>break</span><br>              <span>case</span> <span>‘cookie’</span>:  args[index] = ctx.cookies.get(key)  <span>break</span><br>              <span>case</span> <span>‘query’</span>:   args[index] = ctx.query[key]        <span>break</span><br>            &#125;<br>          &#125;)</p>
+<pre><code>    &lt;span&gt;// 获取当前函数对应的参数格式化&lt;/span&gt;
+    parseList
+      .filter( &lt;span&gt;&lt;span&gt;parse&lt;/span&gt; =&gt;&lt;/span&gt; parse.target === constrcutor.prototype &amp;&amp; parse.method === controller.method )
+      .map(&lt;span&gt;&lt;span&gt;parse&lt;/span&gt; =&gt;&lt;/span&gt; &amp;#123;
+        &lt;span&gt;let&lt;/span&gt; &amp;#123; index &amp;#125; = parse
+        &lt;span&gt;switch&lt;/span&gt; (parse.type) &amp;#123;
+          &lt;span&gt;case&lt;/span&gt; &lt;span&gt;&#39;number&#39;&lt;/span&gt;:  args[index] = &lt;span&gt;Number&lt;/span&gt;(args[index])             &lt;span&gt;break&lt;/span&gt;
+          &lt;span&gt;case&lt;/span&gt; &lt;span&gt;&#39;string&#39;&lt;/span&gt;:  args[index] = &lt;span&gt;String&lt;/span&gt;(args[index])             &lt;span&gt;break&lt;/span&gt;
+          &lt;span&gt;case&lt;/span&gt; &lt;span&gt;&#39;boolean&#39;&lt;/span&gt;: args[index] = &lt;span&gt;String&lt;/span&gt;(args[index]) === &lt;span&gt;&#39;true&#39;&lt;/span&gt;  &lt;span&gt;break&lt;/span&gt;
+        &amp;#125;
+      &amp;#125;)
+
+    &lt;span&gt;// 调用实际的函数，处理业务逻辑&lt;/span&gt;
+    &lt;span&gt;let&lt;/span&gt; results = controller.controller(...args)
+
+    ctx.body = results
+  &amp;#125;)
+&amp;#125;)
+</code></pre><p> routers.push(router.routes())<br>&#125;)</p><p><span>const</span> app = <span>new</span> Koa()</p><p>app.use(bodyParse())<br>app.use(compose(routers))</p><p>app.listen(<span>12306</span>, () =&gt; <span>console</span>.log(<span>‘server run as <a href=http://127.0.0.1:12306&#39;>http://127.0.0.1:12306&#39;</a></span>))<br><span class=copy-code-btn>复制代码</span></p></code></pre><p>上边的代码就已经搭建出来了一个Koa的封装，以及包含了对各种装饰器的处理，接下来就是这些装饰器的实际应用了：</p><p></p><pre><code lang=javascript class=copyable><span>import</span> &#123; Router, Get, Query, Parse &#125; <span>from</span> <span>"../decorators"</span>
+
+@Router(<span>''</span>)
+<span>export</span> <span>default</span> <span><span>class</span> </span>&#123;
+  @Get(<span>'/'</span>)
+  index (@Parse(<span>'number'</span>) @Query(<span>'id'</span>) id: number) &#123;
+    <span>return</span> &#123;
+      <span>code</span>: <span>200</span>,
+      id,
+      <span>type</span>: <span>typeof</span> id
+    &#125;
+  &#125;
+
+  @Post(<span>'/detail'</span>)
+  detail (
+    @Parse(<span>'number'</span>) @Query(<span>'id'</span>) id: number, 
+    @Parse(<span>'number'</span>) @Body(<span>'age'</span>) age: number
+  ) &#123;
+    <span>return</span> &#123;
+      <span>code</span>: <span>200</span>,
+      <span>age</span>: age + <span>1</span>
+    &#125;
+  &#125;
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>很轻易的就实现了一个<code>router</code>的创建，路径、method的处理，包括各种参数的获取，类型转换。<br></p><p>将各种非业务逻辑相关的代码统统交由装饰器来做，而函数本身只负责处理自身逻辑即可。<br><br>这里有完整的代码：<a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2FJiasm%2Fnotebook%2Ftree%2Fmaster%2Flabs%2Fdemo%2Ftypescript%2Fkoa-decorators" title=https://github.com/Jiasm/notebook/tree/master/labs/demo/typescript/koa-decorators ref="nofollow noopener noreferrer">GitHub</a>。安装依赖后<code>npm start</code>即可看到效果。</p><p></p><p>这样开发带来的好处就是，让代码可读性变得更高，在函数中更专注的做自己应该做的事情。<br>而且装饰器本身如果名字起的足够好的好，也是在一定程度上可以当作文档注释来看待了（Java中有个类似的玩意儿叫做注解）。</p><h2 data-id=heading-20>总结</h2><p>合理利用装饰器可以极大的提高开发效率，对一些非逻辑相关的代码进行封装提炼能够帮助我们快速完成重复性的工作，节省时间。<br>但是糖再好吃，也不要吃太多，容易坏牙齿的，同样的滥用装饰器也会使代码本身逻辑变得扑朔迷离，如果确定一段代码不会在其他地方用到，或者一个函数的核心逻辑就是这些代码，那么就没有必要将它取出来作为一个装饰器来存在。</p><h3 data-id=heading-21>参考资料</h3><ol><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.typescriptlang.org%2Fdocs%2Fhandbook%2Fdecorators.html" title=https://www.typescriptlang.org/docs/handbook/decorators.html ref="nofollow noopener noreferrer">typescript | decorators</a></li><li><a target=_blank href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Ftypestack%2Frouting-controllers" title=https://github.com/typestack/routing-controllers ref="nofollow noopener noreferrer">koa示例的原版，简化代码便于举例</a></li></ol><h3 data-id=heading-22>One more thing</h3><p>我司现在大量招人咯，前端、Node方向都有HC<br>公司名：<strong>Blued</strong>，坐标帝都朝阳双井<br>主要技术栈是React，也会有机会玩ReactNative和Electron<br>Node方向8.x版本+koa 新项目会以TS为主<br>有兴趣的小伙伴可以联系我详谈：<br>email: jiashunming@blued.com<br>wechat: github_jiasm</p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/fb80.html>https://news.zfe.space/p/fb80.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:32+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/fb80.html&title=Javascript装饰器的妙用 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=6201&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/fb80.html&title=Javascript装饰器的妙用 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=6201&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/fb80.html&title=Javascript装饰器的妙用 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=6201&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/7a8c.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>记录一次基于vue、typescript、pwa的项目由开发到部署</p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a><a class=next href=/p/e9d8.html><p class=title>THE BEAST<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>Directed by:Jean-Michel DrechslerProduced by:BETCPost production:unit imageClient:FLACBehind ...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>什么是装饰器</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>为什么要用装饰器</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>函数中的作用</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Class 中的作用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>@Decorator的使用方法</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>@Decorator 在 Class 中的使用</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>新增一些属性</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>修改原有属性的描述符</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>使用闭包来增强装饰器的功能</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>多个装饰器的应用</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>@Decorator 在 Class 成员中的使用</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>静态成员与实例成员在返回值上的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>函数，访问器，和属性装饰器三者之间的区别</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>函数</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>访问器</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>属性</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>函数参数装饰器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>使用装饰器实现一个有趣的Koa封装</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>装饰器的准备</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Koa服务的处理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>总结</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>参考资料</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>One more thing</span></a></li></ol></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="Javascript装饰器的妙用";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

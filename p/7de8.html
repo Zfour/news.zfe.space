@@ -1,0 +1,841 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>前端工程化实战 - 可配置的模板管理 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title="前端工程化实战 - 可配置的模板管理" href=/p/7de8.html><img class=thumbnail src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>前端工程化实战 - 可配置的模板管理</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%A0%87%E7%AD%BE/">标签</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月22日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="前端工程化实战 - 可配置的模板管理" data-path=/p/7de8.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><p>⚠️ 本文为掘金社区首发签约文章，未获授权禁止转载</p><h2 data-id=heading-0>前言</h2><p>前端工程化的实战目前已经到了第三篇，在前两篇中已经分别搭建了一个简单的 React 脚手架与一个初步可用的 CLI 工具。</p><p>在基础脚手架搭建完毕之后，我们就可以着手于模板管理的开发，毕竟在真实环境中，一套脚手架是远远不能满足需求的，我们会面对各式各样的业务场景，而对于这些场景都可能会有定制的脚手架出现。</p><p>那么我们该如何管理这些脚手架呢？</p><h2 data-id=heading-1>功能设计</h2><p>如果每一次<strong>新脚手架的开发或者模板的更新</strong>都需要重新更新一次 CLI 的话，虽然成本不高，但是开发模板的同学需要通知 CLI 开发的同学去升级，使用模板的同学又需要在等 CLI 开发完毕才能使用，中间交流沟通的成本就增加了。</p><p>其次，对于业务开发同学来说，可能只需要一类或者几类的模板，那么如果 CLI 是一个大而全的模板集合，对这些同学来说，快速选择模板创建项目反而也是一个负担，因为要在很多模板中选择自己想要的也是很花费时间。</p><p>所以我们的目的是设计一款拥有<strong>自定义配置与可升级模板</strong>功能的 CLI 工具。</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=未命名文件.png loading=lazy referrerpolicy=no-referrer></p><p>既然是自定义配置，那么就需要用户可以在本地手动添加、删除、更新自己常用的模板信息，同时需要可以动态的拉取这些模板而不是一直下载下来就是本地的旧版本。</p><p>根据需求，可简单设计一下我们 CLI 的模板功能概要：</p><ol><li>需要保存模板来源的地址</li><li>根据用户的选择拉取不同的模板代码</li><li>将模板保存在本地</li></ol><h2 data-id=heading-2>实战开发</h2><p>那么根据上面的设计思路，我们可以一步步开发所需要的功能</p><h4 data-id=heading-3>本地保存模板地址功能</h4><p>第一步，如果需要将模板的一些信息保存在本地的话，我们需要一个对话型的交互，引导用户输入我们需要的信息，所以可以选择 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Finquirer" target=_blank rel="nofollow noopener noreferrer" title=https://www.npmjs.com/package/inquirer ref="nofollow noopener noreferrer">inquirer</a> 这个工具库。</p><blockquote><p><code>Inquirerjs</code> 是一个用来实现命令行交互式界面的工具集合。它帮助我们实现与用户的交互式交流，比如给用户提一个问题，用户给我们一个答案，我们根据用户的答案来做一些事情，典型应用如 <code>plop</code>等生成器工具。</p></blockquote><p>一般拉取代码的话，我们需要知道用户输入的模板地址（通过 URL 拉取对应模板的必须条件）、模板别名（方便用户做搜索）、模板描述（方便用户了解模板信息）</p><p>这样需要保存的模板信息有地址、别名与描述，后续可以方便我们去管理对应的模板。示例代码如下：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>import</span> inquirer <span class=hljs-keyword>from</span> <span class=hljs-string>'inquirer'</span>;
+<span class=hljs-keyword>import</span> &#123; addTpl &#125; <span class=hljs-keyword>from</span> <span class=hljs-string>'@/tpl'</span>
+
+<p><span class=hljs-keyword>const</span> promptList = [<br>  &#123;<br>    <span class=hljs-attr>type</span>: <span class=hljs-string>‘input’</span>,<br>    <span class=hljs-attr>message</span>: <span class=hljs-string>‘请输入仓库地址:’</span>,<br>    <span class=hljs-attr>name</span>: <span class=hljs-string>‘tplUrl’</span>,<br>    <span class=hljs-attr>default</span>: <span class=hljs-string>‘<a target=_blank rel=noopener href=https://github.com/boty-design/react-tpl&#39;>https://github.com/boty-design/react-tpl&#39;</a></span><br>  &#125;,<br>  &#123;<br>    <span class=hljs-attr>type</span>: <span class=hljs-string>‘input’</span>,<br>    <span class=hljs-attr>message</span>: <span class=hljs-string>‘模板标题(默认为 Git 名作为标题):’</span>,<br>    <span class=hljs-attr>name</span>: <span class=hljs-string>‘name’</span>,<br>    <span class=hljs-function><span class=hljs-title>default</span>(<span class=hljs-params>&#123; tplUrl &#125;: &#123; tplUrl: <span class=hljs-built_in>string</span> &#125;</span>)</span> &#123;<br>      <span class=hljs-keyword>return</span> tplUrl.substring(tplUrl.lastIndexOf(<span class=hljs-string>‘/‘</span>) + <span class=hljs-number>1</span>)<br>    &#125;<br>  &#125;,<br>  &#123;<br>    <span class=hljs-attr>type</span>: <span class=hljs-string>‘input’</span>,<br>    <span class=hljs-attr>message</span>: <span class=hljs-string>‘描述:’</span>,<br>    <span class=hljs-attr>name</span>: <span class=hljs-string>‘desc’</span>,<br>  &#125;<br>];</p>
+<p><span class=hljs-keyword>export</span> <span class=hljs-keyword>default</span> () =&gt; &#123;<br>  inquirer.prompt(promptList).then(<span class=hljs-function>(<span class=hljs-params>answers: <span class=hljs-built_in>any</span></span>) =&gt;</span> &#123;<br>    <span class=hljs-keyword>const</span> &#123; tplUrl, name, desc &#125; = answers<br>    addTpl(tplUrl, name, desc)<br>  &#125;)<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>通过 <code>inquirer</code> 已经拿到了对应的信息，但由于会有电脑重启等各种情况发生，所以数据存在缓存中是不方便的，这种 CLI 工具如果使用数据库来存储也是大材小用，所以可以将信息直接已经以 json 文件的方式存储在本地。</p><p>示例代码如下：</p><pre><code class=copyable>import &#123; loggerError, loggerSuccess, getDirPath &#125; from '@/util'
+import &#123; loadFile, writeFile &#125; from '@/util/file'
+
+<p>interface ITpl &#123;<br>  tplUrl: string<br>  name: string<br>  desc: string<br>&#125;</p>
+<p>const addTpl = async (tplUrl: string, name: string, desc: string) =&gt; &#123;<br>  const cacheTpl = getDirPath(‘../cacheTpl’)<br>  try &#123;<br>    const tplConfig = loadFile&lt;ITpl[]&gt;(<code>$&amp;#123;cacheTpl&amp;#125;/.tpl.json</code>)<br>    let file = [&#123;<br>      tplUrl,<br>      name,<br>      desc<br>    &#125;]<br>    if (tplConfig) &#123;<br>      const isExist = tplConfig.some(tpl =&gt; tpl.name === name)<br>      if (isExist) &#123;<br>        file = tplConfig.map(tpl =&gt; &#123;<br>          if (tpl.name === name) &#123;<br>            return &#123;<br>              tplUrl,<br>              name,<br>              desc<br>            &#125;<br>          &#125;<br>          return tpl<br>        &#125;)<br>      &#125; else &#123;<br>        file = [<br>          …tplConfig,<br>          …file<br>        ]<br>      &#125;<br>    &#125;<br>    writeFile(cacheTpl, ‘.tpl.json’, JSON.stringify(file, null, “\t”))<br>    loggerSuccess(‘Add Template Successful!’)<br>  &#125; catch (error) &#123;<br>    loggerError(error)<br>  &#125;<br>&#125;</p>
+<p>export &#123;<br>  addTpl,<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>这里我们需要对是否保存还是更新模板做一个简单的流程判断：</p><ol><li>判断当前是否存在 tpl 的缓存文件，如果已存在缓存文件，那么需要跟当前的模板信息合并，如果不存在的话则需要创建文件，将获取的信息保存进去。</li><li>如果当前已存在缓存文件，需要根据 <code>name</code> 判断是已经被缓存了，如果被缓存了的话，则根据 <code>name</code> 来更新对应的模板信息。</li></ol><p>接下来，我们来演示一下，使用的效果。</p><p>根据之前的操作，构建完 CLI 之后，运行 <code>fe-cil add tpl</code> 可以得到如下的结果：</p><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8d0f18e26134759953908d825887acd~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f8d0f18e26134759953908d825887acd~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>那么在对应的路径可以看到已经将这条模板信息缓存下来了。</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a9b8e0bb8854995aac8b269016faf68~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3a9b8e0bb8854995aac8b269016faf68~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>如上，我们已经完成一个简单的本地对模板信息添加与修改功能，同样删除也是类似的操作，根据自己的实际需求开发即可。</p><h4 data-id=heading-4>下载模板</h4><p>在保存了模板之后，我们需要选择对应的模板下载了。</p><p>下载可以使用 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fdownload-git-repo" target=_blank rel="nofollow noopener noreferrer" title=https://www.npmjs.com/package/download-git-repo ref="nofollow noopener noreferrer">download-git-repo</a> 作为 CLI 下载的插件，这是一款非常好用的插件，支持无 clone 去下载对应的模板，非常适合我们的项目。</p><blockquote><p><code>download-git-repo</code> 是一款下载 git repository 的工具库，它提供了简写与 direct:url 直接下载两种方式，同时也提供直接下载代码与 git clone 的功能，非常使用与方便。</p></blockquote><p>同样在下载模板的时候，我们需要给用户展示当前的保存好的模板列表，这里同样需要使用到 <code>inquirer</code> 工具。</p><ol><li>使用 <code>inquirer</code> 创建 list 选择交互模式，读取本地模板列表，让用户选择需要的模板</li></ol><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>export</span> <span class=hljs-keyword>const</span> selectTpl = <span class=hljs-function>() =></span> &#123;
+  <span class=hljs-keyword>const</span> tplList = getTplList()
+  <span class=hljs-keyword>const</span> promptList = [
+    &#123;
+      <span class=hljs-attr>type</span>: <span class=hljs-string>'list'</span>,
+      <span class=hljs-attr>message</span>: <span class=hljs-string>'请选择模板下载:'</span>,
+      <span class=hljs-attr>name</span>: <span class=hljs-string>'name'</span>,
+      <span class=hljs-attr>choices</span>: tplList && tplList.map(<span class=hljs-function>(<span class=hljs-params>tpl: ITpl</span>) =></span> tpl.name)
+    &#125;,
+    &#123;
+      <span class=hljs-attr>type</span>: <span class=hljs-string>'input'</span>,
+      <span class=hljs-attr>message</span>: <span class=hljs-string>'下载路径:'</span>,
+      <span class=hljs-attr>name</span>: <span class=hljs-string>'path'</span>,
+      <span class=hljs-function><span class=hljs-title>default</span>(<span class=hljs-params>&#123; name &#125;: &#123; name: <span class=hljs-built_in>string</span> &#125;</span>)</span> &#123;
+        <span class=hljs-keyword>return</span> name.substring(name.lastIndexOf(<span class=hljs-string>'/'</span>) + <span class=hljs-number>1</span>)
+      &#125;
+    &#125;
+  ];
+
+<p>  inquirer.prompt(promptList).then(<span class=hljs-function>(<span class=hljs-params>answers: <span class=hljs-built_in>any</span></span>) =&gt;</span> &#123;<br>    <span class=hljs-keyword>const</span> &#123; name, path &#125; = answers<br>    <span class=hljs-keyword>const</span> select = tplList &amp;&amp; tplList.filter(<span class=hljs-function>(<span class=hljs-params>tpl: ITpl</span>) =&gt;</span> tpl.name)<br>    <span class=hljs-keyword>const</span> tplUrl = select &amp;&amp; select[<span class=hljs-number>0</span>].tplUrl || <span class=hljs-string>‘’</span><br>    loadTpl(name, tplUrl, path)<br>  &#125;)<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><ol start=2><li>使用 <code>download-git-repo</code> 下载对应的模板</li></ol><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>export</span> <span class=hljs-keyword>const</span> loadTpl = <span class=hljs-function>(<span class=hljs-params>name: <span class=hljs-built_in>string</span>, tplUrl: <span class=hljs-built_in>string</span>, path: <span class=hljs-built_in>string</span></span>) =></span> &#123;
+  download(<span class=hljs-string>`direct:<span class=hljs-subst>$&#123;tplUrl&#125;</span>`</span>, getCwdPath(<span class=hljs-string>`./<span class=hljs-subst>$&#123;path&#125;</span>`</span>), <span class=hljs-function>(<span class=hljs-params>err: <span class=hljs-built_in>string</span></span>) =></span> &#123;
+    <span class=hljs-keyword>if</span> (err) &#123;
+      loggerError(err)
+    &#125; <span class=hljs-keyword>else</span> &#123;
+      loggerSuccess(<span class=hljs-string>`Download <span class=hljs-subst>$&#123;name&#125;</span> Template Successful!`</span>)
+    &#125;
+  &#125;)
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>但是问题来了，如果选择 <code>direct</code> 的模式，那么下载的是一个 zip 的地址，而不是正常的 git 地址，那么我们上述的地址就无效了，所以在正式下载代码之前需要对地址做一层转换。</p><p>首先看拉取规则，正常的 git 地址是 <code>https://github.com/boty-design/react-tpl</code>，而实际在 github 中下载的地址则是 <code>https://codeload.github.com/boty-design/react-tpl/zip/refs/heads/main</code>，可以看到对比正常的 github 链接的话，域名跟链接都有所改变，但是一定有项目名跟团队名，所以我们在存储的时候可以将 <code>boty-design/react-tpl</code> 拆出来，后期方便我们组装。</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>const</span> &#123; pathname &#125; = <span class=hljs-keyword>new</span> URL(tplUrl)
+<span class=hljs-keyword>if</span> (tplUrl.includes(<span class=hljs-string>'github.com'</span>)) &#123;
+  reTpl.org = pathname.substring(<span class=hljs-number>1</span>)
+  reTpl.downLoadUrl = <span class=hljs-string>'https://codeload.github.com'</span>
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre><p>如上述代码，解析 <code>tplUrl</code> 拿到的 <code>pathname</code> 就是我们需要的信息，再 dowload 模板的时候，重新组装下载链接即可。</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d74ee78c10548a4ba69d8bc51d9173b~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3d74ee78c10548a4ba69d8bc51d9173b~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff8daf866f224838b2cb5e668959432b~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ff8daf866f224838b2cb5e668959432b~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>如上图所示，我们可以将公共的模板下载到本地，方便同学正常开发了，但是此时还有一个问题，那就是上面的分支是 main 分支，不是每一个模板都有这个分支，可控性太差，那么我们怎么拿到项目所有的分支来选择性下载呢。</p><h2 data-id=heading-5>Github Api</h2><p>在 Github 中对于开源、不是私有的项目，可以省去授权 token 的步骤，直接使用 Github Api 获取到对应的信息。</p><p>所以针对上面提到问题，我们可以借助 Github Api 提供的能力来解决。</p><p>获取分支的链接是 <code>https://api.github.com/repos/boty-design/react-tpl/branches</code>，在开发之前我们可以使用 PostMan 来测试一下是否正常返回我们需要的结果。</p><p><img src=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4211724ffe104704abce8a2f400ac914~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4211724ffe104704abce8a2f400ac914~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>如上可以看到，已经能通过 Github Api 拿到我们想要的分支信息了。</p><blockquote><p>如果出现了下述错误的话，没关系，只是 github 限制访问的频率罢了</p></blockquote><p><img src=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4982e9e72c5d44d6bb4534b9f0d37d58~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4982e9e72c5d44d6bb4534b9f0d37d58~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png loading=lazy referrerpolicy=no-referrer></p><p>针对上述的问题，我们需要的是控制频率、使用带条件的请求或者使用 token 请求 Github Api 的方式来规避，但是鉴于模板来说，一般请求频率也不会很高，只是我在开发的时候需要不断的请求来测试，才会出现这种问题，各位同学有兴趣的话可以自己试试其他的解决方案。</p><h4 data-id=heading-6>分支代码优化</h4><p><img src=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f69f2ca0e8a04504bbbf999a661a7946~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f69f2ca0e8a04504bbbf999a661a7946~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="未命名文件 (1).png" loading=lazy referrerpolicy=no-referrer></p><p>在预研完 Github Api 之后，接下来就需要对拿到的信息做一层封装，例如只有一条分支的时候用户可以直接下载模板，如果请求到多条分支的时候，则需要显示分支让用户自由选择对应的分支下载模板，整体的业务流程图如上所示。</p><p>主要逻辑代码如下：</p><pre><code class="hljs language-ts copyable" lang=ts><span class=hljs-keyword>export</span> <span class=hljs-keyword>const</span> selectTpl = <span class=hljs-keyword>async</span> () => &#123;
+  <span class=hljs-keyword>const</span> prompts: <span class=hljs-built_in>any</span> = <span class=hljs-keyword>new</span> Subject();
+  <span class=hljs-keyword>let</span> select: ITpl
+  <span class=hljs-keyword>let</span> githubName: <span class=hljs-built_in>string</span>
+  <span class=hljs-keyword>let</span> path: <span class=hljs-built_in>string</span>
+  <span class=hljs-keyword>let</span> loadUrl: <span class=hljs-built_in>string</span>
+
+<p>  <span class=hljs-keyword>try</span> &#123;<br>    <span class=hljs-keyword>const</span> onEachAnswer = <span class=hljs-keyword>async</span> (result: <span class=hljs-built_in>any</span>) =&gt; &#123;<br>      <span class=hljs-keyword>const</span> &#123; name, answer &#125; = result<br>      <span class=hljs-keyword>if</span> (name === <span class=hljs-string>‘name’</span>) &#123;<br>        githubName = answer<br>        select = tplList.filter(<span class=hljs-function>(<span class=hljs-params>tpl: ITpl</span>) =&gt;</span> tpl.name === answer)[<span class=hljs-number>0</span>]<br>        <span class=hljs-keyword>const</span> &#123; downloadUrl, org &#125; = select<br>        <span class=hljs-keyword>const</span> branches = <span class=hljs-keyword>await</span> getGithubBranch(select) <span class=hljs-keyword>as</span> IBranch[]<br>        loadUrl = <span class=hljs-string><code>&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;downloadUrl&amp;#125;&lt;/span&gt;/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;org&amp;#125;&lt;/span&gt;/zip/refs/heads</code></span><br>        <span class=hljs-keyword>if</span> (branches.length === <span class=hljs-number>1</span>) &#123;<br>          loadUrl = <span class=hljs-string><code>&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;loadUrl&amp;#125;&lt;/span&gt;/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;branches[&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;].name&amp;#125;&lt;/span&gt;</code></span><br>          prompts.next(&#123;<br>            <span class=hljs-attr>type</span>: <span class=hljs-string>‘input’</span>,<br>            <span class=hljs-attr>message</span>: <span class=hljs-string>‘下载路径:’</span>,<br>            <span class=hljs-attr>name</span>: <span class=hljs-string>‘path’</span>,<br>            <span class=hljs-attr>default</span>: githubName<br>          &#125;);<br>        &#125; <span class=hljs-keyword>else</span> &#123;<br>          prompts.next(&#123;<br>            <span class=hljs-attr>type</span>: <span class=hljs-string>‘list’</span>,<br>            <span class=hljs-attr>message</span>: <span class=hljs-string>‘请选择分支:’</span>,<br>            <span class=hljs-attr>name</span>: <span class=hljs-string>‘branch’</span>,<br>            <span class=hljs-attr>choices</span>: branches.map(<span class=hljs-function>(<span class=hljs-params>branch: IBranch</span>) =&gt;</span> branch.name)<br>          &#125;);<br>        &#125;<br>      &#125;<br>      <span class=hljs-keyword>if</span> (name === <span class=hljs-string>‘branch’</span>) &#123;<br>        loadUrl = <span class=hljs-string><code>&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;loadUrl&amp;#125;&lt;/span&gt;/&lt;span class=&quot;hljs-subst&quot;&gt;$&amp;#123;answer&amp;#125;&lt;/span&gt;</code></span><br>        prompts.next(&#123;<br>          <span class=hljs-attr>type</span>: <span class=hljs-string>‘input’</span>,<br>          <span class=hljs-attr>message</span>: <span class=hljs-string>‘下载路径:’</span>,<br>          <span class=hljs-attr>name</span>: <span class=hljs-string>‘path’</span>,<br>          <span class=hljs-attr>default</span>: githubName<br>        &#125;);<br>      &#125;<br>      <span class=hljs-keyword>if</span> (name === <span class=hljs-string>‘path’</span>) &#123;<br>        path = answer<br>        prompts.complete();<br>      &#125;<br>    &#125;</p>
+<pre><code>&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; onError = &lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;error: &lt;span class=&quot;hljs-built_in&quot;&gt;string&lt;/span&gt;&lt;/span&gt;) =&gt;&lt;/span&gt; &amp;#123;
+  loggerError(error)
+&amp;#125;
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; onCompleted = &lt;span class=&quot;hljs-function&quot;&gt;() =&gt;&lt;/span&gt; &amp;#123;
+  loadTpl(githubName, loadUrl, path)
+&amp;#125;
+
+inquirer.prompt(prompts).ui.process.subscribe(onEachAnswer, onError, onCompleted);
+
+&lt;span class=&quot;hljs-keyword&quot;&gt;const&lt;/span&gt; tplList = getTplList() &lt;span class=&quot;hljs-keyword&quot;&gt;as&lt;/span&gt; ITpl[]
+
+prompts.next(&amp;#123;
+  &lt;span class=&quot;hljs-attr&quot;&gt;type&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&#39;list&#39;&lt;/span&gt;,
+  &lt;span class=&quot;hljs-attr&quot;&gt;message&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&#39;请选择模板:&#39;&lt;/span&gt;,
+  &lt;span class=&quot;hljs-attr&quot;&gt;name&lt;/span&gt;: &lt;span class=&quot;hljs-string&quot;&gt;&#39;name&#39;&lt;/span&gt;,
+  &lt;span class=&quot;hljs-attr&quot;&gt;choices&lt;/span&gt;: tplList.map(&lt;span class=&quot;hljs-function&quot;&gt;(&lt;span class=&quot;hljs-params&quot;&gt;tpl: ITpl&lt;/span&gt;) =&gt;&lt;/span&gt; tpl.name)
+&amp;#125;);
+</code></pre><p> &#125; <span class=hljs-keyword>catch</span> (error) &#123;<br> loggerError(error)<br> &#125;<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p><p>上述代码，我们可以看到使用了 RXJS 来动态的渲染交互问题，因为存在一些模板的项目分支只有一个的情况。如果我们每次都需要用户都去选择分支是有多余累赘的，所以固定的问题式交互已经不适用了，我们需要借助 RXJS 动态添加 inquirer 问题，通过获取的分支数量来判断是否出现选择分支这个选项，提高用户体验。</p><h2 data-id=heading-7>写在最后</h2><p>在第一篇 <a href=https://juejin.cn/post/6982215543017193502 target=_blank title=https://juejin.cn/post/6982215543017193502>企业级 CLI 开发</a> 中，我们一起搭建了一个初步的 CLI 架子，提供了构建、Eslint 校验等基础功能。</p><p>在第二篇 <a href=https://juejin.cn/post/6989028324202938398 target=_blank title=https://juejin.cn/post/6989028324202938398>自定义 React 脚手架 & CLI 升级</a> 中，我们一起搭建一个简单的 React 脚手架，以及使用 CLI 去接管模板的 dev 模块，并且提供了拓展构建配置等功能，完成一个基础的 CLI 模板工具的整合</p><p>在这一篇中，我们将上一篇的脚手架作为模板，对 CLI 进行了更进一步的改造，使得 CLI 可以让用户自主的配置符合自己需求与习惯的模板。</p><p>经过这三篇文章，CLI 已经具备了下述这些功能：</p><table><thead><tr><th>CLI 命令</th><th>功能</th></tr></thead><tbody><tr><td>fe-cli eslint</td><td>对当前项目进行 Eslint 校验</td></tr><tr><td>fe-cli webpack</td><td>使用 Webapck 当前项目进行构建</td></tr><tr><td>fe-cli rollup</td><td>使用 Rollup 当前项目进行构建</td></tr><tr><td>fe-cli git init</td><td>本地初始化 git 项目（当前支持 GitLab 部分功能）</td></tr><tr><td>fe-cli add tpl</td><td>自定义添加模板</td></tr><tr><td>fe-cli init tpl</td><td>将添加的模板初始化到本地</td></tr></tbody></table><p>整个 CLI 将根据第一篇的需求设计，逐步打造一款通用性可改造的工具，可以给同学们做一个实用性参考。</p><p>在下一篇，CLI 将会围绕工具类的模块进行开发。</p><p>所有的项目代码已经上传至<a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fboty-design%2Ffe-cli" title="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fboty-design%2Ffe-cli" target=_blank>项目地址</a>，有兴趣的同学可以拉取参考，后续所有专栏的相关的代码都会统一放在 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fboty-design" title="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Fboty-design" target=_blank>BOTY DESIGN</a> 中。</p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/7de8.html>https://news.zfe.space/p/7de8.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:31+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/7de8.html&title=前端工程化实战 - 可配置的模板管理 - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/7de8.html&title=前端工程化实战 - 可配置的模板管理 - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/7de8.html&title=前端工程化实战 - 可配置的模板管理 - 小冰 RSSHub&pics=https://p6-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c3c0d414e6d4415886c5fc4903b36d05~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/3769.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>钛盘 TMP.link - 不限速无限空间临时分享网盘 (免客户端_支持CURL命令行上传下载)</p><p class=content>热点优惠：115 网盘 11.5 年超长会员 | Apple 官网返校优惠 - 免费送 AirPods 无线耳机主流的网盘可以分为两种，一种是个人长期存储文件的网盘，另一种是临时...</p></a><a class=next href=/p/5ceb.html><p class=title>好物推荐 Moises：人声消除、伴奏音轨分离神器<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>「Moises.ai」是一款AI智能音乐提取工具，可帮助从事音乐工作的用户或者音乐爱好者将音乐文件根据自己需求进行快速轨道分离和二次编辑。比如，从任何一首歌曲中提取或删除人声，或者从...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>前言</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>功能设计</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>实战开发</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>本地保存模板地址功能</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>下载模板</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Github Api</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>分支代码优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>写在最后</span></a></li></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="前端工程化实战 - 可配置的模板管理";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

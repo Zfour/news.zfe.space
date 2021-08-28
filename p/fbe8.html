@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>【转载】京东到家商品系统架构演进 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image></a></div><div class=article-meta id=top><a title=【转载】京东到家商品系统架构演进 href=/p/fbe8.html><img class=thumbnail src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image></a><h1 class=title>【转载】京东到家商品系统架构演进</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E6%A0%87%E7%AD%BE/">标签</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月26日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=【转载】京东到家商品系统架构演进 data-path=/p/fbe8.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;color:#595959;font-size:15px;font-family:-apple-system,system-ui,BlinkMacSystemFont,Helvetica Neue,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Arial,sans-serif;background-image:linear-gradient(90deg,rgba(60,10,30,.04) 3%,transparent 0),linear-gradient(1turn,rgba(60,10,30,.04) 3%,transparent 0);background-size:20px 20px;background-position:50%&#125;.markdown-body p&#123;color:#595959;font-size:15px;line-height:2;font-weight:400&#125;.markdown-body p+p&#123;margin-top:16px&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;padding:30px 0;margin:0;color:#135ce0&#125;.markdown-body h1&#123;position:relative;text-align:center;font-size:22px;margin:50px 0&#125;.markdown-body h1:before&#123;position:absolute;content:"";top:-10px;left:50%;width:32px;height:32px;transform:translateX(-50%);background-size:100% 100%;opacity:.36;background-repeat:no-repeat;background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABfVBMVEX///8Ad/8AgP8AgP8AgP8Aff8AgP8Af/8AgP8AVf8Af/8Af/8AgP8AgP8Af/8Afv8AAP8Afv8Afv8Aef8AgP8AdP8Afv8AgP8AgP8Acf8Ae/8AgP8Af/8AgP8Af/8Af/8AfP8Afv8AgP8Af/8Af/8Afv8Afv8AgP8Afv8AgP8Af/8Af/8AgP8AgP8Afv8AgP8Af/8AgP8AgP8AgP8Ae/8Afv8Af/8AgP8Af/8AgP8Af/8Af/8Aff8Af/8Abf8AgP8Af/8AgP8Af/8Af/8Afv8AgP8AgP8Afv8Afv8AgP8Af/8Aff8AgP8Afv8AgP8Aff8AgP8AfP8AgP8Ae/8AgP8Af/8AgP8AgP8AgP8Afv8AgP8AgP8AgP8Afv8AgP8AgP8AgP8AgP8AgP8Af/8AgP8Af/8Af/8Aev8Af/8AgP8Aff8Afv8AgP8AgP8AgP8Af/8AgP8Af/8Af/8AgP8Afv8AgP8AgP8AgP8AgP8Af/8AeP8Af/8Af/8Af//////rzEHnAAAAfXRSTlMAD7CCAivatxIDx5EMrP19AXdLEwgLR+6iCR/M0yLRzyFF7JupSXn8cw6v60Q0QeqzKtgeG237HMne850/6Qeq7QaZ+WdydHtj+OM3qENCMRYl1B3K2U7wnlWE/mhlirjkODa9FN/BF7/iNV/2kASNZpX1Wlf03C4stRGxgUPclqoAAAABYktHRACIBR1IAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH4gEaBzgZ4yeM3AAAAT9JREFUOMvNUldbwkAQvCAqsSBoABE7asSOBRUVVBQNNuy9996789+9cMFAMHnVebmdm+/bmdtbQv4dOFOW2UjPzgFyLfo6nweKfIMOBYWwFtmMPGz2Yj2pJI0JDq3udJW6VVbmKa9I192VQFV1ktXUAl5NB0cd4KpnORqsEO2ZIRpF9gJfE9Dckqq0KuZt7UAH5+8EPF3spjsRpCeQNO/tA/qDwIDA+OCQbBoKA8NOdjMySgcZGVM6jwcgRuUiSs0nlPFNSrEpJfU0jTLD6llqbvKxei7OzvkFNQohi0vAsj81+MoqsCaoPOQFgus/1LyxichW+hS2JWCHZ7VlF9jb187pIAYcHiViHAMnp5mTjJ8B5xeEXF4B1ze/fTh/C0h398DDI9HB07O8ci+vRBdvdGnfP4gBuM8vw7X/G3wDmFhFZEdxzjMAAAAldEVYdGRhdGU6Y3JlYXRlADIwMTgtMDEtMjZUMDc6NTY6MjUrMDE6MDA67pVWAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDE4LTAxLTI2VDA3OjU2OjI1KzAxOjAwS7Mt6gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAAWdEVYdFRpdGxlAGp1ZWppbl9sb2dvIGNvcHlxapmKAAAAV3pUWHRSYXcgcHJvZmlsZSB0eXBlIGlwdGMAAHic4/IMCHFWKCjKT8vMSeVSAAMjCy5jCxMjE0uTFAMTIESANMNkAyOzVCDL2NTIxMzEHMQHy4BIoEouAOoXEXTyQjWVAAAAAElFTkSuQmCC)&#125;.markdown-body h2&#123;position:relative;font-size:20px;border-left:4px solid;padding:0 0 0 10px;margin:30px 0&#125;.markdown-body h3&#123;font-size:16px&#125;.markdown-body ul&#123;list-style:disc outside;margin-left:2em;margin-top:1em&#125;.markdown-body li&#123;line-height:2;color:#595959&#125;.markdown-body img.loaded&#123;margin:0 auto;display:block&#125;.markdown-body blockquote&#123;background:#fff9f9;margin:2em 0;padding:2px 20px;border-left:4px solid #b2aec5&#125;.markdown-body blockquote p&#123;color:#666;line-height:2&#125;.markdown-body a&#123;color:#036aca;border-bottom:1px solid rgba(3,106,202,.8);font-weight:400;text-decoration:none&#125;.markdown-body em strong,.markdown-body strong&#123;color:#036aca&#125;.markdown-body hr&#123;border-top:1px solid #135ce0&#125;.markdown-body pre&#123;overflow:auto&#125;.markdown-body code,.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body table&#123;border-collapse:collapse;margin:1rem 0;overflow-x:auto&#125;.markdown-body table td,.markdown-body table th&#123;border:1px solid #dfe2e5;padding:.6em 1em&#125;.markdown-body table tr&#123;border-top:1px solid #dfe2e5&#125;.markdown-body table tr:nth-child(2n)&#123;background-color:#f6f8fa&#125;</style><blockquote><p>作者：孙岩 <a href="https://link.juejin.cn/?target=https%3A%2F%2Fmp.weixin.qq.com%2Fs%2FOt3fQ0AVLFtjuJsUvMkxoQ" target=_blank rel="nofollow noopener noreferrer" title=https://mp.weixin.qq.com/s/Ot3fQ0AVLFtjuJsUvMkxoQ ref="nofollow noopener noreferrer">原文地址 达达集团技术</a></p></blockquote><h3 data-id=heading-0>前言</h3><p>商品系统是电商系统最基础、最核心的系统之一。商品数据遍布所有业务，首页、门店页、购物车、订单、结算、售后、库存、价格等，都离不开商品。商品信息要稳定提供至到家供应链的每个节点，所以必须要有一套稳定的、高性能的商品服务体系支撑。</p><p>随着京东到家商品业务的快速发展，业务从单一转变为多元化，系统功能设计上也从最初的大而全的功能支持，向微功能、领域化演变。</p><p>商品系统也在高可用、高并发的持续冲击下，经历了多个架构版本的演进。最初 1.0 版本，采用合适简单的设计思路，满足了业务快速迭代上线；随着业务量级的快速增长，针对高可用、高性能的提升，演进出了 2.0 版本。随后业务复杂度的提升，导致了系统复杂度的提升，为了解决系统复杂度带来的问题，孕育出了 3.0 商品体系领域建设。</p><h3 data-id=heading-1>到家商品架构初始模型 1.0 合适、简单原则设计思想</h3><h4 data-id=heading-2>商品系统雏形</h4><p>到家商品系统创建之初，为了贴合业务的快速发展，设计并且上线了到家商品 1.0 系统。商品系统服务本着大而全的思想，用一套服务提供给上游业务方聚合的商品数据，无论是 B 端业务还是 C 端业务均耦合在一起，在应对业务快速迭代上线、节省开发成本上 充分体现出了简单的优势。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>随着业务量级的增加，最初设计的劣势也突显了出来，主要体现在以下几点：</p><p><strong>· 线上 B/C 端业务耦合在一起，导致线上读 / 写业务相互影响，特别是大促期间 大量修改商品导致 C 端服务不稳定，只能通过不断横向扩容来提高稳定性，继而导致了严重的资源浪费；</strong></p><p><strong>· 服务端性能波动较大；</strong></p><p><strong>· 简易的缓存架构，在高并发下 Redis 缓存击穿问题；</strong></p><p><strong>· 监控不全面，无法及时预警；</strong></p><p>针对上述问题，商品系统从高可用、高性能的出发点进行了架构 2.0 演进；</p><h3 data-id=heading-3>到家商品架构 - 2.0 高可用、高性能架构模式演进</h3><p>商品系统经历了 1.0 快速迭代的阶段后，线上流量也随着业务的增长翻倍，B/C 端服务的高耦合导致了商品服务的波动大，而且监控的不全面也导致了不能及时发现系统异常。</p><p>为了提高商品系统服务的高可用，商品系统制定了以下迭代方案。</p><p><strong>·AP 原则 + 最终一致性思路</strong></p><p><strong>·B/C 服务分离</strong></p><p><strong>· 异地多活、双机架构</strong></p><p><strong>·Sentinel 限流</strong></p><p><strong>· 监控平台</strong></p><h4 data-id=heading-4>高可用演进</h4><h4 data-id=heading-5>（1）AP 原则 + 最终一致性思路</h4><p>为了提高商品 C 端读服务的高可用，采用了 AP 原则 + 最终一致性的设计思路, 引入了分布式缓存 Redis 集群提高读服务可用性, 并通过异步消息保证数据的最终一致性。</p><p>AP 原则贴合商品系统 C 端服务的业务场景，比如：因为网络延迟等问题, 数据库没有及时同步数据至 Redis 缓存, 导致当前读取的商品数据和数据库的数据不一致, 这种短暂的不一致, 在业务上是可以接受的。</p><p>引入分布式 Redis 集群后，商品 C 端读服务能力不仅提高了可用性，而且在性能上表现也非常出色。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43d74006b45d478297688c7afd8a4c5d~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/43d74006b45d478297688c7afd8a4c5d~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-6>（2）B/C 服务分离</h4><p>商家会通过对接开放平台接口，定期修改商品的信息、图片等属性。例如：我们在一次大促中遇到商家集中修改商品信息，结果写服务占用了大量的系统资源，导致了读服务可用受损。</p><p>为了提高商品服务 B/C 端各自的可用性，独立部署了 B/C 端服务，分别对外提供服务。B/C 服务拆分后，商品系统在后续的各种大促中，B/C 服务各自表现平稳，极大提升了商品服务的可用性。商家后续写操作，商品系统再也没有出现过读服务受损的情况。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6c604dfb00c431d9cf225f4bce54988~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e6c604dfb00c431d9cf225f4bce54988~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-7>（3）异地多活、双机架构</h4><p><strong>异地多活</strong> - 到家商品服务 docker 所在的物理机机房，采用了异地多活的方式进行部署，机房分布在多个不同地区，遵循 “鸡蛋不要放在一个篮子里” 原则。在一个机房出现问题的时候，还有另外两个机房提供服务，极大提高了商品系统应对黑天鹅事件的处理的可伸缩性。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a2dc84c56ebc4e46910ba605dfc87e14~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a2dc84c56ebc4e46910ba605dfc87e14~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p><strong>双机架构</strong> - 作为商品核心读服务的支撑中间件 Redis 集群，使用了主 - 从模式， 并且主分片和从分片分属不同的机房，在主分片异常的时候主从自动切换。</p><p>Mongodb 采用了 1 主 2 备的方式进行数据备份，主库异常可通过域名快速切换主备节点，整个切换过程平滑无感知。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1d3cf3a95154233b9004cc821b66222~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/a1d3cf3a95154233b9004cc821b66222~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-8>（4）Sentinel 限流</h4><p>商品读服务引入了 Sentinel 流控组件，可以通过 Zookeeper 根据调用源实时配置不同的流控策略，在极端流量出现后，可以对非核心的调用源进行限流、熔断，为线上扩容争取足够的时间，避免了突如其来的异常流量导致商品整体服务不可用，提升了商品读服务的可用性。</p><p>商品服务通过配置方法名以及调用来源，对边缘业务调用、方法进行定向限流。在极限情况下，通过牺牲边缘业务的可用，起到保障核心方法的高可用的目的。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c1eb8efc16064ee9862d46272084ecbf~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c1eb8efc16064ee9862d46272084ecbf~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-9>（5）监控平台</h4><p>商品服务采用了京东的监控报警平台。商品接口 API，可以通过 UMP 监控不同时间段性能分布，实时统计 TP99、TP999、AVG、MAX 等维度指标。可以监控服务器 docker 的系统、网络、磁盘、容器等指标，并且通过设定报警阈值实时通知指定负责人。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9b57113042d44f59c31c810098016a3~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b9b57113042d44f59c31c810098016a3~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/832f0e64e44f49ecaffcc8655a01bfe3~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/832f0e64e44f49ecaffcc8655a01bfe3~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-10>高性能演进</h4><p>商品系统服务通过高可用的演进后，为我们提升商品服务的性能争取了时间。由于 1.0 版本商品 C 端服务的降级查询、以及缓存 Redis 击穿等问题，对商品系统的性能影响非常大。</p><p>例如：在促销期间，高并发的场景下经常会因为降级查询性能损耗 -> 响应线程等待 -> 线程池等待队列打满 -> 拒绝策略，继而引发商品的整体服务性能变慢。</p><p>为了提高商品系统服务的性能，商品系统制订了以下迭代方案。</p><p><strong>·C 端查询去 MongoDb 依赖</strong></p><p><strong>·Redis 持久化缓存</strong></p><p><strong>· 数据异步处理服务</strong></p><p><strong>· 内存缓存 ehcache</strong></p><h4 data-id=heading-11>（1）C 端去 MongoDb 依赖</h4><p>商品 1.0 版本，C 端的请求未命中 redis 缓存，则会降级查询 Mongodb 数据库并把数据回写到 redis 中。单次请求在商品系统内部经历了多次交互，且部分逻辑是与用户行为无关的比如反写 redis，同时存在着比较严重的缓存穿透的风险，商品服务端 API 性能上波动较大，风险也相对较高。</p><p>商品 C 端读服务移除了降级查询 Mongodb 的操作，且在 B 端处理了对 Redis 缓存的写操作，移除 Mongodb 依赖之后，商品 C 端读服务能力性能得到了极大改善。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1282ec4be8ab4d47b618e33c164e42a0~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1282ec4be8ab4d47b618e33c164e42a0~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-12>（2）Redis 持久化缓存</h4><p>商品系统经过 C 端查询去降级的改造后，Redis 集群存储的 KV，由之前的 1 个月过期时间，转换为持久化 KV 存储。</p><p>去掉 Redis 的 KV 过期时间，关键问题在于如何保证 MongoDb 数据库和 Redis 集群的数据一致性。B 端商品信息修改 通过异步任务的方式，将数据持久化刷新到 redis 缓存中，C 端请求 Redis 未命中的 KV 则视为不存在，不仅减少了商品系统内部请求的交互次数，而且有效防止了缓存穿透问题，最终降低了服务端响应时间。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b07f17182b7041fd947d413970ad217c~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b07f17182b7041fd947d413970ad217c~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-13>（3）数据异步处理服务</h4><p>商品最初的 B/C / 异步任务 耦合在一起，B/C 服务经历拆分后各自耦合了异步任务，当商品在修改信息、图片、属性、状态业务的时候，会异步回写 Redis 缓存来确保 MongDb 和 Redis 缓存 KV 数据的最终一致性，但是大量的异步任务会占用服务资源，从而拖慢 B/C 服务性能。</p><p>所以商品系统搭建了一套独立的数据异步处理服务，包含了异步任务以及消息队列，承载了商品 B/C 端服务所有的异步写、回写等数据操作。</p><p>拆分出的异步任务平台，不仅保障了异步任务功能的完整性，而且根除了异步任务大量写的情况下造成的 B/C 服务性能波动。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4f7bf7b34bb42e4a0c8180d8d89569a~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/c4f7bf7b34bb42e4a0c8180d8d89569a~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-14>（4）内存缓存 ehcache</h4><p>商品服务存在很多字典数据，比如类目字典、商家分类字典，这些字典往往都是商家维度的大 key。而且商家维度的 key hash 到分片相对集中，大流量的情况下容易出现热点 key 的问题，导致某几个分片输入输出缓冲区溢出，影响整个 redis 集群。</p><p>商品系统引入了 ehcache 内存缓存，通过客户端服务器内存存储这类数据，不仅解决了大 key、热 key 的问题 ，而且减少了与 redis 中间件的网络请求交互，请求响应速度大幅提升。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dacf0126056345f0be47607f77a54c89~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/dacf0126056345f0be47607f77a54c89~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h3 data-id=heading-15>小结：</h3><p>商品系统经过高性能、高可用的系统演进后，商品系统稳定高可用，在后续的大促流量验证下表现出色。</p><p>随着商品业务的迭代、以及系统的复杂度的增加，业务耦合度高、系统扩展困难、维护成本高的问题突显出来。</p><h3 data-id=heading-16>到家商品架构 - 3.0 商品体系领域建设</h3><p>商品业务由最初是线性的，随着业务的复杂度提升，商品的业务由线性逐渐转变为非线性。</p><p>例如：商家在建品后，由于操作不当，维护错了商品的信息，导致了异常品类商品数据产生，需要想办法实时监控、处理数据。</p><p>又例如：商家入驻到家平台，想把自己的商品快速同步至到家，我们如何提供一个快而全的建品体系供商家使用。</p><p>随着需求复杂度的提高，带动了商品系统的复杂度提高，我们在业务开发、扩展、维护的成本也随之提高。</p><p>而且系统复杂度提升也带来了以下几个问题：</p><p><strong>· 系统错误隔离性差，可用性差，任何一个模块的错误可能导致整个系统的宕机；</strong></p><p><strong>· 可伸缩性差，扩容只能对整个应用扩容，无法做到对整个功能点进行扩容；</strong></p><p><strong>· 所有的服务共用一套体系，某个方法的流量穿透会导致所有的服务不可用；</strong></p><p>为了提高系统扩展性、减少业务开发周期、节约维护成本、降低系统风险，在保障商品系统服务的稳定、高可用的前提下，开始启动了商品系统的 3.0 版本架构演进：商品体系领域建设。</p><h4 data-id=heading-17>（1）商品体系建设</h4><p>首先要明确商品业务的需求点，然后根据不同业务的需求点，从聚合的业务上划分出领域，基于业务领域对系统进行垂直拆分，用分而治之的理念进行商品体系的建设，继而拆分并独立部署以下几个业务领域系统。</p><p><strong>· 标库系统</strong></p><p>到家独有的 UPC 模板系统，提供给商家一键建品的商品模板以及对商家的标品进行规范，更好的赋能商家建品。</p><p><strong>· 拓品系统</strong></p><p>通过大数据分析，根据商家类型、经营范围等 补充、提供商家缺失的商品清单，协助商家进行拓宽商品。</p><p><strong>· 治理系统</strong></p><p>根据到家商品规则，治理商品的各项基本信息，规范正确数据，制定商品规范。</p><p><strong>· 限购系统</strong></p><p>针对商品用户端和手机端进行了商品数量的限购活动支持，协助商家维护单品的限购。</p><p><strong>· 属性系统</strong></p><p>商品上的类目属性、特殊属性等边缘属性系统的拆分。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f9bd48cb34534e89978623b7e155de18~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f9bd48cb34534e89978623b7e155de18~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>商品体系领域划分后，我们接下来要考虑如何在原有系统的基础上，把系统拆分出去。</p><p>商品系统拆分主要面临以下几个问题：从哪开始入手拆分？数据按照什么维度拆分？服务按照什么维度拆分？怎么保障拆分中的系统稳定？</p><p>针对上述问题，我们进行了以下几个点的操作：</p><p><strong>· 自上而下逻辑分层</strong></p><p><strong>· 自下而上方法分解</strong></p><p><strong>· 业务领域拆分</strong></p><p><strong>·Redis 缓存拆分</strong></p><h4 data-id=heading-18>（1）自上而下逻辑分层</h4><p><strong>首先</strong>，选择逻辑分层，目的在于隔离关注点 - 每个层中的组件只处理本层的逻辑。业务层中只需要处理业务逻辑，这样我们在扩展某层时，其他层是不受影响的，通过这种方式可以支撑系统在某层上快速扩展。</p><p><strong>其次</strong>，在原有层级上进行拆分，会对商品原有的逻辑功能造成很多不确定性的影响。新增加的业务聚合层，可以起到对上聚合入口、对下拆分方法的作用。自上而下的结构化分解极大程度上保证了系统升级迭代的风险可控，同时保持有更好的节奏进行后续的业务拆分；</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bf11e6575c7b435ea256bae5a4e93a70~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/bf11e6575c7b435ea256bae5a4e93a70~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-19>（2）自下而上方法分解</h4><h5 data-id=heading-20>方法分解：</h5><p>经过自上而下逻辑分层后，所有的业务方法全部抽取到 business 层进行聚合，接下来就是自下而上方法逻辑拆。保持原有 service 方法逻辑不变，并行一套全新的 serivce 层级并且保证方法遵循单一职责原则。这个过程耗费很多的时间和精力，所以尽量按照业务聚合层来决定拆分方向的优先级（优先次要业务），避免和正常业务需求开发的冲突，解耦本身就是一个小步慢跑的过程，不可能一步到位。拆分出的方法一定经过充分的测试验证，确保前后业务逻辑没发生改变。</p><h5 data-id=heading-21>方法切换开关：</h5><p>在 business 聚合层增加 Zookeeper 开关，用来切换新老方法调用，新方法如果有问题随时切换到老方法上，保障线上稳定。在线上充分稳定一段时间后，可以在后续的上线中去掉方法切换开关以及废弃的老方法。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0913c78dc3c4d3f83943431252a8475~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d0913c78dc3c4d3f83943431252a8475~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-22>（3）业务领域拆分</h4><p>在逻辑分层的基础上，按照商品业务进行垂直拆分，拆分出品牌、属性、分类、信息、图片等业务模块，对业务模块进行了解耦合。此时的业务以及代码层级结构已经很清晰了，可以根据模块按照优先级进行系统微服务领域拆分。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4cf31a5a80f84d49975637752a784691~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4cf31a5a80f84d49975637752a784691~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-23>（4）Redis 缓存拆分</h4><p>商品系统数据存储在一个 Redis 集群中，在持续高并发请求下，Redis 的输入、输出缓冲区流量会触达峰值，导致服务端、客户端连接中断，从而影响读服务的稳定。虽然可以通过横向扩容分片来解决燃眉之急，但是随着数据量级的不断增长，Redis 单集群的风险也越来越大。</p><p>商品基于 Redis 集群里不同的数据 KV，拆分出了主信息 KV、详情 KV、属性 KV 等独立的 Redis 集群，并且通过异步任务增量更新 Redis 集群数据。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/167aa8d1058d4500967cb074672322d2~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/167aa8d1058d4500967cb074672322d2~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h4 data-id=heading-24>（5）微服务架构演进 - 面向服务</h4><p>根据业务领域, 拆分出独立 Redis 缓存集群后，紧接着按照业务领域拆分服务, 拆出了主信息系统服务、图片系统服务、图文系统服务、属性系统服务等。</p><p>拆出的业务服务独立部署，根据自身业务功能点分配合理的机器资源。服务体系之间垂直隔离，提高了服务整体的可用性、可伸缩性，解决了因为某个模块导致的整体服务不可用的问题。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f38096a159114d72b9410ffebe72fd15~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f38096a159114d72b9410ffebe72fd15~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p>展望</p><p>商品系统体系化建设正在持续完善中，展望未来，到家商品系统在智能化、自动化、服务化的建设上，以及和算法、大数据领域的交互上，还有很多可拓展的方向。</p><p>比如：</p><p><strong>· 商品标库如何打造出一套智能化数据</strong>收集、筛选、审核、录入体系；</p><p><strong>· 商品治理如何借助算法的领域</strong>去实现智能化的商品纠错、敏感图、敏感词的快速识别；</p><p>上述举例，我们有以下几个思路：</p><p><strong>· 扩充标库商品数据</strong>，打造商品样板间，目的是为了打造到家商品核心竞争力 - 快速建品的能力，以如何智能化收集、筛选、审核、录入的目的，制订了如下设计流程框架。通过多个渠道去获取原始商品数据，首先经过系统过滤，清理掉垃圾数据，然后按照到家规则进行数据筛选、分拣，接着进行数据异构，把符合要求打散的数据拼接组合成到家预审核数据，经过大数据、数据比对、算法估分等操作进行分值加权，最后实现自动智能快审、录入的目的。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/535852319d3b43bb81a2f9128cd03da3~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/535852319d3b43bb81a2f9128cd03da3~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><p><strong>· 商品治理的力度决定一个平台商品的质量</strong>，所以如何借助系统、算法来解决人力成本是我们设计考虑的方向。主要设计思路是借助算法的领域，通过算法以及分值的加权来实现治理商品的最终目的。</p><p><img src=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f93dec863a2645b4a47cbc5e9c97e51a~tplv-k3u1fbpfcp-watermark.image class=lazyload data-srcset=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/f93dec863a2645b4a47cbc5e9c97e51a~tplv-k3u1fbpfcp-watermark.image srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" loading=lazy referrerpolicy=no-referrer></p><h3 data-id=heading-25>总结</h3><p>京东到家商品系统架构的每次演进，都是贴合业务的发展，目的都是解决业务系统复杂度带来的各种问题。1.0 阶段应对业务系统的快速迭代，2.0 阶段应对业务系统的稳定、高可用，3.0 阶段应对业务系统体系建设。每一个阶段尽量使用合适、简单的设计，防止过度设计产生更多的复杂度问题。</p><p>本着架构是顶层设计，并且贴合业务的思想，在系统优化设计的道路上，保持合适、简单原则的本心，以及持续可演进的方向，对到家商品系统进行不断的迭代和优化。在未来的日子里，还会遇到更多的挑战，更多的业务场景，更多未发现的隐患，相信没有最好的设计，只有最贴合业务的设计！</p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/fbe8.html>https://news.zfe.space/p/fbe8.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:31+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/fbe8.html&title=【转载】京东到家商品系统架构演进 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/fbe8.html&title=【转载】京东到家商品系统架构演进 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/fbe8.html&title=【转载】京东到家商品系统架构演进 - 小冰 RSSHub&pics=https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/ddf1afe0d4f54c3884e169e7ffbe0238~tplv-k3u1fbpfcp-watermark.image&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/b446.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>我怎么也没想到，孩子会轻易相信一个陌生网友.....</p><p class=content>💻 💻 💻你家孩子开始上网了吗？你放心让孩子直面复杂又危机四伏的网络空间吗？关于未成年人沉迷网络、网恋、被骗等触网发生问题的报道，屡见不鲜。2020年发布的《青少年蓝皮书：中国未成...</p></a><a class=next href=/p/1ee4.html><p class=title>产品经理接到跟进官网的工作，请问正常的工作流程？<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>公司之前有官网，现在要做重做，接到这个工作，产品经理应该如何入手？流程都是怎么样？</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>前言</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>到家商品架构初始模型 1.0 合适、简单原则设计思想</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>商品系统雏形</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>到家商品架构 - 2.0 高可用、高性能架构模式演进</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>高可用演进</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（1）AP 原则 + 最终一致性思路</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（2）B&#x2F;C 服务分离</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（3）异地多活、双机架构</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（4）Sentinel 限流</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（5）监控平台</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>高性能演进</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（1）C 端去 MongoDb 依赖</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（2）Redis 持久化缓存</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（3）数据异步处理服务</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（4）内存缓存 ehcache</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>小结：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>到家商品架构 - 3.0 商品体系领域建设</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（1）商品体系建设</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（1）自上而下逻辑分层</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（2）自下而上方法分解</span></a><ol class=toc-child><li class="toc-item toc-level-5"><a class=toc-link><span class=toc-text>方法分解：</span></a></li><li class="toc-item toc-level-5"><a class=toc-link><span class=toc-text>方法切换开关：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（3）业务领域拆分</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（4）Redis 缓存拆分</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>（5）微服务架构演进 - 面向服务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>总结</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="【转载】京东到家商品系统架构演进";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

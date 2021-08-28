@@ -1,0 +1,1017 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>一篇走心的iOS代码规范 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src="https://picsum.photos/400/300?random=3023"></a></div><div class=article-meta id=top><a title=一篇走心的iOS代码规范 href=/p/a642.html><img class=thumbnail src="https://picsum.photos/400/300?random=3023"></a><h1 class=title>一篇走心的iOS代码规范</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/">掘金</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/%E6%8E%98%E9%87%91/%E7%83%AD%E9%97%A8/">热门</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月7日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=一篇走心的iOS代码规范 data-path=/p/a642.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class="markdown-body html cache"><style>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;overflow-x:hidden;color:#333&#125;.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6&#123;line-height:1.5;margin-top:35px;margin-bottom:10px;padding-bottom:5px&#125;.markdown-body h1&#123;font-size:30px;margin-bottom:5px&#125;.markdown-body h2&#123;padding-bottom:12px;font-size:24px;border-bottom:1px solid #ececec&#125;.markdown-body h3&#123;font-size:18px;padding-bottom:0&#125;.markdown-body h4&#123;font-size:16px&#125;.markdown-body h5&#123;font-size:15px&#125;.markdown-body h6&#123;margin-top:5px&#125;.markdown-body p&#123;line-height:inherit;margin-top:22px;margin-bottom:22px&#125;.markdown-body img&#123;max-width:100%&#125;.markdown-body hr&#123;border:none;border-top:1px solid #ddd;margin-top:32px;margin-bottom:32px&#125;.markdown-body code&#123;word-break:break-word;border-radius:2px;overflow-x:auto;background-color:#fff5f5;color:#ff502c;font-size:.87em;padding:.065em .4em&#125;.markdown-body code,.markdown-body pre&#123;font-family:Menlo,Monaco,Consolas,Courier New,monospace&#125;.markdown-body pre&#123;overflow:auto;position:relative;line-height:1.75&#125;.markdown-body pre>code&#123;font-size:12px;padding:15px 12px;margin:0;word-break:normal;display:block;overflow-x:auto;color:#333;background:#f8f8f8&#125;.markdown-body a&#123;text-decoration:none;color:#0269c8;border-bottom:1px solid #d1e9ff&#125;.markdown-body a:active,.markdown-body a:hover&#123;color:#275b8c&#125;.markdown-body table&#123;display:inline-block!important;font-size:12px;width:auto;max-width:100%;overflow:auto;border:1px solid #f6f6f6&#125;.markdown-body thead&#123;background:#f6f6f6;color:#000;text-align:left&#125;.markdown-body tr:nth-child(2n)&#123;background-color:#fcfcfc&#125;.markdown-body td,.markdown-body th&#123;padding:12px 7px;line-height:24px&#125;.markdown-body td&#123;min-width:120px&#125;.markdown-body blockquote&#123;color:#666;padding:1px 23px;margin:22px 0;border-left:4px solid #cbcbcb;background-color:#f8f8f8&#125;.markdown-body blockquote:after&#123;display:block;content:""&#125;.markdown-body blockquote>p&#123;margin:10px 0&#125;.markdown-body ol,.markdown-body ul&#123;padding-left:28px&#125;.markdown-body ol li,.markdown-body ul li&#123;margin-bottom:0;list-style:inherit&#125;.markdown-body ol li .task-list-item,.markdown-body ul li .task-list-item&#123;list-style:none&#125;.markdown-body ol li .task-list-item ol,.markdown-body ol li .task-list-item ul,.markdown-body ul li .task-list-item ol,.markdown-body ul li .task-list-item ul&#123;margin-top:0&#125;.markdown-body ol ol,.markdown-body ol ul,.markdown-body ul ol,.markdown-body ul ul&#123;margin-top:3px&#125;.markdown-body ol li&#123;padding-left:6px&#125;.markdown-body .contains-task-list&#123;padding-left:0&#125;.markdown-body .task-list-item&#123;list-style:none&#125;@media (max-width:720px)&#123;.markdown-body h1&#123;font-size:24px&#125;.markdown-body h2&#123;font-size:20px&#125;.markdown-body h3&#123;font-size:18px&#125;&#125;</style><h3 data-id=heading-0>前言</h3><p>关于代码规范的重要性这里不做过多解释，能看到这篇文章说明你已经开始重视代码规范了(<code>代码规范看起来是在限制你的自由和发挥，其实它是在间接的帮助你变得更优秀。</code>)。</p><p>适当的代码规范和标准绝不是消灭代码内容的创造性、优雅性，而是限制过度个性化，以一种普遍认可的统一方式一起做事，进而提高工作效率，降低沟通成本。代码的字里行间流淌着的是软件和程序员的血液，质量的提升是尽可能少踩坑、杜绝踩重复的坑，切实提升系统稳定性，码出质量(<code>摘抄自《阿里巴巴Java代码规范》</code>)。</p><p>根据约束力度，暂时把规范约定为2个等级，分别是 <strong>[必须]</strong> 和 <strong>[建议]</strong>。</p><h3 data-id=heading-1>(一)命名规范</h3><hr><h4 data-id=heading-2>1. 通用命名规范</h4><pre><code class=copyable>Tips:
+所有的命名都应该遵循3个基本原则，即“清晰性”、“一致性”、“不要自我指涉”。
+<span class=copy-code-btn>复制代码</span></code></pre><ul><li><p><strong>[必须]</strong> 清晰性：好的命名应该是能自我描述的。</p><pre><code class=copyable>正例:
+removeObject:、[string stringByReplacingOccurrencesOfString:@"1" withString:@"2"]
+反例:
+remove:(不清楚，要删除什么？)、string.replace("1", "2")(是将"1"替换成"2"还是将"2"替换成"1"？是将第1个"1"替换成"2"还是将所有的"1"都替换成"2")
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 一致性：命名应该和上下文乃至全局保持一致性，相同类型或者具有相同作用的变量的命名方式应该相同或类似。</p><pre><code class=copyable>正例:
+NSDictionary、NSArray、NSSet这几个集合类都是用count来表示数量而不是一个用count其它的用amount或其他单词，这体现了命名的一致性。
+
+<p>@property (readonly) NSUInteger count;</p>
+<p><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 禁止自我指涉：命名不要自我指涉。通知、掩码常量等除外(通常指那些可以进行按位运算的枚举值)。</p><pre><code class=copyable>正例:
+NSString
+反例:
+NSStringObject
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 杜绝过度缩写，严禁自创缩写(例如把button缩写为btn)；国际通用缩写名称除外(例如ATM、GPS)。</p><pre><code class=copyable>Tips:
+你明白这个缩写的意思不代表其他人也一定会明白，你的代码可能会被任何人阅读，而阅读的人来自不同的地方接受不同的教育不同的文化，所有建议一般不要乱使用缩写，只使用那些国际通用缩写。如果为了缩写创建一个缩写对照表只会增加代码阅读复杂度。
+正例:
+destinationSelection、setBackgroundColor
+反例:
+destSel、setBgColor
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 杜绝无意义的拼音，国际通用名称或者地名人名除外(例如alibaba、taobao、hangzhou)。</p><pre><code class=copyable>反例:
+DaZhePromotion(打折)
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 命名要尽可能的清晰并简洁，如果两者不能兼得，则以清晰为主。</p><pre><code class=copyable>正例:
+insertObject:atIndex:
+反例:
+insert:at:(不清晰，插入什么？at代表什么?)
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 代码和注释中都要避免使用任何语言的种族歧视性词语。</p><pre><code class=copyable>正例:
+secondary
+反例:
+slave
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 类名、协议名、函数名、常量名、枚举名等一些全局命名需要添加前缀，前缀需要大于2个字符且全部大写。</p><pre><code class=copyable>Tips: 系统保留任意两个字符作为前缀的使用权，
+包括但不限于NS、UI、CG、CF、CA、WK、MK、CI、NC；前缀若等于2个字符可以考虑添加_。
+正例:
+ZT_LoginViewController
+反例:
+ZTLoginViewController
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 类名、协议名、函数名、常量名、枚举名等一些全局命名遵循首字母大写的驼峰命名方式，首个单词是HTTP这种特殊词除外。</p></li><li><p><strong>[必须]</strong> 方法名、属性名等一些非全局命名遵循首字母小写的驼峰命名方式命名，首个单词是HTTP这种特殊词除外。</p></li><li><p><strong>[必须]</strong> 成员变量需要以_开头。</p><pre><code class=copyable>正例:
+NSString *_nameString;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 在给常量或变量命名时，尽量将表示类型的名词放在词尾，以提升辨识度。</p><pre><code class=copyable>正例:
+nameLabel、nameString
+反例:
+name(name是字符串还是什么?)
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 如果模块、接口、类、方法使用了模式，在命名时尽量体现出具体模式。</p><pre><code class=copyable>正例:
+OrderFactory、LoginProxy
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 局部临时变量命名可以加上标识符作为前缀。</p><pre><code class=copyable>正例:
+t_label、t_string(t在这里表示temp)
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h4 data-id=heading-3>2. 类命名规范</h4><ul><li><p><strong>[必须]</strong> 类名命名风格由"前缀+类的名称+类的类型"3个部分组成，前缀必须大于2个字符且全部大写(如果等于2个字符可以添加_)；类的名称遵循首字母大写驼峰式命名，类的名称要能表达出该类的功能；类的类型必须使用全称，严禁使用缩写(例如vc代替viewController，cell代替TableViewCell)，命名方式和名称命名一样首字母大写。</p><pre><code class=copyable>正例:
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><p>WXYZ_LoginViewControler WXYZ_表示前缀，Login表示该类跟登录相关，ViewController表示该类是一个视图控制器而不是View。 ```</p><h4 data-id=heading-4>3. 方法命名规范</h4><ul><li><p><strong>[必须]</strong> 所有方法名称禁止以new开始。</p></li><li><p><strong>[必须]</strong> 所有方法名称禁止使用_开始。</p><pre><code class=copyable>Tips: 系统会使用_开头命名一些系统私有方法
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 内部私有方法需要增加前缀，前缀需要保持唯一性(例如p_)。</p><pre><code class=copyable>Tips: 给私有方法加前缀有2个好处: 
+1. 增加辨识度，提高代码可读性。
+2. 避免自己的方法无意间覆盖了系统/框架同名的私有方法。
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 如果方法返回接收者的某个属性值，那么请直接使用属性名作为方法名。</p><pre><code class=copyable>正例:
+- (CGSize)cellSize;
+反例:
+- (CGSize)getCellSize;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 如果方法间接返回一个或多个值，那么请用"getXXX"命名，这种命名只适用于返回多个数据项的情况。</p><pre><code class=copyable>正例:
+- (void)getCachedResponseForDataTask:(NSURLSessionDataTask *)dataTask 
+                   completionHandler:(void (^) (NSCachedURLResponse * __nullable cachedResponse))completionHandler;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 方法的每个参数前都必须添加关键字。</p><pre><code class=copyable>正例:
+- (void)sendAction:(SEL)aSelector toObject:(id)anObject forAllCells:(BOOL)flag;
+反例:
+- (void)sendAction:(SEL)aSelector :(id)anObject :(BOOL)flag;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 参数之前的单词尽量能描述参数的意义。</p><pre><code class=copyable>正例:
+- (id)viewWithTag:(NSInteger)aTag;
+反例:
+- (id)taggedView:(int)aTag;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 请不要使用“and”连接接收者属性，尽管and读起来还算顺口，但随着你创建的方法参数的增加，这将会带来一系列的问题。</p><pre><code class=copyable>正例:
+- (int)runModalForDirectory:(NSString *)path file:(NSString *) name types:(NSArray *)fileTypes;
+反例:
+- (int)runModalForDirectory:(NSString *)path andFile:(NSString *)name andTypes:(NSArray *)fileTypes;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 如果方法描述了两个独立的动作，则可以使用"and"连接起来。</p><pre><code class=copyable>正例:
+- (BOOL)openFile:(NSString *)fullPath withApplication:(NSString *)appName andDeactivate:(BOOL)flag;
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h4 data-id=heading-5>4. Protocol命名规范</h4><ul><li><p><strong>[必须]</strong> Protocol中的方法命名以触发消息的对象名开头，省略类名前缀并首字母小写，如果它没有关联任何类则可以忽略这个规则。</p><pre><code class=copyable>正例:
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(int)row;
+- (BOOL)application:(NSApplication *)sender openFile:(NSString *)filename;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 除非Protocol方法只有一个参数，否则冒号需紧跟在类名后面。</p><pre><code class=copyable>正例:
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(int)row;
+- (BOOL)applicationOpenUntitledFile:(NSApplication *)sender;
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h4 data-id=heading-6>5. Category命名规范</h4><ul><li><p><strong>[必须]</strong> 分类命名也要和类命名一样添加前缀。</p><pre><code class=copyable>正例:
+UIView (YYAdd)
+反例:
+UIView (Add)
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 分类中声明的方法名都要加上前缀。</p></li><li><p><strong>[建议]</strong> Category中尽量不要声明属性，能挪尽量挪到主类中声明。</p><pre><code class=copyable>Tips: 尽管从技术上来讲可以在分类中声明属性，但是这么做需要格外小心，
+因为它很容易出现内存上或其他一些问题，而且一旦出现问题很难排查。
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 如果一个类比较复杂，那么建议使用分类组织代码(可以参考系统的UIView)。</p></li></ul><h4 data-id=heading-7>6. Notification命名规范</h4><ul><li><p><strong>[必须]</strong> Notification的命名风格由"类名前缀" + "通知事件名称" + "Notification"3个部分组成。</p><pre><code class=copyable>正例:
+UIApplicationDidBecomeActiveNotification
+UIApplication表示该通知属于谁，DidBecomeActive表示该通知的作用，Notification表示它是一个通知。
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 如果一个类声明了delegate属性，通常情况下，这个类的delegate对象应该可以通过实现的delegate方法收到大部分通知消息。</p><pre><code class=copyable>Tips: 
+例如applicationDidBecomeActive:代理方法和NSApplicationDidBecomeActiveNotification通知(这其实也符合命名规范的基本原则"一致性")。
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h4 data-id=heading-8>7. 常量命名规范</h4><ul><li><p><strong>[必须]</strong> 如果常量局限于某"编译单元"之内，通常在前面加小写字母k作为前缀，若常量在全局可见，通常以类名作为前缀，然后采用首字母大写的驼峰式命令风格。</p><pre><code class=copyable>正例:
+// 局部可见
+const CGFloat kAnimationDuration = 2.0;
+// 全局可见
+const CGFloat UIActivityIndicatorViewAnimationDuration = 2.0;
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h4 data-id=heading-9>8. Exception命名规范</h4><ul><li><strong>[必须]</strong> 命令规范和Notification一样，把后缀改为"Exception"即可。</li></ul><h4 data-id=heading-10>9. 文件命名规范</h4><ul><li><p><strong>[必须]</strong> 文件名全部小写。</p></li><li><p><strong>[必须]</strong> 采用_连接单词。</p></li><li><p><strong>[必须]</strong> 命名的风格："模块_属性描述"，可根据项目适当增加描述。</p><pre><code class=copyable>正例:
+public_back@2x.png
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h3 data-id=heading-11>(二)编码规范</h3><hr><h4 data-id=heading-12>1. 通用编码规范</h4><ul><li><p><strong>[必须]</strong> 如果有使用到CF(Core Foundation)等框架时，或者是在iOS10以下系统使用通知和KVO时，切记在dealloc方法中释放对象以及移除通知和监听。</p></li><li><p><strong>[必须]</strong> 在dealloc方法内禁止将self传递出去，如果self被retain，到下个runloop周期再释放则会多次释放导致crash。</p><pre><code class=copyable>反例:
+- (void)dealloc &#123;
+    [self unsafeMethod:self];
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 禁止使用过时的方法或类，应该及时去了解和使用新方法或类。</p><pre><code class=copyable>Tips:
+对于过时的方法或类，大都是因为其自身有一些缺陷或BUG才会不建议使用，使用新方法时建议了解一下为什么废弃掉旧方法/类。
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 对剪切板的读取操作必须放在子线程中进行，因为用户可能在Mac上复制大量数据然后通过iCloud同步到iPhone上。</p></li><li><p><strong>[必须]</strong> if、else、for、while、case等后面必须要有&#123;&#125;，除非后面是简单的return类型语句，例如<code>if (xxx) return;</code>。</p></li><li><p><strong>[必须]</strong> 当方法可能会提前return时，需要要注意对象的释放问题，避免内存泄漏。</p><pre><code class=copyable>反例:
+CFArrayRef arrayRef = (__bridge CFArrayRef)array;
+
+<p>if (x == YES) return;</p>
+<p>CFRelease(arrayRef);</p>
+<p>以上代码如果x等于YES的话那么arrayRef对象就会内存泄漏。<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 当使用@try处理异常时，需要要注意对象的释放问题，避免内存泄漏。</p><pre><code class=copyable>反例:
+@try &#123;
+CFArrayRef arrayRef = (__bridge CFArrayRef)array;
+    
+do some thing……
+
+<p>CFRelease(arrayRef);</p>
+<p>&#125; @catch (NSException *exception) &#123;</p>
+<p>&#125;</p>
+<p>以上代码如果do some thing……出现异常的话那么arrayRef就会出现内存泄漏。<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 声明常量请使用const类型声明，禁止使用#define宏定义。</p><pre><code class=copyable>Tips: 
+宏定义声明常量的缺点:
+1. 宏定义只是简单的替换，缺少编译检查，运行期可能会出现溢出或数据错误等问题。
+2. 宏定义缺少类型，不方便编写文档用例。
+3. 宏定义可能会被不小心替换。
+4. 宏定义无法编写注释。
+
+<p>反例:<br>#define kTime @”10”</p>
+<p>if (1 == 2) &#123;<br>#define kTime @”20”<br>&#125;</p>
+<p>NSLog(@”time = %@”, kTime);</p>
+<p>以上代码中的if永远不会执行，但是编译器也会将kTime替换为@”20”<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[建议]</strong> 写一些公共方法时，请尽量使用内联函数或者全局函数而不是宏定义。</p><pre><code class=copyable>Tips:
+函数不通过对象调用，所以不会走OC的消息转发流程，效率远高于方法调用；而且函数会有返回值和参数类型以及参数检查，而这些都是宏定义没有的。
+
+<p>正例:<br>UIKIT_STATIC_INLINE NSString * kNSStringFromInteger(NSInteger a) &#123;<br>    return [NSString stringWithFormat:@”%zd”, a];<br>&#125;<br>反例:<br>#define kNSStringFromInteger(a) [NSString stringWithFormat:@”%zd”, a]<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> UITableView使用self-sizing实现不等高cell时，请在tableView:cellForRowAtIndexPath:代理方法中给cell设置数据而不是tableView:willDisplayCell:forRowAtIndexPath:代理方法中设置数据。</p></li><li><p><strong>[必须]</strong> 只在必要的时刻使用懒加载。</p><pre><code class=copyable>Tips:
+只在以下三种情况下才能使用懒加载:
+1. 对象的创建需要依赖其他对象
+2. 对象可能被使用，也可能不被使用
+3. 对象创建比较消耗性能
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 懒加载方法内应该只执行需要初始化的操作，不应该有其他不必要的逻辑代码。</p></li><li><p><strong>[必须]</strong> 使用一目运算符时左右两边不能有空格。</p><pre><code class=copyable>正例:
+i++、++i、
+反例:
+i ++、++ i
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 使用二目、三目运算符时左右两边必须有且仅有一个空格。</p><pre><code class=copyable>正例:
+1 + 2
+反例:
+1+2
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 采用4个空格缩进，如果要使用Tab字符，请将1个Tab设置成4个空格。</p></li><li><p><strong>[必须]</strong> 使用NSUserDefaults存储数据时禁止调用synchronize方法，因为系统会在合适的时机将数据保存到本地(即使程序闪退等极端情况)。</p></li><li><p><strong>[必须]</strong> 添加到集合中的对象应该是不可变的，或者在加入之后其哈希码是不可变的。</p><pre><code class=copyable>反例:
+NSMutableSet *sets = [NSMutableSet set];
+NSMutableString *string1 = [NSMutableString stringWithString:@"1"];
+[sets addObject:string1];
+[sets addObject:@"12"];
+    
+[string1 appendString:@"2"];
+
+<p>当 [string1 appendString:@”2”] 执行完以后sets对象内会包含2个@”12”。<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 必须使用CGRectGet获取Frame的各种值，而不是通过frame.的方式获取。</p><pre><code class=copyable>Tips: 
+CGRect t_frame = CGRectMake(-10, -10, -10, -10);
+当一个view的frame设置成t_frame后，其坐标会隐式的转换为CGRectMake(-20, -20, 10, 10)，因为宽高不可能出现负值；这时通过t_frame.的方式获取的值都是错误的，而CGRectGet会自动帮您处理这些隐式转换。
+
+<p>正例:<br>CGRectGetWidth(frame)、CGRectGetMinX(frame)、CGRectGetMaxX(frame)<br>反例:<br>frame.size.width、frame.origin.x、frame.size.width + frame.origin.x<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[建议]</strong> 单行字符数限制不超过150个，超出需要换行(空格可以除外)，换行时遵循如下原则:</p><pre><code class=copyable>Tips:
+1. 第二行相对第一行缩进4个空格，从第三行起不再继续缩进。
+2. 运算符与下文一起换行。
+3. 方法调用的点符号与下文一起换行。
+
+<p>正例:</p>
+<ul>
+<li>(void)setImageWithURL:(nullable NSURL *)imageURL<pre><code>      placeholder:(nullable UIImage *)placeholder
+          options:(YYWebImageOptions)options
+         progress:(nullable YYWebImageProgressBlock)progress
+         ransform:(nullable YYWebImageTransformBlock)transform
+       completion:(nullable YYWebImageCompletionBlock)completion;
+</code></pre> <span class=copy-code-btn>复制代码</span></li></ul></code></pre></li><li><p><strong>[建议]</strong> 不可变对象尽量使用copy修饰，如果重写使用copy修饰的set方法，请注意调用copy方法。</p></li><li><p><strong>[建议]</strong> 对于一些体积小并且重要的信息，不要频繁的存储到本地，可以使用NSUserDefaults进行存储。它会在合适的时机存储到本地，这避免了频繁的写入操作，而且在某些极端情况下它也能保证数据存储到本地(例如程序闪退等情况)。</p></li><li><p><strong>[建议]</strong> 在多线程环境下谨慎使用可变集合，必要时候可以采用加锁或GCD的同步线程进行保护，或者在访问可变集合时先将其copy为不可变对象然后再对其访问。</p></li><li><p><strong>[建议]</strong> 头文件中尽量不要声明成员变量而是使用属性代替。</p></li><li><p><strong>[建议]</strong> 头文件中的属性尽量声明为只读，可以在实现文件中再将属性声明为可读可写。</p><pre><code class=copyable>正例:
+@interface WXYZModel : NSObject</code></pre></li></ul><p>@property (nonatomic, readonly) NSString *name;</p><p>@end</p><p>@interface WXYZModel ()</p><p>@property (nonatomic, strong) NSString *name;</p><p>@end<br><span class=copy-code-btn>复制代码</span></p><li><p><strong>[建议]</strong> 不要使用一个类去维护多个类的内容，例如一个常量类维护所有的常量类，要按常量功能进行归类，分开维护。</p><pre><code class=copyable>Tips: 大而全的类，杂乱无章，使用查找功能才能定位到具体位置，不利于理解也不利于维护。
+
+<p>正例:<br>缓存相关常量类放在CacheCosts下，系统配置相关常量类放在SystemConfigConsts下。<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[建议]</strong> 如果大括号内为空，则简洁的写成&#123;&#125;就行。</p></li><li><p><strong>[建议]</strong> 没有必要增加多余空格来使上下代码的等号对齐。</p><pre><code class=copyable>正例:
+int a1 = 1;
+long a2 = 3;
+NSString *a3 = @"";
+
+<p>反例:<br>int a1       = 1;<br>long a2      = 3;<br>NSString *a3 = @””;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[建议]</strong> 少用if else，可以使用 if return 替换，if 嵌套最好不超过5层。</p><pre><code class=copyable>正例:
+if (x == 1) &#123;
+……
+return;
+&#125;
+
+<p>if (x == 2) &#123;<br>……<br>return;<br>&#125;</p>
+<p>反例:<br>if (x == 1) &#123;<br>……<br>&#125; else if (x == 2) &#123;<br>……<br>&#125;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[建议]</strong> 尽量避免采用取反逻辑运算符，因为取反逻辑不利于快速理解。</p><pre><code class=copyable>正例:
+if (array == nil) &#123;
+……
+&#125;
+反例:
+if (!array) &#123;
+……
+&#125;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 如果用到了很多协议，必要时可以把协议封装到一个单独的头文件中，这样做不仅可以减小编译时间，还能避免循环引用。</p></li><li><p><strong>[建议]</strong> 使用Switch枚举时尽量将所有枚举类型都列举出来而不使用default，这样下次增加枚举类型时如果Switch没有处理会有警告信息。</p></li><li><p><strong>[建议]</strong> 尽量使用字面量语法创建对象，少用与之等价的方法。</p><pre><code class=copyable>Tips:
+OC中的NSArray、NSString、NSDictionay、NSNumber都有与之对应的字面量语法: @[]、@""、@&#123;&#125;、@()；使用它们有以下优点:
+1. 简单易读，提高代码的可读性和可维护性。
+2. 使用字面量创建数组、字典时如果元素里在nil则会抛出异常，而使用arrayWithObjects:这些等价方法创建则会丢失nil后的数据，抛出异常能让你知道这里有问题及时修改防止问题在线上发生。
+
+<p>缺点:</p>
+<ol>
+<li>使用字面量创建的对象默认是不可变的，如果要创建可变对象需要进行mutableCopy操作。</li>
+<li>不支持子类，如果你创建了一个NSString的子类，@””并不会返回你想要的子类对象。<br><span class=copy-code-btn>复制代码</span></li></ol></code></pre></li><li><p><strong>[建议]</strong> 头文件中尽量少引用其他头文件，尽量使用@class向前声明，每次引入其他头文件时问问自己是否必须要这样做。</p></li><li><p><strong>[建议]</strong> UI控件建议使用weak修饰而不是strong修饰。</p></li><h4 data-id=heading-13>2. 类编码规范</h4><ul><li><p><strong>[必须]</strong> 如果超类的某个初始化方法不适用于子类，那么子类一定要覆写超类的这个方法并解决该问题或抛出异常。</p></li><li><p><strong>[建议]</strong> 尽量不要使用load类方法，如果必须要使用不能在方法内实现复杂逻辑或堵塞线程。</p></li><li><p><strong>[建议]</strong> 尽量减少继承，类的继承尽量不要超过3层，必要时刻可以考虑用分类、协议来代替继承。</p></li><li><p><strong>[建议]</strong> 把一些稳定的、公共的变量或者方法抽取到父类中。子类尽量只维持父类所不具备的特性和功能。</p></li></ul><h4 data-id=heading-14>3. 方法编码规范</h4><ul><li><p><strong>[必须]</strong> 禁止在init等初始化方法内部、getter、setter、dealloc或其他特殊地方使用.语法访问属性。</p><pre><code class=copyable>Tips: 当存在继承关系时使用.语法访问会因为多态关系调用子类的实现方法，而如果这个时候子类还没有初始化好或者已经释放了那么可能会出现一些奇怪的问题。
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 方法参数在定义和传入时，逗号后面必须添加一个空格。</p><pre><code class=copyable>正例:
+method(a1, a2, a3);
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 单个方法的行数建议不超过80行，注释、左右大括号、空行、回车等除外。</p></li><li><p><strong>[建议]</strong> 在实现文件内部也尽量使用.语法访问属性而不是使用_直接访问成员变量来保证风格统一。</p></li></ul><h4 data-id=heading-15>4. Block编码规范</h4><ul><li><p><strong>[必须]</strong> 调用Block必须判空处理。</p><pre><code class=copyable>Tips: 
+对于简单的Block可以使用三目运算进行判空处理，
+例如 !self.block ?: self.block();
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 在Block内部使用外部变量时要注意循环引用的问题。</p><pre><code class=copyable>Tips: </code></pre></li><li>不一定在Block内使用self才会循环引用，如下情况也会造成循环引用:</li><ul><li>(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath &#123;<br>WXYZ_TitleTableViewCell *cell = ……… cell.refreshTableViewBlock = ^&#123;<pre><code>  [tableView reloadData];
+</code></pre>&#125;; return cell;<br>&#125;</li></ul><ol start=2><li><p>Block内部是否要使用weak需要看Block本身和weak的这个对象是否存在直接或间接的相互引用，若无相互引用则不需要使用weak。</p></li><li><p>如果Block内部使用了strong修饰了外部的weak变量，那么当使用strong指向成员变量时需要进行判空，否则会崩溃，参考以下代码:<br>__weak typeof(self) weakSelf = self;<br>cell.refreshTableViewBlock = ^&#123;</p><pre><code> __strong typeof(weakSelf) strongSelf = weakSelf;
+ if (strongSelf != nil) &amp;#123;
+     strongSelf-&gt;_name = @&quot;name&quot;;
+ &amp;#125;
+</code></pre><p>&#125;;</p></li></ol><p>如果把(strongSelf != nil)的判断去掉那么可能会崩溃。<br><span class=copy-code-btn>复制代码</span></p></ul><h4 data-id=heading-16>5. 通知编码规范</h4><ul><li><p><strong>[必须]</strong> 在发送通知时，请使用<code>userInfo</code>进行传值，而不是<code>object</code>。</p></li><li><p><strong>[必须]</strong> 通知中心是以同步的方式发送请求的，所以不要在通知方法做一些复杂的计算，特别是当它处于主线程的时候，如果想发送异步通知可以使用<code>NSNotificationQueue</code>。</p></li><li><p><strong>[建议]</strong> 在工程里能不用通知尽量不用通知，通知虽然灵活强大，但是如果滥用会导致工程质量下降，出现问题时也比较难排查。</p></li></ul><h4 data-id=heading-17>6. 注释编码规范</h4><ul><li><p><strong>[必须]</strong> 与其绞尽脑汁写注释，不如想想怎么命名；注释是起辅助作用的，好的命名应该是能自我解释的，如果命名可以解释其作用，并且方法没有任何副作用或者注意事项，那么就不用写注释；注释应该帮助别人更快的理解该方法的使用和注意事项，如果该方法有需要注意的地方一定要在注释中体现出来。</p></li><li><p><strong>[必须]</strong> 当修改了方法实现时需要同步修改注释内容。</p></li><li><p><strong>[必须]</strong> 注释不要写的太冗长，要简单易读容易理解。</p></li><li><p><strong>[必须]</strong> 注释的双斜线和内容之间有且仅有一个空格。</p><pre><code class=copyable>正例:
+// 这是示例注释，请注意在双斜线后有一个空格
+- (void)testFunction;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[必须]</strong> 对于代码注释需谨慎，代码被注释一般有2种可能，1) 后续会恢复此段代码逻辑； 2) 永久不用；对于第1种情况需添加相应注释，如果没有注释信息难以知晓注释动机，后者建议直接删除。如果有需要可以通过代码仓库查阅历史代码。</p></li><li><p><strong>[必须]</strong> 使用特殊注释标记时，请注明标记人和标记时间，注意及时处理这些标记。</p><pre><code class=copyable>正例:
+/**
+* @brief 简要描述
+* @author 标明开发该类模块的作者
+*/
+// FIXME: 有bug，需要修改
+- (void)testFunction;
+<span class=copy-code-btn>复制代码</span></code></pre></li><li><p><strong>[建议]</strong> 别给糟糕的代码加注释，重构它。</p><pre><code class=copyable>Tips: 注释不能美化糟糕的代码。当企图使用注释前，先考虑是否可以通过调整结构，命名等操作，消除写注释的必要。
+<span class=copy-code-btn>复制代码</span></code></pre></li></ul><h3 data-id=heading-18>(三)工程结构规范</h3><hr><ul><li><p><strong>[必须]</strong> 局部使用的常量、静态变量声明在@interface之前。</p></li><li><p><strong>[必须]</strong> @property同一类型的声明放在一块，不同类型的声明用2行空格隔开。</p><pre><code class=copyable>正例:
+@interface MineViewController ()
+
+<p>@property (nonatomic, weak) UIView *headView;</p>
+<p>@property (nonatomic, weak) UITableView *tableView;</p>
+<p>我是换行符，请忽略<br>@property (nonatomic, copy) NSArray *dataSourceArray;<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 不同逻辑、不同语义、不同业务的代码之间插入一个空行分隔开以提升可读性。</p><pre><code class=copyable>正例:
+[self createSubviews];
+[self createTableview];
+
+<p>[self netRequest];<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li><li><p><strong>[必须]</strong> 方法归类</p><pre><code class=copyable>#pragma mark - LifeCycle(生命周期相关的代码放在最上面)
+
+<ul>
+<li><p>(void)dealloc &#123;&#125;</p>
+</li>
+<li><p>(void)viewDidLoad &#123;&#125;</p>
+</li>
+<li><p>(void)viewWillAppear:(BOOL)animated &#123;&#125;</p>
+</li>
+</ul>
+<p>#pragma mark - Public(公开方法)</p>
+<p>// code…<br>// 上空一行<br>// 下空两行</p>
+<p>#pragma mark - Private(私有方法)</p>
+<p>#pragma mark - Override(需要覆盖父类的方法)</p>
+<p>#pragma mark - Notification(通知方法)</p>
+<p>#pragma mark - Delegate(Delegate需要实现的方法)</p>
+<p>#pragma mark - getter/setter<br><span class=copy-code-btn>复制代码</span></p></code></pre><p></p></li></ul><h3 data-id=heading-19>结语</h3><hr><p>这只是一篇关于iOS的代码规范，所以某些需要和服务端需要统一的规范(例如错误码)并没有提到，还有些关于如何编写安全代码方面的规范也只是略微提到，因为关于如何写出更安全的代码应该不属于代码规范层面；欢迎大家提出更好的建议或改进，我也会不断更新完善；最后祝大家码出开心，码出质量。</p><h3 data-id=heading-20><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgitee.com%2FinternetWei%2Fimages%2Fraw%2Fmaster%2FuPic%2FiOS%25E4%25BB%25A3%25E7%25A0%2581%25E8%25A7%2584%25E8%258C%2583.md" target=_blank rel="nofollow noopener noreferrer" title=https://gitee.com/internetWei/images/raw/master/uPic/iOS%E4%BB%A3%E7%A0%81%E8%A7%84%E8%8C%83.md ref="nofollow noopener noreferrer">下载链接</a></h3><hr><h3 data-id=heading-21>参考</h3><hr><ol><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fdeveloper.apple.com%2Flibrary%2Farchive%2Fdocumentation%2FCocoa%2FConceptual%2FCodingGuidelines%2FCodingGuidelines.html" target=_blank rel="nofollow noopener noreferrer" title=https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/CodingGuidelines/CodingGuidelines.html ref="nofollow noopener noreferrer">Cocoa编码规范</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fgithub.com%2Falibaba%2FAlibaba-Java-Coding-Guidelines" target=_blank rel="nofollow noopener noreferrer" title=https://github.com/alibaba/Alibaba-Java-Coding-Guidelines ref="nofollow noopener noreferrer">阿里巴巴Java代码规范</a></li><li><a href="https://link.juejin.cn/?target=https%3A%2F%2Fbook.douban.com%2Fsubject%2F25829244%2F" target=_blank rel="nofollow noopener noreferrer" title="https://book.douban.com/subject/25829244/" ref="nofollow noopener noreferrer">Effective Objective-C 2.0 编写高质量iOS与OS X代码的52个有效方法</a></li><li>网上其他人发布的有关代码规范的文章</li></ol></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/a642.html>https://news.zfe.space/p/a642.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:34+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/a642.html&title=一篇走心的iOS代码规范 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=3023&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/a642.html&title=一篇走心的iOS代码规范 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=3023&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/a642.html&title=一篇走心的iOS代码规范 - 小冰 RSSHub&pics=https://picsum.photos/400/300?random=3023&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/4b5e.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>夏日赛里木</p><p class=content>环湖三圈，看到波光粼粼的湖面，姿态优雅的天鹅，月亮在花丛中生气，背后有冷杉森林和雪山。来赛里木的夏天看月升日出，也要在日落的时候在湖边奔跑。 ...</p></a><a class=next href=/p/ad57.html><p class=title>【白夜谈】如龙，但不完全如龙<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>最近我终于有时间补一补之前没玩的游戏了，在搜索了一圈之后，选择了《如龙7》。其实在打开《如龙7》之前，我才刚刚关闭了PS4上的《审判之眼：死神的遗言》。当初它发售时就有朋友一直给我安利，...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>前言</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>(一)命名规范</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>1. 通用命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>2. 类命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>3. 方法命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>4. Protocol命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>5. Category命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>6. Notification命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>7. 常量命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>8. Exception命名规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>9. 文件命名规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>(二)编码规范</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>1. 通用编码规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>2. 类编码规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>3. 方法编码规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>4. Block编码规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>5. 通知编码规范</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>6. 注释编码规范</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>(三)工程结构规范</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>结语</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>下载链接</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>参考</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="一篇走心的iOS代码规范";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

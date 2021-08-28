@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>下一代异步 IO io_uring 技术解密 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png></a></div><div class=article-meta id=top><a title="下一代异步 IO io_uring 技术解密" href=/p/523e.html><img class=thumbnail src=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png></a><h1 class=title>下一代异步 IO io_uring 技术解密</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">阿里云系统组技术博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/%E9%A6%96%E9%A1%B5/">首页</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2020年8月2日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="下一代异步 IO io_uring 技术解密" data-path=/p/523e.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><h2 id=概述>概述</h2><p>Alibaba Cloud Linux 2 是阿里云操作系统团队基于开源 Linux 4.19 LTS 版本打造的一款针对云应用场景的下一代 Linux OS 发行版。在首次推出一年后，阿里云操作系统团队对外正式发布了Alibaba Cloud Linux 2 LTS 版本。LTS 版本的发布是一个重要的里程碑，标志着阿里云操作系统团队将为 Alibaba Cloud Linux 2 提供长期技术支持、稳定的更新和更好的服务，为 Alibaba Cloud Linux 2 的客户提供更多保障。</p><p>上一篇我们在 Alibaba Cloud Linux 2 上对比测试了 io_uring 与 libaio 以及 SPDK，可以看到 io_uring 带来的性能提升非常明显。这篇文章我们详细分析下 io_uring 的原理，以及我们在 io_uring 社区所做的工作。</p><h2 id=io_uring-原理介绍>io_uring 原理介绍</h2><p>为了从根本上解决当前 Linux aio 存在的问题和约束，io_uring 从零开始全新设计的了异步 IO 框架。其设计的主要目标如下：</p><ul><li>简单易用，方便应用集成。</li><li>可扩展，不仅仅为 block IO 使用，同样可以用于网络 IO。</li><li>特性丰富，满足所有应用，如 buffer io。</li><li>高效，尤其是针对大部分场景的 512 字节或 4K IO。</li><li>可伸缩，满足峰值场景的性能需要。</li></ul><p>io_uring 为了避免在提交和完成事件中的内存拷贝，设计了一对共享的 ring buffer 用于应用和内核之间的通信。其中，针对提交队列（SQ），应用是 IO 提交的生产者（producer），内核是消费者（consumer）；反过来，针对完成队列（CQ），内核是完成事件的生产者，应用是消费者。</p><p><img src=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png class=lazyload data-srcset=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>共享环的设计主要带来以下 3 个好处：</p><ul><li>提交、完成请求时节省应用和内核之间的内存拷贝；</li><li>使用 SQPOLL 高级特性时，应用程序无需调用系统调用；</li><li>无锁操作，用 memory ordering 实现同步。</li></ul><h3 id=io_uring-系统调用>io_uring 系统调用</h3><p>io_uring 一共提供了 3 个系统调用：io_uring_setup()，io_uring_enter()，以及io_uring_register()，位于 fs/io_uring.c。</p><div class="language-c highlighter-rouge"><div class=highlight><pre class=highlight><code><span class=cm>/**
+ * io_uring_setup - setup a context for performing asynchronous I/O
+ */</span>
+<span class=kt>int</span> <span class=n>io_uring_setup</span><span class=p>(</span><span class=n>u32</span> <span class=n>entries</span><span class=p>,</span> <span class=k>struct</span> <span class=n>io_uring_params</span> <span class=o>*</span><span class=n>p</span><span class=p>);</span>
+<span class=cm>/**
+ * io_uring_enter - initiate and/or complete asynchronous I/O
+ */</span>
+<span class=kt>int</span> <span class=n>io_uring_enter</span><span class=p>(</span><span class=kt>int</span> <span class=n>fd</span><span class=p>,</span> <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>to_submit</span><span class=p>,</span> <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>min_complete</span><span class=p>,</span>
+                   <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>flags</span><span class=p>,</span> <span class=n>sigset_t</span> <span class=o>*</span><span class=n>sig</span><span class=p>)</span>
+ 
+<span class=cm>/**
+ * io_uring_register - register files or user buffers for asynchronous I/O
+ */</span>
+<span class=kt>int</span> <span class=n>io_uring_register</span><span class=p>(</span><span class=kt>int</span> <span class=n>fd</span><span class=p>,</span> <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>opcode</span><span class=p>,</span> <span class=kt>void</span> <span class=o>*</span><span class=n>arg</span><span class=p>,</span>
+                      <span class=kt>unsigned</span> <span class=kt>int</span> <span class=n>nr_args</span><span class=p>)</span>
+</code></pre></div></div><p>Alibaba Cloud Linux 2 LTS 版本支持的异步操作如下，更多的特性支持持续完善中。</p><ul><li><p>IORING_OP_NOP 仅产生一个完成事件，除此之外没有任何操作。</p></li><li><p>IORING_OP_READV / IORING_OP_WRITEV 提交 readv() / writev() 操作，大多数场景最核心的操作。</p></li><li><p>IORING_OP_READ_FIXED / IORING_OP_WRITE_FIXED 使用已注册的 buffer 来提交 IO 操作，由于这些 buffer 已经完成映射，可以降低系统调用的开销。</p></li><li><p>IORING_OP_FSYNC 下发 fsync() 调用。</p></li><li><p>IORING_OP_POLL_ADD / IORING_OP_POLL_REMOVE 使用 IORING_OP_POLL_ADD 可对一组文件描述符 (file descriptors) 执行 poll() 操作；可以使用 IORING_OP_POLL_REMOVE 显式地取消 poll()。这种方式可以用来异步地监控一组文件描述符。</p></li><li><p>IORING_OP_SYNC_FILE_RANGE 执行 sync_file_range() 调用，是对 fsync() 的一个增强。</p></li><li><p>IORING_OP_SENDMSG / IORING_OP_RECVMSG 在 sendmsg() 和 recvmsg() 基础上，提供异步收发网络包功能。</p></li><li><p>IORING_OP_TIMEOUT 用户态程序等待 IO 完成事件时，可以通过 IORING_OP_TIMEOUT 设置一个超时时间，类似 io_getevents(2) 的 timeout 机制。</p></li></ul><h3 id=io_uring-用户态库-liburing>io_uring 用户态库 liburing</h3><p>为了简化使用，原作者 Jens 开发了一套 liburing 库，用户无需了解诸多 io_uring 细节便可以使用起来，如无需关心 memory barrier，以及 ring buffer 的管理等。相关接口在头文件 /usr/include/liburing.h 中定义。</p><p>Alibaba Cloud Linux 2 LTS 提供了 liburing 和 liburing-devel 包供用户安装。</p><div class="language-sh highlighter-rouge"><div class=highlight><pre class=highlight><code>sodo yum <span class=nb>install </span>liburing liburing-devel
+</code></pre></div></div><p>基于 liburing 的一个 helloworld 示例如下：</p><div class="language-c highlighter-rouge"><div class=highlight><pre class=highlight><code><span class=cp>#include <unistd.h>
+#include <fcntl.h>
+#include <string.h>
+#include <stdio.h>
+#include <liburing.h>
+#define ENTRIES     4
+</liburing.h></stdio.h></string.h></fcntl.h></unistd.h></span><span class=kt>int</span> <span class=nf>main</span><span class=p>(</span><span class=kt>int</span> <span class=n>argc</span><span class=p>,</span> <span class=kt>char</span> <span class=o>*</span><span class=n>argv</span><span class=p>[])</span>
+<span class=p>&#123;</span>
+    <span class=k>struct</span> <span class=n>io_uring</span> <span class=n>ring</span><span class=p>;</span>
+    <span class=k>struct</span> <span class=n>io_uring_sqe</span> <span class=o>*</span><span class=n>sqe</span><span class=p>;</span>
+    <span class=k>struct</span> <span class=n>io_uring_cqe</span> <span class=o>*</span><span class=n>cqe</span><span class=p>;</span>
+    <span class=k>struct</span> <span class=n>iovec</span> <span class=n>iov</span> <span class=o>=</span> <span class=p>&#123;</span>
+        <span class=p>.</span><span class=n>iov_base</span> <span class=o>=</span> <span class=s>"Hello World"</span><span class=p>,</span>
+        <span class=p>.</span><span class=n>iov_len</span> <span class=o>=</span> <span class=n>strlen</span><span class=p>(</span><span class=s>"Hello World"</span><span class=p>),</span>
+    <span class=p>&#125;;</span>
+    <span class=kt>int</span> <span class=n>fd</span><span class=p>,</span> <span class=n>ret</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>argc</span> <span class=o>!=</span> <span class=mi>2</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"%s: <testfile></testfile></span><span class=se>\n</span><span class=s>"</span><span class=p>,</span> <span class=n>argv</span><span class=p>[</span><span class=mi>0</span><span class=p>]);</span>
+        <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=cm>/* setup io_uring and do mmap */</span>
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>io_uring_queue_init</span><span class=p>(</span><span class=n>ENTRIES</span><span class=p>,</span> <span class=o>&</span><span class=n>ring</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>ret</span> <span class=o><</span> <span class=mi>0</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"io_uring_queue_init: %s</span><span class=se>\n</span><span class=s>"</span><span class=p>,</span> <span class=n>strerror</span><span class=p>(</span><span class=o>-</span><span class=n>ret</span><span class=p>));</span>
+        <span class=k>return</span> <span class=mi>1</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=n>fd</span> <span class=o>=</span> <span class=n>open</span><span class=p>(</span><span class=s>"testfile"</span><span class=p>,</span> <span class=n>O_WRONLY</span> <span class=o>|</span> <span class=n>O_CREAT</span><span class=p>);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>fd</span> <span class=o><</span> <span class=mi>0</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"open failed</span><span class=se>\n</span><span class=s>"</span><span class=p>);</span>
+        <span class=n>ret</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+        <span class=k>goto</span> <span class=n>exit</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=cm>/* get an sqe and fill in a WRITEV operation */</span>
+    <span class=n>sqe</span> <span class=o>=</span> <span class=n>io_uring_get_sqe</span><span class=p>(</span><span class=o>&</span><span class=n>ring</span><span class=p>);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=o>!</span><span class=n>sqe</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"io_uring_get_sqe failed</span><span class=se>\n</span><span class=s>"</span><span class=p>);</span>
+        <span class=n>ret</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+        <span class=k>goto</span> <span class=n>out</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=n>io_uring_prep_writev</span><span class=p>(</span><span class=n>sqe</span><span class=p>,</span> <span class=n>fd</span><span class=p>,</span> <span class=o>&</span><span class=n>iov</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>);</span>
+    <span class=cm>/* tell the kernel we have an sqe ready for consumption */</span>
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>io_uring_submit</span><span class=p>(</span><span class=o>&</span><span class=n>ring</span><span class=p>);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>ret</span> <span class=o><</span> <span class=mi>0</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"io_uring_submit: %s</span><span class=se>\n</span><span class=s>"</span><span class=p>,</span> <span class=n>strerror</span><span class=p>(</span><span class=o>-</span><span class=n>ret</span><span class=p>));</span>
+        <span class=k>goto</span> <span class=n>out</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=cm>/* wait for the sqe to complete */</span>
+    <span class=n>ret</span> <span class=o>=</span> <span class=n>io_uring_wait_cqe</span><span class=p>(</span><span class=o>&</span><span class=n>ring</span><span class=p>,</span> <span class=o>&</span><span class=n>cqe</span><span class=p>);</span>
+    <span class=k>if</span> <span class=p>(</span><span class=n>ret</span> <span class=o><</span> <span class=mi>0</span><span class=p>)</span> <span class=p>&#123;</span>
+        <span class=n>printf</span><span class=p>(</span><span class=s>"io_uring_wait_cqe: %s</span><span class=se>\n</span><span class=s>"</span><span class=p>,</span> <span class=n>strerror</span><span class=p>(</span><span class=o>-</span><span class=n>ret</span><span class=p>));</span>
+        <span class=k>goto</span> <span class=n>out</span><span class=p>;</span>
+    <span class=p>&#125;</span>
+    <span class=cm>/* read and process cqe event */</span>
+    <span class=n>io_uring_cqe_seen</span><span class=p>(</span><span class=o>&</span><span class=n>ring</span><span class=p>,</span> <span class=n>cqe</span><span class=p>);</span>
+<span class=nl>out:</span>
+    <span class=n>close</span><span class=p>(</span><span class=n>fd</span><span class=p>);</span>
+<span class=nl>exit:</span>
+    <span class=cm>/* tear down */</span>
+    <span class=n>io_uring_queue_exit</span><span class=p>(</span><span class=o>&</span><span class=n>ring</span><span class=p>);</span>
+    <span class=k>return</span> <span class=n>ret</span><span class=p>;</span>
+<span class=p>&#125;</span>
+</code></pre></div></div><p>更多的示例可参考：</p><p><a target=_blank rel=noopener href="https://github.com/axboe/liburing/tree/master/examples/">https://github.com/axboe/liburing/tree/master/examples/</a> <a target=_blank rel=noopener href=https://github.com/axboe/liburing/tree/master/test>https://github.com/axboe/liburing/tree/master/test</a></p><h2 id=io_uring-高级特性>io_uring 高级特性</h2><h3 id=polled-io>Polled IO</h3><p>IORING_SETUP_IOPOLL，与非 polling 模式等待硬件中断唤醒不同，内核将采用 polling 模式不断轮询硬件以确认 IO 请求是否已经完成，这在追求低延时和高 IOPS 的应用场景非常有用。</p><h3 id=kernel-side-polling>Kernel Side Polling</h3><p>IORING_SETUP_SQPOLL，当前应用更新 SQ ring 并填充一个新的 sqe，内核线程 sqthread 会自动完成提交，这样应用无需每次调用 io_uring_enter() 系统调用来提交 IO。应用可通过 IORING_SETUP_SQ_AFF 和 sq_thread_cpu 绑定特定的 CPU。 同时，为了节省无 IO 场景的 CPU 开销，该内核线程会在一段时间空闲后自动睡眠。应用在下发新的 IO 时，通过 IORING_ENTER_SQ_WAKEUP 唤醒该内核线程，该操作在 liburing 中都已封装完成。</p><h3 id=fixed-files>Fixed Files</h3><p>IORING_REGISTER_FILES / IORING_REGISTER_FILES_UPDATE / IORING_UNREGISTER_FILES，通过 io_uring_register() 系统调用提前注册一组 file，缓解每次 IO 操作因 fget() / fput() 带来的开销。</p><h3 id=fixed-buffers>Fixed Buffers</h3><p>IORING_REGISTER_BUFFERS / IORING_UNREGISTER_BUFFERS，通过 io_uring_register() 系统调用注册一组固定的 IO buffers，当应用重用这些 IO buffers 时，只需要 map / unmap 一次即可，而不是每次 IO 都要去做，减少get_user_pages() / put_page() 带来的开销。</p><h3 id=linked-sqe>Linked SQE</h3><p>IOSQE_IO_LINK，建立 sqe 序列之间的关联，这在诸如 copy 之类的操作中非常有用。使用 linked sqe 后，copy 操作的写请求链接在读请求之后，应用程序无需等待读请求数据返回后再下发写请求，而是共享了同一个 buffer，避免了上下文切换的开销。</p><h2 id=社区工作>社区工作</h2><p>阿里云操作系统团队在 backport io_uring 特性到 Alibaba Cloud Linux 2 的过程中，进一步优化性能，并加固 io_uring 的稳定性，相关工作以补丁的形式回馈到社区。</p><h3 id=性能优化>性能优化</h3><ul><li><p>engines/io_uring: delete fio_option_is_set() calls when submitting sqes fio io_uring 提交 IO 性能提升 30%。</p></li><li><p>__io_uring_get_cqe: eliminate unnecessary io_uring_enter() syscalls 在某些场景下，减少 50% 的 io_uring_enter() 系统调用开销。</p></li><li><p>ext4: start to support iopoll method</p></li><li><p>io_uring: io_uring_enter(2) don’t poll while SETUP_IOPOLL|SETUP_SQPOLL enabled 能带来 13% 的性能提升，同时减少 20% 的 CPU 开销。</p></li></ul><h3 id=代码优化和特性重构>代码优化和特性重构</h3><ul><li>io_uring: cleanup io_alloc_async_ctx()</li><li>io_uring: refactor file register/unregister/update handling 重构 file register/unregister/update 特性，能更好地处理大量文件场景。</li><li>io_uring: do not always copy iovec in io_req_map_rw()</li><li>io_uring: avoid whole io_wq_work copy for requests completed inline</li><li>io_uring: avoid unnecessary io_wq_work copy for fast poll feature</li><li>e697deed834d io_uring: check file O_NONBLOCK state for accept</li></ul><h3 id=bugfix>BugFix</h3><ul><li>io_uring: fix __io_iopoll_check deadlock in io_sq_thread</li><li>io_uring: fix poll_list race for SETUP_IOPOLL|SETUP_SQPOLL</li><li>io_uring: restore req->work when canceling poll request</li><li>io_uring: only restore req->work for req that needs do completion</li><li>io_uring: use cond_resched() in io_ring_ctx_wait_and_kill()</li><li>io_uring: fix mismatched finish_wait() calls in io_uring_cancel_files()</li><li>io_uring: handle -EFAULT properly in io_uring_setup()</li><li>io_uring: reset -EBUSY error when io sq thread is waken up</li><li>io_uring: don’t submit sqes when ctx->refs is dying</li><li>io_uring: fix io_kiocb.flags modification race in IOPOLL mode</li><li>io_uring: don’t fail links for EAGAIN error in IOPOLL mode</li><li>io_uring: add memory barrier to synchronize io_kiocb’s result and iopoll_completed</li><li>io_uring: fix possible race condition against REQ_F_NEED_CLEANUP</li></ul></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/523e.html>https://news.zfe.space/p/523e.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:30+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/523e.html&title=下一代异步 IO io_uring 技术解密 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/523e.html&title=下一代异步 IO io_uring 技术解密 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/523e.html&title=下一代异步 IO io_uring 技术解密 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/08/Introduction_to_IO_uring/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/9b4b.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>我与这个世界的最后一次抗争</p><p class=content>在被自如入侵卧室的一周内，我遭受了极大的精神创伤、超过一万元的经济损失和六斤体重，我尝试了我能做的所有事情，多次报警、各种渠道投诉、网络曝光、联系媒体、准备诉讼，我意志坚定、不屈不挠，我...</p></a><a class=next href=/p/ad5d.html><p class=title>We’re all in this together_ The importance of building a brand from the inside out.<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>Topic Expertis...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#%E6%A6%82%E8%BF%B0><span class=toc-text>概述</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#io_uring-%E5%8E%9F%E7%90%86%E4%BB%8B%E7%BB%8D><span class=toc-text>io_uring 原理介绍</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#io_uring-%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8><span class=toc-text>io_uring 系统调用</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#io_uring-%E7%94%A8%E6%88%B7%E6%80%81%E5%BA%93-liburing><span class=toc-text>io_uring 用户态库 liburing</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#io_uring-%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7><span class=toc-text>io_uring 高级特性</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#polled-io><span class=toc-text>Polled IO</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#kernel-side-polling><span class=toc-text>Kernel Side Polling</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#fixed-files><span class=toc-text>Fixed Files</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#fixed-buffers><span class=toc-text>Fixed Buffers</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#linked-sqe><span class=toc-text>Linked SQE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E7%A4%BE%E5%8C%BA%E5%B7%A5%E4%BD%9C><span class=toc-text>社区工作</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96><span class=toc-text>性能优化</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#%E4%BB%A3%E7%A0%81%E4%BC%98%E5%8C%96%E5%92%8C%E7%89%B9%E6%80%A7%E9%87%8D%E6%9E%84><span class=toc-text>代码优化和特性重构</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#bugfix><span class=toc-text>BugFix</span></a></li></ol></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="下一代异步 IO io_uring 技术解密";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

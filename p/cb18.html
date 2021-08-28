@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg></a></div><div class=article-meta id=top><a title=网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 href=/p/cb18.html><img class=thumbnail src=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg></a><h1 class=title>网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/">GameRes 游资网</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/%E5%88%97%E8%A1%A8/">列表</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年7月29日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 data-path=/p/cb18.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><table cellspacing=0 cellpadding=0><tbody><tr><td class=t_f id=postmessage_2507164>北京时间7月23日，在游戏开发者大会（GDC2021）上，来自网易雷火UX用户体验中心的高级数据分析师周壹进行了精彩的分享，游戏开发者大会每年在旧金山举办，如今已有35届，是一场高质量的大型游戏开发者盛会。<br><br><div align=center><img id=aimg_996515 aid=996515 zoomfile=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg width=525 inpost=1 src=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg referrerpolicy=no-referrer></div><div align=center><font size=2><font color=#808080>网易雷火UX用户体验中心的高级数据分析师周壹</font></font></div><br>周壹毕业于清华大学，获博士学位，目前是网易雷火UX用户体验中心的高级数据分析师，负责分析游戏数据、研究建模、呈现结果并给出建议。他主要的研究兴趣包括数据挖掘和机器学习，涉及推荐策略、游戏AI等。他专注于在网易的几款游戏中使用数据和算法来改善用户体验，并设计和使用A/B测试平台来验证这些改进与进行更深度的分析。<br><br>以下是他本次GDC报告内容的简单总结：<br><br><strong><font color=#de5650>一、背景介绍</font></strong><br><br>在电子游戏中，人工智能（AI）主要用于产生非玩家角色（NPC）的响应性、适应性或智能行为。<br><br>在一定程度上，我们希望游戏AI（Game AI）可以表现出类似人类的行为，但更广泛地说，游戏内所有非玩家角色的行为的控制，都可以说是由游戏AI来设计--这意味着游戏AI的目的并不仅仅是模拟人类的行为。<br><br>游戏AI的目的在于改善游戏玩家的体验，而不是如“AI”这个词在某些场景下所说的那样力图获得一个通过图灵测试的通用人工智能。<br><br>游戏AI在游戏中的应用大致有如下几种：<br><br>NPC -- 在传统的RPG游戏里，这类NPC是非常重要的一个部分，他们扮演游戏世界里生活的人们，塑造着世界感，以及提供各种游戏机制，例如商店、任务系统等等。随着游戏技术的进步，我们不仅希望他们作为背景或功能而存在，更希望他们可以仿照游戏所描绘的世界里的人们的正常活动，例如闲时散步、下雨时打伞等等。<br><br>敌人 -- 在大量的游戏里，战斗是非常重要的一个部分。相比静态的沙包木桩，玩家显然喜欢更有挑战性、更加聪明、更加多变的敌人。而对敌人、尤其是BOSS的刻画，以及BOSS战斗所带来的震撼感，也成为了游戏设计里越来越重要的一个环节。<br><br>队友 -- 无论是单机游戏还是网络游戏，由游戏AI控制的机器人队友始终都是游戏设计的非常重要的部分。在单机游戏里，尤其是网络技术尚有局限的年代，机器人队友给玩家提供了非常重要的陪伴体验；而随着竞技类多人在线游戏的发展，玩家对机器人队友的要求也越来越高。<br><br>环境 -- 各种各样的环境互动，当环境，比如小飞虫等等，能对玩家角色和NPC的行为做出互动的环境，能更加提高游戏塑造的世界的生动程度。随着硬件技术的发展，越来越细致的世界描绘也逐渐被引入到游戏工业中来。<br><br>可以看到所有的这些机制，都有游戏AI的参与。本质上说，一个生动、活跃、可以根据玩家的不同行为做出不同的反应的游戏世界，能带给玩家良好的体验。需要注意的是上述这种分类方法并不是唯一的，考虑到游戏里需要具备一定的行为、或者说我们需要其表现出一定的“聪明”的物体是如此之多，游戏AI包含的含义是非常广泛的。<br><br>当前，随着网络技术和硬件技术、包括移动端设备和移动互联网的发展，多人在线游戏正成为更多玩家的选择。在这里面，游戏AI也发挥着重要的作用。<br><br>在多人匹配的在线游戏里，当新手玩家进入游戏时，如果直接把他们和熟练玩家进行匹配，往往导致这批玩家的体验不佳。虽然可以通过以游戏技术匹配的方式来解决一部分问题，但也可能造成新手玩家等待时间过长等负面体验。而通过游戏AI驱动的机器人（Bots），可以调整游戏节奏和难度等级，顺滑玩家的体验，令玩家获得成就感，避免尚未熟悉游戏导致的挫折流失。并且可以通过设计好的游戏机器人，提供体验顺滑的新手教程，令玩家的训练和匹配无缝衔接。<br><br>同时，对于各个等级段的玩家，机器人都可以在匹配时间上起到调节作用，提供队友或者匹配对手，提升玩家的长期游戏体验。<br><br>当然，现在很多多人在线游戏也具有单人剧情模式或者组队PVE模式，在这种情况下，游戏机器人和传统的单人游戏里那样，发挥了扮演队友、敌人的作用。<br><br><strong><font color=#de5650>二、游戏AI的实现方式</font></strong><br><br>从机器人是否基于游戏产品设计者编写的确定规则来区分，可以分为静态机器人和动态机器人。<br><br>其中，静态机器人，基于确定的程序规则实现，历史非常久远，在工业界有大量而广泛的应用。静态游戏机器人需要很多帮助才能适当地采取行动，它们的存在通常是为了提供线性功能。<br><br>而动态游戏机器人，基于机器学习与人工智能的法实现，可以参与学习关卡布局、学习新策略等。当前相关的演示和成果非常多，也是学术界的热点，有一些基于星际争霸、Dota的非常著名的前沿探索，展现了非常强大的潜力。这些机器人在一些游戏里已经有了应用。<br><br><strong><font color=#de5650>1、静态机器人 - 有限状态机</font></strong><br><br>实现静态的机器人，主要有两种方案：有限状态机和行为树。<br><br><div align=center><font size=2><font color=#808080><img id=aimg_996520 aid=996520 zoomfile=https://di.gameres.com/attachment/forum/202107/29/163946bdmwfef2e0jmmwmj.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/29/163946bdmwfef2e0jmmwmj.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/29/163946bdmwfef2e0jmmwmj.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/29/163946bdmwfef2e0jmmwmj.jpg referrerpolicy=no-referrer></font></font></div><div align=center><font size=2><font color=#808080>有限状态机的原理示意图</font></font></div><br>有限状态自动机 (Finite State Machine，FSM)是表示有限多个状态以及在这些状态（State）之间转移（Transition）和动作（Action）的数学模型。有限状态机的模型体现了两点：<br><br>一个有限状态机是一个模型，具有有限数量的状态。它可以在任何给定时间根据输入进行操作，使得系统从一个状态转换到另一个状态，或者是一个输出或者一种行为，一个有限状态机在任何瞬间只能处于一种状态。<br><br>并且，其状态是离散的：某一时刻只能处于某种状态之下，且需要满足某种条件才能从一种状态转移到另一种状态。<br><br>这样，这个模型，通过状态机这个对象状态的管理器，就可以实现对象在满足某些特定条件后在不同状态之下的转换，并且可以根据定义好的规则，在不同的状态下产生不同的行为、具有不同的属性。<br><br>有限状态机的应用范围非常广泛，尤其是在游戏领域。各种各样的游戏内的活动对象都可以通过有限状态机来驱动。<br><br>但是，尽管有限状态机在实现原理上非常便于理解从而使得它可以很好地完成一些较为简单的游戏AI任务，但是，在面对较为复杂的AI逻辑需求时，这种方案就会越来越显出其过于繁琐的缺点。除了系统的可读性会成倍下降之外，当需要对现有AI的逻辑进行扩展的时候，就会发现要维护的状态量会极快地增加--每多加一个状态，则需要增加几条转换线，越多状态，需要增加的转换线越多。<br><br><div align=center><img id=aimg_996517 aid=996517 zoomfile=https://di.gameres.com/attachment/forum/202107/29/163756fb4w9msss41ubuml.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/29/163756fb4w9msss41ubuml.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/29/163756fb4w9msss41ubuml.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/29/163756fb4w9msss41ubuml.jpg referrerpolicy=no-referrer></div><div align=center><font size=2><font color=#808080>有限状态机的复杂度随着状态数增多而陡增</font></font></div><br>总体来说，有限状态机在应用中的问题是：各个状态类之间互相依赖很严重，耦合度很高；结构不灵活，可扩展性不高，难以脚本化/可视化。<br><br>在以前，游戏AI的实现基本都是有限状态机，而随着游戏的进步，游戏AI的复杂性要求越来越高，传统的有限状态机实现很难维护越来越复杂的AI需求。<br><br>分层状态机一定程度上缓解了这个问题，但并没有彻底解决。而且随着状态的增加，各个层也会出现上述的困难。也由于这个原因，比较多的开发者投入了行为树的怀抱。<br><br><strong><font color=#de5650>2、静态机器人 - 行为树</font></strong><br><br>行为树（Behavior Tree，BT）模型是由行为节点组成的树状结构，通过类似于决策树的树形结构，来让AI可以根据当前所处的环境来选择出应该做出的行为。<br><br>不同于前面提及的限状态机或其他用于 AI 编程的系统，行为树使用树结构来控制 AI 决策行为。这种结构包含了各个类型、各个层级的节点，节点的最末端是叶子节点，也即是最终 AI 执行的行为或者输出的状态。而各个节点间的连接和这些中间节点的特性，决定了 AI 的逻辑的实现方式--即如何从树的顶端，根据当前所处于的不同的状况和环境，沿着各种路径最终来到确定的末端叶节点并输出行为的过程。<br><br>行为树方案在游戏AI实现的有很明显的优点，其可读性、条实行、复用性都很强，这使得它逐渐成为当前游戏领域的较为主流的AI实现方案。<br><br><div align=center><font size=2><font color=#808080><img id=aimg_996521 aid=996521 zoomfile=https://di.gameres.com/attachment/forum/202107/29/163947b4cqrlrliq354qjl.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/29/163947b4cqrlrliq354qjl.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/29/163947b4cqrlrliq354qjl.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/29/163947b4cqrlrliq354qjl.jpg referrerpolicy=no-referrer></font></font></div><div align=center><font size=2><font color=#808080>行为树的原理示意图</font></font></div><br>很多游戏引擎都自带这个功能。如unreal和unity，都具有很多行为树相关的开发工具和扩展插件。<br><br>行为树可以通过一层一层的树结构向下延伸，这种延伸具有可迭代性。大型项目中，可以建立行为树库，通过各种逻辑的连接来实现非常复杂、能够在不同场景下做出有深度的行为、且具有复用性的游戏AI。<br><br>由此可见，行为树的主要优势之一就是其封装性、模块性和扩展性，配合各种优秀的开发工具，可以让游戏AI的逻辑实现更加直观，而不用想有限状态机那样面对一个庞杂的网状结构。<br><br>当然，使用行为树进行游戏AI的开发，在初期会比有限状态机能需要一些技巧。后者可以直接进行状态的罗列定义以及设计转移条件，而前者需要在一开始就设计好一个更为全面的树形结构框架，来把游戏AI所面临的各种情况抽象为各种类型的节点。虽然在抽象逻辑的时候需要技巧，尤其是在项目预计比较复杂的时候，但后续的维护、可读性都很高，对于复杂项目而言这种优势是巨大的。<br><br>总的来说，行为树在复杂的情况比有限状态机更清晰，更可拓展，行为树有利于逻辑的重用。并且当前已经有很多可视化模块工具便于设计师使用，使得行为树方案具有很高的可读性，也便于调整，熟练之后设计的效率会很高。<br><br><strong><font color=#de5650>3、动态机器人 - 强化学习</font></strong><br><br>上述传统的游戏AI实现方式，基于规则驱动，来用人为定义好的条件来触发预先设计好的游戏行为。一个直接的表现就是，人为设计投入的力量越多，模型的条件越多，产出的行为就会越复杂，游戏角色就会相应的更加“智能”。<br><br>但用这种方案实现复杂AI时，对于人力的需求往往过大，并且现实中总是不可能以规则覆盖所有的情况，而使得游戏机器人或多或少在某些情况下显得机械而呆板。<br><br>针对这些问题，以强化学习为代表的人工智能技术展现出了非常强大的潜力。原理上说，当我们把游戏状态作为输入，把游戏AI的行为作为输出，那么就可以构建一个典型的神经网络模型，如此，便可以通过训练的方式摆脱对人工设计好的规则驱动的依赖，来通过模型的自我训练获得一个更加聪明、更加全面的机器人。<br><br>越来越多的游戏宣称他们使用神经网络等方法来提高游戏AI，使得更有挑战性，这里面包含大型游戏也包含小巧精致的卡牌游戏。<br><br>强化学习是机器学习领域的一类学习问题，它与常见的有监督学习、无监督学习等的最大不同之处在于，它是通过与环境之间的交互和反馈来学习的。<br><br>它关注的是软件代理如何在一个环境中采取行动以便最大化某种累积的回报。正如一个初学的棋手，它通过试探各个位置的下子来对环境--这里指他的对手的反击--进行探索，并且慢慢地积累起对于环境的感知，通过和不同的对手一盘一盘得对弈，慢慢积累起来我们对于每一步落子的判断，从而慢慢地提高自身的围棋水平。<br><br>AlphaGo围棋程序在训练学习的过程中就用到了强化学习的技术，还有dota2的Open AI，星际2的AlphaStar。<br><br>强化学习的基本模型，就是个体与环境的交互，并在交互过程中，训练使得个体可以采取的策略让其获得最大的奖励--不仅仅是当前这一次行动对应的奖励（也就是说，并不是贪心算法），而是长期角度的最大奖励。而能够获得这个最大奖励的个体所采取的行为方案，就是强化学习的目标结果，即策略。<br><br><div align=center><font size=2><font color=#808080><img id=aimg_996519 aid=996519 zoomfile=https://di.gameres.com/attachment/forum/202107/29/163757ry5igv9y95agi55y.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202107/29/163757ry5igv9y95agi55y.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202107/29/163757ry5igv9y95agi55y.jpg width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202107/29/163757ry5igv9y95agi55y.jpg referrerpolicy=no-referrer></font></font></div><div align=center><font size=2><font color=#808080>强化学习的原理示意图</font></font></div><br>可以看到，和传统的监督学习或非监督学习不同，强化学习任务依赖于不断和环境交互并得到反馈，这对于传统的预先收集的数据集来说往往是不现实的，比如，对于复杂一些的任务，我们不可能预先把所有的个体可能面对的环境的可能与采取的可能的行动与对应的奖励记录在数据中然后用以训练模型。也就是而很多现实的环境下强化学习的应用会受限于标注的数据集--总体上其反馈信息是较为稀疏的。<br><br>而游戏AI，则是强化学习的一个非常完美的平台，基于程序实现的游戏流程，可以通过个体间的自我对局，快速产生海量的训练数据，并能够极快地实施测试与记录。而游戏AI的任务目标也与强化学习的模型特性高度契合。这种可行性与价值上的意义，使得强化学习在一段时间内涌现了大量的成果。<br><br>但现实世界的游戏AI里，强化学习的应用也并非如模型本身那样简单，具体的应用中存在这样的几个问题：<br><br>首先，强化学习的奖励函数并不好设计。有些机制复杂的游戏，奖励函数的设计非常困难，且比较依赖主观判断，又缺少一种绝对的评判标准。固然在棋牌类游戏下，可以用最终的胜负来作为目标，但实际的多人在线游戏里，机器人的胜率不代表游戏工业对机器人的需求。可以这么问：玩家是否真的希望AI非常强大？体验和胜率能否划等号？事实上目前的游戏里，尤其是PVE内容里，还有大量的时间轴和简单行为触发的敌人，对这样的场景，似乎玩家并不希望敌人过于智能。<br><br>同时，复杂的游戏机制会带来很高的模型复杂度。例如说，很多游戏因为战争迷雾、观察视野、手牌互相不可见等因素，所有游戏参与者都只能获得一部分信息；同时，不少游戏存在非常普遍地随机性的影响，典型如同有抽牌因素的很多卡牌游戏，这些都对强化学习模型在工程中的应用提出了更高的要求。<br><br>并且，因为计算空间的过于庞大，这导致在有限的资源内，容易陷入局部最优而产出平庸方案。比如纯粹依赖强化学习互相博弈来训练的机器人，很容易得出一种人类看来非常愚蠢、呆板，但又可以起到一定作用的粗暴策略。这个问题一方面通过加大计算资源来解决，另一方面可以结合有监督学习解决一部分问题。当然这需要标签数据，也即是人类的游戏行为，这又增加了数据获取、数据处理的难度。<br><br><strong><font color=#de5650>三、关于卡牌游戏AI</font></strong><br><br>当前，随着用户时间碎片化的加剧和移动端设备和互联网性能的提升，在移动端的、单局游戏时间较短的多人在线卡牌游戏的市场份额也在不断提升。<br><br>这类游戏的核心玩法非常统一，即进行卡牌对战。这样，玩家的牌局体验就对于产品的留存与收入至关重要。而在现实的产品运营中，基于各种考虑，机器人牌手总是这类卡牌游戏的一个非常重要的组成部分。它可以用来解决类似于冷门时段内匹配时间过长，新手玩家因为水平层次较低而体验差等一系列问题。<br><br>卡牌游戏因为其本身的特性，玩家的状态显然是离散的，相对动作类游戏、RTS游戏来说，当前的状态更容易被精确描述。同时，因为其回合制的特点，使得游戏里各个玩家的行为更加的容易被描述和记录。这一些使得卡牌游戏是研究游戏AI的非常好的平台，可以更接近AI的本质。<br><br>同时，卡牌类游戏普遍节奏较快，信息也更容易获取，有些流行的游戏拥有非常庞大的在线玩家，可以提供海量的数据。并且，对于快节奏的靠游戏来说，玩家和Agent做出的行为也更容易做出直观的解释。这对于研究AI是有利的。<br><br>并且，卡牌游戏中，AI和人类进行的是公平的、纯粹的决策博弈。这一点非常重要。典型如RTS游戏的AI训练中，人类玩家显然存在各种生理限制，比如每秒钟的点击次数、屏幕切换的最小所需观察时间等等。而机器人选手则没有这样的限制，但如果机器人被允许每秒钟点击上万次，或者每秒钟可以切换屏幕上百次观察所有细节，那么显然是不公平的，基于这样的设置训练出的AI可能并没有、也不需要任何高明的战略，而仅需要强大的单位操作就可以击败一切人类选手。这样就完全偏离了研究的本意。所以当前的这类项目都会对AI的能力做出限制，但这种限制需要考虑的方面太多，并且人类选手的水平也存在巨大的层次差异，这使得在这类游戏里，如何限制AI能力并不是一个可以被彻底论证的事情。<br><br>而卡牌游戏的模型则非常纯粹，也同样有利于研究AI。<br><br>最后，大量的在线卡牌游戏的产品，和卡牌游戏本身相对简单的交互机制，使得这类型的AI成果较容易被实际应用，卡牌类游戏的大用户基数也使得其AI的应用更容易被验证成果。<br><br>如前所述，卡牌类游戏中，因为状态是离散的，加之存在回合的机制，玩家和机器人往往是交替出牌，那么相比其他游戏，在卡牌游戏中玩家更容易感受到局势，更容易感受到机器人的策略的细节。<br><br>并且，玩家也会对机器人的行为有更高的要求。比如，机器人作为敌人时，如果在明明可以取胜的情况下没有击败玩家，或者在作为队友时做出失误导致队伍遭受损失，这类情况在即时的、观察受限的FPS游戏或者动作类游戏里，往往不为玩家所知，或者被玩家归结为偶然因素或者说好运气、坏运气。但在非常容易观察到局势细节和机器人动作细节的卡牌游戏里，则会令玩家感受到很明显的不良体验。<br><br>同时，虽然卡牌游戏的状态相对来说比较容易描述，但因为有强烈的随机因素--最典型的就是抽牌--深入介入了游戏机制，甚至在很大程度上决定了一局游戏的胜负。这样强烈而决定性很强的随机因素使得卡牌游戏的强化学习模型也并不是很容易训练。<br><br>最终，卡牌游戏里的，comb是一个非常重要的组成部分。通过各种战术，形成特定的局面，使用一系列特定的卡牌的特殊效果，实现较为复杂而强大的效果，一直是卡牌游戏里玩家体验的一个重要组成部分。而这就对卡牌机器人的训练提出了非常高的要求。因为在大量的卡牌组合下，仅有特定的若干组合能够形成comb，并且其使用的时机也非常讲究。这就使得单纯要训练出这种行为需要极其庞大的计算资源，否则机器人只会更倾向于使用简单粗暴的战术。<br><br>当前，通过卡牌游戏研究AI已经成为一个热门的领域，很多的论文工作都以当前的流行卡牌游戏为例进行了强化学习或其他人工智能项目的探索。<br><br><strong><font color=#de5650>四、讨论与思考</font></strong><br><br>很多学术界的成果都在探讨如何训练与提高Agent，强大的技术发展也产出了很多瞩目的成果。但这里，我们需要回过头看一下这个本质的问题：为什么我们需要机器人？<br><br>对于具体的游戏产品而非抽象的学术研究来说，这个当然应该从玩家体验出发去看待。<br><br>但是，玩家喜欢什么样的体验？这并不是一个容易回答的问题。<br><br>比如说，玩家某些情况下需要掌控感，某些情况下需要惊喜，更多时候是两者都需要。对于某些游戏来说，玩家其实更期待机器人队友的表现是可以预期的，即使其表现并不高明。玩家会习惯与把机器人的逻辑特点纳入自己的战术体系之中，来决定自己的行为。此时机器人如果表现的过于多变、尽管可能更符合人类的行为，但可能并不是玩家乐意看到的。<br><br>同时，玩家的体验也需要在挑战性和成就感之间寻求平衡。过于机械简单的敌人会令玩家的游戏过程非常枯燥，但过于强大的敌人也可能使得玩家在反复失败之后快速流失。<br><br>尤其是还存在一种情况，新手玩家被过于高明的机器人击败后，可能并不能感受到机器人的策略的强大，这样不仅无法借此提升自己的技术，甚至可能误以为是机器人设计了不平衡的游戏机制，从而带来非常不良的体验。<br><br>本质上说，和学术上不同，实际游戏产品的机器人最终的目的并不是追求最高的胜率，而是提高玩家的游戏体验。而在某些情况下，这个目标是与拟真或者博弈强度是相悖的。<br><br>实际的训练过程中，这些困难导致强化学习模型在学术上那些成功案例里所体现的巨大优势（通过大量自我对弈快速产生海量标签数据）被削弱了，因为agents的自我对局固然可以很方便定义胜负，但却不能代替我们回答怎样的游戏体验更好的这个问题。解决以上这些困难需要花费大量的时间和精力，需要有对玩家行为和游戏机制的非常深层次的理解。<br><br>这也说明了，算法的前沿进展，可以在游戏工业中发挥重大的价值，但也必须和深入的用户行为研究结合起来。<br><br></td></tr></tbody></table></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/cb18.html>https://news.zfe.space/p/cb18.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:32+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/cb18.html&title=网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/cb18.html&title=网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/cb18.html&title=网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202107/29/163756ajmxyah2laesxgyq.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/8ae5.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>网易雷火UX在GDC演讲：大数据视角下的多人在线开服策略</p><p class=content>北京时间7月23日，在游戏开发者大会（GDC2021）上，来自网易雷火UX用户体验中心的数据挖掘工程师Sure进行了精彩的分享，游戏开发者大会每年在旧金山举行，如今已有35届，是一场高...</p></a><a class=next href=/p/a83d.html><p class=title>2021 OPPO全球主题设计大赛正式开启，探索美学与科技的无限想象<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>7月27日，2021 OPPO全球主题设计大赛（以下简称“大赛”）正式开启报名。此次大赛以“发掘不凡 ‘焕’醒心动”为主题，旨在探索美学与科技的无限想象，为全球设计爱好者提供创想实现的可...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="网易雷火UX在GDC演讲：卡牌游戏机器人的训练与提升，以及为何我们需要它";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

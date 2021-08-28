@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85></a></div><div class=article-meta id=top><a title=攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ href=/p/de97.html><img class=thumbnail src=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85></a><h1 class=title>攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E8%99%8E%E5%97%85/">虎嗅</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E8%99%8E%E5%97%85/%E6%96%87%E9%9B%86/">文集</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2020年3月5日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ data-path=/p/de97.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p><span class=text-remarks label=备注>本文来自</span><a href=https://mp.weixin.qq.com/s/pWkQs3wKlEydxzlN88Ec3w target=_blank rel=nofollow style="text-decoration: none;"><span class=text-remarks>微信公众号：运营研究社（ID：U_quan）</span></a><span class=text-remarks>，作者：套路编辑部</span></p><p>记得有那么一段时间，我经常会在朋友圈刷到同一条广告。神奇的是，几乎我所有的好友都会跑来这条广告底下点赞或评论，评论区异常火爆，滑屏半天都滑不到底。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=341 data-h=481 src=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85 referrerpolicy=no-referrer></p><p>就这条广告，把半个朋友圈的人都炸出来了，可是说是很魔幻了。有的小伙伴表示好奇：</p><p>为什么这么多人点赞评论？</p><p>有的小伙伴表示不理解：</p><p>厉害了，10 分钟 30+ 条评论，你们约好在这聊天的吗？</p><p>还有的小伙伴干脆在评论区里打起了各种广告……<span class=text-remarks label=备注>（不愧是都是互联网人，脑回路清奇）</span></p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120653524.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120653524.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=303 data-h=347 src=https://img.huxiucdn.com/article/content/202003/05/150120653524.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p label=图片备注 class=text-img-note>朋友圈Python广告下的评论</p><p>更神奇的是，最近这段日子，这条广告又开始霸占朋友圈了，而且还出现了好几个版本。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120294481.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120294481.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=312 src=https://img.huxiucdn.com/article/content/202003/05/150120294481.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>就连公众号、抖音，也都被这些“学 Python”的广告霸占了。据说，这些广告还一度引起了“全民学Python “的小热潮。</p><p>那么，这些广告有啥魔力“圈粉”这么多路人？这门课程背后又有哪些套路呢？这次我们打入内部，带大家一起来扒一扒。</p><h3 label=大标题 class=text-big-title>看了近百条广告后，我总结了8个套路</h3><h3 label=大标题 class=text-big-title><span style="color: rgb(51, 51, 51); font-size: 16px;"><br></span></h3><p label=正文 class=text-normal>为了深扒 Python 小课的文案套路，我翻遍了朋友圈、公众号、抖音，看了近百条广告发现，为了吸引用户的点击，“Python 小课”可以说是费尽了心机。</p><p label=正文 class=text-normal>总结下来，我发现朋友圈的文案基本上有 2 个套路，公众号转化文案和抖音的引流视频都离不开 6 个套路。</p><p label=小标题 class=text-sm-title>朋友圈文案是如何吸引用户的？</p><p>仔细观察你会发现，“Python 小课”的朋友圈广告，一般都是 2~4 行左右的短文案加上九宫格折叠页图片<span class=text-remarks label=备注>（或者小视频）</span>，我们逐一拆解。</p><p><strong>① 短短几行字突出课程功效</strong></p><p>先上它的文案给大家感受下：</p><blockquote><p>批量处理 Excel ，学 Python 教你 5 分钟搞定……</p><p>学 Python ，自动化处理 Excel、Word，高效办公，准时下班！</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120837341.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120837341.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=543 src=https://img.huxiucdn.com/article/content/202003/05/150120837341.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>发现没有，这些朋友圈文案都有一个特点，就是突出了这门课的功效，简单粗暴地告诉你，<strong>课程能帮你解决什么问题</strong>。</p><p>有的朋友圈文案，甚至还能进一步体现产品的差异化，比如低门槛、高效、低价、有趣等。</p><p><strong>② 九宫格折叠页，3 步吸引你关注公众号</strong></p><p>短文案各有各的不同，九宫格的套路几乎一样，当你点进广告后你会发现几乎一样的折叠页详情，3 种套路层层递进：</p><p><strong>第一步，体现适合人群</strong>，先把人群锁定，比如和你说适合职场菜鸟、小白、想成长的人……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120696289.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120696289.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=396 data-h=200 src=https://img.huxiucdn.com/article/content/202003/05/150120696289.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>第二步，体现获得感</strong>，用户学了课程能够获得什么，吸引用户往下看。比如告诉你学了课程可以升值加薪、高效完成 XXX……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120346166.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120346166.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=395 data-h=364 src=https://img.huxiucdn.com/article/content/202003/05/150120346166.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>第三步，突出学习过程的体验以及差异化学习方式</strong>，做进一步转化。比如突出学的时候有多轻松，占用的时间有多短等等，降低你参与课程的门槛。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120836595.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120836595.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=388 data-h=448 src=https://img.huxiucdn.com/article/content/202003/05/150120836595.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p label=小标题 class=text-sm-title>公众号投放&抖音视频的6个转化套路</p><p>Python 小课在公众号投放的广告和在抖音上投放的广告，套路就更多了，基本上都遵循以下这 6 个步骤：</p><p><strong>① 吸引用户注意</strong></p><p>第 1 步就是吸引用户注意。Python 小课广告的标题和开头很擅长制造焦虑，都是紧扣目标用户心理的相关话题。</p><p>比如职场人最关心的成长问题、薪资问题，更是抓住了年后用户跳槽的心理。举几个典型的例子给大家感受下<span class=text-remarks label=备注>（类似的标题，90% 是 Python 的广告）</span>：</p><blockquote><p>工作 3 年连一个实习生都不如……</p><p>疫情期间，看到了同事的工资后，我退出了群聊</p><p>说了 1000 次年后要辞职的那批人，现在动都不敢动</p><p>足不出户的日子里，我发现自己被同龄人狠狠抛弃了</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120623986.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120623986.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=862 src=https://img.huxiucdn.com/article/content/202003/05/150120623986.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>有的时候，还会各种蹭热点，故弄玄虚：</p><blockquote><p>爆红的李子柒，让我越想越后怕……</p></blockquote><p>抖音短视频也是同样的套路，在一开始吸引用户关注，<strong>要么是通过沙雕剧情引入，要么以反问句式开头</strong>。比如：</p><blockquote><p>来公司几个月连升两级，还不是因为长得漂亮……</p><p>在职场，不会 python 有多吃亏？</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120863757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120863757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=762 src=https://img.huxiucdn.com/article/content/202003/05/150120863757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>② 花式戳痛点，引需求</strong></p><p>第 2 步就是指出目标用户面临的现实痛点问题，比如：</p><blockquote><p>钱多事少、努力不如新人、发展空间小、每天做重复的事、无效加班……</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120649288.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120649288.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=320 src=https://img.huxiucdn.com/article/content/202003/05/150120649288.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>同样地，抖音短视频是这样戳用户痛点的，比如在职场上没有竞争力，体力拼不过大学生、资源拼不过老同事等等。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120041739.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120041739.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1028 data-h=651 src=https://img.huxiucdn.com/article/content/202003/05/150120041739.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>③ 扩大目标人群</strong></p><p>第 3 步需要扩大受众人群。毕竟受众越多，就可能带来更多的转化。</p><p>比如订阅号的推广文案，在吸引用户注意、引出需求之后，紧接着就会有扩大人群的部分，比如：</p><blockquote><p>你会想：学编程不就成了程序员吗？其实在这个时代真不是这样。</p><p>做为职场必备技能，大部分行业都已在招聘 ID 中，纷纷给出了 XXX 这样的招聘条件……</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120063088.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120063088.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=749 data-h=232 src=https://img.huxiucdn.com/article/content/202003/05/150120063088.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>再比如，<strong>抖音短视频是这样扩大目标受众的</strong>，比如可以帮助做金融的人 XXX，可以帮助做电商的人 XXX，可以帮助做社群的人XXX……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120511419.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120511419.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=679 data-h=641 src=https://img.huxiucdn.com/article/content/202003/05/150120511419.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>④ 呈现产品差异化</strong></p><p>第 4 步，呈现产品差异化，这部分主要突出产品不同于其他课程的点在哪里，<strong>用户凭什么选择你的课程？</strong></p><p>公众号推文是这样体现产品差异化的，提取几个课程特点的关键词，比如零基础、情景教学、在线实操等，突出产品的特点引起用户兴趣。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120136563.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120136563.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=413 src=https://img.huxiucdn.com/article/content/202003/05/150120136563.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>再比如编程小白从“不知道”到“知道”、比如刷个短视频的时间就能学完一节课等……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120886074.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120886074.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=286 src=https://img.huxiucdn.com/article/content/202003/05/150120886074.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>抖音短视频中，同样也会突出课程的差异化，比如助教老师全程指导、像玩游戏一样……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120771157.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120771157.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1056 data-h=1017 src=https://img.huxiucdn.com/article/content/202003/05/150120771157.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>⑤ 强化产品功效</strong></p><p>第 5 步，强化产品的功效。给用户造梦，重点强调学了之后会怎样。比如：</p><blockquote><p>简直成为用户口中的大神，用几行代码就能解决他们处理半天的工作……</p></blockquote><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120984202.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120984202.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1024 data-h=619 src=https://img.huxiucdn.com/article/content/202003/05/150120984202.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>⑥ 价格拆解+福利，促成转化</strong></p><p>最后临门一脚，给用户立即购买的理由，利用紧迫感促成转化。比如强调这个价格是专享价格，仅限前 100 位同学。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120541137.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120541137.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1031 data-h=647 src=https://img.huxiucdn.com/article/content/202003/05/150120541137.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>为了让你不犹豫就下单，还会将价格拆解： 8.9 元 4 节课，并用类比法让用户感觉很便宜，比如：不到一杯奶茶的钱，就能……</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120263757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120263757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=287 src=https://img.huxiucdn.com/article/content/202003/05/150120263757.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>从吸引用户注意到戳痛点引需求，再到扩大目标人群，呈现产品差异化，强化产品功效，再到最终的价格拆解促成成交，形成了一个完整的转化闭环。</strong></p><p>不过这只是转化的开始，更深的套路还在后面。</p><h3 label=大标题 class=text-big-title>最高50%社群转化率，背后有啥猫腻？</h3><p>有数据显示，某编程体验课程都能够做到 <strong>30%-50% 的转化率</strong>。带着强烈的好奇心，我加入了“Python 小课社群”，开启了长达一个星期的卧底之旅，最终发现这个体验课社群背后的秘密。</p><p label=小标题 class=text-sm-title>强化用户的学习动机</p><p>当你进入社群的第一天，你会被科<span class=text-remarks label=备注>（xi）</span>普<span class=text-remarks label=备注>（nao）</span>学习 Python 有多厉害。</p><p>比如助教在群聊里会时不时地晒一些学员案例，强调学之前有多菜鸟，学了之后有多牛逼，工作效率有多高等等。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120020513.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120020513.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=955 src=https://img.huxiucdn.com/article/content/202003/05/150120020513.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>另外，助教还会甩出一堆关于 Python 工程师的岗位需求、薪资水平等，目的就是一个，告诉你学习 Python 之后有多赚钱。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120144426.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120144426.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=953 src=https://img.huxiucdn.com/article/content/202003/05/150120144426.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>紧接着助教开始扩大目标受众，强调谁都能学，谁学都能赚。</p><p>在接下来的课程学习中，你会不断地被“洗脑” Python 有多重要，再不学习就要被时代抛弃、被同龄人抛弃……<strong>不断激发你的需求和兴趣，增强你的学习动机。</strong></p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120927911.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120927911.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=950 src=https://img.huxiucdn.com/article/content/202003/05/150120927911.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p label=小标题 class=text-sm-title>让用户感觉能轻松做到</p><p><strong>① 简单易行给用户参与感</strong></p><p>为了让用户快速上手 ，Python 平台的课程设计可谓煞费苦心。</p><p>勾起用户的兴趣和学习欲望还远远不够，如果用户在学习的过程中感到吃力或者产生畏难心理，可能就有不少人打退堂鼓，难以坚持，更别提后期的转化了。</p><p>而 Python 课程平台很鸡贼地将学习门槛和难度设置得很低，告诉你很轻松就能做到。</p><blockquote><p>不需要下载软件，打开网页就可以参加学习。课程是文字交互式（聊天）的学习，对 0 基础同学非常友好……</p></blockquote><p>老师甚至都把你的代码写好了，你只需要点个“运行”按钮就可以出来运行结果。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120282901.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120282901.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=424 src=https://img.huxiucdn.com/article/content/202003/05/150120282901.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>课程中还会设置一些比较简单的操作，比如让你在括号中打上老师给你准备好的内容，你只要点击“运行”就能出来结果，可以说是成就感满满了。</p><p>除此之外，课程还设置了一些练习题，这些题都很简单，只需照葫芦画瓢或者把代码复制粘贴过来，改动改动就行了。<span class=text-remarks label=备注>（终于体会到了抄作业的那种，不劳而获的感觉）</span></p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120291550.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120291550.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1075 data-h=397 src=https://img.huxiucdn.com/article/content/202003/05/150120291550.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p><strong>② 鼓励分享给用户成就感</strong></p><p>班主任会让学员们在学习完一关之后，将代码的运行结果发到群里，发送了的学员都可以获得课程资料包的奖励。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120441659.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120441659.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=848 src=https://img.huxiucdn.com/article/content/202003/05/150120441659.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>在资料包的诱惑下，大家纷纷往群里发送代码运行结果的链接。链接上还会显示每个人一共运行了几行代码，让人忍不住产生攀比心理，对于没有完成当天任务的人来说更是一种激励。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120785546.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120785546.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1073 data-h=920 src=https://img.huxiucdn.com/article/content/202003/05/150120785546.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>于是大家仿佛打了鸡血一般，学习群里一片热火朝天的景象，甚至有好几个人凌晨两三点都还在学习……</p><p label=小标题 class=text-sm-title>送优惠券触发用户转化</p><p>在体验课程快结束的时候，班主任趁热打铁，开始给大家介绍“正价课程”了。</p><p>正价课程一门课要 999 元，为了促进转化，班主任说如果团购两门课程的话，总共有 500 块钱的优惠。除此之外，还可以使用一张 200 元的优惠券，券后价只需要 1298 元。</p><p>不过这个优惠券数量有限，总共只有 50 张，先到先得。<span class=text-remarks label=备注>（这个优惠券是不是真的只有 50 张，咱也不知道，咱也不敢问）</span></p><p>考虑到用户中有不少人是略微拮据的学生党，老师还提出课程支持花呗和信用卡分期，进一步降低了转化门槛。</p><p>不得不说这波操作下来，很多人都心动了，不少人在群里问助教要优惠券。<span class=text-remarks label=备注>（我怀疑其中有托，但是我没有证据）</span></p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120232523.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120232523.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=630 src=https://img.huxiucdn.com/article/content/202003/05/150120232523.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>除了课程组合价和优惠券之外，更秀的是报名的学员可以领取雨伞、帆布包等小礼物。助教以统计礼物的名义，<strong>让用户在群里接龙晒单，营造出课程热卖的氛围</strong>，试图利用用户的从众心理做进一步转化。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120472656.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120472656.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=979 data-h=774 src=https://img.huxiucdn.com/article/content/202003/05/150120472656.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>另外，助教还会私聊没有在群里说话的用户<span class=text-remarks label=备注>（比如我）</span>，告诉我优惠券可能不够用了，将优先给到已经完课的同学。</p><p>一边督促我赶紧上完课，一边试图转化我，简直妙啊。</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120671064.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120671064.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=949 src=https://img.huxiucdn.com/article/content/202003/05/150120671064.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>总之，在这个环节，送优惠券的操作可以说是推动用户转化的触发点。</p><p>用户有了强烈的学习动机，加上课程不难可以学会，很容易就会让用户完成下单的行为。</p><p>这番体验下来，我发现这些套路正好契合了<strong>福格<span class=text-remarks label=备注>（Fogg）</span>行为模型</strong>。</p><p>什么是福格模型呢？这个模型由斯坦福某实验室主任福格所提出，他认为，要使人完成一个行为，必须具备三要素：</p><p>充分的动机；完成这一行为的能力；触发用户付诸行动的因素</p><p class=img-center-box><img class="lazyImg lazyload" _src=https://img.huxiucdn.com/article/content/202003/05/150120275452.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 data-srcset=https://img.huxiucdn.com/article/content/202003/05/150120275452.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-w=1080 data-h=601 src=https://img.huxiucdn.com/article/content/202003/05/150120275452.jpg?imageView2/2/w/1000/format/jpg/interlace/1/q/85 referrerpolicy=no-referrer></p><p>对应到 Python 课程的转化套路来说，也分为三个方面。</p><p><strong>首先，强化用户的学习动机</strong>，让用户强烈感受到学习所带来的回报，比如赚大钱或者工作效率的提升。</p><p><strong>其次，将学习门槛和课程难度设置得很低</strong>，简单易上手，告诉用户轻松就能够做好，从而树立学下去的信心。</p><p><strong>最后，通过课程组合价、送优惠券以及送小礼物等</strong>方式触发用户，推动社群内成员的转化。</p><h3 label=大标题 class=text-big-title>结语</h3><p>不得不说，Python 小课的文案和社群套路，可以说的上是教科书级别的。</p><p>朋友圈、公众号、抖音的投放文案拆解下来，基本上就是<strong>这 6 个步骤，形成一个完美的转化闭环</strong>：</p><p>1）吸引用户注意</p><p>2）花式戳痛点，引需求</p><p>3）扩大目标人群</p><p>4）呈现产品差异化</p><p>5）强化产品功效</p><p>6）价格拆解+福利，促成转化</p><p>社群的转化套路正好契合了<strong>福格行为模型</strong>，主要分为 3 个部分：</p><p>1）强化用户的学习动机</p><p>2）让用户感觉能轻松做到</p><p>3）送优惠券触发用户转化</p><p>话说回来，这些套路之所以能这么好用，从某种程度上来说是<strong>因为平台方洞察到了用户的心理，将人性套路用到了极致。</strong></p><p><span class=text-remarks label=备注>本文来自</span><a href=https://mp.weixin.qq.com/s/pWkQs3wKlEydxzlN88Ec3w target=_blank rel=nofollow style="text-decoration: none;"><span class=text-remarks>微信公众号：运营研究社（ID：U_quan）</span></a><span class=text-remarks>，作者：套路编辑部</span></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/de97.html>https://news.zfe.space/p/de97.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:08+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/de97.html&title=攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ - 小冰 RSSHub&pics=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/de97.html&title=攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ - 小冰 RSSHub&pics=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/de97.html&title=攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？ - 小冰 RSSHub&pics=https://img.huxiucdn.com/article/content/202003/05/150120737548.gif?imageView2/2/w/1000/format/gif/interlace/1/q/85&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/aad3.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>直播_OPPO Find X2发布会</p><p class=content></p></a><a class=next href=/p/d435.html><p class=title>五分钟搞懂美联储降息<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>本文来自微信公众号：三折人生（ID：Ezhers），作者：三折人生北京时间3月3日23时，美联储将美国联邦基金利率下调0.5%，还将IOER也降低0.5%。美联储议息会议原定于3月17日...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>看了近百条广告后，我总结了8个套路</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>最高50%社群转化率，背后有啥猫腻？</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>结语</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="攻陷朋友圈的8.9元Python小课，有哪些利用_人性_的新套路？";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

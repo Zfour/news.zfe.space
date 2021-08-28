@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>6000字思考！一篇看懂促销系统的底层逻辑 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture></a></div><div class=article-meta id=top><a title=6000字思考！一篇看懂促销系统的底层逻辑 href=/p/f672.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture></a><h1 class=title>6000字思考！一篇看懂促销系统的底层逻辑</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E4%BB%8A%E6%97%A5%E6%8E%A8%E8%8D%90-%E7%B2%BE%E9%80%89/">今日推荐 / 精选</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年7月15日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=6000字思考！一篇看懂促销系统的底层逻辑 data-path=/p/f672.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><pre><style>
+#articleCont &#123;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+&#125;
+#articleCont :first-child &#123;
+  margin-top: 0 !important;
+&#125;
+#articleCont h1,
+#articleCont h2,
+#articleCont h3,
+#articleCont h4,
+#articleCont h5,
+#articleCont h6 &#123;
+  margin: 40px 0 20px;
+&#125;
+#articleCont h1 &#123;
+  font-size: 24px;
+&#125;
+#articleCont h2 &#123;
+  font-size: 22px;
+&#125;
+#articleCont h3 &#123;
+  font-size: 20px;
+&#125;
+#articleCont h4 &#123;
+  font-size: 18px;
+&#125;
+#articleCont h5 &#123;
+  font-size: 16px;
+&#125;
+#articleCont i &#123;
+  font-style: italic;
+&#125;
+#articleCont p,
+#articleCont div &#123;
+  word-wrap: break-word;
+  margin: 14px 0;
+  text-align: justify;
+&#125;
+#articleCont blockquote &#123;
+  border-left: 6px solid #ddd;
+  padding: 5px 0 5px 10px;
+&#125;
+#articleCont blockquote p:last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont .simditor-body blockquote :last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont a &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:visited &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:hover &#123;
+  color: #74a342;
+&#125;
+#articleCont img &#123;
+  max-width: 100%;
+  height: auto;
+&#125;
+#articleCont hr &#123;
+  margin: 19px 0;
+  border: none;
+  border-top: solid 1px #ddd;
+&#125;
+#articleCont ol &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ol li &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ul &#123;
+  list-style-type: disc;
+  padding-left: 40px;
+&#125;
+#articleCont ul li &#123;
+  list-style-type: disc;
+&#125;
+#articleCont table &#123;
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  line-height: 1.7;
+&#125;
+#articleCont table thead &#123;
+  background: #f9f9f9;
+&#125;
+#articleCont table th,
+#articleCont table td &#123;
+  border: solid 1px #ccc;
+  text-align: left;
+  vertical-align: top;
+  padding: 2px 4px;
+  height: 30px;
+  min-width: 40px;
+  box-sizing: border-box;
+&#125;
+#articleCont pre &#123;
+  white-space: pre-wrap;
+&#125;
+</style><p><span style=color:rgb(102,102,102);>促销是电商产品的核心功能模块，但也是最难做好的功能模块。</span></p><p>促销的类型丰富且复杂，随意搭配组合就能给用户打造多样化的促销场景，引导用户进行购买。</p><p>因此，很多产品经理擅长在产品上堆砌促销功能，以此形成自身产品的促销系统。</p><p><strong>但，这不叫促销系统。</strong></p><p>将企业根据外部环境和内部条件，核算营销过程中发生的各项成本和争取最大经济效益，而进行影响消费者购买态度和行为的营销方式所组成的，具有一定结构和功能的有机整体，我们称为促销系统。</p><p>堆砌功能形成的复杂多样的促销系统，很难具有整体性和结构性，容易在产品上引发逻辑上的冲突和死循环。</p><p>从而制造出业务漏洞和产品Bug，给公司带来财务风险和损失。出现这样的问题，主要原因是我们没有掌握促销系统的核心：</p><p><strong>算钱。</strong></p><h2><strong>1. </strong><strong>促销系统的核心</strong></h2><hr><p>促销的核心是算钱。</p><p><strong>那，什么是算钱？</strong>我们先看一个案例。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 width=396 height=508 coffee-w=671px coffee-h=862px coffee-format=png referrerpolicy=no-referrer></p><p>要解决这个问题，我们要先知道，如果不发布优惠券，实际利润是怎么样？</p><p>30 名用户会以 50 元的价格购买我们的商品，实际利润：(50-20)*30 = 900 元，我们能赚 900 块钱。</p><p>剩下 70 名用户不会购买，因为商品价格与他们的心理预期不匹配。而对于我们来说，这无法让我们的利润最大化。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/7b30bab2665b96ef69e5f91bdb3efc15-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/7b30bab2665b96ef69e5f91bdb3efc15-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=538px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;>优惠券价格歧视模型</p><p><strong>那怎么赚到 70 名用户的钱？</strong></p><p>把价格降到他们的心理预期价格，只给心理价格为 40 元的用户发 10 元优惠券，花费 700 元成本，既保证原来 30 名用户产生的利润空间，又创造了 1400 元的利润空间。</p><p>计划花多少成本，以此最大化赚多少利润，这就是算钱。搞清楚这一点，后面才是设计对应的促销规则，筛选目标用户，影响购买态度，引导下单。</p><p>促销系统是促销在产品上的载体，自然促销系统的核心也是——<strong>算钱，即促销的订单费用计算。</strong></p><p>很多产品的促销系统，没有清晰的算钱思路，不可避免的制造了人为漏洞。我们看一个现实案例。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/9f6e46b571a7e9638bbd48fafdd1c4cf-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/9f6e46b571a7e9638bbd48fafdd1c4cf-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=690px coffee-h=1076px coffee-format=png referrerpolicy=no-referrer></p><p>结果当时不少消费者薅了羊毛，官方只能以退单处理。</p><p>如果没有平行优惠，且按照多件多折-优惠券-购物津贴顺序扣减，消费者最低需要支付 900 元，服装行业以此价格清理库存是有的赚。</p><p><strong>这就是典型的花了钱，赚不来成本，算钱没算明白的情况</strong>。</p><p>要算明白促销订单费用，需要了解构成促销订单计算的三要素：<strong>促销类型，互斥规则，计算公式。</strong></p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/cf1f26123705412aed6e3ee37a79f0b9-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/cf1f26123705412aed6e3ee37a79f0b9-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=616px coffee-h=362px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;>促销订单计算三要素</p><h2><strong>2. </strong><strong>促销类型</strong></h2><hr><p>明白了促销系统的核心，我们就来看促销订单计算第一要素：促销类型。</p><p>促销类型，根据载体的不同，划分类型也会有所不同。</p><p>比如：</p><p>按商品维度，可以分为：单品优惠，品类优惠，全场优惠；</p><p>按时间维度，可以分为：限时优惠，不限时优惠；</p><p>按商家维度，可以分为：店铺级优惠，平台级优惠。</p><p><strong>但是上述的促销类型，很难解决我们算清钱的问题。</strong></p><p>首先，促销类型的划分会影响互斥规则，不合适的促销类型很难制定互斥规则。</p><p>例如：限时优惠和不限时优惠，店铺级优惠和平台级优惠。</p><p>限时单品优惠和限时全场优惠券是互斥还是互享？平台单品优惠和平台全场现金券是互斥还是互享？</p><p><strong>划分颗粒度太大，容易在互斥规则上混乱，导致出现逻辑上的漏洞。</strong></p><p>其次，促销类型的划分也会影响计算公式，例如按商品维度划分类型促销类型，会员优惠，积分优惠，和运费优惠很难归类其中。</p><p>在计算费用上不好统计，或者在初始设计时容易遗漏，后续加入后，计算逻辑容易和之前促销计算逻辑产生冲突。</p><p>所以，我们采用的是按促销方式的纬度，划分促销类型，大体上可以分为 5 类：</p><ol><li><strong>促销优惠；</strong></li><li><strong>优惠券；</strong></li><li><strong>储值卡优惠；</strong></li><li><strong>运费优惠；</strong></li><li><strong>其他类优惠。</strong></li></ol><p><strong>为什么这样划分？</strong></p><p>前面划分类型之所以有那么多问题，主要是纬度单一，无法处理复杂的促销情况。</p><p>而促销方式的纬度，本身包含 4 个特征——<strong>主体，范围，受惠方式，发放形式</strong>——依次进行划分促销类型，可以解决复杂的促销类型。</p><h3><strong>2.1 主体</strong></h3><hr><p>主体，指促销方式优惠的主体，按照主体不同，我们把促销类型分为 2 类：以商品价格为主体的促销，以运输成本为主体的促销。</p><p>以运输成本为主体的促销，即企业通过减免消费者承担的运输成本，来影响消费者做成购买决策的促销方式，我们统称为运费优惠。</p><p>类型包括：运费券，满额包邮，单品包邮等。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/17358a8396a6e0e6673dc9b9b66fc479-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/17358a8396a6e0e6673dc9b9b66fc479-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=814px coffee-h=489px coffee-format=png referrerpolicy=no-referrer></p><p>而以商品价格为主体的促销方式种类繁多，我们通过特征2：范围，继续划分促销类型。</p><h3><strong>2.2 范围</strong></h3><hr><p>范围，指促销方式能够覆盖的范围，即促销方式能够适用线上或线下。</p><p>按照覆盖范围大小，我们可以分为：仅适用线上的促销，仅适用线下的促销，线上线下都适用的促销。</p><p>仅适用线下的促销因为无法纳入系统开发，比如：纸质优惠券，线下门店倒闭清仓等，不在我们的讨论范围。</p><p>而线上线下都适用的促销，即：线上结算和线下收银支付结算（包括现金）都可以使用，只有储值卡优惠。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/fb5730304e1f84dceb8d047ec2c66d5d-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/fb5730304e1f84dceb8d047ec2c66d5d-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=1080px coffee-h=681px coffee-format=png referrerpolicy=no-referrer></p><p>储值卡优惠，指发卡机构通过引导消费者充值或者消费购买具有固定价值卡片的促销方式，常见于O2O 类电商。</p><p>一般情况，储值卡固定价值会比充值价格高，例如：充值 50 送 50 超市储值卡。</p><p>而在仅适用线上的促销类型的基础上，我们根据特征 3：受惠方式，继续划分。</p><h3><strong>2.3 受惠方式</strong></h3><hr><p>受惠方式，指以下单为节点，消费者接受优惠的方式，按照受惠方式的不同，我们可以分为：预支受惠和下单受惠。</p><p>下单受惠，即消费者在下单时，才能享受优惠，典型：促销优惠。预支受惠，指消费者在下单前，已享受优惠，例如：优惠券，红包等。</p><p><strong>两者的区别，</strong><strong>在于优惠是否提前给予消费者。</strong></p><p>预支受惠优势在于提前将优惠给予消费者，使之成为消费者所有物，拥有损失心理的优势，所以能提高转化率。例如：京东的东券。</p><p>下单受惠优势在于简单，消费者在下单即刻享受优惠，例如：拼多多的百亿补贴。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/73f090ccbe55575aacf09ca288add005-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/73f090ccbe55575aacf09ca288add005-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=1080px coffee-h=699px coffee-format=png referrerpolicy=no-referrer></p><p>促销优惠，指企业向消费者传递促销活动的信息，影响消费者购买产品，仅在购买时享受优惠的促销方式。</p><p>从类型上，促销优惠分为两类：</p><ul><li>一类是单商品优惠，指对单商品价格优惠的促销，如：秒杀，立减，拼团等；</li><li>一类是集合优惠，指捆绑多商品进行优惠，如满减，满额打折，满赠，多件多折等。</li></ul><p>而在预支优惠的促销方式基础上，我们按照特征 4：发放方式，作最后的划分。</p><h3><strong>2.4 发放方式</strong></h3><hr><p>发放方式，指优惠方式以什么方式发放，促销的发放方式很多，但在上述的基础上，我们可以大致分为两类：</p><ol><li>以卡券形式发放，如优惠券；</li><li>以其他形式发放，如红包，积分等，我们统称其他类优惠。</li></ol><p>优惠券，企业通过发布可抵扣面额券，直接影响消费者对产品或服务的价值感知和购买行为，从而促使消费者作出即时购买行动的促销方式。</p><p>优惠券按形式类型，可以分为满减券，打折券，现金券等，按平台维度，可以分为店铺，平台券。</p><p><strong>其他类优惠主要指红包和积分优惠。</strong></p><p>红包，指消费者通过参与活动或购买会员获得的特殊性促销权益，具有等值货币属性的平台流通物。包括会员红包和活动红包。</p><p>积分优惠，指消费者通过平台活动或者指定条件，获取具有抵扣一定比例金额的货币性质的促销工具，例如淘宝的淘金币，京东的京豆等。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2bc84662caef79d4fd7574046dc7f535-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2bc84662caef79d4fd7574046dc7f535-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=1080px coffee-h=690px coffee-format=png referrerpolicy=no-referrer></p><p><strong>以促销方式划分促销类型，我们可以多层次区分促销的不同类型，而清晰的促销类型可以使我们互斥规格和计算公式更加清楚，不容易出现逻辑问题。</strong></p><h2><strong>3. </strong><strong>互斥规则</strong></h2><hr><p>促销系统中，制定促销方式在同一订单，不能同时生效的规则，我们称为互斥规则。</p><p>互斥规则，是促销系统另一个核心内容，也是很多产品经理无法处理好的第二个难题。</p><p>互斥规则设计很简单，记住 3 个原则：</p><ol><li><strong>同一补贴方促销优惠，互斥，优先级需要根据业务判断；</strong></li><li><strong>单品级促销优惠，互斥，仅生效最低价的促销优惠，且与套餐促销互斥；</strong></li><li><strong>同一补贴方的优惠券，互斥，不同补贴方的优惠券允许叠加。</strong></li></ol><h3><strong>3.1 同一补贴方促销优惠，互斥，优先级需要根据业务判断</strong></h3><hr><p>补贴方，指提供优惠补贴的主体，即商家和平台。</p><p>同一补贴方促销优惠，指同一商家发布的促销优惠，互斥，同一平台发布的促销优惠，互斥，不同店铺之间，店铺和平台的促销优惠允许叠加使用。</p><p>我们来看这样一个案例：</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/d256a69aaed8200deee6f3e71dde1e69-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/d256a69aaed8200deee6f3e71dde1e69-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=1143px coffee-format=png referrerpolicy=no-referrer></p><p><strong>为什么呢？</strong></p><p>判断互斥的本质是，<strong>避免同一补贴方在同一商品上做 2 次以上的促销优惠</strong>，减少额外促销成本付出，避免成本价被击穿的风险，从而保护商家和平台利益。</p><p>以上面商家 A 为例，商家推出满 100 减 50 和满 2 件打 5 折促销优惠活动，用户买了 2 件服装，共200元。</p><p>如果没有互斥规则，且采用递进式扣减，用户最后支付价格有两个结果：</p><ol><li>先满 100 减 50，后满 2 件打 5 折：(200-50) X 0.5 = 75 元</li><li>先满 2 件打 5 折，后满 100 减 50：200 X 0.5 - 50 = 50 元</li></ol><p>服装行业平均毛利为 51.5%，也就是 200 元商品，成本为 97 元，在没有互斥规则下，商家很轻易就亏本，平台也是如此。</p><p>所以为了保护平台和商家，同一补贴方促销优惠，互斥，但促销优惠生效的优先级，需要根据产品业务来确定。</p><p><strong>但是，也</strong><strong>有特例</strong><strong>。</strong></p><p>赠品促销，可以与同一补贴方促销优惠进行叠加，因为赠品促销与其他类型促销不同，不修改商品价格，不影响商家的毛利。</p><h3><strong>3.2 单品级促销优惠，互斥，仅生效最低价的促销优惠，且与套餐促销互斥</strong></h3><hr><p>促销优惠，从商品价格纬度，分成两种类型：单品级促销和非单品级促销。</p><p>单品级促销，指针对单个商品价格直接进行修改，且能作为商品最终销售金额的促销优惠，如秒杀，限量购，大促价等；</p><p>非单品级促销，指以商品销售总金额为基础，进行优惠扣减或者赠品的促销优惠，如满减，满额打折等。</p><p><strong>单品级促销与其他级别的促销互斥原因不同</strong>，单品级促销互斥原因有 2 个：</p><p>1. 单品级促销影响单品价格，而单品价格是其他促销方式计算基础。当商品存在多个价格，业务上只能采用 1 个价格作为结算价格，单品级促销在订单计算上，互斥；</p><p>2. 当商品存在多个单品级促销时，为了提高消费者购买意愿，和减少售后，生效最低价的促销优惠，其他促销优惠互斥。例如：</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/675d2467c1b5a5fdbbd407f411a0c55e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/675d2467c1b5a5fdbbd407f411a0c55e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=768px coffee-format=png referrerpolicy=no-referrer></p><p><strong>为什么？</strong></p><p>首先从价格上，70 元比 80 元更便宜，更容易刺激用户心理价格，更容易下单。</p><p>其次，不生效最低价，用户用 80 元购买后，发现了 70 元大促价，容易产生心理落差，滋生被欺骗的心理，客户容易选择退款再重新购买，商家需要付出额外的人力成本和物流成本等。</p><p>即使不退款，用户大概率会采取差评，这会降低商家的在平台评价和影响商品销量。</p><p>这也就是为什么，商家在大促期间，为了减少库存压力，同时避免用户投诉，会采取价保手段来吸引客户在大促前下单的原因。</p><p><strong>需要注意的是，</strong><strong>单品级促销和套餐促销互斥。</strong><strong>互斥原因有 2 个：</strong></p><p>1. 套餐促销是将几个商品集合形成结算价，可以作为后续促销方式计算基础，当商品存在套餐促销和单品级促销，业务上只能采用其中 1 个价格作为结算价格，所以互斥；</p><p>2. 如果在不互斥的情况下，套餐内某个商品存在更低价的单品级优惠，允许生效最低价，最低价会替代套餐内商品价格，破坏了套餐的结算价，会出现击穿商家成本的风险。在保护商家的维度上，单品级促销和套餐促销，互斥。</p><h3><strong>3.3 同一补贴方优惠券，互斥，不同级别优惠券允许叠加</strong></h3><hr><p>优惠券与促销优惠类似，同一补贴方，指提供优惠补贴的主体，即商家和平台。</p><p>同一补贴方优惠券的互斥原因，和统一补贴方促销优惠的互斥原因类似，都是避免同一补贴方在同一商品上做 2 次以上的优惠券补贴，避免成本价被击穿，保护商家和平台利益。</p><p>原则上，<strong>同级别的优惠券在一笔订单中，只能使用一次</strong>，但是不同补贴方的优惠券允许叠加，也就是不同店铺的优惠券和平台优惠券允许叠加。</p><p>用户存在多张同一补贴方优惠券时，生效补贴力度最大的优惠券，但允许用户自行选择。</p><p>但，优惠券也有需要注意的特例，<strong>运费券</strong>。</p><p>运费券虽然属于优惠券的一种，由于优惠主体的不同，所以运费券我们归类于运费优惠，不在优惠券互斥范围。</p><p>根据互斥 3 原则和相应的特殊情况，我们可以梳理一张促销系统互斥规则表：</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/6f56b3e153b69ecac813bf1b90d12838-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/6f56b3e153b69ecac813bf1b90d12838-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 width=1200 coffee-w=1080px coffee-h=433px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;>促销系统互斥规则表</p><p>这里提供某赞和某东促销系统互斥规则表，仅供参考：</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/caae2cf7924feff165d91b3618695dc6-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/caae2cf7924feff165d91b3618695dc6-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 width=1200 coffee-w=1080px coffee-h=399px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;>某赞促销系统互斥规则表</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a013a65409952ec5b4d81b1c6e975d53-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a013a65409952ec5b4d81b1c6e975d53-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 width=1200 coffee-w=1080px coffee-h=435px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;>某东促销系统互斥规则表</p><h2><strong>4. </strong><strong>计算公式</strong></h2><hr><p>搞定促销类型和互斥规则，最后是订单费用的计算公式。</p><p>订单的费用计算包含两个重要公式，即<strong>订单计算公式</strong>和<strong>商品优惠计算公式</strong>。</p><h3><strong>4.1 订单计算公式</strong></h3><hr><p>订单计算公式，本质上是促销优惠的扣费顺序，即：</p><p><strong>订单最终金额 = 商品销售总金额 - 促销优惠金额 - 优惠券金额 - 储值卡金额 - 其他抵扣（红包和积分抵扣等） + 运费 - 运费优惠金额 + 保险费用</strong></p><p>公式很简单，但在此之后，我们要确定一件事情，即促销的计算方式：递进式 or 平行式。</p><p>递进式计算，指促销方式按照指定顺序，每一层级促销方式以上一层级促销优惠后的金额为基础，判断是否满足条件，生效优惠计算的方式。</p><p>平行式计算，指每一层级促销方式以商品销售总金额为基础，计算是否满足促销条件，生效计算的方式。</p><p><strong>它们之间的区别是什么？</strong>我们看个例子：</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f36b4e79aee8c1413148dda6eafc14c1-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f36b4e79aee8c1413148dda6eafc14c1-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=768px coffee-format=png referrerpolicy=no-referrer></p><p>通过上面结算，我们可以很清晰看到二者的区别，递进式的每一层级促销是以上一层级促销优惠后金额为基础，进行条件判断和优惠结算。</p><p>平行式每一层级促销，则是以商品销售总金额为基础，进行条件判断和优惠结算。所以平行式会比递进式计算，更容易出现商家多度让利的情况。</p><p>采用平行式计算，需要更注重保护商家和平台利益，可以提供给商家平台促销优惠监控功能，规避风险。</p><p><strong>那，如何判断促销系统使用哪种方式呢？</strong></p><p>主要看产品业务形态，以商家为主的平台，采用平行式，以自营为主的平台，采用递进式。</p><p>自营为主的平台，例如：扑扑，华润万家等品牌自营电商，只有平台方发起促销，如果采用平行式计算，当存在多种促销方式，或者多个业务线发起促销方式时，促销方式的相互叠加使用，容易出现平台方出现过渡让利的情况，所以采用递进式计算，保护平台的利益。</p><p>商家为主的平台，例如：淘宝，京东等，主要以商家发起促销为主，平台促销为辅，如果采用递进式计算，当商家和平台各自存在 2 种及以上的促销方式，各个促销方式使用优先级变得复杂。</p><p>无论是商家，平台运营，还是用户，容易搞不清最终的优惠金额，增加使用难度，所以采用平行式计算，可以让商家和平台对于补贴费用变得清晰，避免混乱。</p><p>除此之外，我们需要注意<strong> 3 个细节</strong>：</p><ol><li>商品销售总金额，即商品单价总和，包括使用单品级优惠的价格；</li><li>一般情况，优先使用促销优惠，无促销优惠时使用优惠券，但交互上允许用户进行选择；</li><li>订单最终金额，要做最小校验，即消费者的支出费用小于优惠费用时，订单最终金额不能为负数。</li></ol><h3><strong>4.2 商品优惠计算公式</strong></h3><hr><p>搞定订单计算公式，我们来看看商品优惠怎么计算。</p><p>当用户购买多个商品，同时享受一种促销方式时，为了保证每个商品都享受到促销优惠，我们采取按商品价格比例均摊优惠金额的方式。即：</p><p><strong>商品优惠金额 = 单件商品价格 ×（促销优惠金额 / 参与优惠商品价格总和）</strong></p><p>但直接采用均摊方式，如果均摊金额出现无理数，会出现均摊金额总和与优惠金额不相等的情况。我们看个简单案例。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/81f4febdaee2f3f56c43428992257b03-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/81f4febdaee2f3f56c43428992257b03-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=862px coffee-format=png referrerpolicy=no-referrer></p><p>为了避免均摊金额总和 < 优惠金额情况，我们采用的是优惠均摊逻辑是：前 N-1 件商品，优惠均摊，第 N 件商品，总优惠 - 前 N-1 件商品总优惠：</p><blockquote><p>前 N-1 件商品优惠计算公式：</p><p><b>商品优惠金额 = 单件商品价格 ×（促销优惠金额 / 参与优惠商品价格总和）</b></p><p>第 N 件商品优惠计算公式：</p><p><strong>商品优惠金额 = 促销优惠金额 - 前 N-1 件商品优惠金额总和</strong></p></blockquote><p>我们还是延用上面的案例，看下促销优惠的计算公式怎么使用。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2d14c1f9d3fb60b6df84510730e0002e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2d14c1f9d3fb60b6df84510730e0002e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=6000字思考！一篇看懂促销系统的底层逻辑 coffee-w=671px coffee-h=862px coffee-format=png referrerpolicy=no-referrer></p><p>通过上面公式计算，我们很容易发现新的均摊方式，能很好的避免均摊金额总和与优惠金额不相等的情况。</p><p><strong>需要注意 2 点内容</strong>：</p><ol><li>优惠金额是无理数的情况，直接保留 2 位小数，不要使用四舍五入，避免出现分摊金额大于优惠金额的情况。</li><li>按金额从小到大排序均摊优惠，让金额最大的商品充当最后一件商品，避免促销优惠用不完的情况。</li></ol><h2><strong> 5. </strong><strong>最后的话</strong></h2><hr><p>回到最开始的问题。</p><p>促销系统的核心是什么？</p><p><strong>算钱，即促销订单计算。</strong></p><p>构成促销订单计算的三要素，分别是：</p><p><strong>促销类型，互斥规则，计算公式。</strong></p><p>促销类型按促销类型划分，分别是：</p><p><strong>促销优惠，优惠券，储值卡，运费优惠，其他抵扣。</strong></p><p>互斥规则，记住 3 原则：</p><ol><li><strong>同级别促销优惠，互斥，优先级需要根据业务判断；</strong></li><li><strong>单品级促销优惠，互斥，仅生效最低价的促销优惠，且与套餐促销互斥；</strong></li><li><strong>相同级别优惠券，互斥，不同级别优惠券允许叠加。</strong></li></ol><p>计算公式，分别是：</p><ul><li>订单最终金额 = 商品销售总金额 - 促销优惠金额 - 优惠券金额 - 储值卡金额 - 其他抵扣（红包和积分抵扣等） + 运费 - 运费优惠金额 + 保险费用；</li><li><strong>前 N-1 件商品优惠计算公式</strong><strong>：</strong>商品优惠金额 = 单件商品价格 ×（促销优惠金额 / 参与优惠商品价格总和）；</li><li><strong>第 N 件商品优惠计算公式：</strong>商品优惠金额 = 促销优惠金额 - 前 N-1 件商品优惠金额总和。</li></ul><p>促销系统不是靠堆砌促销功能形成，而是在围绕其核心基础上，根据三要素进行搭建，我们才能从根本上避免出现系统性漏洞。</p><p>希望本文对你有用，感谢阅读。</p><hr><p>作者：晓东同学，练习时长 2 年的产品练习生，探索产品的价值，可用性，可行性。</p><p>公众号：在地球的产品笔记</p></pre></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/f672.html>https://news.zfe.space/p/f672.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:51+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/f672.html&title=6000字思考！一篇看懂促销系统的底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/f672.html&title=6000字思考！一篇看懂促销系统的底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/f672.html&title=6000字思考！一篇看懂促销系统的底层逻辑 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/aa6aaf3ea88da815cc325ab5549976e0-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/327c.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>看似类型冷门的《漫野奇谭》，是怎么吸引大众玩家的</p><p class=content>用最特殊的手法，讲好一段冒险故事。 最近，著名的评价网站Metacritic发布了自己的202...</p></a><a class=next href=/p/8cf1.html><p class=title>基金将抱团演绎到了新高度<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>今年不用说，大家都知道最火的板块是新能源，如果你的投资组合里没配置一点新能源，那今年业绩很难有非常亮眼的表现，而据小七观察下来，今年绝大多数业绩排名靠前的公募基金，目前都在疯狂抱团，重仓...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>1. 促销系统的核心</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>2. 促销类型</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.1 主体</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.2 范围</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.3 受惠方式</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2.4 发放方式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>3. 互斥规则</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.1 同一补贴方促销优惠，互斥，优先级需要根据业务判断</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.2 单品级促销优惠，互斥，仅生效最低价的促销优惠，且与套餐促销互斥</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3.3 同一补贴方优惠券，互斥，不同级别优惠券允许叠加</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>4. 计算公式</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4.1 订单计算公式</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4.2 商品优惠计算公式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>5. 最后的话</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="6000字思考！一篇看懂促销系统的底层逻辑";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

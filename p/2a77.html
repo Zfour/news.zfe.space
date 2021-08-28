@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>面向机密计算的Enclave容器技术栈 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png></a></div><div class=article-meta id=top><a title=面向机密计算的Enclave容器技术栈 href=/p/2a77.html><img class=thumbnail src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png></a><h1 class=title>面向机密计算的Enclave容器技术栈</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">阿里云系统组技术博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/%E9%A6%96%E9%A1%B5/">首页</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2020年9月10日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=面向机密计算的Enclave容器技术栈 data-path=/p/2a77.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p>内容提要：</p><ul><li>云原生场景下的数据安全威胁和风险</li><li>机密计算是如何为数据在计算阶段提供安全防护的</li><li>Inclavare Containers如何提升容器的数据安全性的</li></ul><p>这是内容大纲，介绍了数据安全和机密计算的背景知识，也对Inclavare Containers开源项目、架构设计和部署方式分别进行了介绍。希望各位能够对Inclavare Containers技术栈有一个初步的认识。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>首先，让我们先了解一下当前云计算的数据安全威胁和风险。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/2.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/2.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>目前攻击者泄露机密数据的最经典做法就是利用安全漏洞突破Hypervisor并渗透到其他租户Guest中。</p><p>第二种威胁则是CSP的管理员主动作恶窃取租户的机密数据。事实上，不管是哪一种威胁，对关注数据安全的用户来说，目前的传统云安全威胁模型存在一些固有的安全缺陷：æ”»击面大，且位于租户TCB中的这些特权组件又不受租户控制；即使没有发生入侵事件，租户的数据对CSP来说也是一览无余。</p><p>更进一步去思考可以发现，数据的状态有三种：存储、传输、计算。传统安全防护技术更关注前两者，忽视了数据在计算状态下的安全防护手段。</p><p>综上所述，可以得出一个结论：传统的安全威胁模型无法满足用户对机密数据安全防护的需求，这已成为部分企业上云的最大阻碍之一。企业客户不敢上云，他们手里的数据就形成了数据孤岛，最终阻止了有价值数据的流动性，因此数据作为资本和资产的社会价值以及经济价值都无法充分发挥。如果强行用基于现有的云安全威胁模型技术来支撑对机密数据安全防护有诉求的业务场景，就存在潜在的数据泄露风险；一旦真的因此发生了数据泄露事件，对CSP的声誉和经济利益造成极大损害。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/3.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/3.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面我们进一步剖析租户与CSP双方在安全上的真实想法。</p><p>首先，所有的CSP都会宣称他们会为租户提供安全隔离的运行环境。本质上，CSP要求租户必须相信自己提供的安全服务，而其具体做法是：通过虚拟化层以及纵深防御机制防止恶意租户攻击自己的云基础设施，也就是说利用虚拟化多租隔离的副作用，满足一般用户的安全需求，同时假设用户是不可信的。</p><p>而从用户的视角来看，租户真正想要的其实是可信执行环境。从前面介绍的数据安全威胁和风险中可以看出：对持有机密数据的用户来说，CSP是完全不可信的。根因在于CSP可能作恶，或者攻击者可能攻破CSP并渗透到用户执行环境中。也就说“租户环境的安全性依赖于CSP控制的特权组件的安全性”这一事实，对有数据安全诉求的用户来说，是完全不可接受的。</p><p>综合来看，对租户来说，云环境是不可信的；租户真正需要的是覆盖数据全生命周期的综合性数据安全防护。对CSP来说，租户是不可信的；所以CSP需要安全隔离来防止来自恶意租户的安全威胁。</p><p>所以我们最终导出了这么一个结论：租户和CSP之间其实互不信任。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/4.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/4.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>我们的答案就是机密计算。首先什么是机密计算？</p><p>机密计算是一种通过软硬结合的方式，为用户提供一个完全隔离的可信执行环境的技术。机密计算能够对计算中的数据提供安全防护，防止CSP和任何第三方对执行环境中的数据进行窃取和篡改。</p><p>同时，机密计算具备三个显著性的特点：能够为租户的工作负载提供了基于内存加密技术的强安全隔离的TEE，因此CSP控制的组件无法直接访问TEE内的租户代码和数据；而远程证明保证了TEE的真实性，确保租户的工作负载确实运行在了真实可靠的TEE中。</p><p>综合上面几个特点可以得出一个结论：机密计算提供了一种面向防御面的、新形态的云安全威胁模型，即租户执行环境的安全性不再依赖CSP，用户上云但可以不再必须信任CSP。这些特点都是传统云安全威胁模型所不具备的，并直达云安全领域中数据安全这一核心问题。</p><p>最后，相比起同态加密、安全多方计算或零知识证明这些因受到性能制约而无法大规模使用的技术，机密计算能够充分利用处理器的通用运算能力，其实用性更高。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/5.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/5.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面是目前机密计算产业的现状。</p><p>记得在Gartner 2019年计算基础设施技术成熟度曲线中。但在那之前，业界内的诸多厂商就已经开始关注并投入到机密计算中。</p><p>我们可以看到各大芯片厂家和CSP都在机密计算领域投入研发资源，并组建了“机密计算联盟”。该联盟专门针对云服务及硬件生态，致力于保护计算时的数据安全。</p><p>可以看到目前机密计算正处于百花齐发和百家争鸣的阶段，市场和商业化潜力非常巨大。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/6.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/6.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>接下来介绍一下机密计算目前的不足。</p><ul><li><p>首先，工业界为机密计算提供的支撑技术总体而言还比较偏底层，比如Intel、微软和baidu都分别推出了SDK形式并基于Intel SGX硬件辅助enclave技术的开源软件，但这种软件技术有一定的开发门槛，除了要求开发者熟悉这些SDK本身的用法外，还需要开发者有额外的SGX相关的安全知识背景。此外，对中等以及以上规模软件的重构和适配的工作量很大，也容易出问题。</p></li><li><p>此外，CSP提供的基于Intel SGX的Enclave技术解决方案也比较简单，目前大多数CSP还停留在提供IaaS层的裸金属服务器支持这个层面上，同时也没有好的容器形态部署方式；最重要的是没有体系化的云上机密计算基础设施服务的支撑。</p></li></ul><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/7.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/7.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>再简单介绍一下阿里云在机密计算领域的相关产品。</p><p>弹性裸金属服务器神龙是一种可弹性伸缩的高性能计算服务，计算性能与传统物理机无差别，具有安全物理隔离的特点。神龙的部分型号支持Intel SGX技术，用户可以自行在其上部署自己的机密计算应用。</p><p>阿里云区块链服务BaaS是企业级区块链平台服务，支持Hyperledger Fabric、蚂蚁金服自研区块链技术、以及企业以太坊Quorum（库room）。其后端提供了SGX安全保护等能力，打造多维度的区块链安全体系。</p><p>阿里云容器服务Kubernetes TEE版（ACK-TEE）是阿里云容器服务Kubernetes版ACK基于Intel SGX提供的可信应用或用于交付和管理机密计算应用的云原生一站式机密计算平台，旨在帮助用户保护数据使用中的安å…¨性、完整性和机密性。阿里云被Gartner列为提供机密计算能力的典型厂商，并且今年Gartner也给阿里云在机密计算这个技术单项上因为ACK-TEE产品而给出了高评价。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/8.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>再谈谈阿里云容器服务预计发布的ACK-TEE 2.0产品。</p><p>该产品的一个最显著特点是能够无缝运行用户制作的普通容器镜像，让普通用户保持与普通容器相同的使用体感，避免开发机密计算应用使用门槛高的问题，因此功能上支持原生应用，目标是普通用户。</p><p>此外，通过提供KMS-Enclave-Plugin controller，实现基于SGX的K8s集群级KMS服务，并与Enclave容器建立基于SGX硬件信任根的安全信道，实现remote secret provisioning。图中的Inclavare Containers是也是我们在后面的slide中将要重点介绍的核心技术栈。</p><p>在定位上，该产品希望能够集中阿里云容器技术在业内的技术优势，实现真正意义上的云原生机密计算集群，助力实现阿里云机密计算基础设施的愿景。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/9.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>这是关于Inclavare-Containers开源项目。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/10.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/10.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>首先介绍一下Inclavare-Containers开源项目的背景。</p><p>正如前面介绍的，既然大多数CSP尝试在IaaS层，以资源供给的方式来推进机密计算的技术思路遇到了一些阻碍，那么我们则另辟蹊径：尝试将机密计算技术牵引到容器生态。我们的具体做法就是发起了Inclavare Containers项目。</p><p>该项目的目标比较简单，就是结合机密计算的特点，为业界提供面向机密计算领域的开源容器运行时引擎和完全面向机密计算的安全架构。</p><p>在价值方面，我们希望通过与容器技术结合，大幅降低机密计算的使用成本，让用户在保持与容器相近的使用体感的同时，还能享受到机密计算所能带来的高安全性；同时，Inclavare Containers将基于多种硬件辅助Enclave技术，提供对多种Enclave形态的支持，以覆盖对安全水位有不同要求的所有用户群体，为用户在安全和成本之间，提供更多的选æ‹©和灵活性。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/11.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/11.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>这里具体介绍一下Inclavare Contianers技术栈的几个特点：</p><p>首先，我们将Intel SGX技术与成熟的容器生态结合，将用户的敏感应用以Enclave容器的形式部署和运行；我们的目标是希望能够无缝运行用户制作的普通容器镜像，这将允许用户在制作镜像的过程中，无需了解机密技术所带来的复杂性，并保持与普通容器相同的使用体感。</p><p>其次，Intel SGX技术提供的保护粒度是应用而不是系统，在提供很高的安全防护手段的同时，也带来了一些编程约束，比如在SGX enclave中无法执行syscall指令；因此我们引入了LibOS技术，用于改善上述的软件兼容性问题，避免开发者在向Intel SGX Enclave移植软件的过程中，去做复杂的软件适配工作。</p><p>然后，虽然各个LibOS都在努力提升对系统调用的支持数量，但这终究难以企及原生Linux系统的兼容性，并且即使真的达成了这个目标，攻击面过大的缺点又会暴露出来。因此，Inclavare Containers通过支持Java等语言Runtime的方式，来补全和提升Enclave容器的泛用性，而不是将Enclave容器的泛用性绑定在“提升对系统调用的支持数量” 这一单一的兼容性维度上；此外，提供对语言Runtime的支持，也能将像Java这样繁荣的语言生态引入到机密计算的场景中，以丰富机密计算应用的种类和数量。</p><p>最后，通过定义通用的Enclave Runtime PAL API来接入更多类型的Enclave Runtime，比如LibOS就是一种Enclave Runtime形态；设计这层API的目标是为了繁荣Enclave Runtime生态，允许更多的Enclave Runtime通过对接Inclavare Containers上到云原生场景中，同时给用户提供更多的技术选择。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/12.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/12.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面介绍一下Inclavare Containers开源项目的情况。</p><p>首先，该开源项目具有业界创新性，它是首个面向云原生的机密计算场景下的开源容器运行时技术栈。不久前Inclavare Containers的核心组件rune被加入到了OCI Runtime参考实现列表中，这标志着rune做到了与OCI Runtime标准的兼容。目前，Intel已经确定参与到Inclavare Containers开源项目的共建中，并已经实质性地展开了开发工作。</p><p>目前该项目支持的几个关键功能有：支持通过K8s和Docker来启动Enclave容器，也就是说容器入口点指定的应用、或通过exec执行的应用，都将直接运行在容器内受保护的TEE环境中。目前在LibOS支持方面，Occlum提供了对rune和shim-rune的支持；同时，我们在内部也已经完成了Graphene对rune的支持。在语言Runtime方面，目前已经完成对Java、Golang和Python三种语言的支持，后续将持续完善并提高这些语言的基准测试用例的coverage。</p><p>在面向社区的monthly release方面，该项目会在每个月的月底进行一次小版本的发布，目前已经完成了0.1.0到0.4.0三个版本的发布。在每次release中，我们也会提供针对CentOS和Ubuntu两个主流Linux发型版本的安装包支持，社区用户通过安装包就能开始使用和部署Inclavare Containers。除了提供面向普通Linux发行版本的安装包支持外，针对阿里巴巴操作系统团队自研的Aliyun Linux 2发行版本，在提供安装包支持之上，还提供了专门的文档，指导用户通过在阿里云上购买实例的方式，来使用和部署Inclavare Containers，以便引导一些早期用户开始学习和体验该技术以及ACK-TEE产品。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/13.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/13.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面是Inclavare Containers开源项目的Milestone。</p><p>该项目从去年年底立项，再到3月完成PoC研发，并在5月中旬完成0.1.0的开源发布工作，经历了从无到有、从灵感创新到工程实践、从方向性探索到明确技术演进方向等一系列发展过程。</p><p>目前我们已经形成了系统性和阶段性的发展策略，并确定了未来目标规划以及未来演进的方向。在0.5.0版本中，Inclavare Containers将具备较为完整的K8s机密计算集群的能力，为接下来的ACK-TEE 2.0的产品化提供前提和基础；在明年，我们将持续迭代Inclavare Containers，并支撑ACK-TEE 2.0产品落地，同时也会完成一些新方向的技术探索和预研，为Inclavare Containers的下一代技术演进提前布局。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/14.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/14.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>目前，Inclavare Containers已经联合了阿里内部内部多个研发团队共建Inclavare Containers开源项目。</p><p>在对外合作方面，除了已经与Intel建立了合作关系外，计划在之后与其他芯片厂商陆续建立类似的合作关系；此外，我们已经开始与高校和学术界合作，以挖掘出Inclavare Containers在机密计算领域的更多潜能。</p><p>需要再强调的是，Inclavare Containers的定位是开源、社区、标准和生态，因此，我们希望能和业界的广大同僚一起共建和发展这项开源技术。</p><p>这里让我们再次审视机密计算场景下的用户诉求：用户希望借助CSP提供的云计算能力的同时，其数据的安全性又能依赖于CSP。这样一个看似矛盾，但实为有巨大共赢潜力的需求，正是驱动我们完全站在客户角度去思考问题的绝好机会。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/15.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/15.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面介绍一下Inclavare Containers的架构设计。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/16.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/16.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面是Inclavare Containers技术栈在K8s上的完整运行时组件图。</p><p>左边的kubelet和containerd都是标注组件；中间的shim-rune和rune是Inclavare Containers提供的组件；这里可以看到一个显著的特点，就是rune是可以作为runc使用的，因此rune能够启动和运行普通的pause容器和runc容器。</p><p>POD内的Enclave容器只能由rune创建。Enclave容器的1号进程被称为init-runelet，它通过PAL API来管理Enclave。在Enclave内，可以运行Occlum或Graphene这种LibOS，并在其上运行真正的Enclave应用或像Java等语言Runtime。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/17.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/17.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面我们对Inclavare Containers的外部系统架构进行详细说明。</p><p>这里我们主要关注rune，它是实现enclave容器引擎的关键组件，并且遵守OCI Runtime规范。其核心组件libenclave提供了创建和管理Enclave容器的能力。Enclave容器内的管理进程，即init-runelet，是容器内的1号进程，init-runelet作为Enclave的载体，同时也负责启动和管理Enclave生命周期的责任。在创建Enclave的时候，init-runelet负责加载Enclave Image，并触发enclave内Enclave Runtime的初始化，然后将容器入口点程序加载至Enclave Runtime之上并运行。</p><p>可以看出，init-runelet承担着类似agent的角色，负责Enclave内外的沟通事务，比如enclave应用的stdio处理、信号转发等逻辑，都由init-runelet负责。</p><p>此外，Inclavare Containers提供的containerd-shim-rune除了实现Shim Runtime v2 API，也承担着Enclave管理的高级功能，比如Bundle转换，Enclave签名、远程证明等功能。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/18.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/18.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面介绍一下Inclavare Containers的部署方式。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/19.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/19.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面介绍一下如何部署rune+OCI Bundle+Occlum的开发环境。</p><p>首先开发者下载并运行occlum sdk容器镜像，在其中通过Occlum SDK开发和构建Enclave应用，并用ESK对Enclave Image进行签名，然后通过docker将Enclave应用制作为Occlum应用容器镜像，接下来通过标准docker和containerd组件将Occlum应用容器镜像转换为OCI bundle，然后rune使用该Bundle，并最终启动Enclave容器运行Occlum和Enclave应用。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/20.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/20.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>下面介绍一下如何部署docker+rune+Occlum的运行环境。</p><p>首先开发者还是下载并运行occlum sdk容器镜像，在其中通过Occlum SDK开发和构建Enclave应用，并用ESK对Enclave Image进行签名，然后通过docker将Enclave应用只作为普通容器镜像，接下来通过标准docker等组件拉起容器镜像，最终调用rune启动Enclave容器并运行Occlum和Enclave应用。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/21.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/21.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>最后是部署K8s的运行环境，这也是最新的Inclavare Containers 0.4.0支持的部署方式。</p><p>第一步还是开发者要下载并运行occlum sdk容器镜像，在其中通过Occlum SDK开发和构建Enclave应用，不同的是不再需要用ESK对Enclave Image进行签名了。后续步骤与前面的部署方式类似，但增加了sgx-device-plugin等K8s组件。这种部署方式适用于在云上部署机密计算集群，具体详细步骤请参考这里的链接。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/22.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/22.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>让我们回顾整个演讲，我们识别出云原生场景下的数据安全威胁和风险，明确了机密计算这一解决问题的思路，并着手推进和实施ACK-TEE解决方案，最后剖析Inclavare Containers这一机密计算容器运行时技术。</p><p>总结起来，我们希望能够集中阿里云容器技术在业内的技术优势，持续打磨更易用、更安全、基于K8s的云原生机密计算集群产品ACK-TEE；同时，依托Inclavare Containers技术和生态，在支撑ACK-TEE产品的同时，也能向业界提供开源和标准化的Enclave容器技术；从战略角度来看，阿里云也将持续致力于在IaaS和PaaS层提供覆盖数据全生命周期的安全防护能力；因此，我们也将持续推进Inclavare Containers这一机密计算技术的发展，以及ACK-TEE产品的不断演进，助力阿里云成为提供机密计算能力的顶级云厂商。</p><p><img src=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/23.png class=lazyload data-srcset=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/23.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/2a77.html>https://news.zfe.space/p/2a77.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:30+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/2a77.html&title=面向机密计算的Enclave容器技术栈 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/2a77.html&title=面向机密计算的Enclave容器技术栈 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/2a77.html&title=面向机密计算的Enclave容器技术栈 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/09/Inclavare-Containers-Tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/fa9.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>《暴雨》《底特律》《超凡双生》Steam史低促销 捆绑包190元</p><p class=content>《暴雨》《底特律》《超凡双生》Steam史低促销 捆绑包190元</p></a><a class=next href=/p/d273.html><p class=title>第12集<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>由 起点中文网 、诡秘之主官方微博 出品，爱潜水的乌贼本尊 原著/监制，《诡秘之主》广播剧第一季本作品为免费广播剧，第一季12集，6月19日起每周五18:00更新，每集时长约20分钟承制...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="面向机密计算的Enclave容器技术栈";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

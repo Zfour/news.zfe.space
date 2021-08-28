@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1></a></div><div class=article-meta id=top><a title="flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找" href=/p/8463.html><img class=thumbnail src=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1></a><h1 class=title>flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/">少数派 sspai</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/Matrix/">Matrix</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月26日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找" data-path=/p/8463.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class=articleWidth-content data-v-6a669db8><div class="content wangEditor-txt minHeight" data-v-6a669db8><p style=margin-left:10px;>在之前的周刊中，曾经提到了 <a href="http://mp.weixin.qq.com/s?__biz=MzI0MDA3MjQ2Mg==&mid=2247484538&idx=1&sn=10099ab70dea02272d75203391649b59&chksm=e921261bde56af0d87f7f16393fda4c5a8ef0b34b5f02cce2c4d68deb0a54d0c9eecbb8fad9f&scene=21#wechat_redirect" target=_blank><u>I.A.R.P 的标签管理</u></a>办法，但是许多同学对领域（Area）很模糊，今天专门来讲讲何谓领域，以及如何寻找及精进。</p><p style=margin-left:10px;>先来看一个例子：你回到家，想要美美的洗个澡看部剧，但是开开门发现灯泡怎么按都不亮，好不容易摸黑打开浴室灯，却发现昨晚不小心摔坏的花洒还躺在地上。</p><p style=margin-left:10px;>这是我曾经遇到的事情。在这些事情中，其实包含着如下要素：</p><ul><li>兴趣：看一部剧集放松放松</li><li>任务：更换电灯泡和花洒</li><li>领域：保持一个舒适的生活</li></ul><p style=margin-left:10px;>拿到问题，不是应该先回答，而是应该先确认这是否就是真正的问题。一如本文开头的例子，如果你希望过上舒适的生活，只是解决灯泡和花洒的问题而忽略对居所日常的维护，还是会不断出现状况；而如果你觉得生活舒适不重要，满足兴趣才是人生的意义，那么索性直接摸黑看剧，也是一种很有意义的选择。</p><p style=margin-left:10px;>这和 flomo 或知识管理有什么关系？因为日常在共建群中经常看到如下的讨论：我该积累哪方面的知识？我很热爱烹饪，菜谱应该记么？或者下周我要去跑一个马拉松，相关的准备清单我应该记么？我爱读书，但书籍上的金句该摘抄么？</p><p style=margin-left:10px;>如果我们每次只是对一个知识点，一篇文章，一本书做出反应，而忽略了自己关注领域的建设，那么最终得到的结果就是，一片混沌 —— 而这种混沌，任何先进的技术都无法帮你解决，双链不行，人工智能也不行（包括随机漫步也不行🙈）。</p><h2 style=margin-left:10px;><strong>1. 何谓领域：你的长期责任</strong></h2><p style=margin-left:10px;>维基百科对「领域」的定义为：指某一专业或事物方面范围的涵盖。但这个概念其实大多数人都很模糊。</p><p style=margin-left:10px;>举个例子，在刚工作没几年的时候，一次偶然的机会，我曾经梳理过自己所关注的领域，惊讶的发现自己的注意力居然这么松散 —— 虽然花费了许多所谓的「学习」时间，但是摊开在这么多领域之外，却会发现每一样都只是掌握皮毛。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png referrerpolicy=no-referrer></figure><p style=margin-left:10px;></p><p style=margin-left:10px;>在这其中，除了贪心（或者说没仔细想过，别人说啥就看啥），同时还把自己的兴趣和一些短期项目混合进来了，比如纯粹是个人的兴趣的物理学和数学，并没有任何实际的应用；而当时招聘和协作，是有着非常明确的时间边界和目标的项目，并非是需要不断精进的领域。</p><p style=margin-left:10px;>领域、兴趣、项目是我们经常会搞混的概念，在这里试着浅谈下三者之前的区别：</p><p style=margin-left:10px;><strong>兴趣的特点是，你愿意投入许多时间，并且不求其回报</strong>，倘若真停下来，也不会造成什么伤害。比如上面提到的关于物理学的「兴趣」，其实是受到马斯克天天说的第一性原理的影响而激发的好奇心，但如若因为其他事情停下来研究，对当下的生活没有任何影响。</p><p style=margin-left:10px;><strong>项目的特点是，有明确的开始和结束时间，以及明确的预期</strong>，比如上面提到的招聘面试，其实是当时要在很短的时间内完成暑期实习生的面试，有非常明确的考核标准，只是需要自己熟知并执行即可。又比如要完成一次弱弱联合活动（猜猜下期是跟谁😁），就需要有明确的时间周期和效果预期（放心，福利已经谈好了😝）</p><p style=margin-left:10px;><strong>领域的特点是，没有明确的时间周期，也没有明确可量化的结果，但搞砸了需要自己来负责</strong>。比如研究思维工具的趋势和未来，只要 flomo 存在一天，这个领域就需要不断钻研，但结果是什么，我的确不知道，但如果不研究，flomo 落伍了，被大家嫌弃了，结果却要自己承担。</p><p style=margin-left:10px;>再举个生活中的例子：保持身体健康是一个领域，因为身体坏了你需要为此负责；日常的跑步锻炼，则是一个个项目，我们通过一个又一个的项目来完成健康领域的精进。而最近你刚迷上的普拉提，则是一个兴趣，还不确定自己会坚持多久，但即使不做，也不会影响整个领域。</p><p style=margin-left:10px;>领域通过一个又一个的项目来不断精进，而兴趣则随着时间的投入有可能转化为领域，而有些领域则会随着时空的变化而过时。</p><p style=margin-left:10px;>只有领域没有项目，只是纸上谈兵，谈不上任何精进；</p><p style=margin-left:10px;>只有项目没有领域，像是盲人摸象，不得要领；</p><h2 style=margin-left:10px;><strong>2. 领域的选择：真的什么都要学吗？</strong></h2><p style=margin-left:10px;>十年前，彼时我和 <a href="http://mp.weixin.qq.com/s?__biz=MzAxNDE0MjA2OQ==&mid=2650422781&idx=1&sn=ef0cb9a2d188f1717ab5b74ccc498cc3&chksm=839942e7b4eecbf1c89aab4cc07c03c1f4e34dfdab0c71a6402a58dbcbc43cef1ef26786dc39&scene=21#wechat_redirect" target=_blank><u>Lightory</u></a> 还在一家公司，当时他打算辞职创业，我劝他说：这家公司不错，在这里虽然 xx 可能没有什么学的了，但是你还可以学习 oo。而他反问了我一个到今天都印象深刻的问题：<strong>我为什么要学那些东西？</strong></p><p style=margin-left:10px;>为什么要学？当时这个简单的反问震撼到我的原因是，十几年的教育和朴素的价值观，一直要求我们「认真好学」「艺多不压身」，导致我们会饥不择食的试图学习所有能学到的东西，而没有去分辨自己是否需要，是否擅长。至此我才意识到，原来有些事情，我们是可以不学的；有些领域，我们是可以放弃的。</p><blockquote><p style=margin-left:10px;>Set your course by the stars, not by the lights of passing ships.按照星星，而不是按照过往船只的灯光设定航向。<br><br>—— Omar Bradley<br></p></blockquote><p style=margin-left:10px;>每个人要精进的领域并非是孤立单一的，而是相互交叉的，并且每个人所专精的领域都不同，并且会随着时间空间的变化而增加或消失，由此我们可以到下面的初步推论：</p><ul><li>作为一个自然人，我们不得不在许多领域学习精进，且需要为此负责</li><li>每个人选择领域领域都不同，吾之蜜糖彼之砒霜。</li><li>领域随着时间和空间的变化而变化，没有一劳永逸。</li></ul><p style=margin-left:10px;>所以，不存在二十结婚，三十中年危机，四十油腻无为的生活，因为每个人的环境都不同。而如果你希望能在这个世界上留下点什么，那么想清楚希望精进的领域，就非常重要了。是时候停下来问问自己想要成为什么样的人（而不是别人希望我们成为的人），那么可以把这件事当做一切的起点。</p><p style=margin-left:10px;>我大概在 2016 年前后开始有了巨大的危机感，因为发现自己样样稀疏没有积累，便决定放弃对代码、设计、管理等研究，专心开始研究服务设计相关的领域 —— 因为彼时对未来有一个模糊的判断，当你点的外卖无法准时送达时，再好的 App 体验也无法弥补，而如何设计好一个全链路服务，让用户在线上和线下的触点感受一致，这应该是接下来对产品经理的要求吧。</p><p style=margin-left:10px;>而自此之后你能看到，领域也在随着时空变化而变化。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/08/26/99518fba543a0cb4fa3282e2884ce652.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/08/26/99518fba543a0cb4fa3282e2884ce652.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/08/26/99518fba543a0cb4fa3282e2884ce652.png referrerpolicy=no-referrer></figure><p style=margin-left:10px;>所以空下来点时间，把你现在所投入的领域摊开，像投资一样来审视你的时间花费在哪些领域，回报如何？然后思考你接下来的投资策略 —— 哪些需要止损，哪些需要加仓？是希望分散风险，还是一把梭？<strong>但记得时间和金钱唯一不同的是，没有任何「储蓄」的手段。</strong></p><p style=margin-left:10px;><strong>在这一点上的选择上，除了你自己，我们爱莫能助。</strong></p><h2 style=margin-left:10px;><strong>3. 领域的精进：真实而具体的行动</strong></h2><p style=margin-left:10px;>如果你看过三毛的《撒哈拉的故事》，那么一定对于沙漠的生活会很感兴趣。但当我第一次坐骆驼爬上沙丘的时候，内心是崩溃且恐惧的，干涩的嘴唇，摇摆巨大的骆驼，一望无际的黄色尘土。当然纵使我现在怎么描写，如果你没去过沙漠，看再多的书也无法了解在沙漠生存是一种什么样的体验。</p><p style=margin-left:10px;>同样，真正的知识不是书本上的那些字词，而是你基于那些信息亲自实践之后得到的东西，才是知识。如果你的 flomo 中如果充斥着剪藏的来的内容，充斥着别人的观点，充斥着从未拆封的文章，那么大概率，你手中的地图，是别人塞给你的；你的大脑，是别人思维的跑马场<strong>。捷径是最远的道路，所以你必须诚实的记录和思考，这是领域精进的基本要求。</strong></p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/08/26/f314dc0a947ac3071e95616e90cb8b84.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/08/26/f314dc0a947ac3071e95616e90cb8b84.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/08/26/f314dc0a947ac3071e95616e90cb8b84.png referrerpolicy=no-referrer></figure><p style=margin-left:10px;>除了真实记录之外，我们还需要能看到精进的「成果」。不同于股票，我们能看到账户上的数量和价值的变化；如果是培养下一代，我们能看到孩子年龄和品格上的变化；如何知道自己「投资领域」的行为带来了什么后果呢？flomo 的卡片，便是一种对所学到知识的量化（当然，欢迎你使用任何工具来达到这个刻意练习）。看着绿色的贡献图的积累，看着日子的积累，看着 MEMO 的积累，这便是你对某些领域的投资，你的持仓。</p><p style=margin-left:10px;><a href="http://mp.weixin.qq.com/s?__biz=MzI0MDA3MjQ2Mg==&mid=2247484704&idx=1&sn=ce2a4e85d04a597e11aae84b4b0fb3e4&chksm=e9212741de56ae574d2e56aeecc5d8fae1589f93190c0d80b4f73103f3893d0e502ce561afd1&scene=21#wechat_redirect" target=_blank><u>然后如上期所说，在某些需要进行「输出」的时刻</u></a>，你便能感知到这种领域精进带来的成果。</p><p style=margin-left:10px;>最后，为你做了一张壁纸（<a href="https://mp.weixin.qq.com/s?__biz=MzA4MjkwMDcyOQ==&mid=2647743768&idx=1&sn=7e8bb4538413b1225e22dceb97ca4df0&scene=21#wechat_redirect" target=_blank><u>感谢 fonter 提供模板</u></a>），方便你再读一遍图灵奖得主，"汉明码"的发明人， Richard Hamming[1] 那句著名的双关问题：</p><p style=margin-left:10px;><strong>你所在领域，最重要的问题是什么，为什么你没有致力于其中之一？</strong></p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/08/26/6d116cda9c9dd64ccad565864facf66a.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/08/26/6d116cda9c9dd64ccad565864facf66a.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/08/26/6d116cda9c9dd64ccad565864facf66a.png referrerpolicy=no-referrer></figure><p style=margin-left:10px;>欢迎加入 flomo 共建群，分享你自己真实而独到的知识 。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/08/26/ce2ba8b6ddf111f0ad59b6e824e12ab9.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/08/26/ce2ba8b6ddf111f0ad59b6e824e12ab9.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/08/26/ce2ba8b6ddf111f0ad59b6e824e12ab9.png referrerpolicy=no-referrer></figure><h3 style=margin-left:10px;><strong>References</strong></h3><p style=margin-left:10px;><code>[1]</code> Richard Hamming: <i>http://www.ruanyifeng.com/blog/2016/04/you-and-your-research.html</i></p></div></div><div style="border:1px solid transparent;" data-v-6a669db8></div><div class="article-side sideTop" style=display:none;left:0; data-v-7be936cf data-v-6a669db8><div class=download-guide-container data-v-14f9065e data-v-7be936cf><div class=btn-wrapper data-v-14f9065e><button class="btn btn-view" data-v-14f9065e><i class="iconfont iconfont-phone" data-v-14f9065e></i></button></div><a href=https://sspai.com/s/JYjP target=_blank data-v-14f9065e></a></div><div class=item-wrapper data-v-7be936cf><button class="btn btn-charge" data-v-7be936cf><i class=iconfont data-v-7be936cf></i></button><span class=count data-v-7be936cf>4</span></div><div class=item-wrapper data-v-7be936cf><button class="btn-mini btn-comment" data-v-7be936cf><i class="iconfont iconfont-comment" data-v-7be936cf></i></button><span class=count data-v-7be936cf>0</span></div><div class=item-wrapper data-v-7be936cf><span data-v-7be936cf><div role=tooltip id=el-popover-140 aria-hidden=true class="el-popover el-popper popper-share right ss-popper-dark-border" style=width:undefinedpx;display:none;><div class=article-side-share-btn><a href="https://service.weibo.com/share/share.php?url=null?ref=weibo&title=%E3%80%90flomo%20weekly%20vol.031%20-%20%E6%B5%85%E8%B0%88%E4%BD%95%E8%B0%93%E9%A2%86%E5%9F%9F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E3%80%91%E5%9C%A8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%91%A8%E5%88%8A%E4%B8%AD%EF%BC%8C%E6%9B%BE%E7%BB%8F%E6%8F%90%E5%88%B0%E4%BA%86I.A.R.P%E7%9A%84%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%EF%BC%8C%E4%BD%86%E6%98%AF%E8%AE%B8%E5%A4%9A%E5%90%8C%E5%AD%A6%E5%AF%B9%E9%A2%86%E5%9F%9F%EF%BC%88Area%EF%BC%89%E5%BE%88%E6%A8%A1%E7%B3%8A%EF%BC%8C%E4%BB%8A%E5%A4%A9%E4%B8%93%E9%97%A8%E6%9D%A5%E8%AE%B2%E8%AE%B2%E4%BD%95%E8%B0%93%E9%A2%86%E5%9F%9F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%8F%8A%E7%B2%BE%E8%BF%9B%E3%80%82%E5%85%88%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&pic=https%3A%2F%2Fcdn.sspai.com%2F2021%2F08%2F26%2F74472b2cb7556f0314e277d45d151450.jpeg%3FimageMogr2%2Fauto-orient%2Fquality%2F95%2Fthumbnail%2F!1420x708r%2Fgravity%2FCenter%2Fcrop%2F1420x708%2Finterlace%2F1&appkey=3196502474#" target=_blank><i class="iconfont iconfont-weibo-simple right-16"></i></a><span><div role=tooltip id=el-popover-4050 aria-hidden=true class="el-popover el-popper" style=width:undefinedpx;display:none;><div style=text-align:center;><div id=qr-code></div><small class=qr-small>扫码分享</small></div></div><span class=el-popover__reference-wrapper><i class="iconfont iconfont-wechat-simple right-16"></i></span></span><a href="https://twitter.com/share?text=%E3%80%90flomo%20weekly%20vol.031%20-%20%E6%B5%85%E8%B0%88%E4%BD%95%E8%B0%93%E9%A2%86%E5%9F%9F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E3%80%91%E5%9C%A8%E4%B9%8B%E5%89%8D%E7%9A%84%E5%91%A8%E5%88%8A%E4%B8%AD%EF%BC%8C%E6%9B%BE%E7%BB%8F%E6%8F%90%E5%88%B0%E4%BA%86I.A.R.P%E7%9A%84%E6%A0%87%E7%AD%BE%E7%AE%A1%E7%90%86%E5%8A%9E%E6%B3%95%EF%BC%8C%E4%BD%86%E6%98%AF%E8%AE%B8%E5%A4%9A%E5%90%8C%E5%AD%A6%E5%AF%B9%E9%A2%86%E5%9F%9F%EF%BC%88Area%EF%BC%89%E5%BE%88%E6%A8%A1%E7%B3%8A%EF%BC%8C%E4%BB%8A%E5%A4%A9%E4%B8%93%E9%97%A8%E6%9D%A5%E8%AE%B2%E8%AE%B2%E4%BD%95%E8%B0%93%E9%A2%86%E5%9F%9F%EF%BC%8C%E4%BB%A5%E5%8F%8A%E5%A6%82%E4%BD%95%E5%AF%BB%E6%89%BE%E5%8F%8A%E7%B2%BE%E8%BF%9B%E3%80%82%E5%85%88%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&url=null" target=_blank class=twitter><i class="iconfont iconfont-twitter-simple right-16"></i></a></div></div><span class=el-popover__reference-wrapper><button class="btn-mini btn-share" data-v-7be936cf><i class="iconfont iconfont-share" data-v-7be936cf></i></button></span></span></div><div class=item-wrapper data-v-7be936cf><button class="btn-mini btn-collect" data-v-7be936cf><i class="iconfont iconfont-collect" data-v-7be936cf></i></button></div></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/8463.html>https://news.zfe.space/p/8463.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:19+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/8463.html&title=flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找 - 小冰 RSSHub&pics=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/8463.html&title=flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找 - 小冰 RSSHub&pics=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/8463.html&title=flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找 - 小冰 RSSHub&pics=https://cdn.sspai.com/2021/08/26/e392218083ba24c2297727bbc1771204.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/2cfd.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>「学问」入门课(1.2) —— 人文为什么要谈数学和技术？</p><p class=content>说明在十天前，我的“学问”入门课发布了第一期的阅读列表。不少读者（高中生、本科生、职业人士）乐于参加，却对阅读材料一时摸不着头脑。因此有必要讲一些题外话，分享我选择这些篇目时的一部分想法...</p></a><a class=next href=/p/3d07.html><p class=title>Antitrust report says tech is headed the same way as Big Pharma and Big Oil<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>A new antitrust report says that unless the government reigns in tech giants, it could go th...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>1. 何谓领域：你的长期责任</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>2. 领域的选择：真的什么都要学吗？</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>3. 领域的精进：真实而具体的行动</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>References</span></a></li></ol></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="flomo weekly vol.031 - 浅谈何谓领域，以及如何寻找";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

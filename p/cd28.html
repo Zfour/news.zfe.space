@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>和学霸一起学 _ 游戏服务器的那些事儿 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg></a></div><div class=article-meta id=top><a title="和学霸一起学 _ 游戏服务器的那些事儿" href=/p/cd28.html><img class=thumbnail src=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg></a><h1 class=title>和学霸一起学 _ 游戏服务器的那些事儿</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/">GameRes 游资网</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/%E5%88%97%E8%A1%A8/">列表</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月10日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="和学霸一起学 _ 游戏服务器的那些事儿" data-path=/p/cd28.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><table cellspacing=0 cellpadding=0><tbody><tr><td class=t_f id=postmessage_2509417>游戏程序开发有两个大方向，包括前端和后端。其中，前端是指客户端方面，包括PC、手机和平板上面的可视化图形技术。后端则偏向于服务器，即用户不可见的部分。<br><br>本文将通过游戏服务器的起源、功能特点、分类和发展历史，以及系统架构、开发核心技术和难点、设计原理等方面来介绍后端的服务器技术。<br><br><strong><font color=#de5650>#01游戏服务器概述</font></strong><br><br><strong>概念及起源</strong><br><br><div align=center><img id=aimg_999694 aid=999694 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg width=462 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg referrerpolicy=no-referrer></div><br>游戏服务器，是服务器硬件和软件的结合。其中，硬件负责承载游戏服务，软件则提供游戏服务。<br><br>游戏服务器的出现，是因为玩家对游戏有三个方面的需求。<br><br><div align=center><img id=aimg_999695 aid=999695 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170849l4g58s8wxalfq5zx.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170849l4g58s8wxalfq5zx.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170849l4g58s8wxalfq5zx.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170849l4g58s8wxalfq5zx.png referrerpolicy=no-referrer></div><br>第一，是游戏性的需求。<br><br>最早的游戏机，更讲究单局游戏的体验和过程，不可以存储进度。这种单局过关的游戏性，来自于用户体验的提升，来自于玩家对技能、关卡熟悉程度。随着用户体验时间的增长，这类游戏对玩家来说会变得容易，游戏性就会被消耗掉。<br><br>随后出现了一些可存档的游戏。比如，红白机上有了最早的可存盘游戏——《三国志：霸王大陆》。网络刚开始兴起的时代，PC端的游戏也是可以存储一些进度的。但当时的网吧基于安全需求，在玩家使用电脑后重置机器，游戏内容就会被清空。从游戏性的需求来看，玩家希望换电脑也能够继续游戏进度。为了解决这个问题，设计者就需要把玩家的数据和剧情放到网络服务上。<br><br>第二，是多人联机的需求。<br><br>单机游戏有它的乐趣，但更多时候，玩家与玩家之间的互动可以产生更多变化。比如，斗地主这个传统游戏，一共只有52张牌，三个人玩却可以有无数种玩法。为了实现这个需求，一般可以用中转的电脑来转发用户的数据和状态操作。这个操作不局限于用服务器来实现，在局域网上，一些互相转发的方式也同样可以实现。<br><br>第三，是保证游戏公平性的需求。<br><br>通常，游戏防止玩家作弊的方式就是引入第三方电脑裁判。<br><br>上述三个需求驱动了游戏服务器的诞生，它们同样也是游戏服务器的主要功能。此外，游戏服务器还有一个重要功能——充值。<br><br><strong>功能</strong><br><br><div align=center><img id=aimg_999696 aid=999696 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170849k4xhzw9wibzi7z7i.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170849k4xhzw9wibzi7z7i.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170849k4xhzw9wibzi7z7i.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170849k4xhzw9wibzi7z7i.png referrerpolicy=no-referrer></div><br>游戏服务器的功能，主要有四个。<br><br>（1）包括终端网络连接的建立和会话维护在内的网络服务。<br><br>有了终端和前端间的网络连接，才能实现前端后端的交互。而会话维护，主要指用户的登录和登出，同时也是该用户在服务器上的一个生命周期。会话维护还包括断线重连，这一问题在PC端不太容易出现，但在手游端会经常发生网络的切换（WIFI和WIFI、4G基站之间），这些都会导致玩家网络掉线。会话维护使得网络掉线后，玩家在服务器上的生命周期也不会消失。<br><br>（2）用户数据的存取<br><br>数据读取，一般会发生在以下两个场景：一是登录。玩家登入服务器后，服务器会从存储读取。二是切换。比如，从大厅服务器切换到战斗服务器，也有可能从DB（database，或者文件系统）读取用户数据。<br><br>而一般的服务器技术采用三种存储方式：<br><br>① 用户下线存取。用户下线时，服务器会对数据进行回写。<br><br>② 定时回写。比如，每隔半分钟、每隔五分钟，把数据回写一次。<br><br>③ 重要数据立即回写。比如游戏里，玩家打了一个特别贵重、极其稀有的装备，或者涉及金钱交易的数据，都是会及时回写。这种方式是为了解决前两种存储方式可能导致的问题：如果异常掉电，那么服务器会出现异常，导致用户数据丢失。<br><br>（3）游戏的逻辑计算。<br><br>采用服务器技术后，一些以前单机上实现的前端计算，被放到了后端。这也是为了防止作弊，以及解决以前存在的一些问题。比如，在FPS（第一人称射击游戏）中，玩家是否命中的判断是在前端，但命中后产生的伤害，包括护甲、免伤等数据，都要通过逻辑计算。以前的逻辑计算都是在客户端进行，不可避免地会有作弊的可能。如今，逻辑计算都在服务器进行，减少了作弊的可能性。<br><br>（4）是用户行为或状态变化的同步。<br><br>在网络游戏中，玩家在用户端的视野范围内，可以看到其他玩家或怪物、NPC（非玩家角色）的动作行为。这种真实世界的模拟，就需要各角色行为和状态的同步变化，这就是后端服务器的功能之一。<br><br><strong>特点</strong><br><br><div align=center><img id=aimg_999697 aid=999697 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170850ddfcybyyyf8if8h4.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170850ddfcybyyyf8if8h4.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170850ddfcybyyyf8if8h4.jpg width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170850ddfcybyyyf8if8h4.jpg referrerpolicy=no-referrer></div><br>游戏服务器虽然是互联网服务的一种，但相对互联网服务有一些自己的特点：<br><br>第一是，延迟敏感。延迟指玩家操作动作、发出指令，和动作在画面上呈现图像反馈到视觉，之间有一定的时间差。<br><br>第二是，实时的高强度交互。单次请求会产生很多服务器的逻辑，还有一些广播和同步。服务器承受的最大压力的逻辑是移动同步。比如，假设玩家在一个20人左右的场景里，每移动一步，客户端1s之内大概会发出5个移动包（假设），表示玩家方向或移动目标点的改变。对于其他用户来说，服务器也要实时同步，相当于消息量会放大20倍。这对服务器来说，是很高强度的交互。<br><br>第三是，业务逻辑复杂，内部耦合度高。由于游戏服务器具有延迟敏感和交互高强度的特点，这决定了服务器的状态维护是一个必然的过程，也导致了逻辑的复杂性。举例来讲，玩家击杀一个怪物，在服务器端，逻辑不仅仅是击杀一个怪物，也可能会触发一个任务，比如玩家今天要击杀15个怪物，这样类似的逻辑。<br><br>第四是，变更频度高、幅度大。手游时代，游戏的更新频率非常快，内容非常多。因此，服务器的更新和灰度部署要求会更高。<br><br><strong><font color=#de5650>#02游戏服务器的发展</font></strong><br><br><strong>网络游戏发展史</strong><br><br><div align=center><img id=aimg_999698 aid=999698 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170850howpkz0otk30k3ty.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170850howpkz0otk30k3ty.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170850howpkz0otk30k3ty.jpg width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170850howpkz0otk30k3ty.jpg referrerpolicy=no-referrer></div><br>上世纪七十年代末，网络游戏最早是文字MUD和UNIX网络同步出现。<br><br>之后，八十年代末到九十年代初，局域网连接的游戏出现，最早是《沙丘》，其次是《红警》、《魔兽2》和《DOOM》。<br><br>到九十年代末，出现了Diablo（《暗黑破坏神》）战网。<br><br>1997年，金山发布了一款比较有名的RPG类（角色扮演）游戏《剑侠情缘》。当时，《剑侠情缘》还是单机版的。后来在2003、2005和2009年，分别发布了网络版的1代、2代和3代。<br><br>1998年，主打休闲游戏的联众游戏成立。<br><br>2000年左右，MMOG（大型多人在线游戏）《传奇》登陆中国。<br><br>2004年，《魔兽世界》（WOW）出现。<br><br>2006-2010年，手游兴起。莉莉丝游戏做出了一个比较成功的手游产品——《刀塔传奇》。<br><br>2010至今，就是休闲类的《纪念碑谷》、网易次元文化的《阴阳师》，再到如今大热的MOBA类（多人在线战术竞技游戏）的对战手游《王者荣耀》。<br><br><strong>游戏服务器的发展</strong><br><br><div align=center><img id=aimg_999699 aid=999699 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170850gx4xfjc43j3vbzjj.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170850gx4xfjc43j3vbzjj.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170850gx4xfjc43j3vbzjj.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170850gx4xfjc43j3vbzjj.png referrerpolicy=no-referrer></div><br>第一代游戏服务器，是比较简单的单进程、单线程模型，无阻塞。服务器在接收到玩家的消息后，把消息按照队列进行异步的序列化。<br><br><div align=center><img id=aimg_999700 aid=999700 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170850r919idpv0899do4i.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170850r919idpv0899do4i.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170850r919idpv0899do4i.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170850r919idpv0899do4i.png referrerpolicy=no-referrer></div><br>这种单线程的服务器模型，最早的是类似于78年的MUD游戏。使用终端模拟程序telnet等，就可以直接登录。进入场景之后主要采用文字叙述的方式，即服务器告诉玩家在什么场景、有什么数据，然后玩家输入指令。早期的服务器，虽然没有很强的逻辑，但因为整体构架比较简单，所以承载能力较低。<br><br><div align=center><img id=aimg_999701 aid=999701 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170850l24u2k7rn7qkznux.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170850l24u2k7rn7qkznux.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170850l24u2k7rn7qkznux.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170850l24u2k7rn7qkznux.png referrerpolicy=no-referrer></div><br>第二代游戏服务器，为了增加并发，在服务器端也发展了多线程和多进程的模型。在服务器本身的逻辑上，开始增加了分区分服的结构。<br><br><div align=center><img id=aimg_999702 aid=999702 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170851xtp8bmpkcgcbb01e.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170851xtp8bmpkcgcbb01e.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170851xtp8bmpkcgcbb01e.jpg width=551 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170851xtp8bmpkcgcbb01e.jpg referrerpolicy=no-referrer></div><br>比较典型的游戏是上图中，EA（美国艺电公司）旗下公司在1997年发布的《Ultima Online》，即《创世纪》。它是世界上第一款图形界面的大型多人在线角色扮演游戏。<br><br><div align=center><img id=aimg_999703 aid=999703 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170851m9oxza2te9abhdxt.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170851m9oxza2te9abhdxt.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170851m9oxza2te9abhdxt.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170851m9oxza2te9abhdxt.png referrerpolicy=no-referrer></div><br>此外，还有联众在2000年推出的休闲棋牌游戏。当时，联众跟地方的运营商（电信、联通等）合作，搭建游戏服务器。所以在游戏中，会有南方电信1、北方联通1等分区。这体现了第二代游戏服务器架构典型的分区分服特点。<br><br><div align=center><img id=aimg_999704 aid=999704 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170852lnlide73b5ifriht.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170852lnlide73b5ifriht.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170852lnlide73b5ifriht.png width=555 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170852lnlide73b5ifriht.png referrerpolicy=no-referrer></div><br>第三代游戏服务器，相对更百花齐放一些，主要有四种类型。<br><br>第一种类型，是在第二代的基础上发展而来，实现三层架构的游戏服务器。<br><br>首先，Gate server作为所有玩家的游戏连接，主要负责处理网络的IO部分。然后，通过内部的网络即IDC（互联网数据中心）专网，与游戏逻辑服务器相交互。最后，通过mysql或其他数据库，把用户数据存储到DB server。它的主要特点是，把网络和存储IO进行逻辑分离，可以对每一层进行扩展。一般负载的瓶颈大都在GameServer层，这层可以做更多的扩展，从而支持单区单服增加承载的能力。<br><br><div align=center><img id=aimg_999705 aid=999705 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170852f3jgztja7gategad.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170852f3jgztja7gategad.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170852f3jgztja7gategad.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170852f3jgztja7gategad.png referrerpolicy=no-referrer></div><br>2003年的QQGame，是比较典型的三层架构服务器代表。它当时是腾讯首款自研的游戏产品，最高达到过PC端八百多万人在线的成绩。QQGame很快就超越了联众，即使在现在的休闲棋牌市场上，也处于绝对领先的地位。<br><br><div align=center><img id=aimg_999706 aid=999706 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170852c1rn51uu9tkzr11n.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170852c1rn51uu9tkzr11n.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170852c1rn51uu9tkzr11n.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170852c1rn51uu9tkzr11n.png referrerpolicy=no-referrer></div><br>第二种类型，是服务器集群，上图是比较简单的示意图。<br><br>首先，也有与玩家连接的接入类服务器，这里命名为GATE，它负责处理专网连接，在游戏WORLD处理游戏逻辑。然后它会把通用逻辑和功能抽取分离开来，比如管理、聊天、交易以及一些组队和工会，放到独立的地方，再通过Cluster服务器集群的方式提供服务。采用这种分组以后，以前同步的逻辑直接本地调用一个函数，来处理组队和工会，会变到另外一个服务器上，中间就多了一些异步交互。异步交互存在状态维护的困难，所以这种结构开发难度会更高。<br><br><div align=center><img id=aimg_999707 aid=999707 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170853l7yxsq1lqma5z4y1.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170853l7yxsq1lqma5z4y1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170853l7yxsq1lqma5z4y1.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170853l7yxsq1lqma5z4y1.png referrerpolicy=no-referrer></div><br>MMO和RPG大都是这种结构。其中，比较有代表性的是最早期的《传奇》。它是一个经典的MMO，是盛大引进代理的韩国游戏。<br><br><div align=center><img id=aimg_999708 aid=999708 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170854leydoy2vo6xf0fkx.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170854leydoy2vo6xf0fkx.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170854leydoy2vo6xf0fkx.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170854leydoy2vo6xf0fkx.png referrerpolicy=no-referrer></div><br>《QQ幻想》和《QQ华夏》，也采用了这种结构。《QQ幻想》是腾讯在2005年，自研的一款Q版卡通类RPG，最高的时候有六十万左右玩家在线。《QQ华夏》则是07年深圳网域公司开发的RPG游戏，当时腾讯做代理运营。<br><br><div align=center><img id=aimg_999709 aid=999709 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170855dsew5i0o54ornrho.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170855dsew5i0o54ornrho.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170855dsew5i0o54ornrho.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170855dsew5i0o54ornrho.png referrerpolicy=no-referrer></div><br>第三种类型，是无缝地图。它的特点主要有三：<br><br>① 一个场景服务器只负责一部分场景；<br><br>② 玩家进入游戏后，没有加载地图的过程；<br><br>③ 在场景边缘处，数据可能同时存在于多个场景服务器中。此时会由world级的服务器进行管理，决定哪个服务器做决策。在边界切换时，不同场景服务器共同持有玩家的数据，玩家就不会感觉到明显的切换。最典型的，就是《魔兽世界》对无缝地图技术的应用。<br><br><div align=center><img id=aimg_999710 aid=999710 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170855ga0pitapc27tgz77.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170855ga0pitapc27tgz77.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170855ga0pitapc27tgz77.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170855ga0pitapc27tgz77.png referrerpolicy=no-referrer></div><br>第四种，是房间型服务器。<br><br>图中间的部分是大厅接入群，类似于上文中的gate和游戏服务器。这部分主要负责用户的接入、主要的逻辑处理以及其他一些大厅服务，比如《王者荣耀》和《英雄联盟》的5v5匹配。当很多玩家同时申请进入游戏时，房间型服务器会根据规则挑选出等级接近的玩家，分别组成队伍。之后单局的过程，叫做战斗接入群或房间服务。战斗接入群会做一个分布，比如，根据北方的联通和南方的电信，对用户做就近的接入。再如PUBG mobile，它的大厅集群放在北美，同时在北美、亚洲和欧洲都有战斗接入群，方便各地用户接入。<br><br><div align=center><img id=aimg_999711 aid=999711 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170856trop4horpddr3467.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170856trop4horpddr3467.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170856trop4horpddr3467.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170856trop4horpddr3467.png referrerpolicy=no-referrer></div><br>房间型服务器的游戏比较多，包括《英雄联盟》、《王者荣耀》和《刺激战场》（《和平精英》）等。<br><br><strong><font color=#de5650>#03 核心问题、技术和实现难点</font></strong><br><br><strong>核心问题</strong><br><br><div align=center><img id=aimg_999712 aid=999712 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170856ix5vuxxsiihgbihx.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170856ix5vuxxsiihgbihx.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170856ix5vuxxsiihgbihx.jpg width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170856ix5vuxxsiihgbihx.jpg referrerpolicy=no-referrer></div><br>游戏服务器要解决的核心问题，是满足海量游戏用户稳定和高质量的服务需求。<br><br>首先，“海量”指的是，十万到千万级的PCU（Peak Concurrent User，即最高同时在线用户）。此外，还有个名词DAU(Daily Active User，日活跃用户)，是游戏运营的数据指标，而PCU主要考量服务器的性能数据。<br><br>其次，“稳定”代表着：<br><br>①服务器不能宕机，一旦服务器出现问题，用户的直观感受就是掉线了。<br><br>②要容忍弱网络的问题。比如，用户网络不稳定，连接断掉之后，服务器可以允许用户在短时间内进行WiFi和4G的切换，允许用户重新连接，保证服务可以继续。<br><br>最后，“高质量”主要是指处理网络的延迟和一些逻辑问题。<br><br><strong>核心技术和实现难点</strong><br><br><div align=center><img id=aimg_999713 aid=999713 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170856qb4gobbh4qxhlbq7.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170856qb4gobbh4qxhlbq7.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170856qb4gobbh4qxhlbq7.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170856qb4gobbh4qxhlbq7.png referrerpolicy=no-referrer></div><br>游戏服务器的核心技术和实现难点主要有四个：<br><br>① 单服处理能力<br><br>对于不同类型的游戏，单服即一个服务器，支撑的在线玩家数量是不同的。休闲类如棋牌游戏，可以支撑两万到三万的玩家；MMO可支撑的玩家数在五千到八千；而射击类等高强度交互的游戏，只能支撑两千到三千的玩家。<br><br>② 逻辑耦合度高<br><br>服务器有很多集群的设计，所以在单服处理能力方面，会有算法的优化。比如，排序方面有排序查找、hash（哈希，“散列”算法）和二叉树；还有用空间换时间的方法，把经常用的数据放到内存里，减少CPU的经常读取。<br><br>服务器设计比较难的地方在于逻辑设计。很多逻辑是一个整体，要想将它分离开，就要找联系相对薄弱的地方。举例来说，组队和游戏逻辑的相关性比较小，就可以抽离出来。有些服务器单独将组队剥离，那么组队的消息接口和逻辑，就容易抽离成另外一个独立的服务器。但即使逻辑之间可以分解，这也是有限度的。分解的越细，异步协作和状态维护的内容就会越复杂，游戏开发的难度就越大。<br><br>③ 延迟敏感<br><br>在防止延迟上，前端和后端需要一定配合。比如，前端会提前按帧缓存，当出现网络延迟和卡顿时，游戏其实还可以继续进行一段时间，这样玩家对延迟就没那么敏感。但是，提前缓存会存在玩家手感差异的问题，而且也不能缓存太多，否则玩家感受到的延迟就会比较明显。<br><br>④ 版本更新<br><br>现在，手游时代很少会停机更新，即使有也大都在凌晨。更流行的方式是不停机更新，这就要求逻辑、资源一定要做程序设计上的分离，保证在更新资源时，程序可以重新读取并加载，且不中断。<br><br><div align=center><img id=aimg_999714 aid=999714 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170857y8zr6ew5iiers819.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170857y8zr6ew5iiers819.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170857y8zr6ew5iiers819.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170857y8zr6ew5iiers819.png referrerpolicy=no-referrer></div><br>上图是游戏服务器的一个系统结构示例，它偏向于房间型结构。首先，前端采用TCP或其他协议进行接入；之后，大厅接入群，主要包括接入服务器和游戏逻辑服务器，通过Proxy或者哈希算法的方式，把DB（database，数据库）做分布式存储。因为一台DB存储不了千万上亿级的用户数据。最右侧，是一些内部的接口。举例来讲，如果运营商要发布活动如经验加倍、金币加倍等，就会通过管理端向游戏逻辑服务器做接口服务。图中的战斗接入群，主要处理单局的游戏内容。<br><br>此外，在公共平台还有支付、关系链和排行榜等功能。支付与游戏逻辑的相关性不大，可以独立出来。支付的大致方式有两种：一是将人民币转换为游戏内代币，二是代币旳消耗。关系链一般是第三方平台的关系链服务，包括QQ关系链、微信关系链和Facebook关系链等等，有些服务通过第三方的API或接口进行同步。排行榜也可以做成一个独立公有的服务器。<br><br><div align=center><img id=aimg_999715 aid=999715 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170857jrkphqd3a5qzbdd9.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170857jrkphqd3a5qzbdd9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170857jrkphqd3a5qzbdd9.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170857jrkphqd3a5qzbdd9.png referrerpolicy=no-referrer></div><br>游戏服务器的网络协议主要有Tcp、Udp、R-udp和http四种。<br><br>Tcp是面向一个流的模型，本身有滑动窗口重传的机制。协议没有边界，但有流量控制，丢包会影响它的传输速度。<br><br>Udp是点对点的，没有可靠性的控制，不能保证消息包一定被收到，丢包会影响传输的成功率。<br><br>R-udp是在Udp的基础上，吸收了Tcp的特点，保证了可靠重传的机制。<br><br>http一般用于拉关系链或web端发布接口到游戏侧做活动的场景。<br><br><div align=center><img id=aimg_999716 aid=999716 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170857f55qsmqrrzymbqqq.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170857f55qsmqrrzymbqqq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170857f55qsmqrrzymbqqq.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170857f55qsmqrrzymbqqq.png referrerpolicy=no-referrer></div><br>上图介绍了游戏的接入逻辑。手游玩家在开启游戏时，登录后的第一个界面就是选区，所有区的列表，都放在目录服里。目录服的实现方式有两种，一是将目录服都放到客户端，二是目录服放在单独的服务器上。若采用方式一，当选区增加时，客户端就需要更新。所以，大部分的目录服都放在单独的服务器上，列出有哪些区，这样即使选区增加客户端也无需更新。<br><br>一般来说，各个逻辑服务器会向目录服上报各自的服务状态。当用户登录时，目录服首先就会回复一个服务器列表，客户端可以看到游戏的各个选区，如一区、二区等。在这个过程中，目录服会尝试各个服务器连接的响应速度，最后选择一个最近的登录服，登录到大厅。<br><br><div align=center><img id=aimg_999717 aid=999717 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170857r162o363f5966w16.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170857r162o363f5966w16.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170857r162o363f5966w16.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170857r162o363f5966w16.png referrerpolicy=no-referrer></div><br>在地图服务器的技术中，视野同步最常用的是九宫格技术。九宫格中的一块格子，比屏幕略大。服务器一般会认为，以玩家所处格子为九宫格的中心，整个九宫格的其他玩家和怪物都是玩家关注的对象。当玩家在格子内移动时，玩家的视野不会发生变化。但如果玩家移到其他格子中去，视野就会发生变化。比如图中的例子，若用户由B3移动到C2，则视野范围会由紫色九宫格变为黄色。由于视野范围变化不是很大，服务器不用立即加载玩家的同步数据，除C2之外，其他格子中的任何行为都不会同步给玩家。九宫格技术保证了用户在行走中的平滑感的同时减少了交互的次数。<br><br>地图管理，包括动态阻挡和静态阻挡。动态阻挡，指两个玩家同时到达一个地点，服务器是否能找到平衡点来同时显示两个玩家的位置。静态阻挡则指，静态的物件放在某处，服务器要判断玩家是否能走过去。比如遇到一堵玩家走不过去的墙，那这堵墙就是静态阻挡。<br><br>移动同步，主要需要解决的问题是网络延迟导致的拉扯和平滑。平滑主要是利用数学上的插值技术，将两个差异的地方在几帧之内快速平滑地拉过去。<br><br><div align=center><img id=aimg_999718 aid=999718 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170858sh0s67z7404i6kg5.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170858sh0s67z7404i6kg5.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170858sh0s67z7404i6kg5.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170858sh0s67z7404i6kg5.png referrerpolicy=no-referrer></div><br>游戏中的商品购买服务，可以看作是一个异步状态机。当客户端的用户提出购买请求后，购买服务器提出预扣费请求，将信号传递到货币系统服务器中，同时添加物品记录到DB服务器。在记录添加后，再次返回货币系统服务器进行扣费确认，并返回到客户端，完成整个购买扣费流程。这样的异步预扣费机制，是为了防止中间环节出现故障后，导致扣费未发放商品或商品已发放但未扣费的问题。<br><br><div align=center><img id=aimg_999719 aid=999719 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170858sktfzg5zzvglzwlk.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170858sktfzg5zzvglzwlk.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170858sktfzg5zzvglzwlk.jpg width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170858sktfzg5zzvglzwlk.jpg referrerpolicy=no-referrer></div><br>在DB层的数据存储，一般采用分布式技术。现在的游戏基本都有上千万到亿级的注册用户，庞大的数据量决定了一台服务器不可能存储完全。数据通过关键值key值，传输到路由表中，进而传递给DB层。key值一般是内部生成的用户ID，采用哈希值的方式把数据散列开。<br><br>举例来说，有十台DB，100号玩家，那么玩家号除以100，得到的尾数是几就放在第几位，从而把数据散列开。采用哈希值的方式，还有一个固定规律，即存写时都是相同的规则。<br><br>路由表有两种方式，一种是直接存在数据发起端，另一种是放在独立的proxy服务器上。<br><br><div align=center><img id=aimg_999720 aid=999720 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170858x5jb5ak9tj146hbl.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170858x5jb5ak9tj146hbl.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170858x5jb5ak9tj146hbl.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170858x5jb5ak9tj146hbl.png referrerpolicy=no-referrer></div><br>游戏服务进程的框架，和大部分服务器是类似的。都是初始化、退出以及中间的循环处理。循环处理包括网络事件、定时器处理、网络消息处理、事务处理和消息队列处理。网络事件指连接和断连；定时器处理，是通过定时器的计时，来定时保存用户的数据和一些定时逻辑；网络消息处理，是网络上的收发包；事务处理，是服务器产生一个逻辑的时候保存的一些中间状态；消息队列处理，则是在其他逻辑模块发送业务请求时产生的。<br><br><div align=center><img id=aimg_999721 aid=999721 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170858i9xrjqjte9cjzyo1.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170858i9xrjqjte9cjzyo1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170858i9xrjqjte9cjzyo1.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170858i9xrjqjte9cjzyo1.png referrerpolicy=no-referrer></div><br>中国的外挂问题，相对外国更加明显一点。而韩国的政府对于游戏产业的支持态度，使得防范外挂相对容易，所以很多韩国游戏引进到国内后，就面临着水土不服的外挂问题。外挂，包括键盘鼠标模拟、注入、协议破解和程序破解等方式，还有最难的完全模拟客户端的方式。<br><br>反外挂的核心，以服务器逻辑为主。当逻辑放在服务器上时，外挂没有机会。不过这种方式的成本也很高，其一是因为这个逻辑会加重服务器的负担；其二是，逻辑放在服务器上，反馈到客户端时，会导致游戏体验的延迟，影响玩家的游戏体验。常见的反外挂手段，包括动态协议栈、验证码检查、加壳、动态特征码检查进程和法律等方式。<br><br><strong><font color=#de5650>#04 设计原理和方法论简述</font></strong><br><br><strong>设计原则</strong><br><br><div align=center><img id=aimg_999722 aid=999722 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170859rfnm3mhy9evnrev9.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170859rfnm3mhy9evnrev9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170859rfnm3mhy9evnrev9.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170859rfnm3mhy9evnrev9.png referrerpolicy=no-referrer></div><br>设计原则最首要的是KISS原则，即Keep It Simple，Stupid。系统的设计要尽量简单清晰，不要太复杂，减少模块的耦合，要做到让玩家一看就懂。<br><br><div align=center><img id=aimg_999723 aid=999723 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170859e1abeqmw9zymyqm4.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170859e1abeqmw9zymyqm4.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170859e1abeqmw9zymyqm4.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170859e1abeqmw9zymyqm4.png referrerpolicy=no-referrer></div><br>其次，是灰度方面的设计。<br><br>第一，要柔性可用。柔性可用主要指，当服务器条件有限不能提供完整服务的时候，可以用柔性的方式提供相对优质的服务。比如战斗服务器出现故障时，不能打PVP（Player VS Player，玩家对战玩家），那么要能够打PVE（Player VS Environment，玩家对战环境）。<br><br>第二，是在不同场景下提供不同的服务。服务器要保证系统的核心服务是一定可用的。而非核心的服务，如排行榜就可以暂时停止，不能因为非核心服务，而阻塞整个游戏的服务进程。<br><br>第三，服务降级和灰度分布。当一些服务出现有损的情况时，可以做服务降级。排队就是服务降级的一种。当玩家人数超过服务器的承载能力时，服务器就可以通知后面的玩家服务器繁忙，来进行用户的排队。<br><br><strong>可行技术及工具</strong><br><br><div align=center><img id=aimg_999724 aid=999724 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170859qrdzda7au4p4wa2d.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170859qrdzda7au4p4wa2d.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170859qrdzda7au4p4wa2d.png width=554 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170859qrdzda7au4p4wa2d.png referrerpolicy=no-referrer></div><br>已验证可行的常见具体技术，包括：<br><br>①无锁通信队列。两个进程在后台线程通信的时候，队列如果只有一端读、一端写，那么是可以不用锁来实现的。该技术最早应用于Linux底层，现在已经比较常见了。<br><br>②异步模型。异步模型在服务器技术上应用的比较多。大部分服务器采用Cluster技术时，都会采用服务器协作的方式，那么很多的同步调用就会变成异步的交互。<br><br>③通用框架。通用框架包括big world框架和网易大神——云风开发的skynet，这两个框架都比较成熟。skynet的特点，是使用lua（一种脚本语言）。<br><br>④Key-value数据库产品或内存数据库。以前的服务器数据库，用的是Mysql等传统关系型数据库。现在主流使用的是Key-value数据库产品，如Redis（Remote Dictionary Server，远程字典服务）和MongoDB（基于分布式文件存储的数据库）等。Key-value数据库大部分是根据一个用户ID，就可以得到用户所有的数据。<br><br><div align=center><img id=aimg_999725 aid=999725 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170859so1eqz5r0reh05z0.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170859so1eqz5r0reh05z0.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170859so1eqz5r0reh05z0.jpg width=556 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170859so1eqz5r0reh05z0.jpg referrerpolicy=no-referrer></div><br>关于工具，首先是调试器。Linux下，著名的gdb调试器计算机开发一般都会用到。Windows下，一般使用Visual Studio自带的调试工具。<br><br><div align=center><img id=aimg_999726 aid=999726 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170859gk3cs3nnyqiu8x89.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170859gk3cs3nnyqiu8x89.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170859gk3cs3nnyqiu8x89.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170859gk3cs3nnyqiu8x89.png referrerpolicy=no-referrer></div><br>关于内存泄露的检查，Linux下常用的有valgrind，Windows环境下，则有Leaks Detector。<br><br><div align=center><img id=aimg_999727 aid=999727 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170900qxgtv8qohzth8vzo.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170900qxgtv8qohzth8vzo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170900qxgtv8qohzth8vzo.png width=600 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170900qxgtv8qohzth8vzo.png referrerpolicy=no-referrer></div><br>上图展示了一些性能分析工具。在Linux环境下，一般使用gprof，具体用法可以参考网址 http://sourceware.org/binutils/docs/gprof/ 。Windows环境下，使用visual studio自带的profiling。此外，还有第三方的工具，如Truetime。<br><br><div align=center><img id=aimg_999728 aid=999728 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170900ukygnjjaqjvgjaga.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170900ukygnjjaqjvgjaga.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170900ukygnjjaqjvgjaga.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170900ukygnjjaqjvgjaga.png referrerpolicy=no-referrer></div><br>网络抓包工具，是在网络开发中用得比较多的工具。Linux下，最常使用的是Tcpdump。Windows下最常用的是wireshark，它的优点在于，可以直接与网卡进行数据报文交换，同时具有语法过滤功能。<br><br>此外，关于静态代码检查，最常见的工具是PC-Lint。<br><br><strong>发展现状及前景展望</strong><br><br><div align=center><img id=aimg_999729 aid=999729 zoomfile=https://di.gameres.com/attachment/forum/202108/10/170900fwzwu15au5u46w5i.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202108/10/170900fwzwu15au5u46w5i.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202108/10/170900fwzwu15au5u46w5i.png width=553 inpost=1 src=https://di.gameres.com/attachment/forum/202108/10/170900fwzwu15au5u46w5i.png referrerpolicy=no-referrer></div><br>游戏服务器相对于之前已经发展了许多，而且计算机的综合能力也越来越强。<br><br>首先，游戏服务器已进入多核时代。目前正在使用中的PC服务器，最多有六十四核，加上超线程，总共能达到128个核心。<br><br>其次，编程语言发展比较快。在C语言之后，Java也有很大市场，用Go的人也多了起来。欧美的游戏，很多用Java做服务器开发。此外，《和平精英》服务器用的是C和lua结合，lua为主写逻辑。lua的性能虽然稍微差一点，但有最大的优点：热加载更新快，开发效率高。<br><br>然后，有更真实的游戏世界。游戏的真实性，更偏向于前端设计。虚幻和CryEngine这两个大型引擎，使得游戏对于真实世界的模拟变得非常强劲。不过，这两种引擎都比较重，而Unity引擎是比较轻量的。<br><br>最后，游戏服务器会具有更实时的交互和更快的响应速度，做到所见即所得。<br><br>好的游戏体验，离不开服务器的开发设计，随着科技和游戏设计的相互促进、相互发展，用户将会获得更加优质的体验。<br><br><font size=2><font color=#808080>来源：腾讯游戏学院</font></font><br><font size=2><font color=#808080>原文：https://mp.weixin.qq.com/s/sF0sExm6cppIYe7SRBfa9A</font></font><br><br></td></tr></tbody></table></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/cd28.html>https://news.zfe.space/p/cd28.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:32+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/cd28.html&title=和学霸一起学 _ 游戏服务器的那些事儿 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/cd28.html&title=和学霸一起学 _ 游戏服务器的那些事儿 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/cd28.html&title=和学霸一起学 _ 游戏服务器的那些事儿 - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202108/10/170848l75avy527ks2syey.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/e6ca.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>【行尸走肉】第十一季 美国经典恐怖剧集 深影字幕组双语字幕 第1集</p><p class=content>行尸走肉第十一季 【译 名】：行尸走肉 【原 名】：The Walking Dead 【年 代】：20...</p></a><a class=next href=/p/9a80.html><p class=title>iOS底层 - 关于死锁，你了解多少？<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="和学霸一起学 _ 游戏服务器的那些事儿";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

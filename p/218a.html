@@ -1,0 +1,799 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>细说Redis分布式锁 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png></a></div><div class=article-meta id=top><a title=细说Redis分布式锁 href=/p/218a.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png></a><h1 class=title>细说Redis分布式锁</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/">编程</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/Dockone/">Dockone</a><span class=sep></span><a class=category-link href="/categories/%E7%BC%96%E7%A8%8B/Dockone/%E5%91%A8%E6%8A%A5/">周报</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月28日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=细说Redis分布式锁 data-path=/p/218a.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><br>谈起Redis锁，下面三个，算是出现最多的高频词汇：<br><ul><li>Setnx</li><li>Redlock</li><li>Redisson</li></ul><br><br><h3>Setnx</h3>其实目前通常所说的Setnx命令，并非单指Redis的<code class=prettyprint>setnx key value</code>这条命令。<br><br>一般代指Redis中对<strong>set</strong>命令加上<strong>nx</strong>参数进行使用，<strong>set</strong>这个命令，目前已经支持这么多参数可选：<br><pre class=prettyprint>SET key value [EX seconds|PX milliseconds] [NX|XX] [KEEPTTL]<br>
+</pre><br>当然了，就不在文章中默写API了，基础参数还有不清晰的，可以蹦到官网：<a href=https://redis.io/commands/set rel=nofollow target=_blank>https://redis.io/commands/set</a><br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1.png alt=1.png referrerpolicy=no-referrer></a></div><br>上图是笔者画的<strong>Setnx</strong>大致原理，主要依托了它的<strong>key不存在才能set成功的特性</strong>，进程A拿到锁，在没有删除锁的Key时，进程B自然获取锁就失败了。<br><br>那么为什么要使用<code class=prettyprint>PX 30000</code>去设置一个超时时间？<br><br>是怕<strong>进程A</strong>不讲道理啊，锁没等释放呢，<strong>万一崩了</strong>，直接原地把锁带走了，导致系统中谁也拿不到锁。<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/9fb6734d1e082d7261fdf65d3efe48b6.jpeg target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/9fb6734d1e082d7261fdf65d3efe48b6.jpeg class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/9fb6734d1e082d7261fdf65d3efe48b6.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=2.jpeg alt=2.jpeg referrerpolicy=no-referrer></a></div><br>就算这样，还是不能保证万无一失。<br><br>如果<strong>进程A</strong>又不讲道理，操作锁内资源<strong>超过笔者设置的超时时间</strong>，那么就会导致<strong>其他进程拿到锁</strong>，等<strong>进程A</strong>回来了，回手就是把其他进程的锁删了，如图：<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/058ddb56e540fefa2404e0f1b1708a30.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/058ddb56e540fefa2404e0f1b1708a30.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/058ddb56e540fefa2404e0f1b1708a30.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=3.png alt=3.png referrerpolicy=no-referrer></a></div><br>还是刚才那张图，将<strong>T5</strong>时刻改成了锁超时，被Redis释放。<br><br><strong>进程B</strong>在<strong>T6</strong>开开心心拿到锁不到一会，<strong>进程A</strong>操作完成，回手一个<strong>del</strong>，就把锁释放了。<br><br>当<strong>进程B</strong>操作完成，去释放锁的时候（图中T8时刻）：<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/c9c95ba37cb9786dc34444944e07bd66.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c9c95ba37cb9786dc34444944e07bd66.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c9c95ba37cb9786dc34444944e07bd66.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=4.png alt=4.png referrerpolicy=no-referrer></a></div><br>找不到锁其实还算好的，万一<strong>T7</strong>时刻有个<strong>进程C</strong>过来加锁成功，那么<strong>进程B</strong>就把<strong>进程C</strong>的锁释放了。<br><br>以此类推，<strong>进程C</strong>可能释放<strong>进程D</strong>的锁，<strong>进程D</strong>……（禁止套娃），具体什么后果就不得而知了。<br><br>所以在用<strong>Setnx</strong>的时候，key虽然是主要作用，但是<strong>value</strong>也不能闲着，可以设置一个<strong>唯一的客户端ID</strong>，或者用<strong>UUID</strong>这种随机数。<br><br>当解锁的时候，先获取value判断是否是当前进程加的锁，再去删除。<strong>伪代码</strong>：<br><pre class=prettyprint>String uuid = xxxx;<br>
+// 伪代码，具体实现看项目中用的连接工具<br>
+// 有的提供的方法名为set，有的叫setIfAbsent<br>
+set Test uuid NX PX 3000<br>
+try&#123;<br>
+// biz handle....<br>
+&#125; finally &#123;<br>
+// unlock<br>
+if(uuid.equals(redisTool.get('Test'))&#123;<br>
+    redisTool.del('Test');<br>
+&#125;<br>
+&#125; <br>
+</pre><br>这回看起来是不是稳了。<br><br>相反，这回的问题更明显了，在finally代码块中，<strong>get和del并非原子操作</strong>，还是有进程安全问题。<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/92d61abc27f8f2eddab92b4d5f5db144.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/92d61abc27f8f2eddab92b4d5f5db144.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/92d61abc27f8f2eddab92b4d5f5db144.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=5.png alt=5.png referrerpolicy=no-referrer></a></div><br>为什么有问题还说这么多呢？<br><br>第一，搞清劣势所在，才能更好的完善。<br><br>第二点，其实上文中最后这段代码，还是有<strong>很多公司在用</strong>的。<br><br><em>大小项目悖论：大公司实现规范，但是小司小项目虽然存在不严谨，可并发倒也不高，出问题的概率和大公司一样低。——鲁迅</em><br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/c13fbb6e968c49ab56308b075587f6cc.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c13fbb6e968c49ab56308b075587f6cc.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c13fbb6e968c49ab56308b075587f6cc.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=6.png alt=6.png referrerpolicy=no-referrer></a></div><br>那么删除锁的正确姿势之一，就是可以使用<strong>Lua</strong>脚本，通过Redis的<strong>eval</strong>/<strong>evalsha</strong>命令来运行：<br><pre class=prettyprint>-- Lua删除锁：<br>
+-- KEYS和ARGV分别是以集合方式传入的参数，对应上文的Test和uuid。<br>
+-- 如果对应的value等于传入的uuid。<br>
+if redis.call('get', KEYS[1]) == ARGV[1] <br>
+then <br>
+-- 执行删除操作<br>
+    return redis.call('del', KEYS[1]) <br>
+else <br>
+-- 不成功，返回0<br>
+    return 0 <br>
+end<br>
+</pre><br>通过<strong>Lua</strong>脚本能保证原子性的原因说的通俗一点：<br><br>就算你在<strong>Lua</strong>里写出花，执行也是一个命令（<strong>eval</strong>/<strong>evalsha</strong>）去执行的，一条命令没执行完，其他客户端是看不到的。<br><br>那么既然这么麻烦，有没有比较好的工具呢？ 就要说到<strong>Redisson</strong>了。<br><br>介绍<strong>Redisson</strong>之前，笔者简单解释一下为什么现在的<strong>Setnx</strong>默认是指<strong>set</strong>命令带上<strong>nx</strong>参数，而不是直接说是<strong>Setnx</strong>这个命令。<br><br>因为Redis版本在<strong>2.6.12</strong>之前，set是不支持nx参数的，如果想要完成一个锁，那么需要两条命令：<br><pre class=prettyprint>1. setnx Test uuid<br>
+2. expire Test 30<br>
+</pre><br>即放入Key和设置有效期，是分开的两步，理论上会出现<strong>1</strong>刚执行完，程序挂掉，无法保证原子性。<br><br>但是早在<strong>2013年</strong>，也就是7年前，Redis就发布了<strong>2.6.12</strong>版本，并且官网（<a target=_blank rel=noopener href=https://redis.io/commands/set>set命令页</a>），也早早就说明了“SETNX，SETEX，PSETEX可能在未来的版本中，会弃用并<strong>永久删除</strong>”。<br><br>笔者曾阅读过一位大佬的文章，其中就有一句指导入门者的面试小套路，具体文字忘记了，大概意思如下：<br><br><blockquote><br>说到Redis锁的时候，可以先从Setnx讲起，最后慢慢引出set命令的可以加参数，可以体现出自己的知识面。</blockquote>如果有缘你也阅读过这篇文章，并且学到了这个套路，作为本文的笔者我要加一句提醒：<br><br>请注意你的工作年限！首先回答官网表明即将废弃的命令，再引出<strong>set命令</strong>七年前的“新特性”，如果是刚毕业不久的人这么说，面试官会以为自己穿越了。<br><br><em>你套路面试官，面试官也会套路你。——vt・沃兹基硕德</em><br><h3>Redisson</h3>Redisson是<strong>Java的Redis客户端之一</strong>，提供了一些API方便操作Redis。<br><br>但是Redisson这个客户端可有点厉害，笔者在官网截了仅仅是一部分的图：<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/b6f93cd9a67f2da3b4cabdafde909887.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/b6f93cd9a67f2da3b4cabdafde909887.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/b6f93cd9a67f2da3b4cabdafde909887.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=7.png alt=7.png referrerpolicy=no-referrer></a></div><br>这个特性列表可以说是太多了，是不是还看到了一些<strong>JUC</strong>包下面的类名，Redisson帮我们搞了分布式的版本，比如<strong>AtomicLong</strong>，直接用<strong>RedissonAtomicLong</strong>就行了，连类名都不用去新记，很人性化了。<br><br>锁只是它的冰山一角，并且从它的<a target=_blank rel=noopener href=https://github.com/redisson/redisson/wiki/Table-of-Content>wiki</a>页面看到，对主从，哨兵，集群等模式都支持，当然了，单节点模式肯定是支持的。<br><br>本文还是以锁为主，其他的不过多介绍。<br><br>Redisson普通的锁实现源码主要是<strong>RedissonLock</strong>这个类，还没有看过它源码的盆友，不妨去瞧一瞧。<br><br>源码中<strong>加锁/释放锁</strong>操作都是用<strong>Lua</strong>脚本完成的，封装的非常完善，开箱即用。<br><br>这里有个小细节，加锁使用<strong>Setnx</strong>就能实现，也采用<strong>Lua</strong>脚本是不是多此一举？ 笔者也<strong>非常严谨</strong>的思考了一下：这么厉害的东西哪能写废代码？<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/a6ad1531614ed0743322ceedd6605d37.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/a6ad1531614ed0743322ceedd6605d37.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/a6ad1531614ed0743322ceedd6605d37.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=8.png alt=8.png referrerpolicy=no-referrer></a></div><br>其实笔者仔细看了一下，加锁解锁的Lua脚本考虑的非常全面，其中就包括<strong>锁的重入性</strong>，这点可以说是考虑非常周全，我也随手写了代码测试一下：<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/e90fd5124675b47f73fd57f5b8875ad0.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/e90fd5124675b47f73fd57f5b8875ad0.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/e90fd5124675b47f73fd57f5b8875ad0.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=9.png alt=9.png referrerpolicy=no-referrer></a></div><br>的确用起来像JDK的<strong>ReentrantLock</strong>一样丝滑，那么Redisson实现的已经这么完善，RedLock又是什么？<br><h3>RedLock</h3><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/b5fd866431643896788a7d20c91e084a.jpeg target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/b5fd866431643896788a7d20c91e084a.jpeg class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/b5fd866431643896788a7d20c91e084a.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=10.jpeg alt=10.jpeg referrerpolicy=no-referrer></a></div><br><strong>RedLock</strong>的中文是直译过来的，就叫<strong>红锁</strong>。<br><br>红锁并非是一个工具，而是Redis官方提出的一种分布式锁的<strong>算法</strong>。<br><br>就在刚刚介绍完的Redisson中，就实现了redLock版本的锁。也就是说除了<strong>getLock</strong>方法，还有<strong>getRedLock</strong>方法。<br><br>笔者大概画了一下对红锁的理解：<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/006fa67c7e9fafe5ac891eae6247a4d0.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/006fa67c7e9fafe5ac891eae6247a4d0.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/006fa67c7e9fafe5ac891eae6247a4d0.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=11.png alt=11.png referrerpolicy=no-referrer></a></div><br>如果你不熟悉Redis高可用部署，那么没关系。RedLock算法虽然是需要多个实例，但是这些实例都是独自部署的，没有主从关系。<br><br>RedLock作者指出，之所以要用独立的，是避免了redis异步复制造成的锁丢失，比如：主节点没来的及把<strong>刚刚set进来这条数据</strong>给从节点，就挂了。<br><br>有些人是不是觉得大佬们都是杠精啊，天天就想着极端情况。 其实<strong>高可用</strong>嘛，拼的就是<strong>99.999……%</strong>中小数点后面的位数。<br><br>回到上面那张简陋的图片，红锁算法认为，只要(N/2) + 1个节点加锁成功，那么就认为获取了锁， 解锁时将所有实例解锁。 流程为：<br><ol><li>顺序向五个节点请求加锁</li><li>根据一定的<strong>超时时间</strong>来推断是不是跳过该节点</li><li>三个节点加锁成功并且花费时间小于锁的有效期</li><li>认定加锁成功</li></ol><br><br>也就是说，假设锁<strong>30秒</strong>过期，三个节点加锁花了31秒，自然是加锁失败了。<br><br>这只是举个例子，实际上并不应该等每个节点那么长时间，就像官网所说的那样，假设有效期是10<strong>秒</strong>，那么单个Redis实例操作超时时间，应该在5到50<strong>毫秒</strong>（注意时间单位）。<br><br>还是假设我们设置有效期是30秒，图中超时了两个Redis节点。 那么加锁成功的节点<strong>总共花费</strong>了3秒，所以锁的<strong>实际有效期</strong>是小于27秒的。<br><br>即扣除加锁成功三个实例的3秒，还要扣除等待超时Redis实例的总共时间。<br><br>看到这，你有可能对这个算法有一些疑问，那么你不是一个人。<br><br>回头看看Redis官网关于红锁的<a target=_blank rel=noopener href=https://redis.io/topics/distlock>描述</a>。<br><br>就在这篇描述页面的最下面，你能看到著名的关于红锁的<strong>神仙打架</strong>事件。<br><div class="aw-upload-img-list active"><a href=http://dockone.io/uploads/article/20210828/808300c54512bf580e516185abdc726b.png target=_blank data-fancybox-group=thumb rel=lightbox><img src=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/808300c54512bf580e516185abdc726b.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/808300c54512bf580e516185abdc726b.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=12.png alt=12.png referrerpolicy=no-referrer></a></div><br>即Martin Kleppmann和Antirez的RedLock辩论。一个是很有资历的分布式架构师，一个是Redis之父。<br><br>官方挂人，最为致命。<br><br>开个玩笑，要是质疑能被官方挂到官网，说明肯定是有价值的。<br><br>所以说如果项目里要使用红锁，除了红锁的介绍，不妨要多看两篇文章，即：<br><ol><li><a target=_blank rel=noopener href=http://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html>Martin Kleppmann的质疑贴</a></li><li><a target=_blank rel=noopener href=http://antirez.com/news/101>Antirez的反击贴</a></li></ol><br><br><h3>总结</h3>看了这么多，是不是发现如何实现，都不能保证<strong>100</strong>%的稳定。<br><br>程序就是这样，没有绝对的稳定，所以做好<strong>人工补偿</strong>环节也是重要的一环，毕竟：技术不够，人工来凑～<br><br>原文链接：<a href=https://juejin.cn/post/6844904082860146695 rel=nofollow target=_blank>https://juejin.cn/post/6844904082860146695</a>，作者：Vt<div class=aw-upload-img-list></div><ul class=aw-upload-file-list></ul></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/218a.html>https://news.zfe.space/p/218a.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:23+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/218a.html&title=细说Redis分布式锁 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/218a.html&title=细说Redis分布式锁 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/218a.html&title=细说Redis分布式锁 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://dockone.io/uploads/article/20210828/c0dd1e698e9dd8c2ac18c5964c879308.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/b35.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>深入理解CNI（容器网络接口）</p><p class=content>CNI简介容器网络的配置是一个复杂的过程，为了应对各式各样的需求，容器网络的解决方案也多种多样，例如有Flannel，Calico，Kube-OVN，Weave等。同时，容器平台/运行时...</p></a><a class=next href=/p/a01d.html><p class=title>Kubernetes故障检测和自愈工具NPD<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>节点问题检测器（Node Problem Detector）是一个守护程序，用于监视和报告节点的健康状况（包括内核死锁、OOM、系统线程数压力、系统文件描述符压力等指标）。 你可以将节点...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Setnx</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Redisson</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>RedLock</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>总结</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="细说Redis分布式锁";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

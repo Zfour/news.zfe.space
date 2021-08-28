@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>ACL 2021 _ 一文详解美团技术团队7篇精选论文 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png></a></div><div class=article-meta id=top><a title="ACL 2021 _ 一文详解美团技术团队7篇精选论文" href=/p/abf4.html><img class=thumbnail src=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png></a><h1 class=title>ACL 2021 _ 一文详解美团技术团队7篇精选论文</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E7%BE%8E%E5%9B%A2%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/">美团技术团队</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E7%BE%8E%E5%9B%A2%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/">最近更新</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月5日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="ACL 2021 _ 一文详解美团技术团队7篇精选论文" data-path=/p/abf4.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p>计算语言学协会年会（<a target=_blank rel=noopener href="https://2021.aclweb.org/">ACL 2021</a>）于2021年8月1日至6日在泰国曼谷举办（虚拟线上会议）。ACL是计算语言学和自然语言处理领域最重要的顶级国际会议，该会议由国际计算语言学协会组织，每年举办一次。据谷歌学术计算语言学刊物指标显示，ACL影响力位列第一，是CCF-A类推荐会议。今年ACL的主题是“NLP for Social Good”。据官方统计信息，本次会议共收到3350篇有效投稿，共计接收710篇主会论文（接受率为21.3%），493篇Findings论文（接受率为14.9%）。</p><p>美团技术团队共有7篇论文（其中6篇长文，1篇短文）被ACL 2021接收，这些论文是美团在事件抽取、实体识别、意图识别、新槽位发现、无监督句子表示、语义解析、文档检索等自然语言处理任务上的一些技术沉淀和应用。</p><p>针对于事件抽取，我们显示地利用周边实体的语义级别的论元角色信息，提出了一个双向实体级解码器（BERD）来逐步对每个实体生成论元角色序列；针对于实体识别，我们首次提出了槽间可迁移度的概念，并为此提出了一种槽间可迁移度的计算方式，通过比较目标槽与源任务槽的可迁移度，为不同的目标槽寻找相应的源任务槽作为其源槽，只基于这些源槽的训练数据来为目标槽构建槽填充模型；针对于意图识别，我们提出了一种基于监督对比学习的意图特征学习方法，通过最大化类间距离和最小化类内方差来提升意图之间的区分度；针对于新槽位发现，我们首次定义了新槽位识别（Novel Slot Detection, NSD）任务，与传统槽位识别任务不同的是，新槽位识别任务试图基于已有的域内槽位标注数据去挖掘发现真实对话数据里存在的新槽位，进而不断地完善和增强对话系统的能力。</p><p>此外，为解决BERT原生句子表示的“坍缩”现象，我们提出了基于对比学习的句子表示迁移方法—ConSERT，通过在目标领域的无监督语料上Fine-Tune，使模型生成的句子表示与下游任务的数据分布更加适配。我们还提出了一种新的无监督的语义解析方法——同步语义解码（SSD），它可以联合运用复述和语法约束解码同时解决语义鸿沟与结构鸿沟的问题。我们还从改进文档的编码入手来提高文档编码的语义表示能力，既提高了效果也提高了检索效率。</p><p>接下来，我们将对这7篇学术论文做一个更加详细的介绍，希望能对那些从事相关研究的同学有所帮助或启发，也欢迎大家在文末评论区留言，一起交流。</p><h2 id=01-capturing-event-argument-interaction-via-a-bi-directional-entity-level-recurrent-decoder>01 Capturing Event Argument Interaction via A Bi-Directional Entity-Level Recurrent Decoder</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-long.18.pdf>论文下载</a> | 论文作者：习翔宇，叶蔚（北京大学），张通（北京大学），张世琨（北京大学），王全修（RICHAI），江会星，武威 | 论文类型：Main Conference Long Paper（Oral）</p><p>事件抽取是信息抽取领域一个重要且富有挑战性的任务，在自动文摘、自动问答、信息检索、知识图谱构建等领域有着广泛的应用，旨在从非结构化的文本中抽取出结构化的事件信息。事件论元抽取对具体事件的描述信息（称之为论元信息）进行抽取，包括事件参与者、事件属性等信息，是事件抽取中重要且难度极大的任务。绝大部分论元抽取方法通常将论元抽取建模为针对实体和相关事件的论元角色分类任务，并且针对一个句子中实体集合的每个实体进行分离地训练与测试，忽略了候选论元之间潜在的交互关系；而部分利用了论元交互信息的方法，都未充分利用周边实体的语义级别的论元角色信息，同时忽略了在特定事件中的多论元分布模式。</p><p>针对目前事件论元检测中存在的问题，本文提出显示地利用周边实体的语义级别的论元角色信息。为此，本文首先将论元检测建模为实体级别的解码问题，给定句子和已知事件，论元检测模型需要生成论元角色序列；同时与传统的词级别的Seq2Seq模型不同，本文提出了一个双向实体级解码器（BERD）来逐步对每个实体生成论元角色序列。具体来说，本文设计了实体级别的解码循环单元，能够同时利用当前实例信息和周边论元信息；并同时采用了前向和后向解码器，能够分别从左往右和从右往左地对当前实体进行预测，并在单向解码过程中利用到左侧/右侧的论元信息；最终，本文在两个方向解码完成之后，采用了一个分类器结合双向编码器的特征来进行最终预测，从而能够同时利用左右两侧的论元信息。</p><p><img src=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png class=lazyload data-srcset=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>本文在公开数据集ACE 2005上进行了实验，并与多种已有模型以及最新的论元交互方法进行对比。实验结果表明该方法性能优于现有的论元交互方法，同时在实体数量较多的事件中提升效果更加显著。</p><p><img src=https://p0.meituan.net/travelcube/06c6c096673b1371f51cb0a2cc0b2a09386793.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/06c6c096673b1371f51cb0a2cc0b2a09386793.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><h2 id=02-slot-transferability-for-cross-domain-slot-filling>02 Slot Transferability for Cross-domain Slot Filling</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.findings-acl.440.pdf>论文下载</a> | 论文作者：陆恒通（北京邮电大学），韩卓芯（北京邮电大学），袁彩霞（北京邮电大学），王小捷（北京邮电大学），雷书彧，江会星，武威 | 论文类型：Findings of ACL 2021, Long Paper</p><p>槽填充旨在识别用户话语中任务相关的槽信息，是任务型对话系统的关键部分。当某个任务（或称为领域）具有较多训练数据时，已有的槽填充模型可以获得较好的识别性能。但是，对于一个新任务，往往只有很少甚至没有槽标注语料，如何利用一个或多个已有任务（源任务）的标注语料来训练新任务（目标任务）中的槽填充模型，这对于任务型对话系统应用的快速扩展有着重要的意义。</p><p>针对该问题的现有研究主要分为两种，第一种通过建立源任务槽信息表示与目标任务槽信息表示之间的隐式语义对齐，来将用源任务数据训练的模型直接用于目标任务，这些方法将槽描述、槽值样本等包含槽信息的内容与词表示以一定方式进行交互得到槽相关的词表示，之后进行基于“BIO”的槽标注。第二种思路采用两阶段策略进行，将所有槽值看作实体，首先用源任务数据训练一个通用实体识别模型识别目标任务所有候选槽值，之后将候选槽值通过与目标任务槽信息的表示进行相似度对比来分类到目标任务的槽上。</p><p>现有的工作，大多关注于构建利用源-目标任务之间关联信息的跨任务迁移模型，模型构建时一般使用所有源任务的数据。但是，实际上，并不是所有的源任务数据都会对目标任务的槽识别具有可迁移的价值，或者不同源任务数据对于特定目标任务的价值可能是很不相同的。例如：机票预定任务和火车票预定任务相似度高，前者的槽填充训练数据会对后者具有帮助，而机票预定任务和天气查询任务则差异较大，前者的训练数据对后者没有或只具有很小的借鉴价值，甚至起到干扰作用。</p><p>再进一步，即使源任务和目标任务很相似，但是并不是每个源任务的槽的训练数据都会对目标任务的所有槽都有帮助，例如，机票预定任务的出发时间槽训练数据可能对火车票预定任务的出发时间槽填充有帮助，但是对火车类型槽就没有帮助，反而起到干扰作用。因此，我们希望可以为目标任务中的每一个槽找到能提供有效迁移信息的一个或多个源任务槽，基于这些槽的训练数据构建跨任务迁移模型，可以更为有效地利用源任务数据。</p><p>为此，我们首先提出了槽间可迁移度的概念，并为此提出了一种槽间可迁移度的计算方式，基于可迁移度的计算，我们提出了一种为目标任务选择出源任务中能够提供有效迁移信息的槽的方法。通过比较目标槽与源任务槽的可迁移度，为不同的目标槽寻找相应的源任务槽作为其源槽，只基于这些源槽的训练数据来为目标槽构建槽填充模型。具体来说，可迁移度融合了目标槽和源槽之间的槽值表示分布相似度，以及槽值上下文表示分布相似度作为两个槽之间的可迁移度，然后对源任务槽依据其与目标槽之间的可迁移度高低进行排序，用可迁移度最高的槽所对应训练语料训练一个槽填充模型，得到其在目标槽验证集上的性能，依据按照可迁移度排序加入新的源任务槽对应训练语料训练模型并得到对应的验证集性能，选取性能最高的点对应的源任务槽及可迁移度高于该槽的源任务槽作为其源槽。利用选择出来的源槽构建目标槽槽填充模型。</p><p>槽填充模型依据槽值信息及槽值的上下文信息对槽值进行识别，所以我们在计算槽间可迁移度时，首先对槽值表示分布与上下文表示分布上的相似性进行了度量，然后我们借鉴了F值对于准确率及召回率的融合方式，对槽值表示分布相似性及槽值上下文表示分布相似性进行了融合，最后利用Tanh将所得到的值归一化到0-1之间，再用1减去所得到的值，为了符合计算得到的值越大，可迁移度越高的直观认知。下式是我们所提出的槽间可迁移度的计算方式：</p><p><img src=https://p0.meituan.net/travelcube/63d36cc0fb558bf1399667a7d93511d745198.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/63d36cc0fb558bf1399667a7d93511d745198.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>$sim(p_v(s_a),p_v(s_b))$和$sim(p_c(s_a),p_c(s_b))$分别表示槽a与槽b在槽值表示分布与上下文表示分布上的相似性，我们采用最大均值差异（MMD）来衡量分布之间的相似度。</p><p>我们并没有提出新的模型，但是我们提出的源槽选择方法可以与所有的已知模型进行结合，在多个已有模型及数据集上的实验表明，我们提出的方法能为目标任务槽填充模型带来一致性的性能提升（ALL所在列表示已有模型原始的性能，STM1所在列表示用我们的方法选出的数据训练的模型性能。）</p><p><img src=https://p0.meituan.net/travelcube/a3df94bc09d2e50ed21503038c050d95266021.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/a3df94bc09d2e50ed21503038c050d95266021.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><h2 id=03-modeling-discriminative-representations-for-out-of-domain-detection-with-supervised-contrastive-learning>03 Modeling Discriminative Representations for Out-of-Domain Detection with Supervised Contrastive Learning</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-short.110.pdf>论文下载</a> | 论文作者：曾致远（北京邮电大学），何可清，严渊蒙（北京邮电大学），刘子君（北京邮电大学），吴亚楠（北京邮电大学），徐红（北京邮电大学），江会星，徐蔚然（北京邮电大学） | 论文类型：Main Conference Short Paper (Poster)</p><p>在实际的任务型对话系统中，异常意图检测（Out-of-Domain Detection）是一个关键的环节，其负责识别用户输入的异常查询，并给出拒识的回复。与传统的意图识别任务相比，异常意图检测面临着语义空间稀疏、标注数据匮乏的难题。现有的异常意图检测方法可以分为两类：一类是有监督的异常意图检测，是指训练过程中存在有监督的OOD意图数据，此类方法的优势是检测效果较好，但缺点是依赖于大量有标注的OOD数据，这在实际中并不可行。另一类是无监督的异常意图检测，是指仅仅利用域内的意图数据去识别域外意图样本，由于无法利用有标注OOD样本的先验知识，无监督的异常意图检测方法面临着更大的挑战。因此，本文主要是研究无监督的异常意图检测。</p><p>无监督异常意图检测的一个核心问题是，如何通过域内意图数据学习有区分度的语义表征，我们希望同一个意图类别下的样本表征互相接近，同时不同意图类别下的样本互相远离。基于此，本文提出了一种基于监督对比学习的意图特征学习方法，通过最大化类间距离和最小化类内方差来提升特征的区分度。</p><p>具体来说，我们使用一个BiLSTM/BERT的上下文编码器获取域内意图表示，然后针对意图表示使用了两种不同的目标函数：一种是传统的分类交叉熵损失，另一种是监督对比学习（Supervised Contrastive Learning）损失。监督对比学习是在对比学习的基础上，改进了原始的对比学习仅有一个Positive Anchor的缺点，使用同类样本互相作为正样本，不同类样本作为负样本，最大化正样本之间的相关性。同时，为了提高样本表示的多样性，我们使用对抗攻击的方法来进行虚拟数据增强（Adversarial Augmentation），通过给隐空间增加噪声的方式来达到类似字符替换、插入删除、回译等传统数据增强的效果。模型结构如下：</p><p><img src=https://p0.meituan.net/travelcube/c42ae3edcb4dcb9485d0d0975591b32d55061.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/c42ae3edcb4dcb9485d0d0975591b32d55061.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>我们在两个公开的数据集上验证模型的效果，实验结果表明我们提出的方法可以有效的提升无监督异常意图检测的性能，如下表所示。</p><p><img src=https://p0.meituan.net/travelcube/73969cf883c63cad81313383c547acae55722.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/73969cf883c63cad81313383c547acae55722.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><h2 id=04-novel-slot-detection-a-benchmark-for-discovering-unknown-slot-types-in-the-task-oriented-dialogue-system>04 Novel Slot Detection: A Benchmark for Discovering Unknown Slot Types in the Task-Oriented Dialogue System</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-long.270.pdf>论文下载</a> | 论文作者：吴亚楠（北京邮电大学），曾致远（北京邮电大学），何可清，徐红（北京邮电大学），严渊蒙（北京邮电大学），江会星，徐蔚然（北京邮电大学） | 论文类型：Main Conference Long Paper（Oral）</p><p>槽填充（Slot Filling）是对话系统中一个重要的模块，负责识别用户输入中的关键信息。现有的槽填充模型只能识别预先定义好的槽类型，但是实际应用里存在大量域外实体类型，这些未识别的实体类型对于对话系统的优化至关重要。</p><p>在本文中，我们首次定义了新槽位识别（Novel Slot Detection, NSD）任务，与传统槽位识别任务不同的是，新槽位识别任务试图基于已有的域内槽位标注数据去挖掘发现真实对话数据里存在的新槽位，进而不断地完善和增强对话系统的能力，如下图所示：</p><p><img src=https://p0.meituan.net/travelcube/16d323da3760c9e1162dc355ad7b541f41852.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/16d323da3760c9e1162dc355ad7b541f41852.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>对比现有的OOV识别任务和域外意图检测任务，本文提出的NSD任务具有显著的差异性：一方面，与OOV识别任务相比，OOV识别的对象是训练集中未出现过的新槽值，但这些槽值所属的实体类型是固定的，而NSD任务不仅要处理OOV的问题，更严峻的挑战是缺乏未知实体类型的先验知识，仅仅依赖域内槽位信息来推理域外实体信息；另一方面，和域外意图检测任务相比，域外意图检测仅需识别句子级别的意图信息，而NSD任务则面临着域内实体和域外实体之间上下文的影响，以及非实体词对于新槽位的干扰。整体上来看，本文提出的新槽位识别（Novel Slot Detection, NSD）任务与传统的槽填充任务、OOV识别任务以及域外意图检测任务有很大的差异，并且面临着更多的挑战，同时也给对话系统未来的发展提供了一个值得思考和研究的方向。</p><p>基于现有的槽填充公开数据集ATIS和Snips，我们构建了两个新槽位识别数据集ATIS-NSD和Snips-NSD。具体来说，我们随机抽取训练集中部分的槽位类型作为域外类别，保留其余类型作为域内类别，针对于一个句子中同时出现域外类别和域内类别的样例，我们采用了直接删除整个样本的策略，以避免O标签引入的bias，保证域外实体的信息仅仅出现在测试集中，更加的贴近实际场景。同时，我们针对于NSD任务提出了一系列的基线模型，整体的框架如下图所示。模型包含两个阶段：</p><ul><li><strong>训练阶段</strong>：基于域内的槽标注数据，我们训练一个BERT-based的序列标注模型（多分类或者是二分类），以获取实体表征。</li><li><strong>测试阶段</strong>：首先使用训练的序列标注模型进行域内实体类型的预测，同时基于得到的实体表征，使用MSP或者GDA算法预测一个词是否属于Novel Slot，也即域外类型，最后将两种输出结果进行合并得到最终的输出。</li></ul><p><img src=https://p0.meituan.net/travelcube/8843bdc0f64afc0208912c05381e9e3f37726.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/8843bdc0f64afc0208912c05381e9e3f37726.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>我们使用实体识别的F1作为评价指标，包括Span-F1和Token-F1，二者的区别在于是否考虑实体边界，实验结果如下：</p><p><img src=https://p0.meituan.net/travelcube/c986e381dfcbeedf96d8d3095ac5b58699440.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/c986e381dfcbeedf96d8d3095ac5b58699440.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>我们通过大量的实验和分析来探讨新槽位识别面临的挑战：1. 非实体词与新实体之间混淆；2. 不充分的上下文信息；3. 槽位之间的依赖关系；4. 开放槽（Open Vocabulary Slots）。</p><h2 id=05-consert-a-contrastive-framework-for-self-supervised-sentence-representation-transfer>05 ConSERT: A Contrastive Framework for Self-Supervised Sentence Representation Transfer</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-long.393.pdf>论文下载</a> | 论文作者：严渊蒙，李如寐，王思睿，张富峥，武威，徐蔚然（北京邮电大学） | 论文类型：Main Conference Long Paper（Poster）</p><p>句向量表示学习在自然语言处理（NLP）领域占据重要地位，许多NLP任务的成功离不开训练优质的句子表示向量。特别是在文本语义匹配（Semantic Textual Similarity）、文本向量检索（Dense Text Retrieval）等任务上，模型通过计算两个句子编码后的embedding在表示空间的相似度来衡量这两个句子语义上的相关程度，从而决定其匹配分数。尽管基于BERT的模型在诸多NLP任务上取得了不错的性能（通过有监督的Fine-Tune），但其自身导出的句向量（不经过Fine-Tune，对所有词向量求平均）质量较低，甚至比不上Glove的结果，因而难以反映出两个句子的语义相似度。</p><p>为解决BERT原生句子表示这种“坍缩”现象，本文提出了基于对比学习的句子表示迁移方法—ConSERT，通过在目标领域的无监督语料上fine-tune，使模型生成的句子表示与下游任务的数据分布更加适配。同时，本文针对NLP任务提出了对抗攻击、打乱词序、裁剪、Dropout四种不同的数据增强方法。在句子语义匹配（STS）任务的实验结果显示，同等设置下ConSERT 相比此前的 SOTA （BERT-Flow）大幅提升了8%，并且在少样本场景下仍表现出较强的性能提升。</p><p><img src=https://p1.meituan.net/travelcube/7e048600256e01ad0c29bb1e13e00798341688.png class=lazyload data-srcset=https://p1.meituan.net/travelcube/7e048600256e01ad0c29bb1e13e00798341688.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>在无监督实验中，我们直接基于预训练的BERT在无标注的STS数据上进行Fine-Tune。结果显示，我们的方法在完全一致的设置下大幅度超过之前的SOTA—BERT-Flow，达到了8%的相对性能提升。</p><p><img src=https://p0.meituan.net/travelcube/646485d54d7ea8efa4c64d693e108c6c267830.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/646485d54d7ea8efa4c64d693e108c6c267830.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><h2 id=06-from-paraphrasing-to-semantic-parsing-unsupervised-semantic-parsing-via-synchronous-semantic-decoding>06 From Paraphrasing to Semantic Parsing: Unsupervised Semantic Parsing via Synchronous Semantic Decoding</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-long.397.pdf>论文下载</a> | 论文作者：吴杉（中科院软件所），陈波（中科院软件所），辛春蕾（中科院软件所），韩先培（中科院软件所），孙乐（中科院软件所），张伟鹏，陈见耸，杨帆，蔡勋梁 | 论文类型：Main Conference Long Paper</p><p>语义解析（Semantic Parsing）是自然语言处理中的核心任务之一，它的目标是把自然语言转换为计算机语言，从而使得计算机真正理解自然语言。目前语义解析面临的一大挑战是标注数据的缺乏。神经网络方法大都十分依赖监督数据，而语义解析的数据标注非常费时费力。因此，如何在无监督的情况下学习语义解析模型成为非常重要的问题，同时也是有挑战性的问题，它的挑战在于，语义解析需要在无标注数据的情况下，同时跨越自然语言和语义表示间的语义鸿沟和结构鸿沟。之前的方法一般使用复述作为重排序或者重写方法以减少语义上的鸿沟。与之前的方法不同，我们提出了一种新的无监督的语义解析方法——同步语义解码（SSD），它可以联合运用复述和语法约束解码同时解决语义鸿沟与结构鸿沟。</p><p><img src=https://p0.meituan.net/travelcube/22e014373bc58452d5f7da81f8a59a0984935.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/22e014373bc58452d5f7da81f8a59a0984935.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>语义同步解码的核心思想是将语义解析转换为复述问题。我们将句子复述成标准句式，同时解析出语义表示。其中，标准句式和逻辑表达式存在一一对应关系。为了保证生成有效的标准句式和语义表示，标准句式和语义表示在同步文法的限制中解码生成。</p><p>我们通过复述模型在受限的同步文法上解码，利用文本生成模型对标准句式的打分，找到得分最高的标准句式（如上所述，空间同时受文法限制）。本文给出了两种不同的算法：Rule-Level Inference以语法规则为搜索单元和Word-Level Inference使用词作为搜索单元。</p><p>我们使用GPT2.0和T5在复述数据集上训练序列到序列的复述模型，之后只需要使用同步语义解码算法就可以完成语义解析任务。为了减少风格偏差影响标准句式的生成，我们提出了适应性预训练和句子重排序方法。</p><p><img src=https://p0.meituan.net/travelcube/20bc5101a128d03b70d17dcd810c3a9191553.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/20bc5101a128d03b70d17dcd810c3a9191553.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>我们在三个数据集上进行了实验：Overnight（λ-DCS）、GEO（FunQL）和GEOGranno。数据覆盖不同的领域和语义表示。实验结果表明，在不使用有监督语义解析数据的情况下，我们的模型在各数据集上均能取得最好的效果。</p><h2 id=07-improving-document-representations-by-generating-pseudo-query-embeddings-for-dense-retrieval>07 Improving Document Representations by Generating Pseudo Query Embeddings for Dense Retrieval</h2><p>| <a target=_blank rel=noopener href=https://aclanthology.org/2021.acl-long.392.pdf>论文下载</a> | 论文作者：唐弘胤，孙兴武，金蓓弘（中科院软件所），王金刚，张富峥，武威 | 论文类型：Main Conference Long Paper（Oral）</p><p>文档检索任务的目标是在海量的文本库中检索出和给定查询语义近似的文本。在实际场景应用中，文档文档库的数量会非常庞大，为了提高检索效率，检索任务一般会分成两个阶段，即初筛和精排阶段。在初筛阶段中，模型通过一些检索效率高的方法筛选出一部分候选文档，作为后续精排阶段的输入。在精排阶段，模型使用高精度排序方法来对候选文档进行排序，得到最终的检索结果。</p><p>随着预训练模型的发展和应用，很多工作开始将查询和文档同时送入预训练进行编码，并输出匹配分数。然而，由于预训练模型的计算复杂度较高，对每个查询和文档都进行一次计算耗时较长，这种应用方式通常只能在精排阶段使用。为了加快检索速率，一些工作开始使用预训练模型单独编码文档和查询，在查询前提前将文档库中的文档编码成向量形式，在查询阶段，仅需利用查询编码和文档编码进行相似度计算，减少了时间消耗。由于这种方式会将文档和查询编码为稠密向量形式，因此这种检索也称作“稠密检索”（Dense Retrival）。</p><p>一个基本的稠密检索方法会将文档和查询编码成为一个向量。然而由于文档包含的信息较多，容易造成信息丢失。为了改进这一点，有些工作开始对查询和文档的向量表示进行改进，目前已有的改进方法大致可分为三种，如下图所示：</p><p><img src=https://p0.meituan.net/travelcube/33c4d66dab92addad3c0add81c838423242239.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/33c4d66dab92addad3c0add81c838423242239.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>我们的工作从改进文档的编码入手来提高文档编码的语义表示能力。首先，我们认为稠密检索的主要瓶颈在于编码时，文档编码器并不知道文档中的哪部分信息可能会被查询，在编码过程中，很可能造成不同的信息互相影响，造成信息被改变或者丢失。因此，我们在编码文档的过程中，对每个文档构建了多个“伪查询向量”（Pseudo Query Embeddings），每个伪查询向量对应每个文档可能被提问的信息。</p><p>具体而言，我们通过聚类算法，将BERT编码的Token向量进行聚类，对每个文档保留Top-k个聚类向量，这些向量包含了多个文档Token向量中的显著语义。另外，由于我们对每个文档保留多个伪查询向量，在相似度计算时可能造成效率降低。我们使用Argmax操作代替Softmax，来提高相似度计算的效率。在多个大规模文档检索数据集的实验表明，我们的方法既可以提高效果也提高了检索效率。</p><p><img src=https://p0.meituan.net/travelcube/77a01224bf3dd86fce86d8f68f1b9301160936.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/77a01224bf3dd86fce86d8f68f1b9301160936.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><h2 id=写在后面>写在后面</h2><p>以上这些论文是美团技术团队与各高校、科研机构通力合作，在事件抽取、实体识别、意图识别、新槽位发现、无监督句子表示、语义解析、文档检索等领域所做的一些科研工作。论文是我们在实际工作场景中遇到并解决具体问题的一种体现，希望对大家能够有所帮助或启发。</p><p>美团科研合作致力于搭建美团各部门与高校、科研机构、智库的合作桥梁和平台，依托美团丰富的业务场景、数据资源和真实的产业问题，开放创新，汇聚向上的力量，围绕人工智能、大数据、物联网、无人驾驶、运筹优化、数字经济、公共事务等领域，共同探索前沿科技和产业焦点宏观问题，促进产学研合作交流和成果转化，推动优秀人才培养。面向未来，我们期待能与更多高校和科研院所的老师和同学们进行合作，欢迎大家跟我们联系（meituan.oi@meituan.com）。</p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/abf4.html>https://news.zfe.space/p/abf4.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:26+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/abf4.html&title=ACL 2021 _ 一文详解美团技术团队7篇精选论文 - 小冰 RSSHub&pics=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/abf4.html&title=ACL 2021 _ 一文详解美团技术团队7篇精选论文 - 小冰 RSSHub&pics=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/abf4.html&title=ACL 2021 _ 一文详解美团技术团队7篇精选论文 - 小冰 RSSHub&pics=https://p1.meituan.net/travelcube/3515e0eb5fd8ca040ad3494bc7a8c83a633435.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/2b5.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>五千片虫子翅膀，居然做出这么好看的裙子</p><p class=content>...</p></a><a class=next href=/p/fae8.html><p class=title>万科A：2021年7月销售及近期新增项目情况简报 网页链接<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>万科A：2021年7月销售及近期新增项目情况简报 网页链接</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#01-capturing-event-argument-interaction-via-a-bi-directional-entity-level-recurrent-decoder><span class=toc-text>01 Capturing Event Argument Interaction via A Bi-Directional Entity-Level Recurrent Decoder</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#02-slot-transferability-for-cross-domain-slot-filling><span class=toc-text>02 Slot Transferability for Cross-domain Slot Filling</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#03-modeling-discriminative-representations-for-out-of-domain-detection-with-supervised-contrastive-learning><span class=toc-text>03 Modeling Discriminative Representations for Out-of-Domain Detection with Supervised Contrastive Learning</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#04-novel-slot-detection-a-benchmark-for-discovering-unknown-slot-types-in-the-task-oriented-dialogue-system><span class=toc-text>04 Novel Slot Detection: A Benchmark for Discovering Unknown Slot Types in the Task-Oriented Dialogue System</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#05-consert-a-contrastive-framework-for-self-supervised-sentence-representation-transfer><span class=toc-text>05 ConSERT: A Contrastive Framework for Self-Supervised Sentence Representation Transfer</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#06-from-paraphrasing-to-semantic-parsing-unsupervised-semantic-parsing-via-synchronous-semantic-decoding><span class=toc-text>06 From Paraphrasing to Semantic Parsing: Unsupervised Semantic Parsing via Synchronous Semantic Decoding</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#07-improving-document-representations-by-generating-pseudo-query-embeddings-for-dense-retrieval><span class=toc-text>07 Improving Document Representations by Generating Pseudo Query Embeddings for Dense Retrieval</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%86%99%E5%9C%A8%E5%90%8E%E9%9D%A2><span class=toc-text>写在后面</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="ACL 2021 _ 一文详解美团技术团队7篇精选论文";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

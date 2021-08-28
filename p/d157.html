@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>SaaS的关键指标有哪些？7200字详解计算公式 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture></a></div><div class=article-meta id=top><a title=SaaS的关键指标有哪些？7200字详解计算公式 href=/p/d157.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture></a><h1 class=title>SaaS的关键指标有哪些？7200字详解计算公式</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E4%BB%8A%E6%97%A5%E6%8E%A8%E8%8D%90-%E7%B2%BE%E9%80%89/">今日推荐 / 精选</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月8日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=SaaS的关键指标有哪些？7200字详解计算公式 data-path=/p/d157.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><pre><style>
+#articleCont &#123;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+&#125;
+#articleCont :first-child &#123;
+  margin-top: 0 !important;
+&#125;
+#articleCont h1,
+#articleCont h2,
+#articleCont h3,
+#articleCont h4,
+#articleCont h5,
+#articleCont h6 &#123;
+  margin: 40px 0 20px;
+&#125;
+#articleCont h1 &#123;
+  font-size: 24px;
+&#125;
+#articleCont h2 &#123;
+  font-size: 22px;
+&#125;
+#articleCont h3 &#123;
+  font-size: 20px;
+&#125;
+#articleCont h4 &#123;
+  font-size: 18px;
+&#125;
+#articleCont h5 &#123;
+  font-size: 16px;
+&#125;
+#articleCont i &#123;
+  font-style: italic;
+&#125;
+#articleCont p,
+#articleCont div &#123;
+  word-wrap: break-word;
+  margin: 14px 0;
+  text-align: justify;
+&#125;
+#articleCont blockquote &#123;
+  border-left: 6px solid #ddd;
+  padding: 5px 0 5px 10px;
+&#125;
+#articleCont blockquote p:last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont .simditor-body blockquote :last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont a &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:visited &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:hover &#123;
+  color: #74a342;
+&#125;
+#articleCont img &#123;
+  max-width: 100%;
+  height: auto;
+&#125;
+#articleCont hr &#123;
+  margin: 19px 0;
+  border: none;
+  border-top: solid 1px #ddd;
+&#125;
+#articleCont ol &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ol li &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ul &#123;
+  list-style-type: disc;
+  padding-left: 40px;
+&#125;
+#articleCont ul li &#123;
+  list-style-type: disc;
+&#125;
+#articleCont table &#123;
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  line-height: 1.7;
+&#125;
+#articleCont table thead &#123;
+  background: #f9f9f9;
+&#125;
+#articleCont table th,
+#articleCont table td &#123;
+  border: solid 1px #ccc;
+  text-align: left;
+  vertical-align: top;
+  padding: 2px 4px;
+  height: 30px;
+  min-width: 40px;
+  box-sizing: border-box;
+&#125;
+#articleCont pre &#123;
+  white-space: pre-wrap;
+&#125;
+</style><p style=text-align:justify;>​你如果无法度量它，就无法管理它。</p><p style=text-align:right;>—— 彼得·德鲁克</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=19bfdea4042a0950353f2fdef03bf01d-picture coffee-w=1080px coffee-h=410px coffee-format=jpeg referrerpolicy=no-referrer></p><p style=text-align:justify;>SaaS是将应用软件按需租用给多个租户的一种服务形式，降低了租户的使用门槛、投入成本和替换成本，而对2B-SaaS厂商来讲，交付模式和收入模式都与传统软件不同，意味着这是一种全新的商业模式和持续的服务形式，也意味着厂商需要更贴身的指标去度量和管理企业营运状况。<br></p><p>但在度量营运状况时，“指标”常出现：</p><ul><li><b>不合理，方向跑偏，租户需求难满足<br></b></li><li><b>不长期，服务下降，租户续费不持续</b></li><li><b>不健康，价格竞争，厂商盈亏难平衡</b></li></ul><p>那么，2B-SaaS厂商的关键指标怎么制定呢？</p><p style=text-align:justify;>SaaS软件的本质在于服务，盈利的重点在于持续性续费。作为2B的服务者，需要在租户的<span style=color:rgb(255,0,0);><strong>全部生命周期</strong></span>中以帮助其解决业绩问题为服务宗旨，将厂商的<strong><span style=color:rgb(255,0,0);>业务指标和各部门的绩效连贯化、体系化</span></strong>来提高服务质量，以租户<span style=color:rgb(255,0,0);><strong>终身价值</strong></span>及<span style=color:rgb(255,0,0);><strong>厂商成本</strong></span>为核心来衡量盈亏。<span style=color:rgb(178,178,178);>（下文将2B租户称为客户）</span></p><hr><p style=text-align:justify;>如何从客户生命周期计算客户终身价值？<br></p><p style=text-align:justify;>厂商收入相关的指标有哪些？怎么计算？</p><p style=text-align:justify;>厂商成本相关的指标有哪些？怎么计算？<br></p><p style=text-align:justify;>厂商健康发展和盈亏平衡的标志是什么？<br></p><p style=text-align:justify;>厂商各部门间连贯的关键绩效都有哪些？</p><hr><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>一、</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>客户生命周期的 3种 计算方法</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>客户终生价值的 4种 计算方法</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>以及数据模拟演算和数学基础理论</strong></span></p><p style=text-align:justify;><strong>1.1、客户生命周期</strong></p><p><span style=color:rgb(33,37,41);>Lifetime，简写为LT，</span>指从一个客户开始对厂商进行了解或厂商欲对某一客户进行开发开始，直到客户与厂商的业务关系完全终止且与之相关的事宜完全处理完毕的这段时间。其包括吸引期、引入期、成长期、稳定期、衰退期和流失期。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/93cce255df9a219db637d2bcb8f52830-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/93cce255df9a219db637d2bcb8f52830-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=93cce255df9a219db637d2bcb8f52830-picture coffee-w=975px coffee-h=458px coffee-format=png referrerpolicy=no-referrer></p><p>客户在不同生命阶段按照状态可以划分为：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/0e01837e1179acd1013b1866b3fd4f81-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/0e01837e1179acd1013b1866b3fd4f81-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=0e01837e1179acd1013b1866b3fd4f81-picture coffee-w=700px coffee-h=420px coffee-format=png referrerpolicy=no-referrer></p><p><br></p><p>那么，客户生命周期如何计算呢？</p><p>首先，注意了，客户生命周期本身就是个概数，是个算数平均数。</p><p>其次，计算时可以直接平均计算，也可以利用其他关联因素进行拟合计算，而在拟合时主要注重客户生命周期与关联因素之间的正比例或反比例的比例关系，比例的常数部分各行各业可能有所不同。</p><p>最后，我们看看计算方法，如下：</p><p><br></p><p><strong>（1）平均计算法</strong></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2193738903bbed812a03b1dd4698dbf5-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2193738903bbed812a03b1dd4698dbf5-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=2193738903bbed812a03b1dd4698dbf5-picture coffee-w=541px coffee-h=72px coffee-format=png referrerpolicy=no-referrer></p><ul><li>单个客户的生命周期 LT(n) = 终止合作的时间 - 成交并合作的时间<br></li></ul><p>该计算方式的优点是计算准确，缺点是需要大量真实数据。在产品成熟阶段可准确计算。</p><p><br></p><p><strong>（2）用客户留存率拟合计算法<br></strong></p><p>客户生命周期与客户留存率之间是正比例线性关系，在数值上约等于每个时间计量单位内的客户留存率之和。一个时间计量单位中的客户留存率 = 期末客户数 ÷ 期初客户数。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/e6e965018e05edf83ffeb77710cb0e48-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/e6e965018e05edf83ffeb77710cb0e48-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=e6e965018e05edf83ffeb77710cb0e48-picture coffee-w=542px coffee-h=75px coffee-format=png referrerpolicy=no-referrer></p><p>如何证明这个公式呢？<br></p><p>- - - - - - - - - - - - - - - - - - - - - - - - </p><p>假设新增一批客户数量A，用户在后面第n月的留存客户数为A(n)；<br></p><ul><li>生命周期为1月的客户数：&#123;A-A(1)&#125;，此类客户的生命周期之和为&#123;A-A(1)&#125;*1<br></li><li>生命周期为2月的客户数：&#123;A(1)-A(2)&#125;，此类客户的生命周期之和为&#123;A(1)-A(2)&#125;*2<br></li><li>......<br></li><li>生命周期为n月的客户数：&#123;A(n-1)-A(n)&#125;，此类客户的生命周期之和为&#123;A(n-1)-A(n)&#125;*n<br></li></ul><p>那么，</p><ul><li>该批用户的生命周期之和为：<br>&#123;A-A(1)&#125;*1+&#123;A(1)-A(2)&#125;*2+...+&#123;A(n-1)-A(n)&#125;*n<br>=A+A(1)+A(2)+… +A(n-1)-n*A(n)<br></li><li>该批用户的平均生命周期为：<br>&#123;A+A(1)+A(2)+… +A(n-1)-n*A(n)&#125;/A<br>=1+A(1)/A+A(2)/A+....+A(n-1)/A-n*A(n)/A<br></li></ul><p>又因为，</p><p>第n月的客户留存率为：R(n) = A(n) / A</p><p>所以，</p><p>客户的平均生命周期 ≈ 每月的客户留存率之和</p><p>即 LT ≈ 1+∑ R(n) </p><p><span style=color:rgb(178,178,178);>（案例中客户留存率的时间计量单位是：月）</span></p><p>- - - - - - - - - - - - - - - - - - - - - - - - </p><p>该计算方式的缺点是不灵敏。样本需要足够的大，时间跨度需要足够的长，才能得出真实的数据。</p><p><strong><br></strong></p><p><strong>（3）用客户流失率拟合计算法</strong></p><p>客户生命周期与客户流失率之间是反比例关系，在数值上约等于每月平均客户流失率的倒数。每月平均客户流失率的英文为Average  churn，简称AChurn。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/779f89479c085893e921279d6e8c90cf-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/779f89479c085893e921279d6e8c90cf-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=779f89479c085893e921279d6e8c90cf-picture coffee-w=539px coffee-h=103px coffee-format=png referrerpolicy=no-referrer></p><ul><li><p>客户流失率 = （期初客户数-期末客户数）÷  期初客户数</p></li></ul><p style=text-align:justify;>当我看到客户生命周期与客户流失率是倒数关系时，我想这是为什么呢？查阅了一些行业经验文章和数学资料后，终于想通了。</p><p style=text-align:justify;>如何证明的呢？<br></p><p>- - - - - - - - - - - - - - - - - - - - - - - - </p><p>先看一个例子：如果有一批同期客户，客户数为100个，假设每月的客户流失率是恒定的，假设为3%，每月留存的客户数与时间的关系是指数级衰减，拟合的关系如下图所示：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2f19601674deb9baff7c5d3d8bd7ad74-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/2f19601674deb9baff7c5d3d8bd7ad74-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=2f19601674deb9baff7c5d3d8bd7ad74-picture coffee-w=271px coffee-h=211px coffee-format=png referrerpolicy=no-referrer></p><p><span style=color:rgb(214,214,214);><br></span></p><p><span style=color:rgb(85,85,85);>则客户生命周期将为 1/0.03，即 33 个月=2.75年。从数值计算上，该种情况下是直接符合反比例中的倒数关系的。</span></p><p><span style=color:rgb(85,85,85);>- - - - - - - - - - - - - - - - - - - - - - - - </span></p><p><span style=color:rgb(85,85,85);>在数学统计上，该计算方式也符合“n重伯努利试验”的几何分布的结果，即：期望等于概率的倒数。</span></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/45f020edc371110f9d0259e3ed1902a7-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/45f020edc371110f9d0259e3ed1902a7-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=45f020edc371110f9d0259e3ed1902a7-picture coffee-w=544px coffee-h=75px coffee-format=png referrerpolicy=no-referrer></p><p><span style=color:rgb(85,85,85);>这里大家可以去了解一下伯努利试验，具体演算方式就不展开了。在网上看到的帖子中有人做过模拟也证实这一点，如下图：<br></span></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/c309a70d24d730e5e54a55dd2280779e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/c309a70d24d730e5e54a55dd2280779e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=c309a70d24d730e5e54a55dd2280779e-picture coffee-w=1080px coffee-h=537px coffee-format=jpeg referrerpolicy=no-referrer></p><p>该计算方式较为简单和常用，因为客户流失率还是比较好计算的，缺点是用恒定的客户流失率计算较为准确。<br></p><p><strong><br></strong></p><p><strong>1.2、客户终身价值<br></strong></p><p>即客户在完整生命周期内给厂商带来收益的总价值，也称为客户全生命周期价值。Customer Lifetime Value，简写有CLV、CLTV、LTV，本文使用LTV作为代表。如何计算呢？</p><p><br></p><p style=text-align:justify;><strong>（1）情况一：</strong></p><p style=text-align:justify;>在所有客户的平均收入大致相同的情况下，并且在客户的生命周期内没有预期的扩展收入，可以使用这个简单的公式：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4a4fc8a87352487fe1c428739a6769f5-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4a4fc8a87352487fe1c428739a6769f5-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=4a4fc8a87352487fe1c428739a6769f5-picture coffee-w=540px coffee-h=41px coffee-format=png referrerpolicy=no-referrer></p><ul><li>LT，客户的平均生命周期<br><br></li><li>ARPU，即The average revenue per user，是平均每个用户的收入，也要注意ARPU所处的时间计量单位，月度的还是年度的<br></li></ul><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/03c78772f61a0082de91462a0942b6f4-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/03c78772f61a0082de91462a0942b6f4-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=03c78772f61a0082de91462a0942b6f4-picture coffee-w=538px coffee-h=77px coffee-format=png referrerpolicy=no-referrer></p><p>也可以使用这个简单公式计算：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a9af758503f1fc3475086a7ca76608ff-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a9af758503f1fc3475086a7ca76608ff-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=a9af758503f1fc3475086a7ca76608ff-picture coffee-w=539px coffee-h=66px coffee-format=png referrerpolicy=no-referrer></p><ul><li>AChurn，是某个时间计量单位内的客户恒定流失率<br></li><li>此处也要注意ARPU 和 AChurn必须相处在同样的时间计量单位中，保持一致。月度ARPU对应月度AChurn，计算出的LTV的单位也是月为单位的<br></li></ul><p><strong><br></strong></p><p><strong>（2）情况二：</strong></p><p>当所有客户的平均收入匀速增长时，也就是客户在生命周期内贡献了有预期的可靠的拓展收入时，上述简单的公式需要调整。</p><p>如果有一批同期客户，客户数为100个，假设每月客户的恒定客户流失率为 3%。客户最初每月向厂商支付 100 美元，且每月支付的金额增加 5 美元，其收入与时间的关系比如下：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4f537dfc1ba1c02aae8ea8bbcf4dd1ea-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4f537dfc1ba1c02aae8ea8bbcf4dd1ea-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=4f537dfc1ba1c02aae8ea8bbcf4dd1ea-picture coffee-w=375px coffee-h=289px coffee-format=png referrerpolicy=no-referrer></p><p>其计算公式为：<br></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/8c4eb415690a482d1cdd9b8bee0aa143-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/8c4eb415690a482d1cdd9b8bee0aa143-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=8c4eb415690a482d1cdd9b8bee0aa143-picture coffee-w=544px coffee-h=80px coffee-format=png referrerpolicy=no-referrer></p><ul><li>ARPU，月初时平均每个用户的收入<br></li><li>m，每月平均每个用户增加的收入<br></li><li>AChurn，每月的恒定客户流失率<br></li></ul><p>该公式的后半部分，在数学上也符合<span style=color:rgb(85,85,85);>“n</span>重<span style=color:rgb(85,85,85);>伯努利试验”的几何分布的结果，仅增加了方差部分的计算，即方差等于（1-概率）除以概率的平方。</span></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1f03e1fede4df748912b8c38ab83fb8e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1f03e1fede4df748912b8c38ab83fb8e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=1f03e1fede4df748912b8c38ab83fb8e-picture coffee-w=541px coffee-h=78px coffee-format=png referrerpolicy=no-referrer></p><p><strong><br></strong></p><p><strong>（3）情况三：<br></strong></p><p><strong><span style=color:rgb(255,0,0);>需要了解更为精准的LTV时，收入部分还必须考虑到毛利率</span></strong>，毛利率=（收入-成本）/ 收入×100%；毛利润的英文为Gross Margin，简写为<strong><span style=color:rgb(255,0,0);>GM%</span></strong></p><p>所以，情况一和情况二中公式的ARPU和m后面都可以乘以GM%，便得出更精准的LTV。</p><p><strong><br></strong></p><p><strong>（4）情况四：</strong></p><p style=text-align:justify;>《关键价值链》一书中提供了一个计算方法，实现对结果的较为准确支撑。作者模拟各类场景，推导出计算LTV的基本公式：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/c3d76bc218a5f7d91a216a75e4600ae8-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/c3d76bc218a5f7d91a216a75e4600ae8-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=c3d76bc218a5f7d91a216a75e4600ae8-picture coffee-w=541px coffee-h=74px coffee-format=png referrerpolicy=no-referrer></p><ul><li>p，利润，是收入减去各项成本<br></li><li>r ，客户留存率，是期末客户数 ÷ 期初客户数<br></li><li>i，贴现率，指将来收益折算至当前的转换率<br></li></ul><p>注意：在计算生命周期相关的数值时，涉及到的留存率和流失率针对的主体是客户数，时间范围是年或月。</p><p>在计算客户终身价值时，常用到ARPU（平均每个用户的收入）这个指标，也要涉及到收入的计算，那么，收入相关的指标有哪些呢？</p><hr><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>二、</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>收入相关的指标</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>2种合同额、2类收入、4个“率”<br></strong></span></p><p><strong>2.1、合同金额</strong><br></p><p><strong>（1）总合同额</strong></p><p>Total Contract Value，简写为TCV，指全部签约合同金额，包括多年期合同总金额。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f672d646083c1a1682eeb1ba1ecd0556-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f672d646083c1a1682eeb1ba1ecd0556-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=f672d646083c1a1682eeb1ba1ecd0556-picture coffee-w=503px coffee-h=86px coffee-format=png referrerpolicy=no-referrer></p><p><strong>（2）年合同额<br></strong></p><p>Annual Contract Value，简写为ACV，是一年的签约合同金额。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f64becbe78597519ee94eb2563730fec-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f64becbe78597519ee94eb2563730fec-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=f64becbe78597519ee94eb2563730fec-picture coffee-w=543px coffee-h=94px coffee-format=png referrerpolicy=no-referrer></p><p><strong><br></strong></p><p><strong>2.2、经常性收入</strong></p><p>Recurring Revenue，简写为RR，指能够持续产生的合同收入。对于可预测性较强、随订阅服务必定产生的可变费用和充值消耗，也可纳入经常性收入，如持续不变的短信使用量、交易量产生的费用也可计入。在统计时，一般会以“年”或“月”为时间计量单位。</p><p><strong>（1）年经常性收入</strong></p><p style=text-align:justify;>Annual Recurring Revenue，简写为ARR，指年化的经常性收入，是按合同计算每年带来的经常性收入。包括以下四类：</p><ul><li>新增ARR：新客户带来的年经常性收入<br><ul><li>有时候也包括重新激活的ARR，也称为“回流ARR”，即以前客户重新使用订阅后的收入<br></li></ul></li><li>增值ARR：因增加了用户数或使用量而带来的年经常性收入<br><ul><li>增加用户数或使用量<br></li><li>升级到高级版本<br></li><li>购买其他服务或产品<br></li><li>......<br></li></ul></li><li>减值ARR：虽然客户没有取消订阅，但减少了客户数或者使用量导致流失的年经常性收入<br><br></li><li>流失ARR：因客户取消订阅导致流失的年经常性收入（国内的流失ARR比较高）<br></li></ul><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/343574a4642f151db04ea8410cdbea22-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/343574a4642f151db04ea8410cdbea22-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=343574a4642f151db04ea8410cdbea22-picture coffee-w=595px coffee-h=79px coffee-format=png referrerpolicy=no-referrer></p><p><strong>（2）月经常性收入<br></strong></p><p style=text-align:justify;>Monthly  Recurring Revenue，简写为MRR，指月化的经常性收入，是按合同计算每月带来的经常性收入。对于一些非整年订阅的SaaS业务，就需要以月为单位计算，计算公式和ARR一致。包括以下四类：</p><ul><li>新增MRR<br><ul><li>有时候包括重新激活的MRR（回流MRR）<br></li></ul></li><li>增值MRR<br></li><li>减值MRR<br></li><li>流失MRR<br></li></ul><p><strong><br></strong></p><p><strong>2.3、非经常性收入</strong></p><p style=text-align:justify;>Non-recurring Revenue，简写为NRR，包括单次收取的费用和多次收取的可变的费用。</p><ul><li>单次费用：如第一年的订阅费、实施费、集成费、培训费，二次开发费和咨询费，以及合同中约定的其他一次性费用<br></li><li>多次的可变费用：如很难预测用量的交易抽成、按用量计费的充值消耗（如：视频会议的分钟数、电子签约的合同数等）<br></li></ul><p><strong><br></strong></p><p><strong>2.4、净收入留存率</strong></p><p>Net Dollar Retention，简写为NDR，是以某个时期内的收入金额来衡量的留存率。这也是评估SaaS业务健康状态的重要指标之一。国外的经验中，如果NDR能达到120%时，即使仅维持和专注于扩大现有客户的价值，其业务仍将每年增长20%。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/12691935f5310c5701c5b072701cbea5-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/12691935f5310c5701c5b072701cbea5-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=12691935f5310c5701c5b072701cbea5-picture coffee-w=694px coffee-h=176px coffee-format=png referrerpolicy=no-referrer></p><ul><li>beginning revenue，指期初收入<br></li><li>upgrades，指期内的增购（增值）收入，包括：<br><ul><li>增加用户数或使用量<br></li><li>升级到高级版本<br></li><li>购买其他服务或产品<br></li><li>增加功能模块<br></li><li>涨价<br></li><li>上下游扩张<br></li><li>服务技术支持费<br></li><li>交易费<br></li><li>......<br></li></ul></li><li>downgrades，指期内的upgrades对应的减购（减值）收入<br></li><li>churn revenue，此处指期内流失用户的收入<br></li></ul><p style=text-align:justify;>与净收入留存率相似的衡量指标还有净收入增购率、净收入流失率、净收入续约率。</p><p style=text-align:justify;><strong><br></strong></p><p style=text-align:justify;><strong>2.5、净收入增购率</strong><br></p><p style=text-align:justify;>是以某个时期内的增购部分收入相对期内收入来衡量的增加比例。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/171d75b7624ea55165fbd0a37c408dd5-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/171d75b7624ea55165fbd0a37c408dd5-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=171d75b7624ea55165fbd0a37c408dd5-picture coffee-w=538px coffee-h=119px coffee-format=png referrerpolicy=no-referrer></p><p><strong><br></strong></p><p><strong>2.6、净收入流失率</strong></p><p>是以某个时期内的流失金额来衡量的流失率。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/954096dc2364e8998c51f713a7fdb61e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/954096dc2364e8998c51f713a7fdb61e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=954096dc2364e8998c51f713a7fdb61e-picture coffee-w=542px coffee-h=104px coffee-format=png referrerpolicy=no-referrer></p><p><strong><br></strong></p><p><strong>2.7、净收入续约率</strong></p><p style=text-align:justify;>是衡量某个时期内即将到期合同的续约情况。这里需要注意并不是所有老用户都是待续约的状态，只有合同快到期的客户的合同金额才纳入计算，一般情况下，3个月内即将到期的合同算是待续签合同。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1391cbe7c68ff6b078300bc99d1b3943-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1391cbe7c68ff6b078300bc99d1b3943-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=1391cbe7c68ff6b078300bc99d1b3943-picture coffee-w=544px coffee-h=113px coffee-format=png referrerpolicy=no-referrer></p><p>注意：在计算收入相关的数值时，涉及到的留存率、续约率、增购率和流失率针对的主体是收入金额，时间范围是年或月。</p><p>更多专业性的指标在使用中有异议时，也需要和经济学、会计学中的利润相关指标对齐。</p><p>说完收入，必定要说说成本。成本的内容是比较细碎的，但综合起来只有三大类，有时候也直接简化成两个大类，就是大家所熟悉的CAC和CRC，怎么计算呢？</p><hr><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>三、</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>成本相关的指标</strong></span></p><p style=text-align:center;><font color=#3daad6><b>3类成本、4个参考区间</b></font></p><p><strong>3.1、客户获取成本</strong></p><p>Customer Acquisition Cost，简写为CAC，用来衡量营销和销售成本的质量。代表的是在同一个时间段内每获取一个新客户需要付出的一次性成本。是个算数平均数。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/127d3ed5952e43effc3533eec01abe95-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/127d3ed5952e43effc3533eec01abe95-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=127d3ed5952e43effc3533eec01abe95-picture coffee-w=541px coffee-h=95px coffee-format=png referrerpolicy=no-referrer></p><p>当从确定为意向客户到达成交易的时间比较短时，如上个月投入成本，下个月就能有收入时，也可以变化定义，将CAC定义为上个月营销和销售的成本与本月新增客户数之比。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/87a5cfaa21213a8960e9ce4d332cdd36-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/87a5cfaa21213a8960e9ce4d332cdd36-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=87a5cfaa21213a8960e9ce4d332cdd36-picture coffee-w=539px coffee-h=91px coffee-format=png referrerpolicy=no-referrer></p><p>所以，在计算CAC时，要注意成交周期，以及同一笔成本对应的获客关系。</p><p>营销&销售费用主要包括三类：</p><ul><li>人员：市场部、销售部和渠道部人员的所有资金成本（工资、福利、五险一金、提成、年终奖、差旅费等）<br></li><li>内容：白皮书、视频、博客、活动、网络研讨会及其他<br></li><li>工具：CRM工具费用、网站建设、SEO、SEM、AB测试费用等<br></li></ul><p><strong><br></strong></p><p><strong>3.2、客户服务成本</strong></p><p>Cost To Serve，简写为CTS，用来衡量服务成本的质量，是指服务于客户所付出的所有成本。<span style=color:rgb(18,18,18);>是个算数平均数。</span>有些地方称为<span style=color:rgb(18,18,18);>Average cost of service，简写为ACS。</span></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a13ad0264fee3baa29741401a1549cfd-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a13ad0264fee3baa29741401a1549cfd-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=a13ad0264fee3baa29741401a1549cfd-picture coffee-w=542px coffee-h=95px coffee-format=png referrerpolicy=no-referrer></p><p>服务成本也是包括三类：</p><ul><li>人员：实施服务人员、客户成功人员和培训人员的所有资金成本<br></li><li>内容：培训会议、培训资料、帮助中心、自动服务<br></li><li>工具：培训工具、自动服务工具<br></li></ul><p>注意：CTS中包括了客户留存成本（CRC），但CTS不是很常用。主要<span style=color:rgb(18,18,18);>受软件产品的复杂度、易用性所制约。</span></p><p><strong><br></strong></p><p><strong>3.3、客户留存成本</strong></p><p>Customer Retention Cost，简写为CRC），用来衡量客户留存和活跃的成本的质量。<span style=color:rgb(18,18,18);>是个算数平均数。</span></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/0bf755905acf5dd2f74f23737b1fda0e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/0bf755905acf5dd2f74f23737b1fda0e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=0bf755905acf5dd2f74f23737b1fda0e-picture coffee-w=541px coffee-h=86px coffee-format=png referrerpolicy=no-referrer></p><p>客户留存的成本包括三类：</p><ul><li>人员：客户成功团队、续约管理团队、专属客服和培训人员的工资</li><li>内容：客户忠诚度管理、客户培训程序、客户营销的费用</li><li>工具：客户管理和培训系统</li></ul><p><strong><br></strong></p><p><strong>3.4、各成本占比</strong></p><p>《SaaS商业实战》一书中提供了各项成本的占比参考区间，如下：</p><ul><li>营销&销售成本占比：参考区间<40%<br></40%<br></li><li>客户服务成本占比：参考区间15%~20%<br></li><li>研发成本占比：参考区间15%~20%<br></li><li>行政管理成本占比：参考区间<10%<br></10%<br></li></ul><p>其中营销&销售成本和客户服务成本的投入是随着业务的要求而变化的，有些成本前期投入较高，而后期会平稳下降。</p><p>知道了收入，又知道了成本，那对一个厂商来说，怎么才算是可盈利的健康状态呢？</p><hr><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>四、</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>4个诊断企业盈利能力和健康度的经验指标</strong></span></p><p>业内和投资界在衡量SaaS公司的盈利能力时，主要看LTV:CAC、CAC回收月数、客户流失率来判断业务的健康程度和盈利能力，国外的经验中也看“增长率+利润率”指标，这些指标一般在业内都有形成了较为固定的经验值，如下：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/009eb450ae9857f5227f856d7439c2f8-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/009eb450ae9857f5227f856d7439c2f8-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=009eb450ae9857f5227f856d7439c2f8-picture coffee-w=685px coffee-h=335px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:center;><span style=color:rgb(214,214,214);>（艾瑞网2020年SaaS行业研究报告）</span></p><p style=text-align:center;><span style=color:rgb(214,214,214);><br></span></p><p><strong>4.1、CAC的投入产出比</strong></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/e60e4f96fdead21e966f4cc95e003126-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/e60e4f96fdead21e966f4cc95e003126-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=e60e4f96fdead21e966f4cc95e003126-picture coffee-w=546px coffee-h=112px coffee-format=png referrerpolicy=no-referrer></p><p>通常大于3是比较健康的指标，大于3~5是比较理想的情况，低于3代表获客成本过高，但是太高说明营销力度不够。</p><p>如果将创业公司分为三个阶段：寻找产品/市场契合度的阶段，寻找可重复、可扩展和盈利的增长阶段，以及扩张阶段。在谈论LTV:CAC 时，应该强调的是，只有当找到可重复和可扩展的增长时，这个数字才会真正有意义和可靠。</p><p>仅看这个指标也是有所欠缺的，很多情况下LTV:CAC很高，但并未盈利，所以也要关注CAC的收回情况。</p><p><br></p><p><strong>4.2、CAC回收期</strong></p><p style=text-align:justify;>CAC回收期是指使累计的收入等于客户获取成本所需的时间，即达到盈利点的所需时间。在经济学中对应“投资回收期”。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/d30529b24e1dd0772cfed6067ccdfe60-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/d30529b24e1dd0772cfed6067ccdfe60-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=d30529b24e1dd0772cfed6067ccdfe60-picture coffee-w=541px coffee-h=102px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:justify;>对于订阅业务来说，通常小于12个月是比较健康的指标，否则业务需要大量的资金来发展。当然特殊的业务也有20个月收回的，各行各业也需要看各自情况。如果要更加精确计算，MRR需要再乘以GM%，CAC被回收象征着开始形成正向现金流。</p><p style=text-align:justify;>CAC回收期（月数）随着时间的变化对现金流的影响图如下，它显示了如果恢复 CAC 的时间超过 12 个月，盈利能力将如何疲软。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/15435dfe01b6384919e35fc9a47cfb6d-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/15435dfe01b6384919e35fc9a47cfb6d-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=15435dfe01b6384919e35fc9a47cfb6d-picture coffee-w=346px coffee-h=405px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:justify;><strong><br></strong></p><p style=text-align:justify;><strong>4.3、40%法则</strong></p><p style=text-align:justify;>国外知名互联网投资人Brad Feld在《衡量SaaS健康度的40%法则》一文中提出SaaS厂商财务状况满足增长率+利润率（Growth+Profit）之和要达到40%，象征着是个比较健康的指标。</p><p style=text-align:justify;>增长率（Growth）可以简单定义为ARR或MRR的同比增长率。利润率（Profit）采用EBITDA利润率，是厂商一定时期的息税前利润与折旧和摊销之和占这一时期的销售净收入的比重。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f09d4d6760406844247da79d7ca1a7a3-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f09d4d6760406844247da79d7ca1a7a3-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=f09d4d6760406844247da79d7ca1a7a3-picture coffee-w=542px coffee-h=293px coffee-format=jpeg referrerpolicy=no-referrer></p><p>该法则比较适用于已经具备一定规模的SaaS厂商。</p><p><br></p><p style=text-align:justify;><strong>4.4、平均每月客户流失率</strong></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/40cd1e7e0325fa9e9afdafb8d92d35db-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/40cd1e7e0325fa9e9afdafb8d92d35db-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=40cd1e7e0325fa9e9afdafb8d92d35db-picture coffee-w=542px coffee-h=92px coffee-format=png referrerpolicy=no-referrer></p><p style=text-align:justify;>通常小于5%是比较健康的指标。每月客户流失率随着时间的变化对MRR的影响如下图：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/bbd1bd2ec52053d267adf36eb330ff80-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/bbd1bd2ec52053d267adf36eb330ff80-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=bbd1bd2ec52053d267adf36eb330ff80-picture coffee-w=425px coffee-h=485px coffee-format=jpeg referrerpolicy=no-referrer></p><p><br></p><p>这么多的业务指标，都由哪些部门负责呢？</p><p>又有哪些还没有说到的各部门指标呢？</p><p>指标在部门配合流程中有什么样的连贯性？</p><hr><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>五、</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>从线索的分类和转化拆解市场绩效</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>从新客户的成交和回款看销售绩效</strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>从老客户增购、续费和回流看客户成功绩效<br></strong></span></p><p style=text-align:center;><span style=color:rgb(61,170,214);><strong>从用户、行为、稳定和业务数据看产研绩效</strong></span></p><p>在客户生命周期中，以客户服务为导向，按照不同客户状态的转化来划分职责，各部门的分工如下：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4cf998e4dd5966db8a88f261b757fd73-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/4cf998e4dd5966db8a88f261b757fd73-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=4cf998e4dd5966db8a88f261b757fd73-picture coffee-w=748px coffee-h=408px coffee-format=png referrerpolicy=no-referrer></p><p>产研和运营部门暂且按下不表，那么，市场、销售和客户成功部门之间是如何运作的呢？</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/59f838448130e064b48a97a80fd6a010-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/59f838448130e064b48a97a80fd6a010-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=59f838448130e064b48a97a80fd6a010-picture coffee-w=1080px coffee-h=529px coffee-format=png referrerpolicy=no-referrer></p><p><br></p><p style=text-align:justify;><strong>5.1、市场部门</strong></p><p><strong>（1）BDR</strong>，渠道伙伴开发专员，负责和其他企业发展伙伴及战略合作关系。</p><ul><li>各渠道中线索的成交率<br></li></ul><p><strong>（2）MDR</strong>，市场开发专员，负责集客客户的开发和合格客户的筛选。</p><ul><li>线索的成交率<br></li></ul><p><strong>（3）SDR</strong>，外呼开发专员，负责外呼开发和合格客户的筛选。</p><ul><li>电话量+时长<br></li><li>邮件量+打开率<br></li><li>线索分级分类的准确率（参考值≥95%）<br></li><li>分级分类后线索的成交率（参考值30%~70%）<br></li></ul><p><strong>（4）线上</strong>，负责自主服务获取线索。</p><ul><li>自然流量线索的比例<br></li><li>官网注册数量</li></ul><p><strong><br></strong></p><p><strong>5.2、销售<strong>部门</strong></strong></p><p><strong>（1）AE</strong>，负责中小型企业销售或线上销售。</p><ul><li>平均客单价<br></li><li>平均成交周期<br></li><li>销售额（合同额、回款额）<br></li><li>有效线索转化回款的比例<br></li><li>增购率<br></li><li>续费率<br></li><li>转介绍的数量<br></li><li>人效，即销售部门全员人均月单产<br></li><li>营销费率，即销售与市场费用÷销售收入（参考值60%~90%）<br></li></ul><p><strong>（2）FAE</strong>，负责大型企业销售或区域销售。</p><ul><li>同上<br></li></ul><p><strong>（3）AM</strong>，负责大型客户的向上销售和交叉销售。</p><ul><li>增购量<br></li><li>增购率<br></li></ul><p><strong>（4）线上</strong>，负责自主服务及销售。</p><ul><li>自然流量的成交率<br></li></ul><p>向上销售，指根据既有客户过去的消费喜好，提供更高价值的产品或服务，刺激客户做更多的消费。如向客户销售某一特定产品或服务的升级品、附加品、或者其他用以加强其原有功能或者用途的产品或服务，向上销售也称为增量销售。SaaS软件中一般有三类：增加用户账号量、升级功能或服务、增加使用量（短信量、储存量、调用量等）。</p><p>交叉销售，指发现现有客户的多种需求，并通过满足其需求而销售多种相关服务或产品的。简单说来，就是向租用A产品的客户推销B产品。</p><p><br></p><p><strong>5.3、客户成功<strong>部门</strong></strong></p><p>CSM，负责安排产品使用培训并帮助客户开始正式使用。</p><ul><li>初期客户的成功激活率<br></li><li>新交付客户的活跃率（参考值≥90%）<br></li><li>成熟客户的活跃率<br></li><li>续费率<br></li><li>增购率<br></li><li>留存率<br></li><li>流失率<br></li><li>客户满意度<br></li><li>净推荐值NPS<br></li><li>转介绍的数量<br></li><li>服务客户的平均MRR、ARR<br></li><li>联系客服次数<br></li><li>帮助中心的访问次数</li></ul><p><strong><br></strong></p><p><strong>5.4、产研部门</strong></p><p><strong>（1）用户数据</strong></p><ul><li>用户激活比例<br></li><li>每日登录用户占比<br></li><li>核心功能的使用用户数<br></li></ul><p><strong>（2）行为数据</strong></p><ul><li>登录平台（PC/APP/H5/小程序）<br></li><li>平均登录次数<br></li><li>登录在线时长<br></li><li>核心模块的使用频率<br></li><li>核心模块的使用深度<br></li><li>核心模块的使用留存率（月、周）<br></li><li>接口的调研次数<br></li></ul><p><strong>（3）稳定数据</strong></p><ul><li>服务可用率：1-（宕机时间÷应服务时间）<br></li><li>上线后bug率：上线后bug数÷版本开发人月<br></li></ul><p><strong>（4）业务数据<br></strong></p><ul><li>客户数量相关的数量和转化率</li><li>收入金额相关的数量和转化率</li><li>业务数据因产品不同而统计对象大不相同</li></ul><p style=text-align:justify;><span style=color:rgb(178,178,178);>（注：转化率通常可以从客户数量、收入金额两个方面去统计）</span><br></p><p style=text-align:center;>~完~<br></p><hr><p>SaaS软件的本质在于服务，盈利的重点在于持续性续费。作为2B的服务者，需要在租户的<span style=color:rgb(255,0,0);><strong>全部生命周期</strong></span>中以帮助其解决业绩问题为服务宗旨，将厂商的<strong><span style=color:rgb(255,0,0);>业务指标和各部门的绩效连贯化、体系化</span></strong>来提高服务质量，以租户<span style=color:rgb(255,0,0);><strong>终身价值</strong></span>及<span style=color:rgb(255,0,0);><strong>厂商成本</strong></span>为核心来衡量盈亏。</p><hr><p><span style=color:rgb(178,178,178);>参考资</span><span style=color:rgb(178,178,178);>料：</span><span style=color:rgb(178,178,178);>文章头图上的书籍与网站；</span><span style=color:rgb(178,178,178);>foren</span><span style=color:rgb(178,178,178);>trepreneurs.com；saasmetrics.co；</span><span style=color:rgb(178,178,178);>jianshu.com/p/d2a37a55a4cf</span><span style=color:rgb(178,178,178);>；</span><span style=color:rgb(178,178,178);>zhuanlan.zhihu.com/p/302283627；</span></p><hr><p>感想：在写作和阅读时，很多时候人们针对同一个概念有不同的理解，也有时候对同样的内容使用不同的词汇交流着，容易在理解上有误差，大家也爱用简写、新词、英文缩写。写一篇文章要先过滤各种各样的概念、按照最朴素的词汇重新矫正概念、梳理概念间关系、搭建概念间结构，也要注意一个概念所对应的主体、所作用的客体、所处时间、所在空间（最重要的是局部与全部关系）、行为及行为的程度、计量的参照物（绝对与相对关系）。对此，你有什么感想呢？</p></pre></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/d157.html>https://news.zfe.space/p/d157.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:51+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/d157.html&title=SaaS的关键指标有哪些？7200字详解计算公式 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/d157.html&title=SaaS的关键指标有哪些？7200字详解计算公式 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/d157.html&title=SaaS的关键指标有哪些？7200字详解计算公式 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/19bfdea4042a0950353f2fdef03bf01d-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/d72d.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>阿里巴巴女员工称遭领导侵犯</p><p class=content>8月7日晚，有网传消息称，阿里巴巴一女员工被领导要求陪商家喝酒，其被灌醉后遭到猥亵。而后，该领导为女员工开了房间，其进出房间4次，并实施强奸。女员工向HR等反馈无果，前往食堂发传单维权。...</p></a><a class=next href=/p/75f8.html><p class=title>播放和录制音频<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>.markdown-body&#123;word-break:break-word;line-height:1.75;font-weight:400;font-size:15px;ove...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="SaaS的关键指标有哪些？7200字详解计算公式";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

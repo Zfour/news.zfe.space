@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>容器技术之发展简史 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://kernel.taobao.org//2020/10/container-tech/1.png></a></div><div class=article-meta id=top><a title=容器技术之发展简史 href=/p/989e.html><img class=thumbnail src=https://kernel.taobao.org//2020/10/container-tech/1.png></a><h1 class=title>容器技术之发展简史</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/">阿里云系统组技术博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E9%98%BF%E9%87%8C%E4%BA%91%E7%B3%BB%E7%BB%9F%E7%BB%84%E6%8A%80%E6%9C%AF%E5%8D%9A%E5%AE%A2/%E9%A6%96%E9%A1%B5/">首页</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2020年10月13日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=容器技术之发展简史 data-path=/p/989e.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p><strong>背景</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/1.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><blockquote><p>云原生技术有利于各组织在<strong>**公有云、私有云和混合云*</strong><em>等新型动态环境中，构建和运行</em><strong><em>可弹性扩展*</em></strong>的应用。云原生的代表技术包括<strong>**容器、服务网格、微服务、不可变基础设施和声明式API*</strong>*。</p></blockquote><p>聊容器技术避不开云原生，聊云原生也避不开容器技术。容器技术和云原生就是一对双螺旋体，<strong>容器技术催生了云原生思潮，云原生生态推动了容器技术发展</strong>。从2013年docker（container）技术诞生，到2015年CNCF这个云原生领域重量级联盟便成立，这不是历史的巧合而是历史的必然。作为云原生关键技术之一的容器，从2013年诞生以来一直是行业关注的焦点之一。借用一张业界广泛引用的云原生容器技术进阶图来了解一下容器技术和云原生诞生的历史背景。</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/2.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/2.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>先让我们一起来看看容器技术发展的历史纪年表，先直观感受一下这片如火如荼的热土吧！</p><p>1979年，Unix v7系统支持chroot，为应用构建一个独立的虚拟文件系统视图。</p><p>1999年，FreeBSD 4.0支持jail，第一个商用化的OS虚拟化技术。</p><p>2004年，Solaris 10支持Solaris Zone，第二个商用化的OS虚拟化技术。</p><p>2005年，OpenVZ发布，非常重要的Linux OS虚拟化技术先行者。</p><p>2004年 ~ 2007年，Google 内部大规模使用 Cgroups 等的OS虚拟化技术。</p><p>2006年，Google开源内部使用的process container技术，后续更名为cgroup。</p><p>2008年，Cgroups 进入了 Linux 内核主线。</p><p>2008年，LXC（Linux Container）项目具备了Linux容器的雏型。</p><p>2011年，CloudFoundry开发Warden系统，一个完整的容器管理系统雏型。</p><p>2013年，Google通过Let Me Contain That For You (LMCTFY) 开源内部容器系统。</p><p>2013年，Docker项目正式发布，让Linux容器技术逐步席卷天下。</p><p>2014年，Kubernetes项目正式发布，容器技术开始和编排系统起头并进。</p><p>2015年，由Google，Redhat、Microsoft及一些大型云厂商共同创立了CNCF，云原生浪潮启动。</p><p>2016年-2017年，容器生态开始模块化、规范化。CNCF接受Containerd、rkt项目，OCI发布1.0，CRI/CNI得到广泛支持。</p><p>2017年-2018年，容器服务商业化。AWS ECS，Google EKS，Alibaba ACK/ASK/ECI，华为CCI，Oracle Container Engine for Kubernetes；VMware，Redhat和Rancher开始提供基于Kubernetes的商业服务产品。</p><p>2017年-2019年，容器引擎技术飞速发展，新技术不断涌现。2017年底Kata Containers社区成立，2018年5月Google开源gVisor代码，2018年11月AWS开源firecracker，阿里云发布安全沙箱1.0。</p><p>2020年-202x年，容器引擎技术升级，Kata Containers开始2.0架构，阿里云发布沙箱容器2.0….</p><p>整理容器技术近20年的发展历史，大致可以将其分为四个历史阶段，下文将详细介绍这四个历史阶段。</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/3.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/3.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p><strong>技术萌芽期</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/4.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/4.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>容器技术需要解决的核心问题之一运行时的环境隔离。容器的运行时环境隔离，目标是给容器构造一个无差别的运行时环境，用以在任意时间、任意位置运行容器镜像。由于docker的布道，大家习惯性认为容器的运行时环境隔离就是OS虚拟化，或则容器等于namespace + cgroup + 安全防护机制。我不太赞同这种看法，这个只是一段历史时期、一种容器运行时的实现技术，还有很多种其它可能的技术方案来实现容器运行环境。所以，回到需求的本源：<strong>容器需要运行时隔离技术来保证容器的运行环境符合预期</strong>。习惯上，大家把这种实现容器隔离技术的组件叫做容器运行时。</p><p>从另外一个角度看，<strong>容器隔离技术解决的是资源供给问题</strong>。为啥需要容器隔离技术来解决资源供给问题呢？成也萧何，败也萧何！摩尔定律实在太过强大，它让我们有了越来越多的计算资源可以使用。10年前做小型机时，小型机的典型规格是32路8核CPU，现在一台4路PC服务器计算能力都超过10年前的小型机服务器。小型机的典型用法是把整机切分为多个分区使用。观察当下云服务硬件发展趋势，越来越有熟悉的感觉，æˆ‘们在把小型机相关技术“军转民”。现在我们一台PC服务器拥有了非常强大的、能和十年前小型机媲美的计算能力，巧合的是当下PC服务器的典型用法也和十年前的小型机用法类似，切割为1-8vCPU的虚拟机/容器使用。</p><p>为什么人们总是习惯于把一个大的服务器资源切分为小的分区使用而不是研发能够充分发挥大型服务器整机计算能力的软件呢？个人认为背后有两个制约因素：</p><ul><li><p><strong>待解决问题本身内在的并行度有限</strong>。随着多核多处理器系统的日益普及，IT行业从2004年开始进行串行编程到并行编程的升级改造。开始阶段针对特定行业应用的并行化改造效果非常明显，但是后来发现随着并行度提高改造成本越来越大、收益却越来越低。受阿姆达尔定律制约，解决特定问题的并行度超过一定临界点之后收益将逐渐变小。所以一味提高系统并行度并不是经济的做法。</p></li><li><p><strong>人类智力有限</strong>。受人类智力限制，系统越复杂、并行度越高，软件越容易出故障，软件维护代价成指数级增长。所以，从软件工程看，大家也趋向于接口化、模块化、单元化的软件架构设计，尽量控制软件的复杂度，降低工程成本。</p></li></ul><p>从经验看，1-8个CPU的并行度是软件工程的舒适区，这个也是容器化、微服务等技术背后的驱动因素之一。</p><p>有点跑题了。。。总之，基于隔离的资源供给不是伪需求。对于软件运行环境的隔离要求，从操作系统出现之初就有了。多任务分时操作系统和进程虚拟地址都是为了解决多个任务运行在同一台主机上的资源共享问题，让每个进程都以为自己独占主机。当然仅仅是进程隔离是远远不够的。纵观当前的资源隔离技术，我们大致可以将资源隔离技术分成5类：</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/5.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/5.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><ul><li><p><strong>进程隔离</strong>。OS以进程作为Task运行过程的抽象，进程拥有独立的地址空间和执行上下文，本质上OS对进程进行了CPU和内存虚拟化。但是进程之间还共享了文件系统、网络协议栈、IPC通信空间等多种资源，进程之间因为资源争抢导致的干扰很严重。这个层级的隔离适合在不同的主机上运行单个用户的不同程序，由用户通过系统管理手段来保证资源分配与安全防护等问题。</p></li><li><p><strong>OS虚拟化</strong>。OS隔离，也就是大家常说的操作系统虚拟化（OS virtualization），是进程隔离的升华版。进程隔离是为每个进程实现了单独的地址空间及CPU上下文，OS隔离则是利用操作系统分身术为每一组进程实例构造出一个独立的OS环境，以进一步虚拟化文件系统、网络协议栈、IPC通信空间、进程ID、用户ID等OS资源。OS隔离需要解决三个核心问题：独立视图、访问控制及安全防护。Chroot、Linux namespace机制为进程组实现独立视图，cgroup对进程组进行访问控制，而Capabilities、Apparmor、seccomp等机制则实现安全防护。当然，OS是一个非常复杂、动态变化的系统，OS分身术虽然让进程组感觉有了独立的OS，但是真实实现还是一个OS实例，所以整体防护能力还是堪忧。</p></li><li><p><strong>硬件虚拟化</strong>。OS虚拟化是实现OS内核的分身术，而硬件虚拟化则是实现硬件设备的分身术。硬件虚拟化技术的出现，让同一个物理服务器上能够同时运行多个操作系统，每个操作系统都认为自己在管理一台完整的服务器。不同操作系统之间是严格隔离的，Guest操作系统对硬件的访问都是受VMM或CPU的严格监管的。硬件虚拟化既有很好的安全性，也有很好的隔离性，缺点就是引入的硬件虚拟化层导致了额外的性能开销。</p></li><li><p><strong>硬件分区</strong>。这个是传统小型机体系采用的资源分隔技术，就是从硬件或固件层彻底把一台大型服务器分隔为多个硬件单元，从而获得最高等级的安全性和隔离性。但是小型机作为一个逐步没落的技术路线，其不足之处还是显而易见的：资源分隔粒度不灵活、系统成本偏高、系统可扩展性受限。</p></li><li><p><strong>语言运行时隔离</strong>。对于Java、nodejs等需要language runtime的managed language，我们还有一个选项，就是在language runtime里实现隔离。针对函数计算等云原生服务，理论上在语言运行时实现隔离机制是最优路径。但是这条路线目前实现上还有不少现实的制约，所以目前多数函数计算还是采用的容器/VM技术来实现的隔离。</p></li></ul><p>在OS虚拟化这条技术路线上，最大的技术贡献来源于Google。2003-2006年，Google陆续发布的“三驾马车”，奠定了大数据计算的框架，随后进一步创造了“云”的概念。也是从这时期开始，进程隔离技术进入了一个更高级的阶段。在 Google 提出的云计算框架下，被隔离的进程不仅仅是一个与外界隔绝但本身却巍然不动的 Jail，它们更需要像一个个轻便的容器，除了能够与外界隔离之外，还要能够被控制与调配，从而实现分布式应用场景下的跨平台、高可用、可扩展等特性。2006年，Google推出Process Containers，用来对一组进程进行限制、记账、隔离资源（CPU、内存、磁盘 I/O、网络等）。由于技术更加成熟，Process Container 在 2006 年正式推出后，第二年就进入了 Linux 内核主干，并正式更名为 Cgroups，标志着 Linux 阵营中“容器”的概念å¼€始被重新审视和实现。在 2008 年，通过将 Cgroups 的资源管理能力和 Linux Namespace （命名空间）的视图隔离能力组合在一起，一项完整的容器技术 LXC （Linux Container）出现在了 Linux 内核中，这就是如今被广泛应用的容器技术的实现基础。</p><p><strong>总体看，在2013年docker被发明以前，Linux操作系统已经大体上解决了容器核心技术之一的运行环境隔离技术，或者说Linux OS虚拟化技术已经基本上成型了。</strong>虽然容器运行环境隔离技术已经基本就位，我们仍需等待另外一项关键技术才能迎来容器技术的腾飞时刻。</p><p><strong>技术迸发期</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/6.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/6.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>2013年之前，云计算行业一直在为云原生的正确打开姿势而操心。Platform as a Service（PaaS）看起来是个有前途的方向。2006年Fotango公司发布的Zimi服务，可以说是PaaS行业的鼻祖，具有按使用付费、免运维（Serverless）、API化配置和服务等典型云原生的特征；2008年Google推出GAE；2011年Pivotal发布Cloud Foundry。这些早期的PaaS平台进行了非常有益的探索，推动了云计算生态的健康发展，但是这些早期探索技术并没有形成大的行业趋势，而是局限在一些的特定的领域。直到Docker开源，大家才如梦方醒，原来不是方向不对，而是应用分发和交付的手段不行。</p><p>Docker真正核心的创新是容器镜像（docker image），一种新型的应用打包、分发和运行机制。容器镜像将应用<strong>运行环境</strong>，包括代码、依赖库、工具、资源文件和元信息等，打包成一种<strong>操作系统发行版无关</strong>的<strong>不可变更</strong>软件包。</p><ul><li><p>容器镜像打包了整个容器运行依赖的环境，以避免依赖运行容器的服务器的操作系统，从而实现“build once，run anywhere”。</p></li><li><p>容器镜像一但构建完成，就变成read only，成为不可变基础设施的一份子。</p></li><li><p>操作系统发行版无关，核心解决的是容器进程对操作系统包含的库、工具、配置的依赖，但是容器镜像无法解决容器进程对内核特性的特殊依赖。这个在实际使用容器的过程中也经常跳进这个大坑：</p></li></ul><p>Docker的宣传口号是“Build，Ship and Run Any App，Anywhere”。我们已经理解了docker通过container image解决“Run Anywhere”的机制，那么“Run Any App”是如何实现的呢？其实也是依赖container image，用户可以打包任何容器进程所依赖的环境，而不用改造应用来适配PaaS定义的运行环境。真是“Run Any App”一举打破了PaaS行业面临的困境，创造出了无限的可能性，大力推动了云原生的发展。让我们一起来向这个伟大的创意致敬！</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/7.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/7.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>至此，容器技术体系已经解决了最核心的两个问题：<strong>如何发布</strong><strong>软件</strong>和<strong>如何运行</strong><strong>软件</strong><strong>，</strong>腾飞时刻即将到来。2014年前司前老板对我说“别成天搞Linux kernel了，要不你看看docker？” 经过短暂的调研，我给了前老板一个简单而清晰的回答，“无它，唯打包工具尔！”因为这个回答，云原生为我打开的一扇大门就悄悄关上了。回想一下历史，有时也挺懊悔的，因为自己太年轻而没有看清楚容器技术 + 编排系统的威力，更没有体会到云原生即将到来的气息！</p><p>Docker作为一个单机软件打包、发布、运行系统，其价值是非常巨大的；但是仅仅将docker技术局限在单机范围不能发挥这个创新技术的最大价值，自然下一步业界希望基于docker技术构建一个云化的集群系统，来对业务容器进行编排管理。</p><p>聊到容器编排系统，我们需要从Google聊起。2008年，Google 基于 LXC 推出首款应用托管平台 GAE （Google App Engine），首次把开发平台当做一种服务来提供。GAE 是一种分布式平台服务，Google 通过虚拟化技术为用户提供开发环境、服务器平台、硬件资源等服务，用户可以在平台基础上定制开发自己的应用程序并通过 Google 的服务器和互联网资源进行分发。Google 在 GAE 中使用了一个能够对 LXC 进行编排和调度的工具 —— Borg （Kubernetes 的前身）。Borg 是 Google 内部使用的大规模集群管理系统，可以承载十万级的任务、数千个不同的应用、同时管理数万台机器。Borg 通过权限管理、资源共享、性能隔离等来达到高资源利用率。它能够支持高可用应用，并通过调度策略减少出现故障的æ¦‚率，提供了任务描述语言、实时任务监控、分析工具等。如果说一个个隔离的容器是集装箱，那么 Borg 可以说是最早的港口系统，而 LXC + Borg 就是最早的容器编排框架。</p><p>2013年docker推出之后迅速席卷全球，2014年Google基于内部使用的Borg系统创建了开源项目Kubernetes（简称K8S），用于解决大规模集群的容器部署、运行、管理等问题。Kubernetes在容器的基础上增加了一层的新的管理抽象Pod，以便更好地利用容器进行应用的功能模块切分。得益于 Google 在大规模集群基础设施建设的强大积累，脱胎于 Borg 的 K8S 很快成为了行业的标准应用，堪称容器编排的必备工具。</p><p>作为回应，Docker公司在2015年发布的Docker 1.12版本中也加入了一个容器集群管理系统Docker swarm，以及配套的Docker machine、Docker Compose等工具，力图构建完善的容器编排系统，和Kubernetes展开正面竞争。从此，容器江湖分为两大阵营：Google派和Docker派；而容器编排系统则是Kubernetes，Docker Swarm和Apache Mesos三国并立。各大派系的竞争愈演愈烈，逐渐延伸到行业标准的建立之争。让我们一起来回忆一下这段风起云涌的江湖历史吧！</p><p>2013年Docker公司推出docker之后，紧接着CoreOS 应运而生。CoreOS 是一个基于 Linux 内核的轻量级操作系统，专为云计算时代计算机集群的基础设施建设而设计，拥有自动化、易部署、安全可靠、规模化等特性。其在当时有一个非常显眼的标签：<strong>专为容器设计的操作系统</strong>。借着 Docker 的东风，CoreOS 迅速在云计算领域蹿红，一时间，Docker + CoreOS 成为业内容器部署的黄金搭档。同时，CoreOS 也为 Docker 的推广与社区建设做出了巨大的贡献。然而，日渐壮大的 Docker 似乎有着更大的“野心”。不甘于只做“一种简单的基础单元”的 Docker，自行开发了一系列相关的容器组件，同时收购了一些容器化技术的公司，开始打造属于自己的容器生态平台。显然，这对于 CoreOS 来说形成了直接的竞争关系。2014 年末，CoreOS 推出了自己的容器引擎 Rocket （简称 rkt），试图与 Docker 分庭抗礼。rkt 和 Docker 类似，都能帮助开发者打包应用和依赖包到可移植容器中，简化搭环境等部署工作。rkt 和 Docker 不同的地方在于，rkt 没有 Docker 那些为企业用户提供的“友好功能”，比如云服务加速工具、集群系统等。反过来说，rkt 想做的，是一个更纯粹的业界标准。</p><p>上面这段材料引至于“从虚拟化到云原生——容器技术的发展史”，为什么大段大段地引用这部分材料呢？这里面最关键的脉络是<strong>由于技术公司之间的商业竞争，在竞争合作之间寻找平衡从而导致了标准规范的诞生，而标准规范的诞生是整个云原生生态最重要的基石</strong>。</p><p>容器引擎（docker vs rocket）、容器编排（Docker swarm vs Kubernetes vs Apache Mesos）的相互竞争的结果就是大家坐下来谈接口标准。2015年6月，Docker带头成立OCI，旨在“制定并维护容器镜像格式和容器运行时的正式规范（OCI Specifications）”，其核心产出是OCI Runtime Spec（容器运行时规范）、OCI Image Spec（镜像格式规范）、OCI Distribution Spec（镜像分发规范）。所以<strong>OCI组织解决的是容器的构建、分发和运行问题</strong>。一个月之后，Google带头成立了Cloud Native Computing Foundation（CNCF），旨在“构建云原生计算 —— 一种围绕着微服务、容器和应用动态调度的、以基础设施为中心的架构，并促进其广泛使用”。所以<strong>CNCF组织解决的是应用管理及容器编排问题</strong>。这两个围绕容器的基金会对云原生生态的发展发挥了非常重要的作用，二者不是竞争而是相辅相成，共同制定了一系列行业事实标准。这些行业事实标准的确立，各行业注入了无限活力，基于接口的标准的具体实现不断涌现，呈现出一片百花齐放的景象。</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/8.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png referrerpolicy=no-referrer></p><p>其中，与容器相关的最为重要的几个规范包括：CRI、CNI、CSI、OCI Distribution Spec、OCI Image Spec、OCI Runtime Spec和Shimv2。其中的CRI、OCI Image Spec、OCI Runtime和Shimv2规范和阿里云沙箱容器关系非常密切。</p><p><strong>所以，非常感谢这个云原生、容器技术迸发的黄金期，一群有创意的人走到一起共同创造了这几个关键的规范，为各个厂商提供各具特色且遵循规范的技术实现提供了可能性。</strong></p><p><strong>商用探索期</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/9.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>经过5年的技术发展期，容器技术基本成熟，云原生体系也具雏型。从2017年开始，各大云厂商开始试水容器服务及进步的云原生服务。从目前的商业形态看，容器相关的公共云服务大致可以划分为三种形态：</p><ol><li><p><strong>通用容器编排服务</strong>。在容器编排系统三国杀结果出来以前，基于多方下注策略构建的容器编排服务系统。其中AWS是自研的编排系统，Azure的ACS同时支持Docker Swarm、DC/OS和Kubernetes，阿里云ACS则是支持Docker swarm和Kubernetes。Google和华为则是坚定支持Kubernetes而未推出支持其它容器编排系统的容器服务。随着Kubernetes一统容器编排江湖，这条路线的容器服务日渐式微，Azure更是在今年初直接终止了ACS服务。</p></li><li><p><strong>Kubernetes容器编排服务</strong>。Google是理所当然最早试水Kubernetes容器编排服务的大厂，也较早开展了K8S容器编排服务。随着2017年各大厂在CNCF这张谈判桌上达成了Kubernetes兼容性认证流程，Kubernetes编排服务市场迎来一轮大爆发，到2018年各大云厂商的K8S容器编排服务就完整就位了。</p></li><li><p><strong>Serverless容器实例服务</strong>。从2017年开始，行业开始试水Serverless容器实例服务，把用户从维护容器基础设施的繁重任务中解放出来从而聚焦业务本身。Google Cloud Run核心目标是支持Knative，所以其使用形态上附加了不少约束条件。</p></li></ol><p><img src=https://kernel.taobao.org//2020/10/container-tech/10.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/10.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>从上图可以看出，从2014年开始探索公共云容器服务，特别是经过2017-2018年这两年的抢跑期，容器服务的基本商业形态已经比较明晰了。发展态势可以概括为：</p><ul><li><p><strong>行业对容器化的接受程度已经很高，容器化普及率也是逐年提升。</strong></p></li><li><p><strong>容器编排系统已经一战定江山，K8S成为事实上的容器编排之王。</strong></p></li><li><p><strong>Serverless容器实例服务受到市场的欢迎，客户群体日益扩大。</strong></p></li><li><p><strong>长期看托管容器编排服务和Serverless容器实例服务将长期共存，协同满足客户对服务成本和弹性能力的需求。</strong></p></li></ul><p>商用模式探索期间，核心目标是快速试错引导和确认客户需求，构建适用的产品形态。这个期间的产品技术架构的构建思路是利用现有成熟技术快速搭建商用形态，在试错过程中不断前行。</p><p>其中，容器编排托管服务节点级的典型架构是利用IaaS系统生成VM，然后在VM里面部署kubelet、docker、containerd、runC等容器服务组件，也就是<strong>VM + 容器的技术架构</strong>。一个VM可以承载同一个用户的多个容器/Pod实例。而Serverless容器实例服务的节点级架构更直接，<strong>在一个VM里面只部署一个容器/Pod实例，从而实现Serverless</strong>。这种短平快的打法快速推进了商用模型的探索，起到了非常重要的历史作用，但是其在弹性能力、部署密度、资源成本方面的历史局限性还是很大的。</p><p><img src=https://kernel.taobao.org//2020/10/container-tech/11.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/11.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p><strong>商用拓展期</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/12.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/12.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>到2019年，容器服务的商业形态以及市场趋势已经很明显了，<strong>行业整体进入了商业拓展阶段，对外宣传吸引更多的客户群体，对内苦练内功提升</strong><strong>产品</strong><strong>技术竞争力，行业正在经历从“有”到“优”的技术升级</strong>。行业正在经历这个技术升级的历史阶段，还谈不上结论，只能一起来聊聊趋势及预判。本系列专题的关注点是容器隔离技术，所以先不聊商业拓展和容器编排而聚焦于容器引擎技术发展趋势。到现在为止，我们大体上可以把容器引擎技术划分为两代：</p><ol><li><p><strong>Container on VM</strong>。也就是按照分层设计思路，通过IaaS + PaaS的架构构建容器服务，这个是商用探索阶段的典型架构。基于各大云厂商成熟的IaaS基础设施生产虚拟机，在虚拟机里面部署容器服务组件。这种架构采用的是lift and shift策略，把容器服务的运维责任从用户转移到云厂商。采用和用户相同的软件组件，只是转移运维责任，有利于引导客户逐步上云、接受云原生思维。<strong>但是这个时期云厂商提供的服务是单纯的运维托管，相对用户自建容器服务并没有太明显的技术优势，甚至受多租户隔离的限制部分使用体验还不如用户自建容器服务。</strong></p></li><li><p><strong>Container with hardware virtualization。</strong>如果沿用Container on VM的分层设计架构，云厂商很难构建独有的技术优势。对于Serverless容器实例服务，服务交付平面已经从IaaS的硬件接口上移到OS Syscall，所以不要遵循VM + 容器的分层设计思路。我们需要从需求本源出发，容器服务需要高性能、强隔离、够安全和低成本的容器引擎。当前行业研发热点之一就是如何构建这样一个容器引擎，具体技术思路请留意后续系列文章。</p></li></ol><p><strong>小结</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/13.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/13.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>总结来看，容器服务生态大概经历了四个阶段，分别解决或试图解决不同的问题：</p><ol><li><strong>技术萌芽期：解决了容器运行环境的隔离问题</strong></li><li><strong>技术迸发期：解决了软件分发及容器编排问题</strong></li><li><strong>商用探索期：确认了容器的商用服务形态</strong></li><li><strong>商用拓展期：扩大适用场景和部署规模，通过技术创新提升产品竞争力</strong></li></ol><p><strong>闲言碎语</strong></p><p><img src=https://kernel.taobao.org//2020/10/container-tech/14.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/14.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p><p>聊了这么多历史，让我们再来闲聊一下docker这个公司和docker这门技术吧！</p><p>2019年11月13日，私有云基础设施公司Mirantis在其官方博客宣布，收购Docker公司企业级业务，包括接管它的700多个客户，这标志着Docker公司从2013年开始的商业化探索彻底失败。在不了解容器发展历史的人看来，这种结果很难理解，Docker是容器热潮的开创者，容器则是这一轮云计算技术演进的开启者，为什么明明站在风口上了，却仍然飞不起来？</p><p>其实，Docker今天的命运，在4年前就决定了。2014年Kubernetes发布后，迅速吸引了包括Redhat在内的一批重量级成员，并在一年之后迅速发布Kubernetes 1.0以支撑正式商用。作为回应Docker公司主导成立了OCI，旨在为容器镜像格式和运行时制定一个开放标准，从而继续占据容器生态的话语权。但是2015年7月CNCF成立之后，迅速弯道超车开辟新的战场，主攻容器编排与应用管理。随后2016年Kubernetes社区制定了容器运行时的接口规范CRI，只要实现这个CRI规范的容器运行时就可以和K8S生态对接，从引发了容器引擎的研发热潮。cri-containerd，cri-o，frakti等引擎不断涌现，加上原有的rkt引擎，docker变成了容器引擎芸芸众生中的一员。从哪儿来到哪儿去，docker又回到了最初的状态，一个单机版软件打包运行工具，基本上完美错过了云原生浪潮。</p><p>但是在相当长的时期内，docker这个客户端容器管理工具（UI）还是会长期存在的，毕竟强大的用户群体在哪儿。但是在云服务厂商的技术栈中，docker的地位会越来越弱，逐步被K8S专用的容器引擎替代。虽然现在docker的群众基础依然强大，但是星星之火已经点燃，趋势已然显现，剩下的只是时间问题！</p><hr><h2 id=参考文献>参考文献</h2><ul><li>Cloud Native and Container Technology Landscape</li><li>A Brief History of Containers: From the 1970s Till Now</li><li>从虚拟化到云原生——容器技术的发展史</li><li>为什么说2019，是属于容器技术的时代？</li><li>阿里巴巴在安全容器上的实践与探索</li><li>安全容器在边缘计算场景下的实践</li><li>展望2020：传统容器已死，安全容器将成为云原生标配</li></ul><p><img src=https://kernel.taobao.org//2020/10/container-tech/15.png class=lazyload data-srcset=https://kernel.taobao.org//2020/10/container-tech/15.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=img referrerpolicy=no-referrer></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/989e.html>https://news.zfe.space/p/989e.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:06:30+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/989e.html&title=容器技术之发展简史 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/10/container-tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/989e.html&title=容器技术之发展简史 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/10/container-tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/989e.html&title=容器技术之发展简史 - 小冰 RSSHub&pics=https://kernel.taobao.org//2020/10/container-tech/1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/8629.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>天高任鸟飞</p><p class=content>宾得645N 柯达炮塔400 记录一次北疆的秋天</p></a><a class=next href=/p/dd75.html><p class=title>拂面的是南极吹来的风<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>在塔斯马尼亚最南端的国家公园走一段八小时无信号的徒步当自己穿越丛林和荒土终于抵达海边时拂面的是南极吹来的风是犹如面向火星的壮阔</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%8F%82%E8%80%83%E6%96%87%E7%8C%AE><span class=toc-text>参考文献</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="容器技术之发展简史";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

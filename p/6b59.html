@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>滚动圆环的力学问题 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340"></a></div><div class=article-meta id=top><a title=滚动圆环的力学问题 href=/p/6b59.html><img class=thumbnail src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340"></a><h1 class=title>滚动圆环的力学问题</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E7%A7%91%E5%AD%A6%E7%BD%91/">科学网</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E7%A7%91%E5%AD%A6%E7%BD%91/%E5%8D%9A%E5%AE%A2/">博客</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月28日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=滚动圆环的力学问题 data-path=/p/6b59.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style="font-family: 微软雅黑," microsoft yahei"; font-size: 16px;">前篇博文“<span style="font-family: 微软雅黑," microsoft yahei"; line-height: 150%;">杂技力学之五：呼啦圈</span>”里讨论了细圆环围绕身体转动的力学现象。本文讨论与细圆环有关的另一个问题，即直立滚动圆环的力学问题。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">最常见的滚动圆环就是滚铁环。在儿童玩具不如现在丰富的年代里，滚铁环可算是男孩子喜爱的宝物了。找一个<span style=font-family: times new roman"; line-height: 150%;">箍木桶的</span>铁环，<span style=font-family: times new roman"; line-height: 150%;">用铁勾勾住铁环，边推动铁环向前滚动边控制方向，或直走或拐弯，可以从家门口一路滚到学校 (图 1)。可惜随着各种现代化玩具的出现，有着悠久历史的</span>滚铁环游戏早已<span style=font-family: times new roman"; line-height: 150%;">日渐冷落。</span>只有在欣赏艺术体操表演时，还能看到圆环在地面上的滚动现象。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family:宋体><br></span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family:宋体><img src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340" class=lazyload data-srcset="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png width=365 height=330 style="width: 365px; height: 330px;" referrerpolicy=no-referrer><br></span></p><p style=text-align:center;text-indent:28px;line-height:150%><span style=font-family: times new roman"; font-size: 16px; line-height: 150%;">图1 滚铁环</span></p><p style="text-indent: 28px; line-height: 150%;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><br></span></p><p style="text-indent: 28px; line-height: 150%;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"></span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;"><span style=font-family: times new roman"; line-height: 150%;">滚铁环需要有些技巧。</span>会滚铁环的孩子懂得，铁环在地面上滚动起来，即使暂时脱离铁勾，也能维持一段时间不倒。但这种稳定性和铁环的转速有关，滚得愈快愈稳，太慢就要翻倒。在经典力学里，粗糙平面上滚动的圆环或圆盘的运动问题曾是一个典型的非完整约束问题。研究工作可以追溯到 1899 年阿贝尔 (Appell, P.) 的著作，甚至更早。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">滚动中的圆环为何能保持不倒？原因是当圆环受到扰动向一侧倾斜时，圆环在重力作用下出现倾倒的趋势。与此同时，绕水平轴的倾斜角速度使转动中的圆环产生绕垂直轴的陀螺力矩，使圆环产生绕垂直轴的角加速度。当角加速度积累为绕垂直轴的角速度时，圆环产生绕水平轴的陀螺力矩，与重力的倾覆力矩平衡。当绕垂直轴的角速度积累为转角时，圆环的前进方向发生改变，转变为曲线运动。圆环沿弯曲的轨道运动时，离心惯性力产生对接触点的力矩，也与重力的倾覆力矩方向相反。只要圆环有足够大的旋转速度，上述力学效应足以使圆环保持直立状态的稳定性。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style="font-family: 微软雅黑," microsoft yahei"; font-size: 16px;">关于陀螺力矩的定义和稳定性作用可参阅“<span style="font-family: 微软雅黑," microsoft yahei"; line-height: 150%;">陀螺力矩与鱼鹰飞机</span>”,“<span style="font-family: 微软雅黑," microsoft yahei"; line-height: 150%;">自行车的发明简史及力学原理</span>”,“<span style="font-family: 微软雅黑," microsoft yahei"; line-height: 150%; letter-spacing: 0px;">杂技力学之三：独轮车</span>”等另几篇博文。</span></p><p style="text-align: justify;"><span style=font-size:14px;font-family:宋体></span> <span style="font-size: 16px; font-family:" times new roman";"><span style="font-size: 16px;">设圆环相对地面作纯滚动。以圆环与地面的接触点</span><span style=font-family: times new roman"; font-size: 20px;"><em>O</em></span><span style="font-size: 16px;">为原点，建立参考坐标系<span style=font-family: times new roman"; font-size: 20px;">(<em>O-XYZ</em>)</span>，其中</span><span style=font-family: times new roman"; font-size: 20px;"><em>X</em></span><span style="font-size: 16px;">轴为水平轴，沿圆环的前进方向，</span><span style=font-family: times new roman"; font-size: 20px;"><em>Y</em></span><span style="font-size: 16px;">轴为垂直轴，另一个水平轴</span><span style=font-family: times new roman"; font-size: 20px;"><em>Z</em></span><span style="font-size: 16px;">轴与前进方向正交。设 <span style=font-family: times new roman"; font-size: 20px; text-align: justify;">(</span><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O-XYZ</em><span style=font-family: times new roman"; font-size: 20px; text-align: justify;">)</span>绕</span><span style=font-family: times new roman"; font-size: 20px;"><em>Y</em></span><em><span style="font-size: 16px;"></span></em><span style="font-size: 16px;">轴转过</span><span style=font-family: times new roman"; font-size: 20px;"><em>ψ</em></span><span style="font-size: 16px;">角到达的位置为 <span style=font-family: times new roman"; font-size: 20px;">(<em>O-x</em><sub>0</sub><em>y</em><sub>0</sub><em>z</em><sub>0</sub>)</span>，绕</span><span style=font-family: times new roman"; font-size: 20px;"><em>x</em></span><sub><span style="font-size: 16px;">0</span></sub><span style="font-size: 16px;">轴转过</span><span style=font-family: times new roman"; font-size: 20px;"><em>θ</em></span><span style="font-size: 16px;">角后到达的位置 <span style=font-family: times new roman"; font-size: 20px;">(<em>O-xyz</em>)</span>为圆环的主轴坐标系（图 2）。</span></span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><br></span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><img src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771341" class=lazyload data-srcset="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771341" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png width=404 height=394 style="width: 404px; height: 394px;" referrerpolicy=no-referrer><br></span><br></p><p style=text-indent:228px;line-height:150%><span style=font-size:12px;line-height:150%;font-family:宋体></span><span style=font-family: times new roman";"><span style="font-size: 12px; line-height: 150%;"></span><span style="font-size: 16px; line-height: 150%;">图2 确定圆环姿态的坐标系</span></span></p><p style=text-indent:228px;line-height:150%><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><br></span></p><p style=text-indent:228px;line-height:150%><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"></span></p><p style=text-indent:28px;line-height:150%><span style=font-family: times new roman"; font-size: 16px;">仅保留<span style=font-family: times new roman"; font-size: 20px;"><em>ψ, θ</em></span>的一次项，设<span style=font-family: times new roman"; font-size: 20px;"><strong><em>i, j, k</em></strong></span>为 <span style=font-family: times new roman"; font-size: 20px; text-align: justify;">(</span><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O-xyz</em><span style=font-family: times new roman"; font-size: 20px; text-align: justify;">)</span> 各坐标轴的基矢量，则 <span style=font-family: times new roman"; font-size: 20px; text-align: justify;">(</span><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O-xyz</em><span style=font-family: times new roman"; font-size: 20px; text-align: justify;">)</span>坐标系的角速度 <span style=font-family: times new roman"; font-size: 20px;"><strong><em>ω</em></strong></span><em><sub>R</sub></em>为</span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/083957amcql9zlk4w4roqc.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/083957amcql9zlk4w4roqc.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环1.png width=138 height=37 style="width: 138px; height: 37px;" referrerpolicy=no-referrer> (1)<br></span></p><p style=text-indent:228px;line-height:150%><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"></span></p><p style="line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">设圆环以速度 <span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0</sub>沿 <em>X</em>轴匀速前进，绕极轴的角速度为 <span style=font-family: times new roman"; font-size: 20px;"><em>ω</em><span style=font-family: times new roman"; font-size: 16px;"><sub>0</sub></span><strong><em>k</em></strong></span>。设圆环的半径为 <em>R</em>，利用纯滚动约束条件，<em>ω</em><sub>0</sub>= <em>v</em><sub>0</sub>/<em>R</em>。圆环的角速度为<span style=font-family: times new roman"; font-size: 20px;"><strong><em>ω</em></strong>= <strong><em>ω</em></strong><span style=font-family: times new roman"; font-size: 16px;"><em><sub>R</sub></em></span>+<em>ω</em><sub><span style=font-family: times new roman"; font-size: 13.3333px; text-align: justify;">0</span></sub><strong><em>k</em></strong></span>。设圆环相对<span style=font-family: times new roman"; font-size: 20px;"><em>Ox</em></span>轴的惯性矩和相对<span style=font-family: times new roman"; font-size: 20px;"><em>Oz</em></span>轴的惯性矩分别为 <span style=font-family: times new roman"; font-size: 20px;"><em>A</em></span>和 <span style=font-family: times new roman"; font-size: 20px;"><em>C</em></span>，则圆环相对 <em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O</em></em>点的动量矩 <strong><em>L</em></strong>为</span></p><p style=text-indent:228px;line-height:150%><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084147dvl6i1xg0p6lpp6v.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084147dvl6i1xg0p6lpp6v.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环2.png width=234 height=36 style="width: 234px; height: 36px;" referrerpolicy=no-referrer> (2)</span></p><p style=text-indent:228px;line-height:150%><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">设圆环的质量为 <span style=font-family: times new roman"; font-size: 20px;"><em>m</em></span>，重力对<em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O</em></em>点的力矩 <strong><em>M</em></strong>为</span></p><p style="text-align: start; text-indent: 0px; line-height: 150%;"><span style="text-align: center; text-indent: 228px; font-family:" times new roman";"></span> <span style="font-family: 宋体; text-align: center; text-indent: 228px;"></span><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084302oeo5esf5uu2w0mo8.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084302oeo5esf5uu2w0mo8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环3.png width=135 height=32 style="font-family: 宋体; text-align: center; text-indent: 228px; width: 135px; height: 32px;" referrerpolicy=no-referrer> (3)</p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">将式(1),(2),(3)代入圆环相对<em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O</em>点的动量矩定理：</span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084801zq3wrtq1tmzwrk1h.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084801zq3wrtq1tmzwrk1h.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环4.png width=142 height=57 style="width: 142px; height: 57px;" referrerpolicy=no-referrer> (4)<br></span></p><p style=line-height:150%><span style="font-family: 微软雅黑," microsoft yahei"; font-size: 16px;">导出线性化的扰动方程:</span></p><p style="line-height: 150%; text-align: center;"><span style="font-family: 微软雅黑," microsoft yahei";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084918gys99snxmygop9ow.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/084918gys99snxmygop9ow.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环5.png width=215 height=72 style="width: 215px; height: 72px;" referrerpolicy=no-referrer> <span style=font-family: times new roman";">(5)</span><br></span></p><p style="text-align: left;"><span style=font-family: times new roman"; font-size: 16px;">以<span style=font-family: times new roman"; font-size: 20px;"><em>ψ = θ</em>= 0</span> 作为圆环的未受扰状态，设 <span style=font-family: times new roman"; font-size: 20px;"><em>ψ</em></span><sub>0</sub>, <span style=font-family: times new roman"; font-size: 20px;"><em>θ</em></span><sub>0</sub>为初始扰动，利用指数函数特解 <span style=font-family: times new roman"; font-size: 20px;"><em>ψ</em>= <em>ψ</em></span><sub>0</sub><span style=font-family: times new roman"; font-size: 20px;">e<em><sup>λt</sup></em>, <em>θ</em>= <em>θ</em></span><sub>0</sub> <span style=font-family: times new roman"; font-size: 20px;">e<em><sup>λt</sup></em></span>，导出此线性方程组的特征方程：</span><br></p><p style="text-align: center;"><span style=font-family: times new roman"; font-size: 16px;"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085038ke9zcl37g9clb3ga.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085038ke9zcl37g9clb3ga.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环6.png width=245 height=43 style="width: 245px; height: 43px;" referrerpolicy=no-referrer> (6)<br></span></p><p><span style=font-family: times new roman"; font-size: 16px;"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">除零根 <span style=font-family: times new roman"; font-size: 20px;"><em>λ</em>= 0</span> 体现圆环绕垂直轴的转动具有随遇性以外。若另两个特征根为虚数，依据一次近似的稳定性定理，未扰运动稳定。因此圆环的稳定性条件即特征根为虚数的条件:</span></p><p style="text-align: center;"><span style=font-family: times new roman"; font-size: 16px;"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085144erdfd8d8i2wfyy82.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085144erdfd8d8i2wfyy82.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环7.png width=131 height=65 style="width: 131px; height: 65px;" referrerpolicy=no-referrer> (7)</span><br></p><p><span style=font-family: times new roman"; font-size: 16px;"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">由此导出圆环中心速度<span style=font-family: times new roman"; font-size: 20px;"><em>v</em><span style=font-family: times new roman"; font-size: 16px;"><sub>0</sub></span><sub></sub>= <em>Rω</em><span style=font-family: times new roman"; font-size: 16px;"><sub>0</sub></span></span>的临界值<span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0,cr</sub>：</span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085421t3b9or220xcbtwfb.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085421t3b9or220xcbtwfb.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环8.png width=142 height=65 style="width: 142px; height: 65px;" referrerpolicy=no-referrer> (8)<br></span></p><p><span style="font-family: 微软雅黑," microsoft yahei"; font-size: 16px;">速度大于临界值时，所产生的离心力矩可克服倾覆力矩将圆环扶正。速度小于临界值就做不到，圆环就会翻倒。</span><br></p><p style="line-height: 150%; text-align: left;"><span style="font-family: 微软雅黑," microsoft yahei";"></span></p><p style=text-indent:28px;line-height:150%><span style=font-family: times new roman"; font-size: 16px;">将圆环对 <em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; white-space: normal;">O</em></em>点的惯性矩 <span style=font-family: times new roman"; font-size: 20px;"><em>A</em>= 3<em>mR</em></span><sup>2</sup><span style=font-family: times new roman"; font-size: 20px;">/2</span>, <span style=font-family: times new roman"; font-size: 20px;"><em>C</em>= 2<em>mR</em></span><sup>2</sup>代入后，得到 <span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0,cr</sub><span style=font-family: times new roman"; font-size: 20px;"><sub></sub>=<span style=font-family: times new roman";"></span> 0.61(<em>gR</em>)</span><sup>1/2</sup>。以上分析也适用于实心圆盘的滚动，将惯量矩换作 <span style=font-family: times new roman"; font-size: 20px;"><em>A</em>= 5<em>mR</em></span><sup>2</sup><span style=font-family: times new roman"; font-size: 20px;">/4, <em>C</em>= 3<em>mR</em></span><sup>2</sup><span style=font-family: times new roman"; font-size: 20px;">/2</span>，代入后得到 <span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0,cr</sub><span style=font-family: times new roman"; font-size: 20px;">= 0.75(<em>gR</em>)</span><sup>1/2</sup>，稍高于圆环的临界速度。可见相同半径的圆环要比圆盘更容易稳定。</span></p><p style=text-indent:28px;line-height:150%><span style=font-family: times new roman";"></span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">虽然关于滚动圆环的力学问题在经典力学里已讨论得非常充分，但 1986 年美国人里特伍德（Littlewood,J.E.）提出了一个新问题<sup>[1]</sup>，美国数学月刊在 1997 前后发表了多篇讨论文章，重新唤起对滚动圆环问题的注意<sup>[2,3]</sup>。所谓里特伍德问题是：“ 在一个细圆环的轮缘上固定一个质点，圆环的质量忽略不计，当圆环在粗糙水平面上作平面滚动时，有无可能解除约束跳起腾空？”</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman";"></span></p><p style=text-indent:28px;line-height:150%><span style=font-family: times new roman"; font-size: 16px;">为了确认圆环究竟能否跳起，1999 年施瓦布（Schwalbe）等人做了一个实验。他们在一个塑料制的细圈上固定一个小质量块，中间用十字支撑以维持圆环形状不变，然后用频闪仪拍摄圆环的滚动过程<sup>[4]</sup>。从拍摄的照片可以明显看出圆环确实存在短暂的腾空阶段 (图3)。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><br></span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771352" class=lazyload data-srcset="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771352" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png width=401 height=321 style="width: 401px; height: 321px;" referrerpolicy=no-referrer></span><br></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"></span><span style=font-family: times new roman"; font-size: 16px;">图3 圆环滚动的频闪摄影（引自文献[4]）<br></span></p><p style="line-height: 150%; text-align: left;"><span style="font-family: 微软雅黑," microsoft yahei";"><br></span></p><p style="line-height: 150%; text-align: left;"><span style="font-family: 微软雅黑," microsoft yahei";"></span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">从简单的物理概念考虑，可以设想当质点处于圆心的上方时，由于滚动产生的离心惯性力有可能与地面的法向约束力平衡而解除约束。如质点同时存在向上的垂直速度，必能离地跳起。</span></p><p style="text-indent: 28px; line-height: 150%; text-align: justify;"><span style=font-family: times new roman"; font-size: 16px;">仍讨论半径为 <span style=font-family: times new roman"; font-size: 20px;"><em>R</em></span><em></em>圆心为 <span style=font-family: times new roman"; font-size: 20px;"><em>O</em></span>的细圆环在地面上的纯滚动，但在环上固定一个质量为 <span style=font-family: times new roman"; font-size: 20px;"><em>m</em></span><em></em>的质点 <span style=font-family: times new roman"; font-size: 20px;"><em>P</em></span> (见图4)。环的质量忽略不计时<em>P</em>点即系统的质心。以 <em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; text-indent: 28px; white-space: normal;">O</em></em>为原点，建立与地面固定的平面参考坐标系 <span style=font-family: times new roman"; font-size: 20px;">(<em>O-xy</em>)</span>，<span style=font-family: times new roman"; font-size: 20px;"><em>x</em></span><em></em>轴和 <span style=font-family: times new roman"; font-size: 20px;"><em>y</em></span>轴分别为水平轴和垂直轴， <em><span style=font-family: times new roman"; font-size: 20px;">OP</span></em>相对 <em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; text-indent: 28px; white-space: normal;">y</em></em>轴的转角为<span style=font-family: times new roman"; font-size: 20px;"><em>φ</em></span>。圆环的圆心沿<em>x</em>轴的前进速度 <span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0</sub><span style=font-family: times new roman"; font-size: 20px;"><sub></sub>= <em>Rω</em></span>，<span style=font-family: times new roman"; font-size: 20px;"><em>ω =</em>d<em>φ</em>/d<em>t</em></span>为绕极轴的角速度，<span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0</sub>和 <span style=font-family: times new roman"; font-size: 20px;"><em>ω</em></span>均随时间 <span style=font-family: times new roman"; font-size: 20px;"><em>t</em></span>变化。以<span style=font-family: times new roman"; font-size: 20px;"><em>t</em></span><sub>0</sub>表示解除约束时刻，此时地面对圆环的法向约束力 <span style=font-family: times new roman"; font-size: 20px;"><em>F</em></span><em><sub>N</sub></em>为零，摩擦力 <span style=font-family: times new roman"; font-size: 20px;"><em>F</em></span>亦随之为零。质点 <em><em style=font-family: times new roman"; font-size: 20px; text-align: justify; text-indent: 28px; white-space: normal;">P</em></em>仅受重力 <span style=font-family: times new roman"; font-size: 20px;"><em>mg</em></span><em></em>和沿 <em><em style=font-family: times new roman"; text-align: justify; text-indent: 28px; white-space: normal;"><span style="font-size: 20px;">OP</span></em></em>方向的离心惯性力 <span style=font-family: times new roman"; font-size: 20px;"><em>mRω</em></span><sup>2</sup>作用，利用沿 <span style=font-family: times new roman"; font-size: 20px;"><em>y</em></span><em></em>轴的平衡方程导出</span></p><p style="text-indent: 28px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085906rc70eg0myrvze3pv.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/085906rc70eg0myrvze3pv.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚圆环9.png width=157 height=70 style="width: 157px; height: 70px;" referrerpolicy=no-referrer> (9)<br></span></p><p style="line-height: 150%; text-align: left;"><span style="font-size: 16px;"><span style=font-family: times new roman";">其中</span><span style="font-size: 20px;"><em style=font-family: times new roman";">φ<span style="font-size: 16px;"></span></em><span style="font-size: 16px;"><sub style=font-family: times new roman";">0</sub></span><sub style=font-family: times new roman";"></sub><span style=font-family: times new roman";">=</span><em style=font-family: times new roman";">φ</em><span style=font-family: times new roman";">(</span><em style=font-family: times new roman";">t</em><sub style=font-family: times new roman";"><span style=font-family: times new roman"; font-size: 13.3333px;">0</span></sub><span style=font-family: times new roman";">),</span> <em style=font-family: times new roman";">ω</em><sub style=font-family: times new roman";"><span style=font-family: times new roman"; font-size: 13.3333px;">0</span></sub><span style=font-family: times new roman";">=</span><em style=font-family: times new roman";">ω</em><span style=font-family: times new roman";">(</span><em style=font-family: times new roman";">t</em><sub style=font-family: times new roman";"><span style=font-family: times new roman"; font-size: 13.3333px;">0</span></sub><span style=font-family: times new roman";">)</span></span><span style=font-family: times new roman";">。为保证</span><em style=font-family: times new roman";"></em><em style="font-size: 20px; white-space: normal; font-family:" times new roman";">ω</em><sub style="white-space: normal; font-family:" times new roman";"><span style="font-size: 13.3333px;">0</span></sub><sub style=font-family: times new roman";"></sub><span style=font-family: times new roman";">有实数解，要求</span> <span style="font-size: 20px;"><span style=font-family: times new roman";">0<cos< span><em style=font-family: times new roman";">φ</em><span style="font-size: 16px;"><sub style=font-family: times new roman";">0</sub></span><sub style=font-family: times new roman";"></sub><span style=font-family: times new roman";">≤1</span></cos<></span><span style=font-family: times new roman";">，即</span></span><br></span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090009gxdf9i2zjt2kp464.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090009gxdf9i2zjt2kp464.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环10.png width=281 height=40 style="width: 281px; height: 40px;" referrerpolicy=no-referrer> (10)<br></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">即质点 <em style=font-family: times new roman"; font-size: 20px; text-align: justify; text-indent: 28px; white-space: normal;">P</em><em></em>的位置位于圆心<span style=font-family: times new roman"; text-align: justify; text-indent: 28px;"></span><em style=font-family: times new roman"; text-align: justify; text-indent: 28px; white-space: normal;"><em style="font-size: 20px;">O</em></em><em></em>的上方，且圆环的转速大于或等于临界值 <span style=font-family: times new roman"; font-size: 20px;">(<em>g</em>/<em>R</em>)</span><sup>1/2</sup>，方能保证圆环的离心力与重力平衡而解除约束。</span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><br></span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771355" class=lazyload data-srcset="https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771355" srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=image.png width=386 height=345 style="width: 386px; height: 345px;" referrerpolicy=no-referrer></span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"></span></p><p style=text-align:center;line-height:150%><span style=font-family: times new roman"; font-size: 16px; line-height: 150%;">图4 带偏心质点的滚动圆环</span></p><p style="line-height: 150%;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"><br></span></p><p style="line-height: 150%;"><span style="font-size: 16px; line-height: 150%; font-family: 宋体;"></span></p><p style=text-indent:29px;line-height:150%><span style=font-family: times new roman"; font-size: 16px;">即使解除约束，圆环能否离地还必须由质点 <em><em style=font-family: times new roman"; white-space: normal; font-size: 20px; text-align: justify; text-indent: 28px;">P</em></em><span style=font-family: times new roman";">在</span><em><span style=font-family: times new roman";"></span></em><em style=font-family: times new roman"; text-indent: 29px; white-space: normal; font-size: 20px;">t</em><sub style=font-family: times new roman"; text-indent: 29px; white-space: normal;"><span style="font-size: 13.3333px;">0</span></sub><sub style=font-family: times new roman"; text-indent: 29px; white-space: normal;"></sub><sub><span style=font-family: times new roman";"></span></sub><span style=font-family: times new roman";">时刻</span>有无垂直速度来判断。<em><em style=font-family: times new roman"; white-space: normal; font-size: 20px; text-align: justify; text-indent: 28px;">P</em></em>点的速度等于 <span style=font-family: times new roman"; font-size: 20px;"><em>O</em></span><em></em>点的水平速度 <em><em style=font-family: times new roman"; font-size: 20px; text-indent: 29px; white-space: normal;">v</em></em><sub>0</sub>与<sub></sub>滚动引起的相对 <em><em style=font-family: times new roman"; font-size: 20px; text-indent: 29px; white-space: normal;">O</em></em>点的切向速度 <span style=font-family: times new roman"; font-size: 20px;"><em>Rω</em></span><sub>0</sub>的矢量和。以 <span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0<em>x</em>,</sub> <em><em style=font-family: times new roman"; font-size: 20px; text-indent: 29px; white-space: normal;">v</em></em><sub>0<em>y</em></sub>表示 <em style="font-size: 20px; white-space: normal; font-family:" times new roman";">t</em><sub style="white-space: normal; font-family:" times new roman";"><span style="font-size: 13.3333px;">0</span></sub><sub></sub>时刻的水平和垂直速度，导出</span></p><p style="text-indent: 29px; line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090424pxjli89j11ib2729.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090424pxjli89j11ib2729.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环11.png width=142 height=37 style="width: 142px; height: 37px;" referrerpolicy=no-referrer> (11)<br></span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><span style=font-family: times new roman";"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">为保证<span style=font-family: times new roman"; font-size: 20px;"><em>v</em></span><sub>0<em>y</em></sub> <span style=font-family: times new roman"; font-size: 20px;">> 0，<em>φ</em></span><sub>0</sub>应满足</span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090541fllgmpcgvoallvc1.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090541fllgmpcgvoallvc1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环12.png width=86 height=33 style="width: 86px; height: 33px;" referrerpolicy=no-referrer> (12)<br></span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><span style=font-family: times new roman";"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">综合上述分析，圆环应同时满足条件(10)和条件(12)，得出圆环离地跳起的充分必要条件：</span></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><img src=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090738zxb3x8q9f1vq88b9.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://image.sciencenet.cn/home/202108/28/090738zxb3x8q9f1vq88b9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=滚铁环13.png width=230 height=35 style="width: 230px; height: 35px;" referrerpolicy=no-referrer> (13)<br></span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><span style=font-family: times new roman";"></span></p><p style=line-height:150%><span style=font-family: times new roman"; font-size: 16px;">因此在解除约束时刻，如圆心速度大于或等于临界值 <span style=font-family: times new roman"; font-size: 20px;">(<em>gR</em>)</span><sup>1/2</sup>，且质点位于 <span style=font-family: times new roman"; font-size: 20px;">(<em>O-xy</em>)</span> 坐标平面的第二象限时，圆环可向上跳起作抛物线运动。圆环离地腾空后，随着抛物线轨迹的下降而重新与地面接触。</span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><span style=font-family: times new roman";"><br></span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><br></p><p style=line-height:150%><span style=font-family: times new roman";">参考文献：</span></p><p class=MsoListParagraph style=margin-left:26px><span style=font-family: times new roman"; font-size: 16px;">1.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; line-height: normal; font-family:" times new roman";"></span> Littlewood J E. Littlewood’s Miscellany, Cambridge, Cambridge University Press,1986</span></p><p class=MsoListParagraph style=margin-left:26px><span style=font-family: times new roman"; font-size: 16px;">2.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 9px; line-height: normal; font-family:" times new roman";"></span> Tokeida T F. The hopping hoop, <em>Amer. Math. Monthly</em>, 1997, 104 :152-154</span></p><p class=MsoListParagraph style=margin-left:26px><span style=font-family: times new roman"; font-size: 16px;">3.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 9px; line-height: normal; font-family:" times new roman";"></span> Butler J. Hoping hoops don’t hop, <em>Amer. Math. Monthly</em>, 1999, 106: 565-568</span></p><p class=MsoListParagraph style=margin-left:26px;line-height:150%><span style=font-family: times new roman"; font-size: 16px;">4.<span style="font-variant-numeric: normal; font-variant-east-asian: normal; font-stretch: normal; font-size: 9px; line-height: normal; font-family:" times new roman";"></span> Pritchett T. The hopping hoop revisited, <em>Amer. Math. Monthly</em>, 1999, 106: 609-617</span></p><p style="text-indent: 29px; line-height: 150%; text-align: left;"><span style=font-family: times new roman";"><br></span></p><p style="text-indent:28px;vertical-align: baseline"><span style=font-family: times new roman";">（改写自：刘延柱. 滚动圆环的力学问题. 力学与实践，2002, 24(5): 74-76</span></p><p style=text-indent:98px;line-height:150%><span style=font-family: times new roman";"><span style="line-height: 150%; font-family: 宋体;">刘延柱</span><span style=font-family: times new roman"; line-height: 150%;">.</span> <span style="line-height: 150%; font-family: 宋体;">趣味刚体动力学</span><span style=font-family: times new roman"; line-height: 150%;">(</span><span style="line-height: 150%; font-family: 宋体;">第</span><span style=font-family: times new roman"; line-height: 150%;">2</span><span style="line-height: 150%; font-family: 宋体;">版</span><span style=font-family: times new roman"; line-height: 150%;">)</span><span style="line-height: 150%; font-family: 宋体;">，</span><span style=font-family: times new roman"; line-height: 150%;">1.2</span><span style="line-height: 150%; font-family: 宋体;">节</span><span style=font-family: times new roman"; line-height: 150%;">.</span> <span style="line-height: 150%; font-family: 宋体;">北京：高等教育出版社，</span><span style=font-family: times new roman"; line-height: 150%;">2018</span><span style="font-family: 宋体;">）</span></span></p><p style="line-height: 150%;"><br></p><p style="line-height: 150%; text-align: center;"><span style=font-family: times new roman";"><br></span><br></p><p><br></p><br><br><label style="font-size:13px; color:#850f0f">转载本文请联系原作者获取授权，同时请注明本文来自刘延柱科学网博客。<br>链接地址：</label><a href=http://blog.sciencenet.cn/blog-3452605-1301753.html target=_blank style="font-size:13px; color:#850f0f">http://blog.sciencenet.cn/blog-3452605-1301753.html</a><br><br>上一篇：<a href=http://blog.sciencenet.cn/blog-3452605-1301037.html target=_black>杂技力学之五：呼啦圈</a><br></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/6b59.html>https://news.zfe.space/p/6b59.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:14+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/6b59.html&title=滚动圆环的力学问题 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/6b59.html&title=滚动圆环的力学问题 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/6b59.html&title=滚动圆环的力学问题 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://bbs.sciencenet.cn/home.php?mod=attachment&filename=image.png&id=771340&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/fe7b.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>NBA球星史蒂芬·库里购入BoredApeYachtClub的NFT作品</p><p class=content>【NBA球星史蒂芬·库里购入BoredApeYachtClub的NFT作品】财联社8月28日电，8月28日，据官方消息，NBA金州勇士队球星史蒂芬·库里以55枚ETH（约18万美元）的价...</p></a><a class=next href=/p/f87a.html><p class=title>网友反映小米商城 Redmi Note 10 缺货，卢伟冰回应：缺芯片<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>IT之家 8 月 28 日消息 昨晚有网友在小米集团中国区总裁、Redmi 品牌总经理卢伟冰微博下留言称，小米商城 Redmi Note 10 缺货了，对此卢伟冰回应称“缺芯片”。IT之...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="滚动圆环的力学问题";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png></a></div><div class=article-meta id=top><a title=游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 href=/p/25a5.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png></a><h1 class=title>游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E6%B8%B8%E6%88%8F%E8%91%A1%E8%90%84/">游戏葡萄</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E6%B8%B8%E6%88%8F%E8%91%A1%E8%90%84/%E6%96%87%E7%AB%A0/">文章</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年8月24日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 data-path=/p/25a5.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p>做游戏交互设计是很孤独的。一个项目最多一位交互设计师，大家做着自己的事很少交流，小公司甚至一个人负责全公司所有项目。有交互中台做支撑的毕竟还是少数。<br></p><p>在我工作的前几年，经常一个人与项目组的策划、程序、美术、运营等同学因为各种原因展开“激烈讨论”，例如需求变更、创新程度、效果优化等等；面对一些需求也会无从入手，甚至做好的设计因为不符合项目需要被搁置。通过反思，我认为根源是设计思路局限在界面本身，提出的方案不足以提升游戏品质。</p><p>于是我用本篇文章记录下参与项目时总结的经验及对优秀设计案例的思考。从设计准备、设计过程和设计迭代三个阶段给出一些优化交互设计的思路，希望帮助其他设计师一起提升游戏设计品质。</p><p><br></p><p></p><h2><span style=color:rgb(0,176,80);><strong>01</strong></span><strong style=color:rgb(0,176,80);font-size:22px;>充足的需求分析与资料准备</strong></h2><p>在设计初期我们常遇到以下几个问题：</p><p>→ 需求改来改去，后续工种抱怨连连？</p><p>→ 方案设计的“天花乱坠”，却抓不住用户痛点？</p><p>→ 设计思路局限，关注点浮于界面本身？</p><p>→ 交互方案没有项目特点，只是没有感情的操作界面？</p><p>如果你也遇到过上述问题，多半是需求分析和资料准备不充分造成的。我试着通过以下三个方面解决上述问题，让前期准备更充分后续设计更顺畅。</p><p><span style=color:rgb(0,176,80);><strong><strong>1.1 需求分析与目标确认</strong></strong></span></p><p>通过阅读需求文档，尽力了解策划设计意图，总结方案中的设计要点，避免出现理解偏差。与负责方案的同学进行顺畅有效的沟通也是保障这一切的直接手段。“需求分析”是保证设计符合项目需求的根本途径，返工、需求频繁变更都是因为这一步准备的不够充分。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960170749784.png alt=需求分析角度.png referrerpolicy=no-referrer>需求分析的三个角度</p><p>从<span style=color:rgb(0,176,80);><strong>策划</strong></span>角度——定位设计者真实意图：</p><p>充分理解设计者意图，从留存、付费的根本目的出发，思考策划希望在此系统实现的产品目标。</p><p>例如，抽卡系统，根本目标是付费。我们的常规操作是突出立绘，并提供单抽和十连抽，但仍会面临抽卡动力不足的情况。设计师此时可以考虑使用Live2D以及当期角色专属副本等方法，从外观、特性、技能效果等多个方面刺激玩家的付费欲望，完成付费转化，最终实现产品目标。</p><p>另外，分析策划案时还要注意以下问题：<br></p><p>① 认真阅读文档：为了图快省事只看贴在文档里的示意图，很容易本末倒置抓不住重点；</p><p>② 及时指出问题：策划案中重要功能是否完整，特殊状态是否考虑全面，不同系统方案之间是否存在冲突等。一旦发现问题及时指出与策划共同商议解决，避免到后期才暴露问题，导致不必要的返工。</p><p>从<span style=color:rgb(0,176,80);><strong>玩家</strong></span>角度——思考对用户的体验价值：</p><p>掌握策划设计目的后，还要站在玩家角度思考，使用该系统功能时的心理活动和根本诉求。游玩时长是否合理？上手难度是否适中？玩家的期待是什么？等等。</p><p>要想准确抓住玩家痛点，理解用户心理活动，必不可少的是进行目标用户分析。我们通常会向用研部门或项目组制作人、主策寻求帮助，获得项目的目标用户分析报告。</p><p>总结目标人群特征，了解他们的喜好及付费习惯。目标用户的性别、语言、国家地区、年龄、习惯、教育背景、爱好等都会对交互设计产生影响，了解的足够充分才能针对用户特征调整设计倾向，提供贴合用户习惯的交互方案。</p><p>例如，不同国家与习惯对交互设计的影响：</p><p>多语言文本与界面适配一直是出海游戏的心病，在交互设计阶段就需要充分考虑；如果阿拉伯国家也在我们的发售范围内，那么从右往左的阅读和书写习惯也要纳入设计重点（单独出包/动态适配等）。</p><p>从<span style=color:rgb(0,176,80);><strong>设计师</strong></span>角度——深入分析游戏整体情况：</p><p>确认好策划意图和玩家诉求后，就可以开始对需求进行深入分析，并进行初步的整体性规划。</p><p><span style=color:rgb(0,176,80);>分析系统层级结构，做好整体规划</span></p><p>参照策划提供的系统结构图，对规划好的系统玩法进行梳理分类，整理出脉络清晰的界面结构图。这一步帮助我们建立整体性思维，有利于把控全局体验；设计具体系统时，能快速找到该系统在整个游戏中的定位及与其他系统的关联。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960242235194.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960242235194.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960242235194.png alt=系统结构.png referrerpolicy=no-referrer></p><p style=text-align:center;>常见的卡牌游戏系统结构图</p><p>相同的系统结构下，界面结构差异可能会很大，我们举个简单的例子进行说明：</p><ul class=list-paddingleft-2><li><p>首先，归纳界面层级，通常按照主界面、一级界面、二级界面、三级界面、弹窗建立框架；</p></li><li><p>接着，从主界面出发，将系统功能逐层置入合适的层级；</p></li><li><p>然后，根据体验规划和扩展性综合考量，对功能进行整合，将系统进行合并或拆分。如：主线玩法、资源副本都属于玩法相关内容，可归纳在玩法选择界面内（同一个一级界面）；</p></li><li><p>最后，与策划确认调整的内容对系统需求是否有影响，整理优化后，完成最终版界面结构图。</p></li></ul><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960270665248.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960270665248.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960270665248.png alt=界面结构图.png referrerpolicy=no-referrer>根据系统结构图制作的界面结构图</p><p><span style=color:rgb(0,176,80);>分析具体系统流程，理清系统逻辑</span></p><p>针对流程和规则较复杂的单个或多个关联系统，需要进行系统流程分析。流程图可以帮助我们快速理清系统真实情况，避免重要功能缺漏、流程不通等情况。<br></p><p>（在一些项目中，流程图会由系统策划出具，交互设计时只需拿来使用即可。）</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960297104153.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960297104153.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960297104153.png alt=流程图.png referrerpolicy=no-referrer></p><p style=text-align:center;>一个简单的流程图</p><p></p><p><span style=color:rgb(0,176,80);><strong><strong>1.2 体验竞品游戏拓宽思路，</strong></strong></span><strong style=color:rgb(0,176,80);><strong>总结有意义的优化点</strong></strong></p><p>了解市面上成熟游戏的基本情况，才能游刃有余地从游戏设计的底层出发，借鉴学习优秀的设计思路，反馈到自己的项目中去。</p><p><span style=color:rgb(0,176,80);>大量游玩竞品游戏，扩大游戏库（广度）</span></p><p>充分体验各个平台不同类型的竞品游戏与爆款游戏，了解他们的玩法特点与成功原因。</p><p>多玩不等于瞎玩。一边玩一边总结设计思考方法。多想为什么这样设计？有没有其他方法能达到同样的目的？这个设计的核心是什么？如果去掉某一部分是否仍能达到效果？</p><p>借鉴不等于照抄。《原神》第一眼让人觉得和《塞尔达：荒野之息》很相似，都有大地图探索、元素反应。《原神》制作组大概率借鉴了前者，但在最终呈现上，无论从战斗策略还是行为引导都有很大区别。仅从元素反应角度：《塞尔达》的元素反应多为环境和武器属性带来的，玩家追求更多更好的武器，探索更多的神庙及地图；《原神》则是不同角色带有不同的元素效果，追求多角色获取及培养。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960335611875.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960335611875.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960335611875.png alt=image.png referrerpolicy=no-referrer>《塞尔达荒野之息》 - 截图来源于网络</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960365847225.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960365847225.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960365847225.png alt=image-2.png referrerpolicy=no-referrer>《原神》 - 图片来自于网络</p><p><span style=color:rgb(0,176,80);>总结游戏需求循环、行为引导、设计亮点及问题（深度）</span></p><p>“在游戏设计中，我们将游戏反复建立玩家需求，并促使玩家产生有效游戏行为的循环过程称为需求循环。”</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960699919805.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960699919805.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960699919805.png alt=需求循环原理.png referrerpolicy=no-referrer>需求循环原理 - 《体验传递：游戏用户体验分析与设计》 - 机械工业出版社</p><p>分析竞品游戏核心需求循环，可以有效地帮助交互设计师理解游戏整体结构，从更深层次思考设计根源问题。总结设计问题，并尝试提出解决方案，锻炼设计思考能力，进而提升个人水平。交互设计师不只是负责信息摆放和控件大小的“界面设计师”，更是时刻关注玩家如何思考和采取行动的体验设计师。<br></p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960726454408.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960726454408.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960726454408.png alt=《原神》玩家需求循环.png referrerpolicy=no-referrer>截图来自华清飞扬内训《简单聊聊原神》课程内容</p><p>例如，《原神》的需求循环：</p><ul class=list-paddingleft-2><li><p>以开放世界大地图探索为切入点，通过制作精美的地图环境、探索解密要素、玩法考验和人物剧情，逐步引导玩家建立对元素反应及战斗的认知。进而形成对多角色（抽卡）及角色强度（养成）价值的认可。再利用游戏内的各个系统将价值转换为具体的材料、道具、代币等。最终将需求引导回各个玩法，形成闭环。</p></li><li><p>交互设计中有意义的优化点：在世界探索过程中，要用到不同元素的角色搭配战斗和解密，而目前“修改队伍配置”及“切换队伍”操作极其繁琐，无法满足玩家游玩过程中快速切换快速配置的需要。最简单的改进方式是，在主界面角色切换区域增加快速切换/进入编辑的功能，以提升操作效率。提升玩家多角色体验效率，增强多角色的培养意愿。</p><p><br></p></li></ul><p></p><p><span style=color:rgb(0,176,80);><strong>1.3 从背景设定中提取设计要素，</strong><strong>提升文化体验</strong></span></p><p>想要交互设计不再是冷冰冰的交互界面，最有效的方式是融入贴合世界观与故事背景的设计要素。</p><p>为了做好这一点，在设计准备阶段，我们通常会与美术（UI）同学一起协作，深挖项目的故事背景、整理可用要素、了解相关文化历史符号，组织组内宣讲达成共识。这些得到认可的概念和意象，将是交互设计师及UI设计师在正式设计中可以直接取用，帮助传递游戏世界观概念的重要积累。</p><p>例如，《高能手办团》围绕“手办拟人”，又从时代背景、场景环境、手办概念等方面进行拓展，把得到的相关要素运用在各系统包装、界面包装、场景化设计之中。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960772121171.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960772121171.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960772121171.png alt=高能手办团.png referrerpolicy=no-referrer></p><p style=text-align:center;>《高能手办团》部分概念要素</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960795162498.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960795162498.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960795162498.png alt=《高能手办团》后宅.png referrerpolicy=no-referrer>截图来自《高能手办团》后宅系统（手办墙）</p><h2></h2><h2><span style=color:rgb(0,176,80);><strong>02</strong><strong>设计过程中，</strong><strong>从基础设计到情感共鸣</strong></span></h2><p>在设计过程中，我们常遇到以下几个问题：</p><p>→ 交互方式不知道怎么选？</p><p>→ 信息怎么组织排布更容易理解？</p><p>→ 玩家难以获得情感共鸣？</p><p>冷静分析后，我尝试从以下三个方面解决上述问题，让最终呈现的方案既有项目特色，又符合玩家操作习惯。</p><p><br></p><p><span style=color:rgb(0,176,80);><strong><strong>2.1 依据核心机制与体验目标</strong></strong><strong>确定交互方式</strong></span></p><p>在不知如何选择交互方式时，不妨从以下几个方面进行思考：</p><ul class=list-paddingleft-2><li><p>核心机制：功能点的设计目的与需要传递的核心；</p></li><li><p>体验目标：上述功能和机制要传递给玩家的体验；</p></li><li><p>功能选取：整合增删信息及功能，以最优的方式实现上述目标；</p></li><li><p>层级选取：为功能选择合适的层级，降低玩家理解成本；</p></li><li><p>位置及样式选取：运用交互设计理论，排布和整合提升易用性，并考虑能否融入项目特色。</p></li></ul><p>我们以《偶像荣耀》的剧情表演功能为例，说明具体该如何做：</p><ul class=list-paddingleft-2><li><p>核心机制：能播放剧情动画，并提供跳过、倍速、回看、字幕开启关闭等便捷操作。</p></li><li><p>体验目标：让玩家获得电影级的沉浸式观看体验，尽可能将关注点集中在剧情当中；</p></li><li><p>功能选取：除传统的倍率、跳过、字幕功能外，在动画加载界面及剧情表演时增加横竖屏切换功能。游戏默认为竖屏模式，但竖屏不利于画面展示，此功能可以让玩家自由选择，而不是生硬的直接切换；</p></li><li><p>层级选取：为了打造沉浸式观看体验，将所有功能放在点击后显示；界面微微压黑，模拟观看视频时呼出UI的体验；</p></li><li><p>位置及样式：点击左侧边上一句，右侧边下一句功能。该位置为玩家双手持屏时，拇指的默认位置，符合玩家操作习惯；默认没有显眼的UI进行提醒，但在点击时有按下时加深效果，提示触发区域范围，进一步营造沉浸感；</p></li></ul><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960856166796.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960856166796.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960856166796.png alt=偶像荣耀.png referrerpolicy=no-referrer>截图来自《偶像荣耀》剧情表演相关界面</p><p><strong><br></strong></p><p><span style=color:rgb(0,176,80);><strong>2.2 不断迭代出更成熟的设计方法</strong></span><br></p><p></p><p>讲交互设计方法及原理的文章有很多，这里侧重分享如何积累理论知识提升设计水平。相信在项目参与过程中无论遇到多棘手的问题，都可以运用掌握的方法及时找到解题思路。</p><p><span style=color:rgb(0,176,80);>重视积累交互设计相关原理，形成自己的方法论</span></p><p>交互设计包含界面内的信息组织、用户视觉动线引导、界面层级结构安排、操作反馈等视觉方面的设计，也包括玩家心理分析、体验传递、情感传递等用户心理层面的引导。所以交互设计师既要熟练掌握视觉设计相关的内容，也要能够把握心理学的基本原理。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960886482220.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960886482220.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960886482220.png alt=Z字形视线移动.png referrerpolicy=no-referrer>《明日方舟》邮件详情界面——Z型视觉动线的应用</p><p><span style=color:rgb(0,176,80);>多了解相关环节的工作原理和实现方法</span></p><p>提高审美水平和鉴赏能力，会更容易把握整体效果；</p><p>学习游戏设计原理，能帮助我们更好的理解策划需求；</p><p>掌握一定的程序实现原理，可以让设计更好落地，交流方案时没有障碍。</p><p><span style=color:rgb(0,176,80);>制定交互设计规范，并定期维护</span></p><p>好的交互规范能保证设计的统一性和一致性，也能为UI设计师提供设计指引。有些项目会遇到多人协作/中途更换设计师等情况，很容易出现设计师习惯不同，最终交互体验不统一的情况。这时好的交互设计规范就尤为重要。</p><p><span style=color:rgb(0,176,80);>谨记交互设计基本原则：易学、易用、少打断</span></p><p>一切设计都以玩家容易理解和记忆为优先考虑，善于利用既有的生活经验或常识让玩家循序渐进逐层深入地沉浸到游戏中去，保持在顺畅的心流体验中，减少打断感。</p><p><br></p><p><span style=color:rgb(0,176,80);><strong>2.3 运用情景化设计创造情感共鸣</strong></span></p><p>情景化设计，是依据项目特点，选取符合世界观背景的场景或文化概念，对游戏内功能和交互行为进行整体性包装设计的过程。<br></p><p>情景化设计符合生活经验，玩家更易理解记忆；充分传递世界观与故事感，给玩家带来强代入感；进而让玩家在情感层面产生共鸣和触动。</p><p>但要注意适度性原则，充分考虑成本与合理性，不过度设计，不因为过度追求情景化包装导致界面难以理解和使用。</p><p>情景化设计分为以下三个步骤：</p><p><span style=color:rgb(0,176,80);><strong>对情景概念进行整体规划</strong></span></p><p>① 从准备阶段收集的世界观要素中选取合适的概念</p><p>② 为主要系统框架分配有世界观特色的概念</p><p>③ 对预计包含的系统进行归类和分组</p><p>④ 评估合理性和延展性</p><p>⑤ 敲定概念方向输出草稿</p><p>这个阶段重点表达概念、整体感觉、大致布局、交互方式，不需要填充太多细节，能说明大方向即可，细节可在具体设计环节进行完善。</p><p>例如，《哈利波特：魔法觉醒》是优秀的情景化设计案例，它的主要系统场景分配如下图所示：</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960944251688.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960944251688.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960944251688.png alt="哈利波特 图谱.png" referrerpolicy=no-referrer></p><p style=text-align:center;>《哈利波特：魔法觉醒》主要系统的场景分配</p><p><span style=color:rgb(0,176,80);><strong>具体系统情景的概念设计</strong></span></p><p>在设计具体系统时，重点是寻到能加速玩家理解感知的共鸣点。</p><p>我们以《幻书启世录》的抽卡系统为例，看通用的设计思路：</p><p>原始需求为抽卡，放在《幻书》中符合世界观的游戏行为即“召唤”，使用的文化符号为“时钟”。玩家选择抽卡方式后，通过长按“拨动时钟”，松手时钟指针停止转动，这一系列行为，使玩家获得时钟回溯到的时间不同召唤到的幻书也不同的情感共鸣。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960988586742.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960988586742.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629960988586742.png alt=图.png referrerpolicy=no-referrer>《幻书启世录》抽卡系统概念设计过程</p><p><span style=color:rgb(0,176,80);><strong>使用镜头语言连接各情境</strong></span></p><p>镜头可以将设计好的各个界面及场景链接起来，并且不同的镜头语言能够传递不同的情绪。</p><ul class=list-paddingleft-2><li><p>镜头平移，常用来表达同级内容的展示、线性流程或并列关系；</p></li><li><p>镜头推拉，常用来表达层次关系的切换，进入退出；</p></li><li><p>镜头环绕，用于表达包含关系或详细内容的解释；</p></li><li><p>镜头跟随，常用来表达情景与信息的延伸。</p></li></ul><p>例如《全境封锁2》对镜头推拉的应用：在开启菜单时有镜头推进效果，选中某个部件进行详情查看时，镜头会再次推进；返回时，镜头会逐层拉远。<br></p><h2><br></h2><h2></h2><p><span style=color:rgb(0,176,80);><strong>03</strong><strong>容易忽视的迭代优化环节</strong></span></p><p>在方案设计完成后，仍会遇到一些问题：</p><p>→ 方案看着挺好，结果无法落地？</p><p>→ 最终包内呈现的效果差强人意？</p><p>→ 有些操作手感不好？</p><p>在设计稿完成之后，交互设计工作还远没有结束，提高对“优化迭代”环节的重视，能很好的避免上面说到的一系列问题。</p><p><span style=color:rgb(0,176,80);>多方讨论，收集意见</span></p><p>方案形成过程中，遇到不确定的问题，多与各组负责人交流保障方向准确，能降低最终方案被迫大改的麻烦。</p><p>方案形成后，立即与策划、美术、程序开会讨论（或私下进行方案对齐），确认方案符合策划设计目的、美术表现目标、程序实现可行，并收集各方意见。</p><p><span style=color:rgb(0,176,80);>敲定最终方案，细节补充到位</span></p><p>宣讲或讨论会后，反思问题，针对性修改，完善方案。</p><p>补充缺少的状态，添加交互细节，提交相关的动效、特效、音效需求。</p><p>输出满足多方需求的可行性交互文档。</p><p><span style=color:rgb(0,176,80);>效果验收与整体测试，及时迭代优化</span></p><p>美术同学提交成果后，应及时与主美、策划一起完成验收，保障效果与需求一致。</p><p>方案最终在游戏内实现后，还需反复测试，充分体验各个流程与环节，针对不符合设计及体验目标的问题进行总结，提供优化方案，等待排期制作等后续步骤。</p><p><br></p><h2></h2><p><span style=color:rgb(0,176,80);><strong>04</strong><strong>要点总结</strong></span></p><p>整理刚刚的答案，我们可以得到设计高品质交互方案的一般流程与方法：</p><p>① 需求分析与目标确认</p><p>② 体验竞品游戏拓宽思路</p><p>③ 从背景设定中提取设计要素</p><p>④ 运用情景化设计创造情感共鸣（贯穿整个设计阶段）</p><p>⑤ 依据核心机制与体验目标确定交互方式</p><p>⑥ 运用多种设计原理设计具体界面</p><p>⑦ 迭代与优化</p><p><span style=color:rgb(0,176,80);><strong>最后用一个实际案例，一起回顾整个流程是如何运转的：</strong></span></p><p>小王在一个二次元偶像题材的项目做交互设计师。突然有一天，策划同学交给小王一份“角色时装系统”的策划案，于是就有了我们接下来的故事。</p><p>① 需求分析与目标确认</p><p>小王通读策划案，总结出本次设计重点是充分展示制作精美的角色时装，让玩家产生购买欲望。与主策讨论确定该系统为重点付费系统包装，投入优先级为高，可以投入较多精力配合制作。又与系统策划交流确认了一些设计细节。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629961071159599.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629961071159599.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629961071159599.png alt="角色时装 – 1.png" referrerpolicy=no-referrer>来自系统策划的需求草图</p><p>② 体验竞品游戏拓宽思路</p><p>确认好需求后，小王开始寻找竞品游戏，想看看有什么可借鉴的部分。于是游玩了《战双》《崩坏3》、《Lovelive》以及《偶像荣耀》。这几款游戏无论是2D立绘还是3D模型均把时装展示作为重点，但是给玩家带来的购买欲望却并不相同。于是，小王根据这种现象，思考并总结原因，决定在自己的设计中加以利用提升玩家购买欲。</p><p>③ 从背景设定中提取设计要素</p><p>小王从项目初期制作的《世界观概念要素》文档中选择了：“试衣间”作为“角色时装系统”的主要概念要素。</p><p>④ 运用情景化设计创造情感共鸣</p><p>经过一番思索，小王成功把“试衣间”与各个功能模块进行融合：时装列表包装为角色衣柜，角色站在试衣间中心的展示台上，利用试衣间帘子的拉开与关闭，完成3D模型的加载和切换。模拟换装过程，让玩家获得真实的试衣间换装体验。</p><p>⑤ 依据核心机制与体验目标确定交互方式</p><ul class=list-paddingleft-2><li><p>核心机制：快速选择角色时装，突出时装外观展示；</p></li><li><p>体验目标：让玩家充分感受角色魅力以及时装的独特性，产生购买欲望；</p></li><li><p>操作模式：时装模拟挂在衣柜中的效果，时装列表采用左右叠加滑动的形式，选中后，点击“确认换装”保存时装修改。考虑到拉帘子的过程会使切换对比的效率降低，遂改为用特效连接模型出生、消失的过程。</p></li></ul><p>⑥ 运用多种设计原理设计具体界面</p><p>想法基本成型后，小王与主策、主美、主程私下交流确认方案可以实现，美术效果也可以达到要求，于是开始设计界面的具体细节。经过了一番操作，最终小王拿出了如下概念设计稿，并制作了简易的切换动效。</p><p style=text-align:center;><img src=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629961109524387.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629961109524387.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" title=1629961109524387.png alt="05 商城_时装_默认.png" referrerpolicy=no-referrer>角色时装界面交互设计概念图</p><p>⑦ 迭代与优化</p><p>先与主策、系统策划、剧情策划一起讨论，包装合理方案可行，设计完全符合需求后，小王发起了三方会议。在会上美术和程序又提出了各自的困惑和问题，小王一一进行了解答和记录。会后，把达成共识的问题进行优化后发给三方会议的参与者，得到肯定的答复后，正式提出需求等待后续排期制作。</p><p>在这之后，还有美术效果验收及功能验收等等环节等着她去跟进。但总算，今天的小王终于能睡个好觉了。</p><p><br></p><p></p><h2><span style=color:rgb(0,176,80);><strong>05</strong><strong>尾声</strong></span></h2><p>有时设计师在追求创新和卓越表现时难免想要的太多，要谨记适度原则不过度设计，合理利用项目组资源，突出优势规避劣势。相信大家在工作中都有自己的经验总结和设计习惯，我的总结也不过是抛砖引玉，希望能给遇到和我一样问题的设计师一些帮助。</p><p>最后，祝福所有的设计师都能做出贴合游戏世界观、满足项目需求、超出玩家预期的高品质设计！</p><p><br></p><p><br></p><p>参考资料</p><p>1. 《如何在手游交互中实现情景化设计？》 - GameRes游资网</p><p>2. 《独家！大揭秘！网易《幻书启示录》GUI设计创作思路特辑》 - 叶子学堂</p><p>3. 《体验传递：游戏用户体验分析与设计》 – 机械工业出版社 – 路行己</p><p><br></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/25a5.html>https://news.zfe.space/p/25a5.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2021-08-28T15:07:23+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2021年8月28日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/25a5.html&title=游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/25a5.html&title=游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/25a5.html&title=游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://cdn.youxiputao.com/attach/news/2021/08/26/1629960170749784.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/6a09.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>绚烂到不知道配啥文案 ——长沙</p><p class=content>绚烂到不知道配啥文案——长沙</p></a><a class=next href=/p/211a.html><p class=title>提前筹划几百人的办公室，拳头游戏建中国研发中心究竟是为了什么<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>拳头游戏希望自己的下一个《英雄联盟》就诞生在中国。 上个月底，拳头游戏的首席执行官Nicolo Laurent宣布：将在上海建立拳头游戏全球研发中心，负责开发全新的游戏项目。这是拳头游戏...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>01 充足的需求分析与资料准备</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>02 设计过程中，从基础设计到情感共鸣</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>05 尾声</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="游戏交互设计师是如何提高游戏品质感的？这里有一份全流程指南";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>
