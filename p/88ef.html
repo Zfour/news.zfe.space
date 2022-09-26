@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>基于AI算法的数据库异常监测系统的设计与实现 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg></a></div><div class=article-meta id=top><a title=基于AI算法的数据库异常监测系统的设计与实现 href=/p/88ef.html><img class=thumbnail src=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg></a><h1 class=title>基于AI算法的数据库异常监测系统的设计与实现</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E7%BE%8E%E5%9B%A2%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/">美团技术团队</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/%E7%BE%8E%E5%9B%A2%E6%8A%80%E6%9C%AF%E5%9B%A2%E9%98%9F/%E6%9C%80%E8%BF%91%E6%9B%B4%E6%96%B0/">最近更新</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年9月1日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=基于AI算法的数据库异常监测系统的设计与实现 data-path=/p/88ef.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><h2 id=1-背景>1. 背景</h2><p>数据库被广泛用于美团的核心业务场景上，对稳定性要求较高，对异常容忍度非常低。因此，快速的数据库异常发现、定位和止损就变得越来越重要。针对异常监测的问题，传统的固定阈值告警方式，需要依赖专家经验进行规则配置，不能根据不同业务场景灵活动态调整阈值，容易让小问题演变成大故障。</p><p>而基于AI的数据库异常发现能力，可以基于数据库历史表现情况，对关键指标进行7 * 24小时巡检，能够在异常萌芽状态就发现风险，更早地将异常暴露，辅助研发人员在问题恶化前进行定位和止损。基于以上这些因素的考量，美团数据库平台研发组决定开发一套数据库异常检测服务系统。接下来，本文将会从特征分析、算法选型、模型训练与实时检测等几个维度阐述我们的一些思考和实践。</p><h2 id=2-特征分析>2. 特征分析</h2><h3 id=2-1-找出数据的变化规律>2.1 找出数据的变化规律</h3><p>在具体进行开发编码前，有一项非常重要的工作，就是从已有的历史监控指标中，发现时序数据的变化规律，从而根据数据分布的特点选取合适的算法。以下是我们从历史数据中选取的一些具有代表性的指标分布图：</p><p><img src=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图1 数据库指标形态" referrerpolicy=no-referrer></p><p>从上图我们可以看出，数据的规律主要呈现三种状态：周期、漂移和平稳<sup>[1]</sup>。因此，我们前期可以针对这些普遍特征的样本进行建模，即可覆盖大部分场景。接下来，我们分别从周期性、漂移性和平稳性这三个角度进行分析，并讨论算法设计的过程。</p><h4 id=2-1-1-周期性变化>2.1.1 周期性变化</h4><p>在很多业务场景中，指标会由于早晚高峰或是一些定时任务引起规律性波动。我们认为这属于数据的内在规律性波动，模型应该具备识别出周期性成分，检测上下文异常的能力。对于不存在长期趋势成分的时序指标而言，当指标存在周期性成分的情况下，$\int f(x) f(x+t) dx \leqslant \int f(x)f(x+T)dx = \int f^&#123;2&#125;(x)dx$，其中T代表的是时序的周期跨度。可通过计算自相关图，即计算出t取不同值时$\int f(x) f(x+t) dx$ 的值，然后通过分析自相关峰的间隔来确定周期性，主要的流程包括以下几个步骤：</p><ol><li>提取趋势成分，分离出残差序列。使用移动平均法提取出长期趋势项，跟原序列作差得到残差序列（此处周期性分析与趋势无关，若不分离趋势成分，自相关将显著受到影响，难以识别周期）。</li><li>计算残差的循环自相关（Rolling Correlation）序列。通过循环移动残差序列后，与残差序列进行向量点乘运算来计算自相关序列（循环自相关可以避免延迟衰减）。</li><li>根据自相关序列的峰值坐标来确定周期T。提取自相关序列的一系列局部最高峰，取横坐标的间隔为周期（如果该周期点对应的自相关值小于给定阈值，则认为无显著周期性）。</li></ol><p>具体过程如下：</p><p><img src=https://p0.meituan.net/travelcube/aa5e5fafe0ca38a7e141e2a8054e46a283781.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/aa5e5fafe0ca38a7e141e2a8054e46a283781.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图2 周期提取流程示意" referrerpolicy=no-referrer></p><h4 id=2-1-2-漂移性变化>2.1.2 漂移性变化</h4><p>对于待建模的序列，通常要求它不存在明显的长期趋势或是存在全局漂移的现象，否则生成的模型通常无法很好地适应指标的最新走势<sup>[2]</sup>。我们将时间序列随着时间的变化出现均值的显著变化或是存在全局突变点的情况，统称为漂移的场景。为了能够准确地捕捉时间序列的最新走势，我们需要在建模前期判断历史数据中是否存在漂移的现象。全局漂移和周期性序列均值漂移，如下示例所示：</p><p><img src=https://p0.meituan.net/travelcube/63433303092adb5b87abe3ddfc4fef70136033.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/63433303092adb5b87abe3ddfc4fef70136033.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图3 数据漂移示意" referrerpolicy=no-referrer></p><p>数据库指标受业务活动等复杂因素影响，很多数据会有非周期性的变化，而建模需要容忍这些变化。因此，区别于经典的变点检测问题，在异常检测场景下，我们只需要检测出历史上很平稳，之后出现数据漂移的情况。综合算法性能和实际表现，我们使用了基于中位数滤波的漂移检测方法，主要的流程包含以下几个环节：</p><ol><li><p>中位数平滑</p><p>a.根据给定窗口的大小，提取窗口内的中位数来获取时序的趋势成分。</p><p>b.窗口需要足够大，以避免周期因素影响，并进行滤波延迟矫正。</p><p>c.使用中位数而非均值平滑的原因在于为了规避异常样本的影响。</p></li><li><p>判断平滑序列是否递增或是递减</p><p>a.中位数平滑后的序列数据，若每个点都大于（小于）前一个点，则序列为递增（递减）序列。</p><p>b.如果序列存在严格递增或是严格递减的性质，则指标明显存在长期趋势，此时可提前终止。</p></li><li><p>遍历平滑序列，利用如下两个规则来判断是否存在漂移的现象</p><p>a.当前样本点左边序列的最大值小于当前样本点右边序列的最小值，则存在突增漂移（上涨趋势）。</p><p>b.当前样本点左边序列的最小值大于当前样本点右边序列的最大值，则存在突降漂移（下跌趋势）。</p></li></ol><h4 id=2-1-3-平稳性变化>2.1.3 平稳性变化</h4><p>对于一个时序指标，如果其在任意时刻，它的性质不随观测时间的变化而变化，我们认为这条时序是具备平稳性的。因此，对于具有长期趋势成分亦或是周期性成分的时间序列而言，它们都是不平稳的。具体示例如下图所示：</p><p><img src=https://p1.meituan.net/travelcube/2405fd527acea83975636217ea7ba19e197381.jpg class=lazyload data-srcset=https://p1.meituan.net/travelcube/2405fd527acea83975636217ea7ba19e197381.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图4 数据平稳示意" referrerpolicy=no-referrer></p><p>针对这种情况，我们可以通过单位根检验（Augmented Dickey-Fuller Test）<sup>[3]</sup>来判断给定的时间序列是否平稳。具体地说，对于一条给定时间范围指标的历史数据而言，我们认为在同时满足如下条件的情况下，时序是平稳的：</p><ol><li>最近1天的时序数据通过adfuller检验获得的p值小于0.05。</li><li>最近7天的时序数据通过adfuller检验获得的p值小于0.05。</li></ol><h2 id=3-算法选型>3. 算法选型</h2><h3 id=3-1-分布规律与算法选择>3.1 分布规律与算法选择</h3><p>通过了解业界的一些知名公司在时序数据异常检测上公布的产品介绍，加上我们历史积累的经验，以及对部分线上实际指标的抽样分析，它们的概率密度函数符合如下情况的分布：</p><p><img src=https://p0.meituan.net/travelcube/e67d505e2a2f1f315af8b46a255a32e475040.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/e67d505e2a2f1f315af8b46a255a32e475040.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图5 分布偏斜示意" referrerpolicy=no-referrer></p><p>针对上述的分布，我们调研了一些常见的算法，并确定了箱形图、绝对中位差和极值理论作为最终异常检测算法。以下是对常见时序数据检测的算法对比表：</p><table><thead><tr><th align=center>算法\场景</th><th align=center>对称分布下适用性</th><th align=center>偏态分布下适用性</th><th align=center>正态性要求</th><th align=center>异常容忍度</th></tr></thead><tbody><tr><td align=center>3Sigma</td><td align=center>高</td><td align=center>低</td><td align=center>高</td><td align=center>低</td></tr><tr><td align=center>绝对中位差（MAD）</td><td align=center>高</td><td align=center>低</td><td align=center>高</td><td align=center>高</td></tr><tr><td align=center>箱形图（Boxplot）</td><td align=center>高</td><td align=center>中</td><td align=center>中</td><td align=center>高</td></tr><tr><td align=center>极值理论（EVT）</td><td align=center>中</td><td align=center>高</td><td align=center>低</td><td align=center>低</td></tr></tbody></table><p>我们没有选择3Sigma的主要原因是它对异常容忍度较低，而绝对中位差从理论上而言具有更好的异常容忍度，所以在数据呈现高对称分布时，通过绝对中位差（MAD）替代3Sigma进行检测。我们对不同数据的分布分别采用了不同的检测算法（关于不同算法的原理可以参考文末附录的部分，这里不做过多的阐述）：</p><ol><li><strong>低偏态高对称分布</strong>：绝对中位差（MAD）</li><li><strong>中等偏态分布</strong>：箱形图（Boxplot）</li><li><strong>高偏态分布</strong>：极值理论（EVT）</li></ol><p>有了如上的分析，我们可以得出具体的根据样本输出模型的流程：</p><p><img src=https://p1.meituan.net/travelcube/94002ce342a219cfef9ec55d48da827d48017.jpg class=lazyload data-srcset=https://p1.meituan.net/travelcube/94002ce342a219cfef9ec55d48da827d48017.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图6 算法建模流程" referrerpolicy=no-referrer></p><p>算法的整体建模流程如上图所示，主要涵盖以下几个分支环节：时序漂移检测、时序平稳性分析、时序周期性分析和偏度计算。下面分别进行介绍：</p><ol><li><strong>时序漂移检测</strong>。如果检测存在漂移的场景，则需要根据检测获得的漂移点t来切割输入时序，使用漂移点后的时序样本作为后续建模流程的输入，记为S=&#123;S<sub>i</sub>&#125;，其中i>t。</li><li><strong>时序平稳性分析</strong>。如果输入时序S满足平稳性检验，则直接通过箱形图（默认）或是绝对中位差的方式来进行建模。</li><li><strong>时序周期性分析</strong>。存在周期性的情况下，将周期跨度记为T，将输入时序S根据跨度T进行切割，针对各个时间索引j∈&#123;0,1,⋯,T−1&#125;所组成的数据桶进行建模流程。不存在周期性的情况下，针对全部输入时序S作为数据桶进行建模流程。</li></ol><p><strong>案例</strong>：给定一条时间序列ts=&#123;t<sub>0</sub>,t<sub>1</sub>,⋯,t<sub>n</sub>&#125;，假定其存在周期性且周期跨度为T，对于时间索引j而言，其中j∈&#123;0,1,⋯,T−1&#125;，对其建模所需要的样本点由区间[t<sub>j−kT−m</sub>, t<sub>j−kT+m</sub>]构成，其中m为参数，代表窗口大小，k为整数，满足j−kT−m≥0, j−kT+m≤n。</p><p>举例来说，假设给定时序自2022/03/01 00:00:00至2022/03/08 00:00:00止，给定窗口大小为5，周期跨度为一天，那么对于时间索引30而言，对其建模所需要的样本点将来自于如下时间段：</p><p>[03/01 00:25:00, 03/01 00:35:00]<br>[03/02 00:25:00, 03/02 00:35:00]<br>…<br>[03/07 00:25:00, 03/07 00:35:00]</p><ol><li><strong>偏度计算</strong>。时序指标转化为概率分布图，计算分布的偏度，若偏度的绝对值超过阈值，则通过极值理论进行建模输出阈值。若偏度的绝对值小于阈值，则通过箱形图或是绝对中位差的方式进行建模输出阈值。</li></ol><h3 id=3-2-案例样本建模>3.2 案例样本建模</h3><p>这里选取了一个案例，展示数据分析及建模过程，便于更清晰的理解上述过程。其中图(a)为原始序列，图(b)为按照天的跨度进行折叠的序列，图©为图(b)中某时间索引区间内的样本经过放大后的趋势表现，图(d)中黑色曲线为图©中时间索引所对应的下阈值。如下是针对某时序的历史样本进行建模的案例：</p><p><img src=https://p0.meituan.net/travelcube/bb86d5102e8ec99eaac46a4bc8c3c5e5379250.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/bb86d5102e8ec99eaac46a4bc8c3c5e5379250.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图7 建模案例" referrerpolicy=no-referrer></p><p>上图©区域内的样本分布直方图以及阈值（已剔除其中部分异常样本），可以看到，在该高偏分布的场景中，EVT算法计算的阈值更为合理。</p><p><img src=https://p0.meituan.net/travelcube/439d0d2d6e9f3fbf7dede65c4d9e9e58356621.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/439d0d2d6e9f3fbf7dede65c4d9e9e58356621.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图8 偏斜分布阈值对比" referrerpolicy=no-referrer></p><h2 id=4-模型训练与实时检测>4. 模型训练与实时检测</h2><h3 id=4-1-数据流转过程>4.1 数据流转过程</h3><p>为了实时检测规模庞大的秒级数据，我们以基于Flink进行实时流处理为出发点，设计了如下的技术方案：</p><ol><li><strong>实时检测部分</strong>：基于Flink实时流处理，消费Mafka（美团内部的消息队列组件）消息进行在线检测，结果存储于Elasticsearch（以下简称ES）中，并产生异常记录。</li><li><strong>离线训练部分</strong>：以Squirrel（美团内部的KV数据库）作为任务队列，从MOD（美团内部运维数据仓库）读取训练数据，从配置表读取参数，训练模型，保存于ES，支持自动和手动触发训练，通过定时读取模型库的方式，进行模型加载和更新。</li></ol><p>以下是具体的离线训练和在线检测技术设计：</p><p><img src=https://p0.meituan.net/travelcube/e34558d548549a3bb7282de976277d4a77696.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/e34558d548549a3bb7282de976277d4a77696.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图9 离线训练和在线检测技术设计" referrerpolicy=no-referrer></p><h3 id=4-2-异常检测过程>4.2 异常检测过程</h3><p>异常检测算法整体采用分治思想，在模型训练阶段，根据历史数据识别提取特征，选定合适的检测算法。这里分为离线训练和在线检测两部分，离线主要根据历史情况进行数据预处理、时序分类和时序建模。在线主要加载运用离线训练的模型进行在线实时异常检测。具体设计如下图所示：</p><p><img src=https://p0.meituan.net/travelcube/667c08e98dc766447dd20371d5cea01972907.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/667c08e98dc766447dd20371d5cea01972907.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图10 异常检测过程" referrerpolicy=no-referrer></p><h2 id=5-产品运营>5. 产品运营</h2><p>为了提高优化迭代算法的效率，持续运营以提高精准率和召回率，我们借助Horae（Horae是美团内部可扩展的<a target=_blank rel=noopener href=https://tech.meituan.com/2020/10/15/mt-aiops-horae.html>时序数据异常检测系统</a>）的案例回溯能力，实现在线检测、案例保存、分析优化、结果评估、发布上线的闭环。</p><p><img src=https://p0.meituan.net/travelcube/ce64695a303cfbeb2014d0b49f79081429056.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/ce64695a303cfbeb2014d0b49f79081429056.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图11 运营流程" referrerpolicy=no-referrer></p><p>目前，异常检测算法指标如下：</p><ul><li><strong>精准率</strong>：随机选择一部分检测出异常的案例，人工校验其中确实是异常的比例，为81%。</li><li><strong>召回率</strong>：根据故障、告警等来源，审查对应实例各指标异常情况，对照监测结果计算召回率，为82%。</li><li><strong>F1-score</strong>：精准率和召回率的调和平均数，为81%。</li></ul><h2 id=6-未来展望>6. 未来展望</h2><p>目前，美团数据库异常监测能力已基本构建完成，后续我们将对产品继续进行优化和拓展，具体方向包括：</p><ol><li>具有异常类型识别能力。可以检测出异常的类型，如均值变化、波动变化、尖刺等，支持按异常类型进行告警订阅，并作为特征输入后续诊断系统，完善数据库自治生态<sup>[4]</sup>。</li><li>构建Human-in-Loop环境。支持根据反馈标注自动学习，保障模型持续优化<sup>[5]</sup>。</li><li>多种数据库场景的支持。异常检测能力平台化以支持更多数据库场景，如DB端到端报错、节点网络监测等。</li></ol><h2 id=7-附录>7. 附录</h2><h3 id=7-1-绝对中位差>7.1 绝对中位差</h3><p>绝对中位差，即Median Absolute Deviation(MAD)，是对单变量数值型数据的样本偏差的一种鲁棒性测量<sup>[6]</sup>，通常由下式计算而得：</p><p>$$MAD=C \times \operatorname&#123;median&#125;\left|X_&#123;i&#125;-\operatorname&#123;median&#125;(X)\right|$$</p><p>$$Upper=median+k \times MAD$$</p><p>$$Lower=median-k \times MAD$$</p><p>其中在先验为正态分布的情况下，一般C选择1.4826，k选择3。MAD假定样本中间的50%区域均为正常样本，而异常样本落在两侧的50%区域内。当样本服从正态分布的情况下，MAD指标相较于标准差更能适应数据集中的异常值。对于标准差，使用的是数据到均值的距离平方，较大的偏差权重较大，异常值对结果影响不能忽视，而对MAD而言少量的异常值不会影响实验的结果，MAD算法对于数据的正态性有较高要求。</p><h3 id=7-2-箱形图>7.2 箱形图</h3><p>箱形图主要通过几个统计量来描述样本分布的离散程度以及对称性，包括：</p><ul><li>Q<sub>0</sub>：最小值（Minimum）</li><li>Q<sub>1</sub>：下四分位数（Lower Quartile）</li><li>Q<sub>2</sub>：中位数（Median）</li><li>Q<sub>3</sub>：上四分位数（Upper Quartile）</li><li>Q<sub>4</sub>：最大值（Maximum）</li></ul><p><img src=https://p0.meituan.net/travelcube/1eae111a3d89e50043b42c0a3327415650665.jpg class=lazyload data-srcset=https://p0.meituan.net/travelcube/1eae111a3d89e50043b42c0a3327415650665.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="图12 箱线图" referrerpolicy=no-referrer></p><p>将Q<sub>1</sub>与Q<sub>3</sub>之间的间距称为IQR，当样本偏离上四分位1.5倍的IQR（或是偏离下四分位数1.5倍的IQR）的情况下，将样本视为是一个离群点。不同于基于正态假设的三倍标准差，通常情况下，箱形图对于样本的潜在数据分布没有任何假定，能够描述出样本的离散情况，且对样本中包含的潜在异常样本有较高的容忍度。对于有偏数据，Boxplot进行校准后建模更加符合数据分布<sup>[7]</sup>。</p><h3 id=7-3-极值理论>7.3 极值理论</h3><p>真实世界的数据很难用一种已知的分布来概括，例如对于某些极端事件（异常），概率模型（例如高斯分布）往往会给出其概率为0。极值理论<sup>[8]</sup>是在不基于原始数据的任何分布假设下，通过推断我们可能会观察到的极端事件的分布，这就是极值分布（EVD）。其数学表达式如下（互补累积分布函数公式）：</p><p>$$P(X-t>x \mid X>t) \sim\left(1+\frac&#123;\gamma x&#125;&#123;\delta(t)&#125;\right)^&#123;-\frac&#123;1&#125;&#123;\gamma&#125;&#125;$$</p><p>其中t代表样本的经验阈值，对于不同场景可以设置不同取值，$\gamma$,$\delta$分别是广义帕累托分布中的形状参数与尺度参数，在给定样本超过人为设定的经验阈值t的情况下，随机变量X-t是服从广义帕累托分布的。通过极大似然估计方法我们可以计算获得参数估计值$\hat&#123;\gamma&#125;$与$\hat&#123;\delta&#125;$ ，并且通过如下公式来求取模型阈值：</p><p><img src=https://p0.meituan.net/travelcube/d3130f26b0a3e86fa36236c3b029a5489891.png class=lazyload data-srcset=https://p0.meituan.net/travelcube/d3130f26b0a3e86fa36236c3b029a5489891.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>上述公式中q代表风险参数，n是所有样本数量，Nt是满足x-t>0的样本数量。由于通常情况下对于经验阈值t的估计没有先验的信息，因此可以使用样本经验分位数来替代数值t，这里经验分位数的取值可以根据实际情况来选择。</p><h2 id=8-参考资料>8. 参考资料</h2><ul><li>[1] Ren, H., Xu, B., Wang, Y., Yi, C., Huang, C., Kou, X., … & Zhang, Q. (2019, July). Time-series anomaly detection service at microsoft. In Proceedings of the 25th ACM SIGKDD international conference on knowledge discovery & data mining (pp. 3009-3017).</li><li>[2] Lu, J., Liu, A., Dong, F., Gu, F., Gama, J., & Zhang, G. (2018). Learning under concept drift: A review. IEEE Transactions on Knowledge and Data Engineering, 31(12), 2346-2363.</li><li>[3] Mushtaq, R. (2011). Augmented dickey fuller test.</li><li>[4] Ma, M., Yin, Z., Zhang, S., Wang, S., Zheng, C., Jiang, X., … & Pei, D. (2020). Diagnosing root causes of intermittent slow queries in cloud databases. Proceedings of the VLDB Endowment, 13(8), 1176-1189.</li><li>[5] Holzinger, A. (2016). Interactive machine learning for health informatics: when do we need the human-in-the-loop?. Brain Informatics, 3(2), 119-131.</li><li>[6] Leys, C., Ley, C., Klein, O., Bernard, P., & Licata, L. (2013). Detecting outliers: Do not use standard deviation around the mean, use absolute deviation around the median. Journal of experimental social psychology, 49(4), 764-766.</li><li>[7] Hubert, M., & Vandervieren, E. (2008). An adjusted boxplot for skewed distributions. Computational statistics & data analysis, 52(12), 5186-5201.</li><li>[8] Siffer, A., Fouque, P. A., Termier, A., & Largouet, C. (2017, August). Anomaly detection in streams with extreme value theory. In Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining (pp. 1067-1075).</li></ul><h2 id=关于团队>关于团队</h2><p>美团基础技术部/数据库研发中心/数据库平台研发组，负责为美团各个业务线提供高效便捷的数据库使用入口，帮助美团DBA稳定快捷地维护数据库，同时提供分析诊断平台，实现数据库自治。</p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/88ef.html>https://news.zfe.space/p/88ef.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:26+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/88ef.html&title=基于AI算法的数据库异常监测系统的设计与实现 - 小冰 RSSHub&pics=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/88ef.html&title=基于AI算法的数据库异常监测系统的设计与实现 - 小冰 RSSHub&pics=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/88ef.html&title=基于AI算法的数据库异常监测系统的设计与实现 - 小冰 RSSHub&pics=https://p0.meituan.net/travelcube/e73143a45d011be29adda0609e5985b5477470.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/9664.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>【每周游戏特惠推荐】休闲恐怖游戏史低特惠</p><p class=content>¥33.3｜新史低 -10%｜9 月 7 日截止好评 100%，支持中文， 互动小说 / 恐怖 / 解谜招宠物管理员。一款鼠标操作的恐怖冒险游戏。给植物浇水，给宠物喂食，一定不要关灯。商...</p></a><a class=next href=/p/d24d.html><p class=title>中文自然语言处理顶赛第一！腾讯游戏知几算法团队探索生成式对话落地应用<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>1、 导语 语言是人类传递信息最重要的媒介，也是人类与其他动物有所区别最重要的属性。让机器理解语言并进行交互是人工智能的重要挑战，与之对应的自然语言处理（NLP）技术在各个领域都发挥着...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#1-%E8%83%8C%E6%99%AF><span class=toc-text>1. 背景</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#2-%E7%89%B9%E5%BE%81%E5%88%86%E6%9E%90><span class=toc-text>2. 特征分析</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#2-1-%E6%89%BE%E5%87%BA%E6%95%B0%E6%8D%AE%E7%9A%84%E5%8F%98%E5%8C%96%E8%A7%84%E5%BE%8B><span class=toc-text>2.1 找出数据的变化规律</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link href=#2-1-1-%E5%91%A8%E6%9C%9F%E6%80%A7%E5%8F%98%E5%8C%96><span class=toc-text>2.1.1 周期性变化</span></a></li><li class="toc-item toc-level-4"><a class=toc-link href=#2-1-2-%E6%BC%82%E7%A7%BB%E6%80%A7%E5%8F%98%E5%8C%96><span class=toc-text>2.1.2 漂移性变化</span></a></li><li class="toc-item toc-level-4"><a class=toc-link href=#2-1-3-%E5%B9%B3%E7%A8%B3%E6%80%A7%E5%8F%98%E5%8C%96><span class=toc-text>2.1.3 平稳性变化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#3-%E7%AE%97%E6%B3%95%E9%80%89%E5%9E%8B><span class=toc-text>3. 算法选型</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#3-1-%E5%88%86%E5%B8%83%E8%A7%84%E5%BE%8B%E4%B8%8E%E7%AE%97%E6%B3%95%E9%80%89%E6%8B%A9><span class=toc-text>3.1 分布规律与算法选择</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#3-2-%E6%A1%88%E4%BE%8B%E6%A0%B7%E6%9C%AC%E5%BB%BA%E6%A8%A1><span class=toc-text>3.2 案例样本建模</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#4-%E6%A8%A1%E5%9E%8B%E8%AE%AD%E7%BB%83%E4%B8%8E%E5%AE%9E%E6%97%B6%E6%A3%80%E6%B5%8B><span class=toc-text>4. 模型训练与实时检测</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#4-1-%E6%95%B0%E6%8D%AE%E6%B5%81%E8%BD%AC%E8%BF%87%E7%A8%8B><span class=toc-text>4.1 数据流转过程</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#4-2-%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E8%BF%87%E7%A8%8B><span class=toc-text>4.2 异常检测过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#5-%E4%BA%A7%E5%93%81%E8%BF%90%E8%90%A5><span class=toc-text>5. 产品运营</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#6-%E6%9C%AA%E6%9D%A5%E5%B1%95%E6%9C%9B><span class=toc-text>6. 未来展望</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#7-%E9%99%84%E5%BD%95><span class=toc-text>7. 附录</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#7-1-%E7%BB%9D%E5%AF%B9%E4%B8%AD%E4%BD%8D%E5%B7%AE><span class=toc-text>7.1 绝对中位差</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#7-2-%E7%AE%B1%E5%BD%A2%E5%9B%BE><span class=toc-text>7.2 箱形图</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#7-3-%E6%9E%81%E5%80%BC%E7%90%86%E8%AE%BA><span class=toc-text>7.3 极值理论</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#8-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99><span class=toc-text>8. 参考资料</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%85%B3%E4%BA%8E%E5%9B%A2%E9%98%9F><span class=toc-text>关于团队</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="基于AI算法的数据库异常监测系统的设计与实现";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

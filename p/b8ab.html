@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>基于 Obsidian 的生活记录系统 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png></a></div><div class=article-meta id=top><a title="基于 Obsidian 的生活记录系统" href=/p/b8ab.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png></a><h1 class=title>基于 Obsidian 的生活记录系统</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/Hexo/">Hexo</a><span class=sep></span><a class=category-link href="/categories/%E5%8D%9A%E5%AE%A2/Hexo/Next-%E4%B8%BB%E9%A2%98%E5%8D%9A%E5%AE%A2/">Next 主题博客</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年7月9日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="基于 Obsidian 的生活记录系统" data-path=/p/b8ab.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class=post-toc-content><div class=post-toc-title>文章目录</div><ol class=nav><li class="nav-item nav-level-2"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#%E7%BB%93%E6%9E%84><span class=nav-text>结构</span></a></li><li class="nav-item nav-level-2"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#%E6%97%A5%E8%AE%B0><span class=nav-text>日记</span></a><ol class=nav-child><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Info><span class=nav-text>Info</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#OKR-Tracker><span class=nav-text>OKR Tracker</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Notes><span class=nav-text>Notes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%91%A8%E8%AE%B0%E5%92%8C%E6%9C%88%E8%AE%B0><span class=nav-text>周记和月记</span></a><ol class=nav-child><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Jornal-List><span class=nav-text>Jornal List</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Summary><span class=nav-text>Summary</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#OKR-Tracker-1><span class=nav-text>OKR Tracker</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Statistics><span class=nav-text>Statistics</span></a></li><li class="nav-item nav-level-3"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#Finance><span class=nav-text>Finance</span></a></li></ol></li><li class="nav-item nav-level-2"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%B9%B4%E8%AE%B0><span class=nav-text>年记</span></a></li><li class="nav-item nav-level-2"><a class=nav-link target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%B1%80%E9%99%90><span class=nav-text>局限</span></a></li></ol></div><p>正如我在 <a target=_blank rel=noopener href=http://diygod.me/2020>2020 年终总结</a> 中提到，我一直在用 Notion 写子弹笔记，现在它有了亿点点不一样，现在我们就来重新窥探一下我目前的生活记录系统</p><p><strong>日记</strong><br><picture><source srcset=/images/obsidian-1.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><span id=more></span><p><strong>周记</strong>和<strong>月记</strong><br><picture><source srcset=/images/obsidian-8.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-8.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><p><strong>年记</strong><br><picture><source srcset=/images/obsidian-9.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-9.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><p>原 Notion 子弹笔记<br><picture><source srcset=/images/2020-1.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/2020-1.jpg class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/2020-1.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=50% referrerpolicy=no-referrer></picture></p><p>受益于 Obsidian 强大的自动化能力和极高的自由度，日/周/月/年笔记通过预设模板自动生成，互相联动，需要手动处理的部分很少</p><p>全部文件已上传至 GitHub：<a target=_blank rel=noopener href=https://github.com/DIYgod/DIYgod-Obsidian-Starter>https://github.com/DIYgod/DIYgod-Obsidian-Starter</a>，包括主题、插件、配置文件、自己定制的样式、模板文件、示例文件等，只是作为一个示例，请根据自己实际情况修改</p><p>这些东西乍一看是有一些复杂，但其实用起来很简单，自由度和可扩展性也很强，下面我来详细介绍</p><h2 id=结构><a target=_blank rel=noopener href=http://diygod.me/obsidian/#%E7%BB%93%E6%9E%84 class=headerlink title=结构></a>结构</h2><p>目录结构如日记图左侧栏所示</p><figure class="highlight plaintext"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br><span class=line>7</span><br><span class=line>8</span><br></pre></td><td class=code><pre><span class=line>├── OKR.md</span><br><span class=line>└── Journal</span><br><span class=line>    └── 2022</span><br><span class=line>        ├── W1</span><br><span class=line>        |   └── 2022-01-01.md</span><br><span class=line>        |   └── 2022-W1.md</span><br><span class=line>        ├── 2022-01.md</span><br><span class=line>        └── 2022.md</span><br></pre></td></tr></tbody></table></figure><p>每天会自动在本周的文件夹中生成当天的日记文件 <code>YYYY-MM-DD.md</code>，每周会自动新建一个周文件夹 <code>[W]ww</code> 和周记 <code>YYYY-[W]ww.md</code>，每月会自动生成月记 <code>YYYY-MM.md</code>，每年会自动新建一个年文件夹 <code>YYYY</code> 和年记 <code>YYYY.md</code>（更正：不是自动，仍然需要命令面板手动触发）</p><p>这些文件的内容也都是模板预设好的，已经自动填充了日期、本周期 OKR 分数和图表，甚至当天的位置、天气、月相等信息，还留出了记录当天状态和动态的位置</p><p>外面有一个 OKR 文件，大概半年更新一次，里面记录这半年的人生目标，其中有一些目标是需要每天持续努力的，日记系统的很大部分就是围绕这些目标来构建的</p><p>目录结构主要通过 <a target=_blank rel=noopener href=https://github.com/liamcain/obsidian-periodic-notes>Periodic Notes</a> 实现，模板主要通过 <a target=_blank rel=noopener href=https://github.com/SilentVoid13/Templater>Templater</a> 和 <a target=_blank rel=noopener href=https://github.com/blacksmithgu/obsidian-dataview>Dataview</a> 和核心插件 Templates 实现</p><h2 id=日记><a target=_blank rel=noopener href=http://diygod.me/obsidian/#%E6%97%A5%E8%AE%B0 class=headerlink title=日记></a>日记</h2><p><picture><source srcset=/images/obsidian-1.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><h3 id=Info><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Info class=headerlink title=Info></a>Info</h3><p>Info 是自动生成的当天信息，包括指向年月周记和 OKR 的链接，位置、天气、月相等信息</p><p>位置、天气、月相信息来自 Templater 的调用系统命令功能</p><p>获取位置和天气</p><figure class="highlight sh"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br></pre></td><td class=code><pre><span class=line>curl wttr.in/<span class=string>"<span class=subst>$(curl -s --header <span class=string>"user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36"</span> https://api.ip.sb/geoip | /opt/homebrew/bin/jq -r <span class=string>".city"</span> | sed 's/ /%20/')</span>"</span>\?format=<span class=string>"%l+%c%t"</span></span><br></pre></td></tr></tbody></table></figure><p>获取月相</p><figure class="highlight sh"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br></pre></td><td class=code><pre><span class=line>curl wttr.in/<span class=string>"<span class=subst>$(curl -s --header <span class=string>"user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.75 Safari/537.36"</span> https://api.ip.sb/geoip | /opt/homebrew/bin/jq -r <span class=string>".city"</span> | sed 's/ /%20/')</span>"</span>\?format=<span class=string>"%m"</span></span><br></pre></td></tr></tbody></table></figure><h3 id=OKR-Tracker><a target=_blank rel=noopener href=http://diygod.me/obsidian/#OKR-Tracker class=headerlink title="OKR Tracker"></a>OKR Tracker</h3><p>OKR Tracke 跟踪记录当天当前阶段的 OKR 完成状况，比如 <code>Sleep:: 10.3</code> 代表今天睡了 10.3 小时，<code>Healthy Eating:: 5</code> 代表今天吃得很健康，<code>::</code> 是 Dataview 语法，会给当前页面增加</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br></pre></td><td class=code><pre><span class=line>page = &#123;</span><br><span class=line>    ...</span><br><span class=line>    <span class=string>"Sleep"</span>: <span class=number>10.3</span>,</span><br><span class=line>    <span class=string>"Healthy Eating"</span>: <span class=number>5</span>,</span><br><span class=line>&#125;</span><br></pre></td></tr></tbody></table></figure><p>这样的属性，方便接下来在周月年记中做分析和处理</p><p>其中 O1 KR2 下有一个特殊的列表，通过 API 展示了当天 Toggl Track 数据， Toggl Track 是一个时间记录应用，记录我每天在各项事务中花费的时间，比如看番时间、刷B站时间、工作时间等，这些数据同样可以反映我今天的生产力是否符合预期</p><h3 id=Notes><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Notes class=headerlink title=Notes></a>Notes</h3><p>这里是真正写日记的地方，多数是一些流水账，来弥补我天生糟糕的记忆力，偶尔也会写一些想法</p><h2 id=周记和月记><a target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%91%A8%E8%AE%B0%E5%92%8C%E6%9C%88%E8%AE%B0 class=headerlink title=周记和月记></a>周记和月记</h2><p><picture><source srcset=/images/obsidian-8.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-8.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><h3 id=Jornal-List><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Jornal-List class=headerlink title="Jornal List"></a>Jornal List</h3><p>Jornal List 是自动生成的本周/月全部日记的列表，通过 Dataview 实现</p><p>获取全部日记</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br></pre></td><td class=code><pre><span class=line><span class=comment>// Week</span></span><br><span class=line><span class="variable language_">window</span>.<span class=property>pages</span> = dv.<span class="title function_">pages</span>(<span class=string>`"<span class=subst>$&#123;dv.current().file.folder&#125;</span>"`</span>).<span class="title function_">where</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>file</span>.<span class=property>name</span>.<span class="title function_">match</span>(<span class=keyword>new</span> <span class="title class_">RegExp</span>(<span class=string>`<span class=subst>$&#123;dv.current().file.name.split(<span class=string>'-'</span>)[<span class=number>0</span>]&#125;</span>-\\d&#123;2&#125;-\\d&#123;2&#125;`</span>))).<span class="title function_">sort</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>file</span>.<span class=property>name</span>);</span><br><span class=line></span><br><span class=line><span class=comment>// Month</span></span><br><span class=line><span class="variable language_">window</span>.<span class=property>pages</span> = dv.<span class="title function_">pages</span>().<span class="title function_">where</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>file</span>.<span class=property>name</span>.<span class="title function_">match</span>(<span class=keyword>new</span> <span class="title class_">RegExp</span>(<span class=string>`<span class=subst>$&#123;dv.current().file.name&#125;</span>-\\d&#123;2&#125;`</span>))).<span class="title function_">sort</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>file</span>.<span class=property>name</span>);</span><br></pre></td></tr></tbody></table></figure><p>渲染列表</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br></pre></td><td class=code><pre><span class=line>dv.<span class="title function_">paragraph</span>(<span class="variable language_">window</span>.<span class=property>pages</span>.<span class=property>file</span>.<span class=property>link</span>.<span class="title function_">join</span>(<span class=string>', '</span>))</span><br></pre></td></tr></tbody></table></figure><h3 id=Summary><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Summary class=headerlink title=Summary></a>Summary</h3><p>这里是月末做总结和反思的地方，对应日记里的 Notes</p><h3 id=OKR-Tracker-1><a target=_blank rel=noopener href=http://diygod.me/obsidian/#OKR-Tracker-1 class=headerlink title="OKR Tracker"></a>OKR Tracker</h3><p>在这里处理和分析全部日记里的 OKR 数据，最后生成分数，对应日记里的 OKR Tracker</p><p>它通过 Dataview 实现，以睡眠为例，≥ 6.5 小时且 ≤ 8.5 小时计为有效睡眠，有效睡眠天数占总天数的百分比即为得分</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br><span class=line>7</span><br><span class=line>8</span><br><span class=line>9</span><br><span class=line>10</span><br><span class=line>11</span><br><span class=line>12</span><br><span class=line>13</span><br><span class=line>14</span><br></pre></td><td class=code><pre><span class=line><span class=keyword>let</span> count = <span class=number>0</span>;</span><br><span class=line><span class=keyword>let</span> total = <span class=number>0</span>;</span><br><span class=line><span class=keyword>for</span> (<span class=keyword>let</span> page <span class=keyword>of</span> <span class="variable language_">window</span>.<span class=property>pages</span>) &#123;</span><br><span class=line>    <span class=keyword>if</span> (page[<span class=string>'Sleep'</span>]) &#123;</span><br><span class=line>        count++;</span><br><span class=line>        <span class=keyword>if</span> (page[<span class=string>'Sleep'</span>] >= <span class=number>6.5</span> && page[<span class=string>'Sleep'</span>] <= <span class=number>8.5</=></span>) &#123;<br><span class=line>            total++;</span><br><span class=line>        &#125;</span><br><span class=line>    &#125;</span><br><span class=line>&#125;</span><br><span class=line><span class=keyword>const</span> score = (total / count * <span class=number>100</span>).<span class="title function_">toFixed</span>(<span class=number>2</span>);</span><br><span class=line>dv.<span class="title function_">el</span>(<span class=string>'div'</span>, score + <span class=string>'%'</span>, &#123;</span><br><span class=line>    <span class=attr>cls</span>: score > <span class=number>80</span> ? <span class=string>'score-class1'</span> : score > <span class=number>50</span> ? <span class=string>'score-class2'</span> : <span class=string>'score-class3'</span></span><br><span class=line>&#125;);</span><br></pre></td></tr></tbody></table></figure><p>再自己加一点 CSS，> 80 分显示为绿色，50-80 分显示为黄色，<50 分显示为红色，这样就可以很清楚看出本周 月的睡觉情况，图里是黄色区间，不太好但还可以接受，下个月需要多留意< p><h3 id=Statistics><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Statistics class=headerlink title=Statistics></a>Statistics</h3><p>在这里把睡眠和运动数据生成统计图，可以清楚看出睡眠时长还是挺不稳定的，运动天数和时长都很少</p><p>统计图通过 <a target=_blank rel=noopener href=https://github.com/phibr0/obsidian-charts>Obsidian Charts</a> 绘制，睡眠统计图代码如下</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br><span class=line>7</span><br><span class=line>8</span><br><span class=line>9</span><br><span class=line>10</span><br><span class=line>11</span><br><span class=line>12</span><br><span class=line>13</span><br><span class=line>14</span><br><span class=line>15</span><br><span class=line>16</span><br><span class=line>17</span><br><span class=line>18</span><br><span class=line>19</span><br><span class=line>20</span><br><span class=line>21</span><br><span class=line>22</span><br><span class=line>23</span><br><span class=line>24</span><br><span class=line>25</span><br><span class=line>26</span><br><span class=line>27</span><br><span class=line>28</span><br><span class=line>29</span><br><span class=line>30</span><br></pre></td><td class=code><pre><span class=line><span class=keyword>const</span> times = [];</span><br><span class=line><span class=keyword>for</span> (<span class=keyword>let</span> page <span class=keyword>of</span> <span class="variable language_">window</span>.<span class=property>pages</span>) &#123;</span><br><span class=line>    times.<span class="title function_">push</span>(page[<span class=string>'Sleep'</span>]);</span><br><span class=line>&#125;</span><br><span class=line></span><br><span class=line><span class=keyword>const</span> chartData = &#123;</span><br><span class=line>    <span class=attr>type</span>: <span class=string>'line'</span>,</span><br><span class=line>    <span class=attr>data</span>: &#123;</span><br><span class=line>        <span class=attr>labels</span>: <span class="variable language_">window</span>.<span class=property>pages</span>.<span class=property>file</span>.<span class=property>name</span>.<span class="title function_">array</span>(),</span><br><span class=line>        <span class=attr>datasets</span>: [&#123;</span><br><span class=line>            <span class=attr>label</span>: <span class=string>'Sleep Time'</span>,</span><br><span class=line>            <span class=attr>data</span>: times,</span><br><span class=line>            <span class=attr>pointBackgroundColor</span>: <span class=string>'#6c40d6'</span>,</span><br><span class=line>            <span class=attr>borderColor</span>: <span class=string>'#6c40d65c'</span>,</span><br><span class=line>            <span class=attr>tension</span>: <span class=number>0.4</span>,</span><br><span class=line>            <span class=attr>spanGaps</span>: <span class=literal>true</span>,</span><br><span class=line>        &#125;],</span><br><span class=line>    &#125;,</span><br><span class=line>    <span class=attr>options</span>: &#123;</span><br><span class=line>        <span class=attr>scales</span>: &#123;</span><br><span class=line>            <span class=attr>y</span>: &#123;</span><br><span class=line>                <span class=attr>type</span>: <span class=string>'linear'</span>,</span><br><span class=line>                <span class=attr>min</span>: <span class=number>2</span>,</span><br><span class=line>                <span class=attr>max</span>: <span class=number>13</span></span><br><span class=line>            &#125;</span><br><span class=line>        &#125;</span><br><span class=line>    &#125;</span><br><span class=line>&#125;</span><br><span class=line></span><br><span class=line><span class="variable language_">window</span>.<span class="title function_">renderChart</span>(chartData, <span class="variable language_">this</span>.<span class=property>container</span>);</span><br></pre></td></tr></tbody></table></figure><h3 id=Finance><a target=_blank rel=noopener href=http://diygod.me/obsidian/#Finance class=headerlink title=Finance></a>Finance</h3><p>本月的财务数据饼状图，通过 MoneyWiz 生成</p><h2 id=年记><a target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%B9%B4%E8%AE%B0 class=headerlink title=年记></a>年记</h2><p><picture><source srcset=/images/obsidian-9.webp type=image/webp><img loading=lazy src=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-9.png class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></picture></p><p>年记与周记月记相似度也很高，但通过扩大时间尺度，可以得出很多新的有用结论</p><p>比如同样的睡眠和运动统计图，在年的尺度里就可以看出我是在 5 月底睡眠开始失控，在这期间运动也中断了，又从 6 月中旬得到缓解</p><p>还有新的体重体脂统计图，可以看出我的体重和体脂都在稳步下降，健康状况有明显改善</p><p>年记还出现了新的一种热图，记录达到目标的日子，通过 <a target=_blank rel=noopener href=https://github.com/Richardsl/heatmap-calendar-obsidian>Heatmap Calendar</a> 绘制，以睡眠为例</p><figure class="highlight js"><table><tbody><tr><td class=gutter><pre><span class=line>1</span><br><span class=line>2</span><br><span class=line>3</span><br><span class=line>4</span><br><span class=line>5</span><br><span class=line>6</span><br><span class=line>7</span><br><span class=line>8</span><br><span class=line>9</span><br><span class=line>10</span><br><span class=line>11</span><br><span class=line>12</span><br><span class=line>13</span><br><span class=line>14</span><br><span class=line>15</span><br><span class=line>16</span><br></pre></td><td class=code><pre><span class=line><span class=keyword>const</span> calendarData = &#123; </span><br><span class=line>    <span class=attr>entries</span>: [],</span><br><span class=line>&#125;</span><br><span class=line></span><br><span class=line><span class=keyword>const</span> pages = <span class="variable language_">window</span>.<span class=property>pages</span></span><br><span class=line>    .<span class="title function_">where</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>Sleep</span> && p.<span class=property>Sleep</span> >= <span class=number>6.5</span> && p.<span class=property>Sleep</span> <= <span class=number>8.5</=></span>)<br><span class=line>    .<span class="title function_">sort</span>(<span class=function><span class=params>p</span> =></span> p.<span class=property>file</span>.<span class=property>name</span>);</span><br><span class=line></span><br><span class=line><span class=keyword>for</span>(<span class=keyword>let</span> page <span class=keyword>of</span> pages)&#123; </span><br><span class=line>    calendarData.<span class=property>entries</span>.<span class="title function_">push</span>(&#123;</span><br><span class=line>        <span class=attr>date</span>: page.<span class=property>file</span>.<span class=property>name</span>,</span><br><span class=line>        <span class=attr>intensity</span>: page.<span class=property>Sleep</span>,</span><br><span class=line>    &#125;)</span><br><span class=line>&#125;</span><br><span class=line></span><br><span class=line><span class="title function_">renderHeatmapCalendar</span>(<span class="variable language_">this</span>.<span class=property>container</span>, calendarData);</span><br></pre></td></tr></tbody></table></figure><h2 id=局限><a target=_blank rel=noopener href=http://diygod.me/obsidian/#%E5%B1%80%E9%99%90 class=headerlink title=局限></a>局限</h2><p>子弹笔记有一个很重要的任务清单模块，如上面子弹笔记截图所示，我之前会把一周的任务清单都提前写在笔记里，但现在日记都是当天自动生成，无法提前计划，所以我把任务清单都改用了滴答清单来管理，滴答清单当然也很好用，但是这样就少了与日记的联动，手动添加又会造成很多重复工作，就不是很爽</p><p>最后需要注意的是，即使有这样的生活管理系统也不意味着生活就会一切按照预期，就像上面举例的 5 月底睡眠失控事件，一旦放松失控仍会发生，笔记会告诉我生活正在失控，但如何回到正轨和追赶上 OKR 还是要靠自控力和坚持的定期总结、反思和改进</p></50></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/b8ab.html>https://news.zfe.space/p/b8ab.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:22+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/b8ab.html&title=基于 Obsidian 的生活记录系统 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/b8ab.html&title=基于 Obsidian 的生活记录系统 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/b8ab.html&title=基于 Obsidian 的生活记录系统 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://diygod.me/images/obsidian-1.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/11aa.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>【空中医疗队】第一季 加拿大2022年最新医疗剧 深影字幕组双语字幕 更新至第九集</p><p class=content>空中医疗队第一季 【译 名】：空中医疗队【原 名】：Skymed【年 代】：2022【国 家】：加拿大【类 别】：剧情 /...</p></a><a class=next href=/p/d955.html><p class=title>玩转 iOS _ iPadOS 16<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>升级 iOS / iPadOS 16 之后，这些功能和技巧不要错过。如有兴趣,请复制链接订阅 https://rsshub.app/sspai/topic/411 ...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link href=#%E7%BB%93%E6%9E%84><span class=toc-text>结构</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E6%97%A5%E8%AE%B0><span class=toc-text>日记</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#Info><span class=toc-text>Info</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#OKR-Tracker><span class=toc-text>OKR Tracker</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#Notes><span class=toc-text>Notes</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%91%A8%E8%AE%B0%E5%92%8C%E6%9C%88%E8%AE%B0><span class=toc-text>周记和月记</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link href=#Jornal-List><span class=toc-text>Jornal List</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#Summary><span class=toc-text>Summary</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#OKR-Tracker-1><span class=toc-text>OKR Tracker</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#Statistics><span class=toc-text>Statistics</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#Finance><span class=toc-text>Finance</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%B9%B4%E8%AE%B0><span class=toc-text>年记</span></a></li><li class="toc-item toc-level-2"><a class=toc-link href=#%E5%B1%80%E9%99%90><span class=toc-text>局限</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="基于 Obsidian 的生活记录系统";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

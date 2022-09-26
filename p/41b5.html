@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>对标腾讯产品能力模型，搭建自己的产品能力素质框架 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture></a></div><div class=article-meta id=top><a title=对标腾讯产品能力模型，搭建自己的产品能力素质框架 href=/p/41b5.html><img class=thumbnail src=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture></a><h1 class=title>对标腾讯产品能力模型，搭建自己的产品能力素质框架</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E7%94%A8%E6%88%B7%E6%96%87%E7%AB%A0/">用户文章</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2020年1月18日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=对标腾讯产品能力模型，搭建自己的产品能力素质框架 data-path=/p/41b5.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><blockquote><p>本文总计6556字，剖析腾讯产品职业模型P1-3，预计耗时30分钟，如果您已经过了这个阶段，请慎入。</p></blockquote><p><img alt=business-1137366_1280.jpg src=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture class=lazyload data-srcset=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=905 coffee-w=1280px coffee-h=905px coffee-format=jpeg referrerpolicy=no-referrer><br></p><p>产品经理是一个多面手，在日常工作中涉及的范围十分广泛，从产品的idea到规划设计，从开发到测试，从上市到运营，以及数据分析、产品培训等等，不同行业对产品经理的要求也多有不同。</p><p>之前也提到过，互联网和软件行业的产品经理最是相似，所以老王打算从自身的实际情况出发，整理一份理想的产品经理能力素质框架，分析一下自身的情况，然后一点点完善自身。</p><p>老王知道有很多大公司内部，是有产品经理能力素质规范以及考核梯度的，不幸的是老王没有参与过类似的培训，所以我打算运用产品经理出色的执行力，自己去寻找这样一份能力素质规范。</p><p>在互联网圈里之前流传过这样一句话，‘阿里的运营、百度的技术、腾讯的产品’，所以老王想找一份腾讯的产品经理能力素质的框架。</p><p>不得不说老王又是幸运的，在很多产品经理聚集的地方认识了一些大神，虽然他们不能给我开工资，但是也依然愿意无偿的为老王指点迷津，所以我找到了这样一个框架。</p><p>手动 <strong><a href=https://www.pmcaff.com/user/profile/69115 target=_blank rel="noreferrer noopener">@涛哥</a></strong> 感谢！后来我发现网上到处都是，只不过我这个是excel版的。</p><p>姑且先看一下这个能力框架的基本定义，分为4类能力，共19个能力项目。这四类分别是：<strong>通用能力；专业知识；专业技能；组织影响力</strong>。</p><p><img src=http://img.pmcaff.com/c033d37562dfd8e49feeebd7c73472d3-picture?imageView2/0/format/jpg class=lazyload data-srcset=http://img.pmcaff.com/c033d37562dfd8e49feeebd7c73472d3-picture?imageView2/0/format/jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=c033d37562dfd8e49feeebd7c73472d3-picture coffee-w=1080px coffee-h=425px coffee-format=webp referrerpolicy=no-referrer></p><p>图1素质能力框架定义</p><p>19个能力项目分数不同类型的能力，<strong>通用能力包括5个项目</strong>：1.学习能力（基本素质）；2.执行力（基本素质）；3.沟通能力（基本素质）；4.行业融入感+主人翁精神（关键素质）；心态和情商（关键素质）。</p><p><strong>专业知识包括3个项目</strong>：技术知识（相关知识）；项目管理（关联知识）；其他知识：财务、心理学、美学、办公技能等（关联知识）。</p><p><strong>专业技能包括8个项目</strong>：产品规划：版本计划/节奏（产品能力）；专业设计能力（产品能力）；市场分析能力/前瞻性（市场能力）、对外商务沟通（BD/P3以上）（市场能力）；运营数据分析（运营能力）；市场营销：品牌/公关/推广（运营能力）；渠道管理（运营能力）；市场/用户的调研与分析（客户导向）。</p><p><strong>组织影响力包括3个项目</strong>：方法论建设（领导力）；知识传承（领导力）；人才培养（领导力）。</p><p>每项能力都有从level1-level5,5个级别，根据各项能力项所达到的级别，产品类职位可以划分为5级15等，从P1-1到P5-3。由于老王根本没法确定腾讯现在是否还用这个职级体系（有说改成从4-17的），但是从消息来源来看，好像只是按照从前的体系换了个叫法和待遇（然并卵，这并不关老王啥事儿）。</p><p><img alt=5级15等.png src=https://img.pmcaff.com/FiRLWID7ycXu0yYnkqd-6gi_THnb-picture class=lazyload data-srcset=https://img.pmcaff.com/FiRLWID7ycXu0yYnkqd-6gi_THnb-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=429 coffee-w=1336px coffee-h=429px coffee-format=png referrerpolicy=no-referrer></p><p>图2 5等15级</p><p>回过头来看这个能力素质框架，老王试着进行了一下严谨的自我评测，深知自己还差的很远，但是没想到的是差的不止一星半点（我哭了）。这么看数字还不太直观，看个图就比较直观了，老王将自己的能力图谱与P1-3的图谱进行了一下比较（怎么说也是做了4年多，至少也是个初级产品经理吧）。</p><p><img alt=1-3.png src=https://img.pmcaff.com/Fk-psg39rLyoLqDstUzatRDTT_wT-picture class=lazyload data-srcset=https://img.pmcaff.com/Fk-psg39rLyoLqDstUzatRDTT_wT-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=970 height=522 coffee-w=970px coffee-h=522px coffee-format=png referrerpolicy=no-referrer></p><p>图3 P1-3模型雷达</p><p><img alt=自测等级.png src=https://img.pmcaff.com/FmTl39lADUfqUj_c-V0EXMhW3SLs-picture class=lazyload data-srcset=https://img.pmcaff.com/FmTl39lADUfqUj_c-V0EXMhW3SLs-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=968 height=522 coffee-w=968px coffee-h=522px coffee-format=png referrerpolicy=no-referrer></p><p>图4 自测等级</p><p>可以看出，老王的优势就在于做的杂事儿比较多，像渠道管理、市场营销、对外商务这些，P1-3是不需要了解的，而老王了解一丢丢。</p><p>但是学习能力，要求达到level3，老王自己觉得也只是达到了level1，差了2个level；行业融入感+主人翁精神、其他知识：财务、心理学等（相关知识），都差了一丢丢（半个level）；市场/用户的调研与分析，差了1个level。不过这是比较谨慎的自我剖析，可能强点，但是也不会太多了。</p><p>让我们看下P1-3的产品经理都需要具备的16项能力与素质（鉴于腾讯大大总结的很专业，老王在这儿就不擅自改动了，直接引用了。）：</p><h3>一、学习能力（基本素质）level1-level3（P1-3需要达到level3）：</h3><p><strong>1．</strong> <strong>指导下进行学习</strong>：*有学习愿望，能够在指导或者要求下进行学习；*能够通过指定的学习资源掌握做好自身岗位工作所需要的知识、技能、工具和信息等；</p><p><strong>2.</strong><strong>寻找学习机会，学以致用</strong>：*积极和善于寻找学习机会，关注培训机会，结合成长规划，适时地为自己安排培训和学习，保持专业知识技能的更新；*积极地学习态度并且注意学以致用，不断探索改善和提高自身的工作效率；*在工作中和平时的学习积累过程中找寻有价值的信息；</p><p><strong>3．</strong><strong>总结提炼，帮助他人学习</strong>：*举证过往1年中主动进行业务学习并总结成文的成果；*提交过往1年中在知识共享及传播方面开展的活动：如培训、沙龙、论坛等。</p><p>一般刚从象牙塔出来的童鞋，应该都可以达到第一个级别，而第二个级别则需要一定的工作经验，学以致用是达到level2的一个关键点，老王之所以说自己没达到level2，就是因为学是学了，但是没用上，工作一来很容易上头就按照惯性思维开干了，这也是以后要注意的。</p><p>至于第三个级别，老王参加过几个线下沙龙，但是分享成果少之又少，就像现在准备输出一些东西，想要引经据典都困难，这是在学以致用之后的关键阶段，要将自己融会贯通的东西输出，不尽自己懂会用，还要进行知识共享。</p><p>这里老王准备这么做，并且也建议大家，这是一个长期培养的能力，除了工作经验以外，阅读量、眼界也是很重要的，基本上读一些产品入门的书籍就能有一定的了解，然后就需要工作经验去实践沉淀，再然后多去参加一些产品经理聚会，或者行业峰会，如果能发表一些自己的言论更是上佳，但是切勿轻信培训，也要言之有物。</p><h3>二、执行力（基本素质）level1-level2（P1-3需要达到level2）：</h3><p><strong>1.</strong><strong>按要求行事</strong>：*能遵循上级或计划对时间、步骤、方法、途径等的工作布置；*按计划或指示的要求要点完成工作；</p><p><strong>2. 领会意图，主动汇报</strong>：*领会任务要到达的目的、意图、决策原因、适用情景等；*当情况变化时，能及时向上级汇报；*能够及时反馈与沟通任务进展情况。</p><p>这部分不用多说，直白点就是听人话、听懂话、会办事、能办事。在工作上，第一步要做的就是领导让干嘛就干嘛，不要一上来就有一副我什么都懂的亚子。不要轻易相信你的直觉，想当然，发生变故时要积极的跟领导沟通，听取领导的决策。</p><p>这要踏实肯干，多读一些职场类的书，以及提高自己的理解能力的书，平时要敢说，总结别人对你的表达给出的意见或建议，找到弱点，攻克它。</p><h3>三、沟通能力（基本素质）level1-level2（P1-3需要达到level2）：</h3><p><strong>1. 表述自己的要点</strong>：*有主动沟通的意愿，掌握基本沟通技巧，完成一般的目标单一、内容简单的沟通任务；*能够清楚表达工作内容和个人观点；*能够利用常用OFFICE软件、邮件、报表等进行日常工作汇报或交流；</p><p><strong>2. 把握他人论述要点</strong>：*具有良好的沟通意愿，多数情况下都能够有效倾听和理解对方；*能准确无误、简练的表达自己的观点，能够进行简单的协调；*能够主动跟产品团队内成员进行有效沟通，确保产品目标的顺利达成；*能熟练应用PPT、邮件、报表等形式进行书面汇报，有逻辑地展示论据，论证观点，格式清晰规范；*能够主持小型会议(5人内）。</p><p>很多产品经理都认为沟通能力是做产品最最基本的素质，这两个级别是要达到的行为标准，老王给大家讲一点小技巧（只是个人行为，并不主张），在面对不同的人时，沟通的技巧真的很重要，面对测试、UI、研发时，老王喜欢正式场合（会议）该严肃严谨就要严肃严谨，但是私下场合可以稍微耍点赖，偶尔买点小零食跟大家一起分享，一起打打游戏，约顿饭之类的。</p><p>面对客户和领导时，正式场合（会议）要表现出产品的专业性和严谨性，不卑不亢，私下就要稍显惟命是从，让领导知道你是关键时刻靠得住，又不会轻易威胁到他的人。但是切记，<strong>除非关系好到能借钱买房，否则不要轻易交心</strong>。</p><h3>四、行业融入感+主人翁精神（关键素质）level1-level2（P1-3需要达到level2）：</h3><p><strong>1. 热爱互联网及产品</strong>：喜欢体验和尝试相关产品，乐于对产品提出改进建议；</p><p><strong>2. 产品控，从琢磨、分享和改进中获得愉悦感</strong>：产品体验能够带来愉悦的感觉，总是希望能够把产品用的更深，去发现更多的产品特性并分享给其他人。</p><p>这个很重要，老王自认差了半个level，热爱是肯定热爱的，但是要说产品控，还差那么一点，早先的时候是这样，大家发现个什么新产品或者比较有趣的产品，都想上手把玩一下，但是现在一看基本就清楚这是个什么东西，却缺乏了仔细研究和深入了解的动力。</p><p>建议多把玩互联网产品，这里除了行业相关产品，还包括其他产品，甚至是游戏，‘游戏化’这个词出现的频率越来越高，体会并理解游戏为什么吸引人，把它用到产品设计上，无往不利。</p><h3>五、心态和情商（关键素质）level1（P1-3需要达到level1）：</h3><p><strong>1. 勤于思考，主动融入</strong>：乐观、积极，勤于思考，能够快速融入陌生的环境。</p><p>这个素质在老王看来可以是任何职位的普遍要求了，如果自认达不到，那真的是要好好锻炼一下了。推荐卡耐基三部曲，了解人性是提高情商的比较好的方法，他也可以提高你的沟通能力。</p><p>当然心态也很重要，老话讲：中正平和，保持平稳的心态，客观的看待事物的发展变化，这句话说来容易，实际上很容易拱火争执。一到五是通用知识的解读，下面六到八是专业知识方面的解读。</p><h3>六、技术知识(关联知识) level1（P1-3需要达到level1）：</h3><p><strong>1. 知道技术名词及概念</strong>：知道互联网开发过程中涉及到的主要技术名词等理论概念。</p><p>什么C++、Java、python、oc、swift，这些都是编程语言，什么线程、进程、面向对象、数据库、脚本、数据集、原生、css、Ajax、响应式、切图、SQL、主键、同步、异步、回调等等等等。</p><p>网上搜搜，再跟技术聊聊，基本上很多技术都愿意分享这方面的知识，毕竟是人家擅长的领域，哪怕再内向的程序猿，也会自豪的给你讲一讲的。</p><h3>七、项目管理(关联知识) level1（P1-3需要达到level1）：</h3><p><strong>1. 指导下进行计划跟踪和监控</strong>：*熟悉项目管理基础知识；*能在指导下，对已制定好的项目计划进行跟踪和监控；*在计划执行中参与一些辅助性的工作，协助解决问题。</p><p>这部分老王也是有些薄弱，但是总算是达到level1了，对于项目管理的基础知识需要再了解一下，这里老王建议有考PMP的朋友，可以找他们借些基础教材看看。不过后面两项是实实在在完成了的，甚至还能够制定个项目计划啥的。</p><h3>八、其他知识：财务、心理学、美学、办公技能等(关联知识) level1（P1-3需要达到level1）：</h3><p><strong>1. 听说过相关名词</strong>：*听说过和本职位相关的财务、法律知识，心理学、美学基本概念，并能够在指导下完成相关工作；*掌握日常工作需要使用的办公软件基本功能。</p><p>这里老王给自己打了0.5个level，相关名词那指定是听过的，办公软件基本功能那更是掌握了，但是感觉名词听的不多，财务、法律相关的倒是知道不少，但是心理学和美学的有所欠缺。这需要大量的阅读，毕竟至少你得知道点东西，再跟专业的人去聊，才不会咿呀学语，对方也不会感觉对牛弹琴。</p><h3>九、产品规划：版本计划/节奏(产品能力) level1（P1-3需要达到level1）：</h3><p><strong>1. 知道流程，能清晰描述出客户原始需求</strong>：*知道产品规划的工作流程和成果输出，能清晰描述出客户的原始需求，但需要在指导下完成功能特性的设计抽象工作。</p><p>从这里开始九到十三，就是专业技能方面的内容了。老王基本上达到并且已经脱离这一层面了，但是还需要进一步分析，知道工作流程和成果，老王只知道自己总结的，腾讯的还是有点小期待。清晰描述原始需求这个自认可以胜任，至于完成功能特性的设计抽象工作，老王自认是达到了，但是不太自信，感觉鹅厂的要求应该是更高的。</p><h3>十、专业设计能力(产品能力) level1（P1-3需要达到level1）：</h3><p><strong>1. 了解特定领域的设计和策划，在指导下完成局部设计</strong>：*具备一定的专业知识和技能，了解某些方面的产品设计和策划技巧，能在别人指导下完成产品局部功能或者小型产品的设计，能使用文档清晰的向他人表述相关设计思想和内容。</p><p>这是硬功夫了啊，产品策划的核心竞争力了，这里老王很中肯的说，我给自己1.5level，虽然离level2还有一定的距离。但是在指导下完成局部功能或小型产品的设计并且用文档清晰表述，老王在三年前就可以做到了，之所以没达到level2，是因为要求熟悉某专业领域方法和技巧，这一块儿老王有些不解。</p><p>九和十，个人觉得可以通过竞品分析来学习，但是仍然需要工作来实践，去分析别人的产品，揣摩他们的设计意图和如此规划的原因，为什么要这样，再去联系当时的宏观情况。</p><p>然后在工作中，将尽可能的影响因素罗列出来，从中找到解决方案，并找到你的领导去评判，这里的自信是需要建立的，不要怕错，100次有1次对（虽然少了点），但是也很可贵，当你有了100次对的判断，你就可以自信的去按照自己的方法去判断了。</p><h3>十一、市场分析能力/前瞻性(市场能力) level1（P1-3需要达到level1）：</h3><p><strong>1. 了解基本理论知识，指导下完成工作，对行业有初步认知</strong>：*对产品形态、产业链各环节有一定的认识，有使用或接触过比较多的相关产品；*了解市场分析的基本理论和知识，并能在指导下关注和总结行业和用户变化；*了解并掌握风险管理的基本理论和方法，可以识别互联网产品运营过程中最常见的风险。</p><p>市场调研、竞品分析，只要真正的把这两者做的好，做的透，基本前两点就能掌握了，这里说的可不是截几个图，列几个功能点，用思维导图画个功能结构就完事的东西。至于风险管理，从需求管理开始，到项目上线，无时无刻不存在风险，也需要有一定的了解。</p><h3>十二、运营数据分析(运营能力) level1（P1-3需要达到level1）：</h3><p><strong>1. 了解指标含义，在指导下分析</strong>：了解运营涉及的核心数据及指标的含义，能在指导下对运营数据进行最基础的分析并给出报告。</p><p>ARPPU是什么？数据漏斗是什么？转化率怎么算？对运营数据有一定的基础了解，能进行数据的整理并且总结出基本规律，基本上就算是达到level1了。</p><p>除了阅读以外，你也可以上网查，了解名词不是问题。老王建议找一些数据去试着分析，比如我记得有运营的童鞋给我看过，某节课的课后题就有一个数据表，然后简单说一些设定，让你去做分析。</p><h3>十三、市场/用户的调研与分析(客户导向) level1-level2（P1-3需要达到level2）：</h3><p><strong>1. 在指导下完成调研，独立收集客户需求</strong>：*具备基本的调研常识，能够在指导下完成调研的任务；*熟悉并掌握收集用户需求的理论、方法和基本技巧；*能够独立完成有明确目标的客户需求收集的任务；</p><p><strong>2. 收集客户反馈，驱动产品改进；独立主导调研</strong>：*熟练掌握调研与分析的基础理论、方法和工具，并独立负责过完整的的项目；*能够准确识别客户需求，主动收集客户反馈，发现改进机会；*能够在问题露出苗头之初就意识到对客户的影响；*能系统设计产品服务方案。</p><p>这里老王自认为是满足level1并不满足level2，因为对于调研与分析的理论、方法和工具并没有一个成体系的认知。虽然部分描述是工作中出现并且完成过的，但是还是没法对自己满意。</p><p>两个方案，找到你的领导或有经验的同事请教，不要只请教方法，要连带使用方法的案例一起请教，另一个是阅读，把用户调研的方法了解清楚。然后，开始莽吧，跟公司说要进行调研和分析，开始尝试用掌握的方法进行调研和分析，可能分析麻烦点，但是调研，掌握了方法后一定要去实践。</p><h3>十四、方法论建设(领导力) level1（P1-3需要达到level1）：</h3><p><strong>1. 总结归纳</strong>：*能够定期进行个人工作总结，不断优化工作。</p><p>从十四到十六是组织影响力这部分。总结归纳，老王强烈推荐是很有必要的，不断的发现在工作中的不足和疏漏，一定要时刻进行自我总结，不断的优化工作效率。</p><p>哪怕是不爱写日报的童鞋，也可以在遇到挫折或者问题时，到了晚上睡觉前，反思一下，总结一下问题产生的原因，如何规避或者更好的解决问题，哪怕是你给老王留个言，大家聊一聊。</p><h3>十五、知识传承(领导力) level1（P1-3需要达到level1）：</h3><p><strong>1. 团队内分享</strong>：*能在团队内部进行经验与知识的分享与交流：</p><p>这个老王很感兴趣，但是参与的不多，因为好多公司都只是说有这么个分享，实际上并没有，也就领导心血来潮或者新官上任的时候组织过那么一两次，很难持续，想及于此就感念少壮不努力，无缘大公司呀。</p><p>这里提个小建议，设计和交互一般可以聊到一起去，产品对任何知识都感兴趣，但是技术只对技术感兴趣，甚至只对自己领域的技术感兴趣，千万别强求。至于测试，他们好像对什么都不太感兴趣~（测试大大不要打我！）</p><h3>十六、人才培养(领导力) level1（P1-3需要达到level1）：</h3><p><strong>1. 直接指导/帮助</strong>：*能够指导或帮助同事完成工作任务。</p><p>这个老王可以说是最能叭叭的，在公司，我可以帮市场做策划，帮运营出方案或者分析数据，跟技术可以聊流程，跟领导可以谈战略，但是对产品同事，帮助不是特别多，可能因为老王没带过实习生吧，大多数同事都还比较靠谱，除了配合我做的一些产品，需要以我的规划为主以外都还是建议为主。</p><p>这个能力项目需要有充分的工作经验，建议可以提，但是不要自以为是，建议多听别人是怎么做的，暗中学习。</p><p style=text-align:justify;>综上，基本上已经将腾讯P1-3的产品经理能力素质全部摊开来讲了一遍，涉及到的内容，老王也深入的剖析了，老王暂时就以P1-3的职业素质能力为模版，补齐短板，我们再更进一步，向P2-1迈进啦。当然，如果老表你认为P1-3的都已经达标，也可以找老王要一份能力模型自己去评估一下。</p><p style=text-align:justify;><br></p><p style=text-align:left;><b>作者：老王，一个不愿意透露体重的90后产品经理，公众号《老王修炼指南》唯一作者。</b></p><blockquote><p style=text-align:left;>题图 由Gerd Altmann在Pixabay上发布</p><p style=text-align:left;>其他图片来自作者收集截图</p></blockquote></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/41b5.html>https://news.zfe.space/p/41b5.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:12:44+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/41b5.html&title=对标腾讯产品能力模型，搭建自己的产品能力素质框架 - 小冰 RSSHub&pics=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/41b5.html&title=对标腾讯产品能力模型，搭建自己的产品能力素质框架 - 小冰 RSSHub&pics=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/41b5.html&title=对标腾讯产品能力模型，搭建自己的产品能力素质框架 - 小冰 RSSHub&pics=https://img.pmcaff.com/Fq8_v_eiNTAYNTwJOMHXx7cu8fhu-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/b2d.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>软件下载与安装</p><p class=content>LaTeX 安装下载一般需要安装 TeX 套装和外围编辑软件，当然，也可...</p></a><a class=next href=/p/9cdd.html><p class=title>一个野蛮生长的产品经理的内心独白<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>老王最近在空档期，将近3个月的休息，除了嗨玩（看剧，望天，玩游戏，看直播，看小说）以外，也分析了一下自己的不足，想要成为一个优秀的产品经理，老王现在还差的比较远。鉴于此，老王才开始做这个...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>一、学习能力（基本素质）level1-level3（P1-3需要达到level3）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>二、执行力（基本素质）level1-level2（P1-3需要达到level2）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>三、沟通能力（基本素质）level1-level2（P1-3需要达到level2）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>四、行业融入感+主人翁精神（关键素质）level1-level2（P1-3需要达到level2）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>五、心态和情商（关键素质）level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>六、技术知识(关联知识) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>七、项目管理(关联知识) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>八、其他知识：财务、心理学、美学、办公技能等(关联知识) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>九、产品规划：版本计划&#x2F;节奏(产品能力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十、专业设计能力(产品能力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十一、市场分析能力&#x2F;前瞻性(市场能力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十二、运营数据分析(运营能力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十三、市场&#x2F;用户的调研与分析(客户导向) level1-level2（P1-3需要达到level2）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十四、方法论建设(领导力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十五、知识传承(领导力) level1（P1-3需要达到level1）：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>十六、人才培养(领导力) level1（P1-3需要达到level1）：</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="对标腾讯产品能力模型，搭建自己的产品能力素质框架";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

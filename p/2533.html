@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别) - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg></a></div><div class=article-meta id=top><a title="白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别)" href=/p/2533.html><img class=thumbnail src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg></a><h1 class=title>白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别)</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%BC%82%E6%AC%A1%E5%85%83%E8%BD%AF%E4%BB%B6%E4%B8%96%E7%95%8C/">异次元软件世界</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%BC%82%E6%AC%A1%E5%85%83%E8%BD%AF%E4%BB%B6%E4%B8%96%E7%95%8C/%E9%A6%96%E9%A1%B5/">首页</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年9月20日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别)" data-path=/p/2533.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><ul id=link1111><li><a target=_blank rel=nofollow href=https://www.iplaysoft.com/go/pdpost>超值！PD18 虚拟机国庆限时 7.5 折</a> | <a target=_blank rel=nofollow href=https://www.iplaysoft.com/news/4313>爱奇艺 + 京东 = 123元</a> | <a target=_blank rel=nofollow href=https://www.iplaysoft.com/go/qcloud>腾讯云秒杀</a> | <a target=_blank rel=nofollow href=https://www.iplaysoft.com/windows11.html>Win11 激活码</a></li></ul><p>无论是<a href=https://www.iplaysoft.com/tag/%E5%8A%9E%E5%85%AC target=_blank rel=noopener>办公</a>还是日常<a href=https://www.iplaysoft.com/tag/%E7%94%9F%E6%B4%BB target=_blank rel=noopener>生活</a>中，我们都常遇到一些纸质文档、屏幕截图等想要扫描成电子版甚至“将文字复制”下来使用。这时，就需要用到 <a href=https://www.iplaysoft.com/tag/ocr target=_blank rel=noopener>OCR</a> 文字识别工具了。</p><p>在众多<a href=https://www.iplaysoft.com/tag/%E6%89%AB%E6%8F%8F target=_blank rel=noopener>扫描</a>和 OCR 工具之中，「<strong>白描</strong>」可谓是脱颖而出，一跃成为了无数人首选推荐的跨平台 OCR 扫描识别文字<a href=https://www.iplaysoft.com/tag/%E7%A5%9E%E5%99%A8 target=_blank rel=noopener>神器</a>！它支持手机、电脑和网页版，易用出色的体验加上高准确率文字识别，再配上桌面<strong>一键截屏识别</strong>、<a href=https://www.iplaysoft.com/tag/%E7%BF%BB%E8%AF%91 target=_blank rel=noopener>翻译</a>、表格转 Excel、图片批量扫描识别等功能，实用性满分……</p><p style="text-align: center;"><span style="color: #ff0000;">「白描 Windows 版发布！支持一键截屏取字」</span></p><p class=aligncenter><a class=button target=_blank isconvert=1 href=https://www.iplaysoft.com/go/baimiao><i class="ipsicon ipsicon-link ipsicon-rspace"></i>获取白描永久会员</a><br><span class=button-hint>会员一号全平台通用，手机电脑同步</span></p><h3>全平台免费好用的 OCR 扫描识别 / 图片转文字工具</h3><div style="margin:40px auto 50px auto;overflow:hidden;"><div style=float:left;width:336px;height:280px;></div><div class=_0m2z60jvil9q style=float:left;width:336px;height:280px;margin-left:10px></div></div><div class=clear></div><p><strong>白描 APP</strong> 支持手机拍照扫描以及 <strong>OCR 文字识别</strong> / 图片转文字等功能，它不仅好用，而且平台覆盖还很全面。目前已支持 <a href=https://www.iplaysoft.com/os/android-platform target=_blank rel=noopener>Android</a>、<a href=https://www.iplaysoft.com/os/ios-platform target=_blank rel=noopener>iOS</a>、微信小程序、网页版等主流系统平台，同时它还支持 Windows 和 <a href=https://www.iplaysoft.com/os/mac-platform target=_blank rel=noopener>macOS</a> 桌面版，支持屏幕截图提取文字，在电脑<a href=https://www.iplaysoft.com/tag/%E5%8A%9E%E5%85%AC target=_blank rel=noopener>办公</a>时也能获得极大的便利！</p><p><img loading=lazy class="aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="白描 OCR 文件识别提取软件" width=680 height=475 referrerpolicy=no-referrer></p><p>白描的识别效率很准确率都非常高、功能也很全面，使用起来非常顺畅方便。无论是办公、<a href=https://www.iplaysoft.com/tag/%E5%AD%A6%E4%B9%A0 target=_blank rel=noopener>学习</a>、还是日常生活，它都能在各个方面帮你“轻松抓取拿下”现实中你能看得见的所有文字！手机拍照、桌面<a href=https://www.iplaysoft.com/tag/%E6%88%AA%E5%9B%BE target=_blank rel=noopener>截图</a>、图片识别样样都行，绝对是人手必备的一款 APP。</p><h3>白描 Windows 版： 桌面截图识别提取文字：</h3><p>白描 Windows 版最方便的地方在于支持「<strong>截屏识别</strong>」，功能上与「<a href=https://www.iplaysoft.com/tianruo-ocr.html target=_blank rel=noopener>天若 OCR</a>」类似。当软件运行后，你只需点右下角托盘的小图标，选择「截屏识别」就可以在屏幕上任意区域划取识别了！所有文字都能信手拈来！</p><p><img class="lazyload aligncenter size-medium lazyload" referrerpolicy=no-referrer src=https://img-dp.iplaysoft.com/dispatch/03baa448adec9f7dbfe77ac67dc9d3a5.gif data-srcset=https://img-dp.iplaysoft.com/dispatch/03baa448adec9f7dbfe77ac67dc9d3a5.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="白描 Windows 截图识别文字" width=680 height=492 data-owidth=1200 data-oheight=867></p><p>如果你经常需要识别提取屏幕上的文字，也可以为此功能自定义一个快捷键，随时“一键呼出”截屏识别，这取字的<a href=https://www.iplaysoft.com/tag/%E6%95%88%E7%8E%87 target=_blank rel=noopener>效率</a>绝对是飞跃式的提升。</p><h4>支持表格识别、公式识别、PDF 提取文字</h4><p>文字识别只是最基础的功能。在实际电脑办公的场景下，我们经常需要处理一些纸质打印文档 / Excel <a href=https://www.iplaysoft.com/tag/%E8%A1%A8%E6%A0%BC target=_blank rel=noopener>表格</a>照片或扫描图，甚至是手写的字条。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_biaoge.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_biaoge.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=白描识别Excel表格 width=680 height=423 referrerpolicy=no-referrer></p><p>而白描可以非常好地<strong>支持识别表格</strong> (可以导出为 <a href=https://www.iplaysoft.com/go/officepost target=_blank rel=noopener>Excel</a> 文件)、数学公式 (可以导出 LaTeX 格式) 以及手写文字、PDF 文档提取文字等。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_shuxuegongshi.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_shuxuegongshi.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=白描数学公式识别 width=680 height=518 referrerpolicy=no-referrer></p><h4>批量图片转换文字：</h4><p>如果你有大量的文档照片、扫描图片、<a href=https://www.iplaysoft.com/tag/pdf target=_blank rel=noopener>PDF</a> 扫描版文档等等，都可以使用白描进行批量的文字提取，只需将图片拖放到白描界面上即可实现一键批量识别并导出，非常高效。</p><p><img class="lazyload border aligncenter lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_piliang.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/win_piliang.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=批量图片识别文字 width=680 height=485 referrerpolicy=no-referrer></p><h3>白描手机版 APP：拍照文字识别 / 纸质文档扫描</h3><p>而使用手机版的白描 (iPhone、iPad、Android) 等，你只需将手机摄像头对准要识别的纸质<a href=https://www.iplaysoft.com/tag/%E6%96%87%E6%A1%A3 target=_blank rel=noopener>文档</a>、屏幕、或现实环境中各种的文字，点击拍照即可立即进行「<strong>扫描</strong>」和「<strong>文字识别</strong>」了。之后你可以可以选择图片上的文字，并且帮你生成可以<a href=https://www.iplaysoft.com/tag/%E7%BC%96%E8%BE%91 target=_blank rel=noopener>编辑</a>的内容了，复制加工转发随你方便，而且还能导出成 TXT、<a href=https://www.iplaysoft.com/go/officepost target=_blank rel=noopener>DOCX</a> 等文档格式。</p><div class=imglist-title>[ 白描-OCR文字识别与文件扫描全能处理 iPhone 版截图 ]</div><div class=imglist id=iscroll><table cellpadding=0 cellspacing=0><tbody><tr align=center><td><div><a rel=colorbox1 target=_blank href=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/92/70/f8/9270f8e0-c0ff-13b4-6661-6736cc4a71f3/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/92/70/f8/9270f8e0-c0ff-13b4-6661-6736cc4a71f3/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/92/70/f8/9270f8e0-c0ff-13b4-6661-6736cc4a71f3/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/a6/45/1c/a6451cd6-a885-a01e-e316-28af4bed65a8/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/a6/45/1c/a6451cd6-a885-a01e-e316-28af4bed65a8/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/a6/45/1c/a6451cd6-a885-a01e-e316-28af4bed65a8/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/b9/d3/31/b9d331e7-9e05-97fd-cd6f-beeecc0cb69f/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/b9/d3/31/b9d331e7-9e05-97fd-cd6f-beeecc0cb69f/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/b9/d3/31/b9d331e7-9e05-97fd-cd6f-beeecc0cb69f/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/24/08/bd/2408bd2f-b566-b6f0-55cb-23f175c243ad/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/24/08/bd/2408bd2f-b566-b6f0-55cb-23f175c243ad/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/24/08/bd/2408bd2f-b566-b6f0-55cb-23f175c243ad/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/d0/8b/54/d08b54ad-1ad4-c940-16e0-cb6bbf27b52f/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/d0/8b/54/d08b54ad-1ad4-c940-16e0-cb6bbf27b52f/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/d0/8b/54/d08b54ad-1ad4-c940-16e0-cb6bbf27b52f/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/3e/2d/94/3e2d94cd-7064-b2cf-76b5-bc1251bd3986/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/3e/2d/94/3e2d94cd-7064-b2cf-76b5-bc1251bd3986/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/3e/2d/94/3e2d94cd-7064-b2cf-76b5-bc1251bd3986/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/f1/63/9d/f1639d79-278b-80a4-f0e9-4690f21c363e/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/f1/63/9d/f1639d79-278b-80a4-f0e9-4690f21c363e/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is2-ssl.mzstatic.com/image/thumb/Purple114/v4/f1/63/9d/f1639d79-278b-80a4-f0e9-4690f21c363e/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/PurpleSource114/v4/02/4a/2f/024a2fcf-d909-8157-af0b-d93f39f1d69a/0b903bc4-ca75-42f4-a756-cdbf21215013_1242x2688bb.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/PurpleSource114/v4/02/4a/2f/024a2fcf-d909-8157-af0b-d93f39f1d69a/0b903bc4-ca75-42f4-a756-cdbf21215013_1242x2688bb.jpg/300x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/PurpleSource114/v4/02/4a/2f/024a2fcf-d909-8157-af0b-d93f39f1d69a/0b903bc4-ca75-42f4-a756-cdbf21215013_1242x2688bb.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is1-ssl.mzstatic.com/image/thumb/Purple114/v4/da/94/23/da9423cb-013f-74b5-94c5-d62a69086480/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is1-ssl.mzstatic.com/image/thumb/Purple114/v4/da/94/23/da9423cb-013f-74b5-94c5-d62a69086480/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is1-ssl.mzstatic.com/image/thumb/Purple114/v4/da/94/23/da9423cb-013f-74b5-94c5-d62a69086480/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/47/3a/6f/473a6fd5-c989-e432-1b01-e98902fa182d/pr_source.jpg/600x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/47/3a/6f/473a6fd5-c989-e432-1b01-e98902fa182d/pr_source.jpg/300x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple114/v4/47/3a/6f/473a6fd5-c989-e432-1b01-e98902fa182d/pr_source.jpg/300x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td></tr></tbody></table></div><p><a target=_blank rel=noopener href=https://www.iplaysoft.com/baimiao.html>白描</a>可以识别出中文简体与繁体文字、以及英文、德语、法语等语言，同时对手写字的识别也有高准确度。实测白描的识别准确率还是很高的，识别后也能非常方便地校对和修改。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_ocr.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_ocr.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="白描 OCR 文字识别" width=680 height=585 referrerpolicy=no-referrer></p><h4>文字翻译</h4><p>而且白描 APP 还内置了<a href=https://www.iplaysoft.com/tag/%E7%BF%BB%E8%AF%91 target=_blank rel=noopener>翻译</a>功能，可以方便地一键获得翻译后的结果。翻译功能支持中文、日语、英语、韩语、法语、西班牙语、阿拉伯语、俄语、德语、葡萄牙语、意大利语、繁体中文、粤语、文言文的互译。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/fanyi.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/fanyi.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=文字翻译 width=680 height=441 referrerpolicy=no-referrer></p><h4>扫描纸质文档 / 自动识别文档边界 / 生成高清扫描件 / 身份证扫描</h4><p>当你拍摄纸质文档时，只需将摄像头对准文档，白描就会自动识别出文档的边界，并自动生成高清晰度的扫描件。软件支持多种色彩的切换，并可快速将多页合成 PDF 文档。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_doc_scan.jpg data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_doc_scan.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=白描扫描文档 width=680 height=598 referrerpolicy=no-referrer></p><p>而针对生活中经常需要用到的身份证复印件，白描也支持了「<strong>身份证扫描</strong>」功能，可以非常方便地生成身份证正反面 A4 扫描件。</p><h4>表格识别</h4><p>如果你的工作中经常需要处理一些包含表格数据的纸质文件，需要录入到电脑上去，那么白描的「<strong>表格识别功能</strong>」绝对是你的救星！因为很多同类的 OCR 扫描应用都是只能识别文字，而不能识别出表格，往往还需要大量繁琐的手动编辑，才能在 <a href=https://www.iplaysoft.com/go/officepost target=_blank rel=noopener>Office (Excel)</a>、<a href=https://www.iplaysoft.com/wps.html target=_blank rel=noopener>WPS</a> 上重新排版成表格。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_table.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_table.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=白描表格识别 width=680 height=585 referrerpolicy=no-referrer></p><p>而白描内置了“表格模式”，你只需切换到此模式后进行识别，就能获得包含表格的识别结果，只需核对或轻度修改一下即可生成 <a href=https://www.iplaysoft.com/go/officepost target=_blank rel=noopener>Excel</a> 电子表格，绝对的省时省力！比起手动做表格不知道要高效率多少倍！</p><h4>批量扫描识别文字：</h4><p>当你需要进行大量的文档扫描识别时，白描的「<strong>批量识别文字</strong>」功能就很好用了！你只需在 APP 的界面上长按图片即可开启“批量识别模式”，一次可以选择多张图片进行<a href=https://www.iplaysoft.com/tag/%E6%89%B9%E9%87%8F target=_blank rel=noopener>批量</a>识别。</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_batch_scan.jpg data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_batch_scan.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="白描 批量扫描识别" width=680 height=585 referrerpolicy=no-referrer></p><p>同时，白描也支持批量合并图片并导出 <a href=https://www.iplaysoft.com/tag/pdf target=_blank rel=noopener>PDF</a>、批量文字识别并合并结果、批量打印等功能，可以大大加快你处理各类文档的效率。</p><h3>白描 APP 官方介绍视频：</h3><h3>白描网页版：</h3><p>除了手机 APP 和 Mac、Windows 等电脑版的客户端之外，白描还很贴心地提供了「网页版」。在任何电脑上，你都能直接通过<a href=https://www.iplaysoft.com/tag/%E6%B5%8F%E8%A7%88%E5%99%A8 target=_blank rel=noopener>浏览器</a>上传图片 (支持 JPG/PNG/BMP/GIF/SVG 格式) 实现文字识别、数学公式识别、表格识别；同时，它还支持上传 PDF 文档转换文字等；</p><p><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_web.png data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_web.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=白描网页版 width=680 height=522 referrerpolicy=no-referrer></p><p>网页版同样支持上传多张图片批量识别，支持简单的剪裁编辑，以及一键将结果导出成 DOCX、TXT 等格式文件，非常的实用。即使在 <a href=https://www.iplaysoft.com/os/linux-platform target=_blank rel=noopener>Linux</a> 等系统上也可以使用。</p><h3>白描 macOS 桌面版客户端：</h3><p>当然，如果你使用 <a href=https://www.iplaysoft.com/go/mac target=_blank rel=noopener>Mac</a>，也可以下载安装白描的 macOS 电脑桌面版客户端，它的功能与 Windows 版基本一致，比如截图识别、批量转文字等，可以大大方便常在电脑前工作的朋友。</p><div class=imglist-title>[ 白描-OCR文字识别与文件扫描全能处理 Mac 版截图 ]</div><div class=imglist id=iscroll1><table cellpadding=0 cellspacing=0><tbody><tr align=center><td><div><a rel=colorbox1 target=_blank href=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/62/fc/e3/62fce3bc-1413-9398-ddae-ae75a4233b7c/7ad7517c-0f9b-489f-8d57-ac70338accaa_1.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/62/fc/e3/62fce3bc-1413-9398-ddae-ae75a4233b7c/7ad7517c-0f9b-489f-8d57-ac70338accaa_1.jpg/560x0w.jpg class=lazyload data-srcset=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/62/fc/e3/62fce3bc-1413-9398-ddae-ae75a4233b7c/7ad7517c-0f9b-489f-8d57-ac70338accaa_1.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/8b/74/00/8b74006b-da3c-c76f-3468-e9f7db46f57e/1b41ed49-2a6a-4b4a-a81a-7370429f8fad_3.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/8b/74/00/8b74006b-da3c-c76f-3468-e9f7db46f57e/1b41ed49-2a6a-4b4a-a81a-7370429f8fad_3.jpg/560x0w.jpg class=lazyload data-srcset=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/8b/74/00/8b74006b-da3c-c76f-3468-e9f7db46f57e/1b41ed49-2a6a-4b4a-a81a-7370429f8fad_3.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/ca/59/c0/ca59c004-3113-73a6-b68d-c5cbfbaddcaa/8bb41212-678f-422b-a597-f2af19e41389_2.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/ca/59/c0/ca59c004-3113-73a6-b68d-c5cbfbaddcaa/8bb41212-678f-422b-a597-f2af19e41389_2.jpg/560x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/ca/59/c0/ca59c004-3113-73a6-b68d-c5cbfbaddcaa/8bb41212-678f-422b-a597-f2af19e41389_2.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/c1/d4/f1c1d4fb-f831-8148-1cce-3f3bf5e7d163/5efe8e3e-d4c4-4e3f-8395-d32c7175dc2e_8.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/c1/d4/f1c1d4fb-f831-8148-1cce-3f3bf5e7d163/5efe8e3e-d4c4-4e3f-8395-d32c7175dc2e_8.jpg/560x0w.jpg class=lazyload data-srcset=https://is4-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/c1/d4/f1c1d4fb-f831-8148-1cce-3f3bf5e7d163/5efe8e3e-d4c4-4e3f-8395-d32c7175dc2e_8.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/4e/96/e1/4e96e1d5-140b-0442-0b34-e7a7639f2f27/d707bb38-a943-4865-9425-c7ea591da67d_4.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/4e/96/e1/4e96e1d5-140b-0442-0b34-e7a7639f2f27/d707bb38-a943-4865-9425-c7ea591da67d_4.jpg/560x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/4e/96/e1/4e96e1d5-140b-0442-0b34-e7a7639f2f27/d707bb38-a943-4865-9425-c7ea591da67d_4.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/f5/5c/f1f55cd0-693c-fac9-29dd-d635f51b13d3/5ad0ba26-6e85-4d7e-9960-f8adf8dcafbb_6.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/f5/5c/f1f55cd0-693c-fac9-29dd-d635f51b13d3/5ad0ba26-6e85-4d7e-9960-f8adf8dcafbb_6.jpg/560x0w.jpg class=lazyload data-srcset=https://is3-ssl.mzstatic.com/image/thumb/Purple124/v4/f1/f5/5c/f1f55cd0-693c-fac9-29dd-d635f51b13d3/5ad0ba26-6e85-4d7e-9960-f8adf8dcafbb_6.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/ab/a7/5d/aba75d51-2b5b-2ad2-4ea7-9c80c4ec1043/3e7ad316-7d88-4039-a542-72357695bb65_5.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/ab/a7/5d/aba75d51-2b5b-2ad2-4ea7-9c80c4ec1043/3e7ad316-7d88-4039-a542-72357695bb65_5.jpg/560x0w.jpg class=lazyload data-srcset=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/ab/a7/5d/aba75d51-2b5b-2ad2-4ea7-9c80c4ec1043/3e7ad316-7d88-4039-a542-72357695bb65_5.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is4-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/89/44/ae/8944aeec-5988-1c70-9b1d-99ddf3d3ae8f/29285d8a-9e64-4506-9378-e9caef767cdf_4.14.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is4-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/89/44/ae/8944aeec-5988-1c70-9b1d-99ddf3d3ae8f/29285d8a-9e64-4506-9378-e9caef767cdf_4.14.jpg/560x0w.jpg class=lazyload data-srcset=https://is4-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/89/44/ae/8944aeec-5988-1c70-9b1d-99ddf3d3ae8f/29285d8a-9e64-4506-9378-e9caef767cdf_4.14.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is1-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/7c/70/12/7c7012c7-81a8-9d1f-44dd-ccd22cb23e9f/e22db17a-cf1c-4973-840f-00e506ea09e4_418.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is1-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/7c/70/12/7c7012c7-81a8-9d1f-44dd-ccd22cb23e9f/e22db17a-cf1c-4973-840f-00e506ea09e4_418.jpg/560x0w.jpg class=lazyload data-srcset=https://is1-ssl.mzstatic.com/image/thumb/PurpleSource124/v4/7c/70/12/7c7012c7-81a8-9d1f-44dd-ccd22cb23e9f/e22db17a-cf1c-4973-840f-00e506ea09e4_418.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td><td><div><a rel=colorbox1 target=_blank href=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/78/09/2d/78092d9c-8e55-b497-7a7b-c1d9a7052937/0ceb0161-8d84-490f-86c9-f2e0266f785d_7.jpg/1120x0w.jpg><img style="height:auto;max-height:500px;_width:expression(this.width>650?650:true);" alt="" src=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/78/09/2d/78092d9c-8e55-b497-7a7b-c1d9a7052937/0ceb0161-8d84-490f-86c9-f2e0266f785d_7.jpg/560x0w.jpg class=lazyload data-srcset=https://is5-ssl.mzstatic.com/image/thumb/Purple124/v4/78/09/2d/78092d9c-8e55-b497-7a7b-c1d9a7052937/0ceb0161-8d84-490f-86c9-f2e0266f785d_7.jpg/560x0w.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></a></div></td></tr></tbody></table></div><p>但值得注意的，由于 Mac AppStore 的政策限制，<span style="color: #ff6600;">从苹果应用商店下载的白描 Mac 客户端<strong>并不支持“截图识别”功能</strong>，建议大家下载独立的 .dmg 版本安装使用，功能更加丰富</span>。</p><h3>会员一号多平台通用 (免费和普通/黄金会员区别)</h3><p>白描可以免费使用，也提供高级付费会员。非常厚道的是，<a href=https://www.iplaysoft.com/go/baimiao target=_blank rel=noopener>白描会员</a>是一号全平台通用的，你只需要花一份钱，即可在 Windows、Mac、Android 和 iOS 等全部平台上登录使用，包括 iPhone、安卓手机端、Win、Mac 电脑端以及网页版都能享受到会员的权益。</p><p><a href=https://www.iplaysoft.com/go/baimiao target=_blank rel=noopener><img class="lazyload aligncenter size-medium lazyload" src=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao.jpg data-srcset=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt="白描 APP" width=680 height=425 referrerpolicy=no-referrer></a></p><p class=aligncenter><a class="button button_orange" target=_blank isconvert=1 href=https://www.iplaysoft.com/go/baimiao><i class="ipsicon ipsicon-link ipsicon-rspace"></i>立即获取白描会员</a></p><p>第二个厚道的点是，白描会员分为普通会员和黄金会员，它们<strong>都是一次性买断永久使用的</strong>，而不是订阅每月每年付钱，这点让人很有好感，这么看来性价比也极高。具体的会员功能区别如下：</p><table class=entry-table border=1 cellpadding=8 cellspacing=0 width=100%><tbody><tr><th colspan=100%>白描会员区别对比</th></tr><tr><td width=25.00%>功能</td><td width=25.00%>免费用户</td><td width=25.00%>普通会员</td><td width=25.00%>黄金会员</td></tr><tr><td width=25.00%>每日识别次数</td><td width=25.00%>5次</td><td width=25.00%>无限制</td><td width=25.00%>无限制</td></tr><tr><td width=25.00%>每日批量识别次数</td><td width=25.00%>1次</td><td width=25.00%>3次</td><td width=25.00%>无限制</td></tr><tr><td width=25.00%>每日翻译次数</td><td width=25.00%>3次</td><td width=25.00%>3次</td><td width=25.00%>无限制</td></tr><tr><td width=25.00%>每次翻译字数</td><td width=25.00%>1000字</td><td width=25.00%>1000字</td><td width=25.00%>无限制</td></tr><tr><td width=25.00%>多设备同步</td><td width=25.00%></td><td width=25.00%>●</td><td width=25.00%>●</td></tr></tbody></table><p>鉴于普通会员和黄金会员的差价不大，但限制差很多，加上是一次性付费的永久会员，强烈建议大家直接上<a href=https://www.iplaysoft.com/go/baimiao target=_blank rel=noopener>黄金会员</a>。</p><h3>总结：</h3><p>作为一款出色的扫描 + OCR 识别利器，<a href=https://www.iplaysoft.com/go/baimiao target=_blank rel=noopener>白描</a>不仅具备高准确度的文字识别能力，同时还拥有文字翻译、表格识别转 Excel、批量识别、纸质文档扫描、身份证扫描等贴心功能。</p><p>同时它还支持 iOS、Android、Win、Mac 多平台和网页版，实用性很强。加上价格真的不贵，但能在<a href=https://www.iplaysoft.com/tag/%E5%B7%A5%E4%BD%9C target=_blank rel=noopener>工作</a>、<a href=https://www.iplaysoft.com/tag/%E5%AD%A6%E4%B9%A0 target=_blank rel=noopener>学习</a>等各个方面都大大提高你处理文档和文字的<a href=https://www.iplaysoft.com/tag/%E6%95%88%E7%8E%87 target=_blank rel=noopener>效率</a>，真心是一款<a href=https://www.iplaysoft.com/tag/%E8%A3%85%E6%9C%BA target=_blank rel=noopener>装机</a>必备的工具，值得一试。</p><p class=aligncenter><a class=button target=_blank isconvert=1 href=https://www.iplaysoft.com/go/baimiao><i class="ipsicon ipsicon-link ipsicon-rspace"></i>立即获取白描会员</a></p><div id=post_download class=entry-dl-area><h3 class=entry-dl-area-head><span class="h3_icon ipsicon ipsicon-download ipsicon-rspace"></span>相关文件下载地址</h3><p>官方网站：<a href="https://baimiao.uzero.cn/?utm_source=iplaysoft.com&hmsr=iplaysoft.com" target=_blank rel=noopener>访问</a><br>软件性质：免费+付费<br>相关工具：<a href=https://www.iplaysoft.com/bai-miao-zheng-jian-zhao.html target=_blank rel=noopener>白描证件照</a> | <a href=https://www.iplaysoft.com/go/officepost target=_blank rel=noopener>Office 办公软件</a> | <a href=https://www.iplaysoft.com/scan-text-ocr-apps.html target=_blank rel=noopener>扫描识别工具对比</a><br>同类工具：<a href=https://www.iplaysoft.com/tianruo-ocr.html target=_blank rel=noopener>天若 OCR</a> | <a href=https://www.iplaysoft.com/camscanner.html target=_blank rel=noopener>扫描全能王</a> | <a href=https://www.iplaysoft.com/scanner-pro-by-readdle.html target=_blank rel=noopener>Scanner Pro</a> | <a href=https://www.iplaysoft.com/ocrwang.html target=_blank rel=noopener>扫描汪</a></p><p><a href=https://dl.iplaysoft.com/files/5789.html target=_blank rel=noopener>下载白描 (Win)</a> | <a href=https://dl.iplaysoft.com/files/4571.html target=_blank rel=noopener>Android</a> | <a href=https://dl.iplaysoft.com/files/4444.html target=_blank rel=noopener>iOS</a> | <a href=https://dl.iplaysoft.com/files/5790.html target=_blank rel=noopener>Mac</a> | <a href="https://web.baimiaoapp.com/?utm_source=iplaysoft.com&hmsr=iplaysoft.com" target=_blank rel=noopener>网页版</a> | <a href=https://www.iplaysoft.com/tag/%E5%8A%9E%E5%85%AC target=_blank rel=noopener>办公相关</a> | <a href=https://www.iplaysoft.com/tag/%E6%89%AB%E6%8F%8F target=_blank rel=noopener>扫描相关</a> | <a href=https://www.iplaysoft.com/tag/ocr target=_blank rel=noopener>OCR 识别相关</a></p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/2533.html>https://news.zfe.space/p/2533.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:13+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/2533.html&title=白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别) - 小冰 RSSHub&pics=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/2533.html&title=白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别) - 小冰 RSSHub&pics=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/2533.html&title=白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别) - 小冰 RSSHub&pics=https://img.iplaysoft.com/wp-content/uploads/2021/baimiao/baimiao_image.jpg&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/bd4d.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>悦悦</p><p class=content></p></a><a class=next href=/p/5548.html><p class=title>9月20日新闻茶泡Fan<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>首款接近4GHz的显卡就此诞生 10年前AMD推出了HD 7970 GHz Edition显卡，这是首款核心频率达到1GHz的显卡，直到现在显卡的核心频率只是2GHz以上，NVIDIA的...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>全平台免费好用的 OCR 扫描识别 &#x2F; 图片转文字工具</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>白描 Windows 版： 桌面截图识别提取文字：</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>支持表格识别、公式识别、PDF 提取文字</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>批量图片转换文字：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>白描手机版 APP：拍照文字识别 &#x2F; 纸质文档扫描</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>文字翻译</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>扫描纸质文档 &#x2F; 自动识别文档边界 &#x2F; 生成高清扫描件 &#x2F; 身份证扫描</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>表格识别</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>批量扫描识别文字：</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>白描 APP 官方介绍视频：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>白描网页版：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>白描 macOS 桌面版客户端：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>会员一号多平台通用 (免费和普通&#x2F;黄金会员区别)</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>总结：</span></a></li><li class="toc-item toc-level-3"><a class=toc-link href=#post_download><span class=toc-text>相关文件下载地址</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="白描 - 手机电脑免费 OCR 文字识别 + 纸质文档扫描工具 (拍照截图取字_表格识别)";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>日程管理 with Firstseed Calendar - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1></a></div><div class=article-meta id=top><a title="日程管理 with Firstseed Calendar" href=/p/59a8.html><img class=thumbnail src=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1></a><h1 class=title>日程管理 with Firstseed Calendar</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/">少数派 sspai</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/Matrix/">Matrix</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年9月22日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="日程管理 with Firstseed Calendar" data-path=/p/59a8.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class=articleWidth-content data-v-557a067a><div class=update-wrap data-v-557a067a></div><div class="content wangEditor-txt minHeight" data-v-557a067a><h2 style=margin-left:0px;><strong>个人日程管理的需求</strong></h2><p>在选择日程管理的形式或者app的时候，我的要求很简单：即先确定需求，再按照需求探索日程管理方式。我对日程管理的需求有几点：</p><ol><li>任务与日程要在同一个页面；</li><li>尽可能随手拿起就能使用；</li><li>有较大的自由度，即可以根据个人需求添加备注等；</li><li>要能够自上而下地「俯视」整个日程管理过程；</li><li>随时可以逃离。</li></ol><p>根据这几点需求，我开始了自己的日程管理尝试<sup class=ss-footnote href title=下文中截图内的日程管理均为虚构，如有雷同，纯属巧合。 footnote-id=1>1</sup>。</p><h2 style=margin-left:0px;><strong>日程管理尝试</strong></h2><h3 style=margin-left:0px;><strong>1. 纸质日程本</strong></h3><p>本科时期，还在用着黑莓9790、z10等一些「非主流」手机，他们没办法与电脑形成一个良好的生态系统，所以没有习惯用他们来做日程管理，而是使用传统的纸质日程本。</p><p>当时，已经在用Moleskine的单行笔记本做日记本，对M家的本子很有好感，尤其是口袋本，非常便携。出于一种仪式感的传承，我开始尝试M家的周记本：本子摊开，左边是一周的日程记录，可以记录有确定时间的日程，也可以记录只固定日期的日程；右边是一整面的横线页面，可以写下一些备忘事项，例如可能需要本周或者下周要做的事情等，也可以记录本周的一些打卡事项。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG referrerpolicy=no-referrer></figure><p>后来尝试了M家特有的400页超厚日程本，一天一页，每一页都是当天从8点到22点的日程记录。本子非常厚，携带有点不方便；记录是方便许多，能写的位置也多了很多，但因为不是每天都有排满的日程，一些琐事写进去也没意思，最终本子留了许多空，总感觉有点浪费，尤其是年终总结的时候觉得似乎是虚度了时光一样。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/17/889ce877674ba436550a722877d92599.jpeg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/17/889ce877674ba436550a722877d92599.jpeg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/17/889ce877674ba436550a722877d92599.jpeg referrerpolicy=no-referrer></figure><p>后来也尝试过MUJI的月记本，但是总感觉没有周记本好用，我便回归Moleskine的周记本，直到我后来舍弃它。</p><h3 style=margin-left:0px;><strong>2. 手机自带日程管理工具</strong></h3><p>舍弃纸质日程本的原因有两个：</p><ol><li>设备和系统升级了，从「非主流」机升级到了带有安卓系统的Blackberry Keyone，自带的日历强大了很多；</li><li>当时正在读研究生，我们的课比谁都多，每天都被课程排满，而这些课程都写进纸质笔记本里不太可能，只把课程外的待办事项写进本子里又似乎有点多余；</li><li>当时在俄罗斯读硕士，俄罗斯的Moleskine很贵，没有瑕疵本可买。</li></ol><p>因此，最后决定舍弃纸质本，转向日程待办工具。其实最早使用手机作为日程任务管理的还是在高三的时候，那时用黑莓9000的任务列表进行自己各种模拟考和高考的打卡，当时的BBOS已经实现了现在ios没有的「在月历显示任务」功能，使用起来非常方便，也正因此我才把这个功能放在日程管理需求的第一点。</p><p>Keyone虽然没延续祖先BBOS的two in one功能，但也还算好用，聊胜于无，登录outlook还能与电脑构成一个生态环境，只是当时仅仅把电脑的outlook日历作为一个日程提醒工具。</p><h3 style=margin-left:0px;><strong>3. 其他日程管理app</strong></h3><p>跟许多陷入了「寻找最佳笔记软件」怪圈的人一样，我有一段时间也陷入了「寻找最佳的日晨管理工具」的深渊。每天除了固定的读文献和写论文等固定日程外，没有很多可以写入日程的事件，但是却在不断地搜索下载一些日程软件，像todoist、滴答清单、以前用的Micrisoft todo、fantastical等等，我都尝试过。除了我的日程不够多之外，这些app本身也未能令我满意。</p><p>这些软件总的来说可以分成两类：沙盒类和原生类。（可以参考<a target=_blank rel="noopener noreferrer" href=https://sspai.com/post/75482><u>https://sspai.com/post/75482</u></a> 中的「细节补充」，作者使用的「兼容度」这个词。）</p><h4><strong>沙盒类</strong></h4><p>在沙盒类日程app里，我们创建的日程仅保留在该app中，不会同步到系统日历或任务列表中；另外，这类app虽然能导入系统日历，但也仅仅能展示，不能在app里做任何修改。</p><p>使用这类app，我们将面对几个风险：</p><ol><li>一旦程序员删库跑路，我们将丢失许多宝贵的日程记录和写在里面的备注等，</li><li>部分软件免费版不支持同步功能，需要购买高级版才能同步，而大部分的高级版是订阅制；</li><li>此类app与其他app一样，都只是一个第三方应用程序，与系统集成度不高，需要长期维护更新，也难免会有bug，会影响使用体验；</li><li>深度使用后会产生依赖性，一旦有更好的app出现，我们需要花费精力进行导出和导入等操作。</li></ol><p>这种沙盒类日程管理app中，最著名的便是滴答清单。我也曾购买会员重度使用滴答清单半年，在其中记录日程和记录笔记，但使用过程中不自觉产生巨大的不安全感。</p><p>此外，进几次大更新后，滴答清单逐渐变得臃肿，功能过于复杂，容易造成在记录过程中被繁琐的操作干扰。</p><p>最后让我舍弃滴答的，是一次数据丢失，那只是一篇不长的视频笔记，但这足以让我对这个app失去信心。</p><h4 style=margin-left:0px;><strong>原生类</strong></h4><p>原生类日程app是指与系统高度集成的app，在软件里创建、修改、删除日程，或者给任务打钩等操作都能同步到系统软件中。这类app与其说是日程管理app，不如说是系统日历和任务的另一个操作界面。删除这些app，并不会对我们的元数据产生任何影响。</p><p>这类app我使用过几款，分别是：Fantastical、Readdle的Calendars、Schedule lite以及Firstseed Calendar。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/e9505076844e863a6c23e3633383b9af.jpg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/e9505076844e863a6c23e3633383b9af.jpg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/e9505076844e863a6c23e3633383b9af.jpg referrerpolicy=no-referrer><figcaption>最右是Firstseed calendar，不知为什么在桌面显示软件名是Calendars</figcaption></figure><p>下面简单总结一下它们的优缺点。</p><ul><li><strong>Calendars</strong><ul><li>优点：<ul><li>苹果生态圈全平台都有独立客户端，而且内购订阅也是全平台通用；</li><li>支持第三方日历和提醒事项导入；</li><li>非常方便的自然语义输入功能，详情请参考Vanilla写的《Fantastical 的有力竞争者，老牌日历应用效率再升级：Calendars》（<a target=_blank rel="noopener noreferrer" href=https://sspai.com/post/73991><u>https://sspai.com/post/73991</u></a>）。</li></ul></li><li>缺点：<ul><li>Calendars免费版完全不支持添加、同步任务，专业版为订阅制，每年148元或者每月12.33元，这已经不符合我对日程app的要求了；</li><li>Readdle是一家乌克兰公司，与本人在某方面上的认同不符合，也因此我舍弃了他们家的PDF Expert，在Mac端完全使用Zotero或者预览来阅读pdf文件，在ios端则使用自带的文件app</li></ul></li></ul></li></ul><figure class="image ss-img-wrapper image_resized" style=width:602px;><img src=https://cdn.sspai.com/2022/09/21/c55d3d626b4cea4275bd995af9706e66.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/c55d3d626b4cea4275bd995af9706e66.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/c55d3d626b4cea4275bd995af9706e66.JPG referrerpolicy=no-referrer><figcaption>Calendars</figcaption></figure><ul><li><strong>Fantastical</strong><ul><li>优点：<ul><li>老牌日程软件，功能齐全，界面精美，手势操作非常方便；</li><li>独有的季度视图需要以季度为单位来规划和回顾工作的用户。</li></ul></li><li>缺点：<ul><li>以前Fantastical 2.0还是买断制，现在已经更新为订阅制，虽然2.0用户不再需要订阅，但是app一直提醒登录账号，登录之后便继续提示订阅，对于一个每天都要使用的软件来说，这种提醒非常烦人；</li><li>其次，app主界面为上面单行日历，下面日程任务列表。手指放在上面日历处往下滑可以看到完整月历，再往下滑则是年历（本人12mini屏幕里只能看到半年）。之后点击其中一个月或者把手指放在最下面箭头处向上滑，可以回到完整月历+日程，再上划则是单行月历+日程，最后手指放在单行日历处向上滑则是任务清单。</li></ul></li></ul></li></ul><p style=margin-left:0px;>整个操作逻辑非常清晰，也只需要大拇指即可完成。但是实际上，整个操作是「单轨」的，例如说，假设广州、上海和北京之间只有一条高铁轨道，要从广州去北京必须得经过上海，反之亦然。这样的操作在一个日常使用的app中是非常繁琐的。除此之外，这个看似很流畅的手势操作，实际上都是要在屏幕的上半部分完成，对我这种mini用来说已经有点不爽，更不用说那些pro max用户了。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/6d149913c3c325491258d2d54300fe9c.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/6d149913c3c325491258d2d54300fe9c.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/6d149913c3c325491258d2d54300fe9c.JPG referrerpolicy=no-referrer><figcaption>Fantastical 3</figcaption></figure><ul><li><strong>Schedule lite</strong><ul><li>优点：<ul><li>提供月历、任务列表、计划日程等界面，其中月历的自定义程度非常高，提供不同的视图、月份背景图片等自定义选项。</li></ul></li><li>缺点：<ul><li>它已经4年没有更新了；</li><li>软件的汉化程度不高，有很多处翻译问题；</li><li>没有适配全面屏，所以最上面的功能键被遮挡住一半（毕竟4年前苹果还没出全面屏）；</li><li>一些功能键没有文字介绍，作用不是很清晰，只能盲点来测试。</li></ul></li></ul></li></ul><p>总的来说，这款lite版算是很良心，提供了很全面的功能，没有广告，除了不会更新和不说人话之外，可以尝试一用。完整版25元买断，至于有什么新增功能，我不大清楚，也不建议购买这样一款已经被放弃的app。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/d034ce8745b86b3f025c0033b577e7b3.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/d034ce8745b86b3f025c0033b577e7b3.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/d034ce8745b86b3f025c0033b577e7b3.JPG referrerpolicy=no-referrer><figcaption>Schedule</figcaption></figure><h3 style=margin-left:0px;><strong>4. txt 日程管理系统</strong></h3><p>这种日程管理系统来源于布朗大学计算机科学副教授 Jeff Hua，他在《过去 12 年里，我的生产力工具只是一个 .txt 文件》<a target=_blank rel="noopener noreferrer" href=https://sspai.com/post/71705><u>https://sspai.com/post/71705</u></a> （翻译自@爱吃草的熊）提到，他12年来一直是用最简单的txt文档来安排和记录日程。</p><p>作者的操作大概如下：</p><ol><li>将所有任务写进日历app中；</li><li>在txt文档末尾写下每日待办事项，内容包括日程及与之相关的事情，例如11点要与A见面，那么不只是写上时间和「与A在哪里见面」这个事情，还要写见面干嘛，最近在讨论什么事情，期望得到什么结果等等；</li><li>如果计划顺利，见面结束后，还要同步记录这次会面的结果，有哪些任务是达成了，有哪些未完成，这期间获取了什么新信息等等。这时，文档承担了「记事本」的记录功能，因此作者在后来回看时，可以清晰地回顾当时的事件；</li><li>除此之外，作者还会直接把文档当笔记本用，例如在某个时间某个地点偶遇了谁，会记录下来这次会面，并且记录下这次会面得知的对方状态更新（例如某某正在准备研究生申请等）。</li></ol><p>这套日程管理系统的优缺点非常明显：</p><ul><li>优点：<ul><li>灵活，自由度高。除了需要外部日历更直观的安排日程外，其他都可以在txt里完成，除了当任务列表，还可以作为一个过渡笔记本；</li><li>操作简单，使用者不会因繁琐的功能而分心；</li><li>体积小，无需占用过多设备空间；</li><li>不易丢失，利用网盘工具，还可以实现多平台同步。</li></ul></li><li>缺点：</li><li>体积小，但体量大，作者一共写了 37773 行文字，似乎是没有整理过，这样虽然会很有满足感，但过多繁杂的内容会增加使用难度；</li><li>不知道作者使用的是什么平台的文档，但目前来看大部分的笔记软件中，点开一个笔记都是自动定位到首行，而不会定位到末尾，这样与作者的操作逻辑相反。如果坚持在末尾添加的话，一旦内容堆积起来，每次都需要手动跳转到末尾非常麻烦；如果改为在首行开始，则需要先敲几次回车，创建一些空间来记录；</li><li>无法添加附件。如果用作临时笔记本，有时候需要添加照片或者文档，对于txt文档来说这显然无法实现；而如果使用markdown语言，似乎不如直接使用app来得简单方便。</li></ul><p>因此，在深度学习和使用这套系统一个月后，我决定还是放弃，转向更成熟和更方便的日程管理系统。</p><figure class="image ss-img-wrapper image_resized" style=width:519px;><img src=https://cdn.sspai.com/2022/09/21/adbaff48af976011dd126d9aa4c6359c.PNG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/adbaff48af976011dd126d9aa4c6359c.PNG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/adbaff48af976011dd126d9aa4c6359c.PNG referrerpolicy=no-referrer><figcaption>Apple自带备忘录</figcaption></figure><h2 style=margin-left:0px;><strong>Firstseed calendar</strong></h2><p>打开Firstseed Calendar之后，界面非常清晰简洁：上方左侧是设置键，右方为搜索键，中间为日程显示区域，最下方一栏提供日视图、周视图、月视图、议程表和任务列表按键，最左侧是「今日」按键，点击即可跳转至今天的日期，最右侧是添加键，用来添加日程或提醒事项。</p><h3><strong>视图</strong></h3><h4 style=margin-left:0px;>月视图</h4><p style=margin-left:0px;>Firstseed Calendar的月视图提供四种样式：<strong>分离</strong>、<strong>连续</strong>、<strong>水平</strong>以及<strong>水平+列表</strong>等四个。</p><p style=margin-left:0px;>前两个视图中，我们可以纵向滑动月历，点击一个日期后，下方会弹出当日的日程，「分离」意思是两个月之间会相隔一行，而「连续」则不会；<strong>水平视图</strong>中，我们可以横向滑动月历，点击一个日期后，下方会弹出当日行程。而<strong>水平+列表</strong>则是我最喜欢的视图，在该视图中，行程列表会固定在下方，上方则刚好是当月的月历，两者互不干扰，在操作时，页面固定在一个框架中，不会有「弹出」等动作来干扰我们，这使得我们可以更专注于日程整理中。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/80172b44a0598016531621786b3fc6ae.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/80172b44a0598016531621786b3fc6ae.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/80172b44a0598016531621786b3fc6ae.JPG referrerpolicy=no-referrer><figcaption>四种月视图</figcaption></figure><h4 style=margin-left:0px;>周视图</h4><p style=margin-left:0px;>尽管月视图已经很方便，但我更喜欢的是周视图，个人认为这是我见过最好的周视图。</p><p style=margin-left:0px;>首先，我们有多种周视图样式可以选择：标准，水平，3+4，4+3，4+4，5+2（1栏），5+2（2栏），7x1。</p><p style=margin-left:0px;><strong>标准周历</strong>：展示24小时的日程；</p><p style=margin-left:0px;><strong>水平周历</strong>：展示用户设定的「开始时间」和「结束时间」之间的日程；</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/378d0c37433ce77d2c1c9a4af477fa66.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/378d0c37433ce77d2c1c9a4af477fa66.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/378d0c37433ce77d2c1c9a4af477fa66.JPG referrerpolicy=no-referrer><figcaption>标准周历与水平周历</figcaption></figure><p style=margin-left:0px;>3+4、4+3视图：分别是左侧三天、右侧四天和左侧四天、右侧三天两种视图；</p><p style=margin-left:0px;>4+4试图：左侧显示4天，右侧显示3天，最后一个格子显示当月月历；</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/ae6f0a8a214a450feda8189c4aa6a99e.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/ae6f0a8a214a450feda8189c4aa6a99e.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/ae6f0a8a214a450feda8189c4aa6a99e.JPG referrerpolicy=no-referrer><figcaption>3+4，4+3和4+4</figcaption></figure><p style=margin-left:0px;>5+2（1栏）和5+2（2栏）：前者为从上到下显示5天，最后一栏左右一分为二，为周末两天，适合工作日行程多，周末行程少的人；第二个视图中，屏幕一分为二，左侧一栏展示前五天内容，右侧一栏上下一分为二，为周末两天，适合周末行程更多的人。</p><p style=margin-left:0px;>7 x 1：一周7天均分，从上到下排列。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/c71cbbdd4d94bdec8bc9426c0c43651f.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/c71cbbdd4d94bdec8bc9426c0c43651f.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/c71cbbdd4d94bdec8bc9426c0c43651f.JPG referrerpolicy=no-referrer><figcaption>5+2和7x1</figcaption></figure><h3 style=margin-left:0px;><strong>实际使用</strong></h3><p>在上述的视图中，我最常用的是月视图中的「水平+列表」，这样可以直观地看到一整个月和某一天的安排；另外还会使用4+4的周视图，来专注于一周的安排。现在，我已经完全使用Firstseed calendar来做我的日程管理了，流程大致如下：</p><ol><li>每周日或者周一，打开当月月视图检查本月是否有任务没有完成，是否需要移动到本周或者更后的时间；</li><li>在月视图中安排本周要做的事情：时间区间确定的，则记为日程，只确定日期的，则记为提醒事项；</li><li>有突然想到的事情，但不确定日期和时间的，则记为提醒事项，不勾选日期，放入「待定」列表中；</li><li>安排结束后，切换到周视图，这样可以让自己一打开app就能看到本周日程，专注于本周的工作。</li></ol><p>最后，任务结束后，打勾记录完成。日程结束后，也可以将其切换为提醒事项，然后打勾，这样在日后回顾时可以确定这个事件已经结束。</p><p>当然，日常使用中并不会完全按照上述的流程，例如我一定会在月视图上安排日程再切换到周视图，而不是直接在周视图中完成吗？不一定。人不是机器人，不会只按照写好的程序来生活。人的生活更多像是回归分析中的散点图，具有不确定性，但是当我们审视自己的生活时，便能看到当中的大趋势，我们所谓的「工作流」，便是这样一种趋势的总结。</p><h3 style=margin-left:0px;><strong>Pro与免费版</strong></h3><p>对于大部分用户来说，免费版的Firstseed Calendar已经够用，如果你能忍受住最下面的广告栏。</p><p>除了广告，个人认为Pro版比免费版最重要的功能提升是「日程拖动」。打开了这个拖动功能后，在周视图或者月视图里，我们都可以按住行程，等它「脱离」背景后，将其挪动到想安排的日期；如果是日视图，则可以拖动到特定的时间。</p><p>这个功能在我们一些日程没能完成，需要更改到第二天或者其他时间时非常方便，这样我们不需要通过「打开日程——滑动日期——关闭日程」来做改动。</p><figure class="image ss-img-wrapper image_resized" style=width:598px;><img src=https://cdn.sspai.com/2022/09/21/5db7890e9e1efd4b6d63edfaf8996386.gif class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/5db7890e9e1efd4b6d63edfaf8996386.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/5db7890e9e1efd4b6d63edfaf8996386.gif referrerpolicy=no-referrer><figcaption>日程拖动</figcaption></figure><p>除此之外，Pro版的其他小提成似乎都无关痛痒，对本人来说不是非常重要。如果大家对去广告和行程拖动这两个小提升有需求的话，很建议大家升级，毕竟，价格如此亲民的买断制app已经很少见了。</p><h3 style=margin-left:0px;><strong>更新</strong></h3><p>计划写本文的时候，firstseed calendar已经四个月没更新了，本来以为开发团队已经弃船而逃了，便怀着最后一点希望给他们发邮件，他们回复我说九月份便会带来更新，将会支持iOS16。果然，在9月12日iOS16正式版推出后，FS同时发布了更新。</p><p>新版本带来了三个更新：</p><ul><li>支持锁屏小组件；</li><li>支持在日历中显示天气（Pro）；</li><li>支持设置专注模式过滤条件（Pro）。</li></ul><p>另外，团队还提到他们准备发布一个名为Firstseed task的app，从名字来看，这是一个专门做任务管理的app，大家可以小期待一下。</p><h2 style=margin-left:0px;><strong>Mac端的日程管理软件</strong></h2><p>虽然fs非常好用，而且是便宜的买断制，但是很可惜它们不是全平台买断，macOS端的Firstseed Calendar需要128，对于我来说有点贵了。而且，平时日程安排都会在手机端完成，电脑上主要是作为一个提醒用途，所以我并没有使用Firstseed Calendar，而是投向了fantastical的怀抱。</p><p>借用某些手段，我下载了免费版的fatastical 2。fantastical 2不需要订阅，而免费版对我来说已经够用了。另外，因为fantastical本身就是基于系统日历的一个日程操作界面，而系统日历又与Firstseed Calendar同步了，所以我可以完全依靠苹果的生态环境来完成多平台同步，不需要app自身的icloud同步。</p><p>macOS版的fantastical左侧是日程列表，右侧是月历试图，可以切换为任务列表、日程表和季度表，但日常使用的话，月历表已经够用了。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2022/09/21/e3f7831c639c94a62f218d4c12e1ff0b.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2022/09/21/e3f7831c639c94a62f218d4c12e1ff0b.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2022/09/21/e3f7831c639c94a62f218d4c12e1ff0b.png referrerpolicy=no-referrer></figure><h2>后记</h2><p>以上就是本人的日程管理流程，原本只是想推荐正在使用的Firstseed Calendar的，但仅仅推荐日历，其实不足以表达自己对这个app的热爱，只有将自己以前的尝试作为对比才能体现出这个app的优秀之处，希望它能一直维护下去。</p><p>最后，我始终觉得，人不是机器，不可能按照一个固定的程序去进行，所以也不可能按照一套固定的工作流程、学习流程、日程管理流程去工作、学习和生活。我们应该不断尝试，不断学习和进步，同时也能容忍自己犯错，这样我们才能知道什么应该放弃，什么应该坚持，最终找到更合适自己的那一套流程。<br></p></div><div class=update-details-wrap data-v-557a067a></div></div><div style="border:1px solid transparent;" data-v-557a067a></div><div class="article-side sideTop" style=display:none;left:0; data-v-cb5db094 data-v-557a067a><div class=download-guide-container data-v-12d5b4c4 data-v-cb5db094><div class=btn-wrapper data-v-12d5b4c4><button class="btn btn-view" data-v-12d5b4c4><i class="iconfont iconfont-phone" data-v-12d5b4c4></i></button></div><a href=https://sspai.com/s/JYjP target=_blank data-v-12d5b4c4></a></div><div class=item-wrapper data-v-cb5db094><button class="btn btn-charge" data-v-cb5db094><i class=iconfont data-v-cb5db094></i></button><span class=count data-v-cb5db094>18</span></div><div class=item-wrapper data-v-cb5db094><button class="btn-mini btn-comment" data-v-cb5db094><i class="iconfont iconfont-comment" data-v-cb5db094></i></button><span class=count data-v-cb5db094>10</span></div><div class=item-wrapper data-v-cb5db094><span data-v-cb5db094><div role=tooltip id=el-popover-4533 aria-hidden=true class="el-popover el-popper popper-share right ss-popper-dark-border" style=width:undefinedpx;display:none;><div class=article-side-share-btn><a href="https://service.weibo.com/share/share.php?url=null?ref=weibo&title=%E3%80%90%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%20with%20Firstseed%20Calendar%E3%80%91%E4%B8%AA%E4%BA%BA%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E9%9C%80%E6%B1%82%E5%9C%A8%E9%80%89%E6%8B%A9%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%88%96%E8%80%85app%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%88%91%E7%9A%84%E8%A6%81%E6%B1%82%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E5%8D%B3%E5%85%88%E7%A1%AE%E5%AE%9A%E9%9C%80%E6%B1%82%EF%BC%8C%E5%86%8D%E6%8C%89%E7%85%A7%E9%9C%80%E6%B1%82%E6%8E%A2%E7%B4%A2%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E3%80%82%E6%88%91%E5%AF%B9%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E9%9C%80%E6%B1%82%E6%9C%89%E5%87%A0%E7%82%B9%EF%BC%9A%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&pic=https%3A%2F%2Fcdn.sspai.com%2F2022%2F09%2F21%2Fe34a123795319a6d562d3dcad16b2a1a.jpg%3FimageMogr2%2Fauto-orient%2Fquality%2F95%2Fthumbnail%2F!1420x708r%2Fgravity%2FCenter%2Fcrop%2F1420x708%2Finterlace%2F1&appkey=3196502474#" target=_blank><i class="iconfont iconfont-weibo-simple right-16"></i></a><span><div role=tooltip id=el-popover-7563 aria-hidden=true class="el-popover el-popper" style=width:undefinedpx;display:none;><div style=text-align:center;><div id=qr-code></div><small class=qr-small>扫码分享</small></div></div><span class=el-popover__reference-wrapper><i class="iconfont iconfont-wechat-simple right-16"></i></span></span><a href="https://twitter.com/share?text=%E3%80%90%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%20with%20Firstseed%20Calendar%E3%80%91%E4%B8%AA%E4%BA%BA%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E9%9C%80%E6%B1%82%E5%9C%A8%E9%80%89%E6%8B%A9%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%88%96%E8%80%85app%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E6%88%91%E7%9A%84%E8%A6%81%E6%B1%82%E5%BE%88%E7%AE%80%E5%8D%95%EF%BC%9A%E5%8D%B3%E5%85%88%E7%A1%AE%E5%AE%9A%E9%9C%80%E6%B1%82%EF%BC%8C%E5%86%8D%E6%8C%89%E7%85%A7%E9%9C%80%E6%B1%82%E6%8E%A2%E7%B4%A2%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E6%96%B9%E5%BC%8F%E3%80%82%E6%88%91%E5%AF%B9%E6%97%A5%E7%A8%8B%E7%AE%A1%E7%90%86%E7%9A%84%E9%9C%80%E6%B1%82%E6%9C%89%E5%87%A0%E7%82%B9%EF%BC%9A%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&url=null" target=_blank class=twitter><i class="iconfont iconfont-twitter-simple right-16"></i></a></div></div><span class=el-popover__reference-wrapper><button class="btn-mini btn-share" data-v-cb5db094><i class="iconfont iconfont-share" data-v-cb5db094></i></button></span></span></div><div class=item-wrapper data-v-cb5db094><button class="btn-mini btn-collect" data-v-cb5db094><i class="iconfont iconfont-collect" data-v-cb5db094></i></button></div></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/59a8.html>https://news.zfe.space/p/59a8.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:08+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/59a8.html&title=日程管理 with Firstseed Calendar - 小冰 RSSHub&pics=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/59a8.html&title=日程管理 with Firstseed Calendar - 小冰 RSSHub&pics=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/59a8.html&title=日程管理 with Firstseed Calendar - 小冰 RSSHub&pics=https://cdn.sspai.com/2022/09/21/29ccd82419ce94387786cd8f7366df69.JPG?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/5611.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>慢！慢！慢！直播变「慢」了</p><p class=content>「有一天，我看了四十四次日落！」 过了一会儿，他又说： 「你知道，悲伤的人会爱上日落的。」 「那么你是很悲伤了？」我问，「看了四十四次日落的那天？」 小王子没有回答我。圣埃克絮佩里没有再...</p></a><a class=next href=/p/962c.html><p class=title>亮亮视野正式发布听语者 AR 字幕眼镜，构建无障碍沟通<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>亮亮视野正式发布听语者 AR 字幕眼镜，构建无障碍沟通</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>个人日程管理的需求</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>日程管理尝试</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>1. 纸质日程本</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2. 手机自带日程管理工具</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3. 其他日程管理app</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>沙盒类</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>原生类</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4. txt 日程管理系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Firstseed calendar</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>视图</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>月视图</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>周视图</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>实际使用</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>Pro与免费版</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>更新</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Mac端的日程管理软件</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>后记</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="日程管理 with Firstseed Calendar";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

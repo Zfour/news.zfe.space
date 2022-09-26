@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>深入 Platformer 丨奶牛精选 Vol.17 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif></a></div><div class=article-meta id=top><a title="深入 Platformer 丨奶牛精选 Vol.17" href=/p/ed22.html><img class=thumbnail src=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif></a><h1 class=title>深入 Platformer 丨奶牛精选 Vol.17</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/%E5%A5%B6%E7%89%9B%E5%85%B3/">奶牛关</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/%E5%A5%B6%E7%89%9B%E5%85%B3/%E5%85%83%E7%B4%A0%E6%96%87%E7%AB%A0/">元素文章</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2017年8月22日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="深入 Platformer 丨奶牛精选 Vol.17" data-path=/p/ed22.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><p>Platformer在中文里被译作“平台游戏”，最经典最知名的 Platformer 莫过于老任的《超级马里奥**》系列。老任还通过《超级马里奥 Maker》将制作平台动作游戏关卡的权利交给玩家，点燃了经历过 Platformer 热潮的玩家心中的怀旧热情。</p><p>Platformer 游戏受到很多人喜欢的原因之一，就是它在横版卷轴的基础上衍生出了丰富多变的关卡设计与玩法，同时又能对玩家的反应速度和操作精度构成挑战。作为动作游戏的子类，它除了能带来纯粹的“跳台”体验，还和解谜、冒险等游戏类型产生了精妙的火花，诞生了火箭骑士，耀西岛，星之卡比3，Limbo，Fez 等佳作。</p><p>本期精选推荐的游戏评价与文章中，作者皆对Platformer游戏有自己独到的、深入的理解，故将精选命名为「深入 Platformer」，希望对这一类型感兴趣的玩家收获乐趣与知识。</p><h1>目录</h1><p>聊聊平台解谜游戏（一） <a href=https://cowlevel.net/article/1883303 rel=nofollow target=_blank>只看这篇>></a></p><p>一个中心，两个基本点—— VVVVVV 关卡设计简析 <a href=https://cowlevel.net/article/1894682 rel=nofollow target=_blank>只看这篇>></a></p><p>银河战士2重制版 Another Metroid 2 Remake 的评价 <a href=https://cowlevel.net/game/Another_Metroid_2_Remake/review/2148158 rel=nofollow target=_blank>只看这篇>></a></p><p>铲子骑士：痛苦的幽灵DLC简评 <a href=https://cowlevel.net/article/1901094 rel=nofollow target=_blank>只看这篇>></a></p><p>桃与多拉3 Momodora III 的评价 <a href=https://cowlevel.net/game/Momodora_3/review/1921681 rel=nofollow target=_blank>只看这篇>></a></p><p>汐 Shio 的评价 <a href=https://cowlevel.net/game/Shio/review/2420377 rel=nofollow target=_blank>只看这篇>></a></p><h1><br></h1><p><em>*以下为标题及节选，希望大家进入每一篇内容的页面进行阅读，并<strong>将赞同点给原文</strong>而非本篇精选。</em></p><h1><br></h1><p><img src=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif class=lazyload data-srcset=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:100%; alt=79eacce4dd5b90016ee4bba57f7d6a41.gif referrerpolicy=no-referrer></p><h1>聊聊平台解谜游戏（一） <a href=https://cowlevel.net/article/1883303 rel=nofollow target=_blank>>></a></h1><p>作者：<span class=atwho-inserted data-atwho-at-query=@lee><a href=https://cowlevel.net/people/Leesoar07 data-at-slug=Leesoar07 data-role=tip-window data-target=.user-card data-user-slug=Leesoar07 data-tpl=user-card-tpl-2>@Leesoar07</a></span>‍</p><p>节选：</p><p>在平台动作游戏中，或多或少都有一定的解谜要素，其难度主要体现在对跳跃精确程度的要求上。然而在平台解谜游戏中，玩家需要频繁地思考通关的方法，这包括规划行进路径、判断运动时机、处理场景道具、预测并利用NPC的AI等等。<br><img class="fr-dib fr-draggable lazyload" src=https://pic1.cdncl.net/user/Leesoar07/common_pic/ff2ccfbdb7130e07b9687574921c53e5.png data-srcset=https://pic1.cdncl.net/user/Leesoar07/common_pic/ff2ccfbdb7130e07b9687574921c53e5.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:37.97%; referrerpolicy=no-referrer></p><p><img class="fr-dib fr-draggable lazyload" alt=eba430bde396cb6ea335239a3028f422.jpeg src=https://pic1.cdncl.net/user/Leesoar07/common_pic/eba430bde396cb6ea335239a3028f422.jpeg data-srcset=https://pic1.cdncl.net/user/Leesoar07/common_pic/eba430bde396cb6ea335239a3028f422.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:38.44%; referrerpolicy=no-referrer></p><blockquote>相比动作为主的《超级马里奥**3》（上），谜题比例巨大的《瓦里奥大陆3》（下）是一款典型的平台解谜游戏（图片来自Gamefabrique.com和Gamefaps.com）<br></blockquote><p>另一方面，平台解谜游戏继承了平台动作游戏的特点，玩家需要直接或间接地操控角色，在平台之间移动。相比静态的解谜游戏，其谜题享有更丰富的规则和内容，并且提高了不少的操作感，当然还有难度。</p><p><img class="fr-dib fr-draggable lazyload" alt=eca52a5d2883fcd1dfdfac0de0ab95a2.gif src=https://pic1.cdncl.net/user/Leesoar07/common_pic/eca52a5d2883fcd1dfdfac0de0ab95a2.gif data-srcset=https://pic1.cdncl.net/user/Leesoar07/common_pic/eca52a5d2883fcd1dfdfac0de0ab95a2.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:27.81%; referrerpolicy=no-referrer><img class="fr-dib fr-draggable lazyload" alt=274cb3b630eccac83de9ddb97192b251.jpeg src=https://pic1.cdncl.net/user/Leesoar07/common_pic/274cb3b630eccac83de9ddb97192b251.jpeg data-srcset=https://pic1.cdncl.net/user/Leesoar07/common_pic/274cb3b630eccac83de9ddb97192b251.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:77.97%; referrerpolicy=no-referrer></p><blockquote><p>对比《推箱子》（上），基于平台动作的《凯瑟琳》（下）有更多的规则和更强的操作感（图片来自维基百科和TechnoBuffalo.com）</p></blockquote><p>由此可见，平台解谜游戏的乐趣包含了两个方面：其一是通过缜密的逻辑推理剖析谜题，并制订完善的解谜策略；其二是在平台动作的框架下，通过精妙的操作，实现规划好的解谜流程。在实际的游戏过程中，两者往往是同步进行，相映成趣的，使得玩家手脑并用，在挑战中获得巨大的满足。</p><p>阅读全文：</p><p><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-article" src=https://cowlevel.net/widget/article/1883303></iframe></span></p><h1><br></h1><hr><h1><img src=https://pic1.cdncl.net/user/yoge/common_pic/f740cad05a101993d9beb2edff2c9589.gif class=lazyload data-srcset=https://pic1.cdncl.net/user/yoge/common_pic/f740cad05a101993d9beb2edff2c9589.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:100%; alt=f740cad05a101993d9beb2edff2c9589.gif referrerpolicy=no-referrer></h1><h1>一个中心，两个基本点—— VVVVVV 关卡设计简析<a href=https://cowlevel.net/article/1894682 rel=nofollow target=_blank>>></a></h1><p>作者：<span class=atwho-inserted data-atwho-at-query=@帕秋莉><a href=https://cowlevel.net/people/Kitkom data-at-slug=Kitkom data-role=tip-window data-target=.user-card data-user-slug=Kitkom data-tpl=user-card-tpl-2>@帕秋莉诺蕾姬</a></span>‍</p><p>节选：</p><p>有一个很神奇的平台游戏，名字叫 VVVVVV 。它是一个将核心机制从跳跃改成了重力反转，从而把许许多多的新的旧的元素组合在一起的游戏。</p><p>游戏的故事很简单，飞船发生了事故，你的五位手下被困在了星球的各个地方，需要你去解救他们。五个人，大约分成了五大关。</p><p>游戏短小精悍，有很多值得拿出来说的有趣的地方。限于篇幅和文章定位，本文主要介绍它的关卡设计。</p><p><strong>关卡设计</strong></p><p>VVVVVV 的关卡设计我总结为“一个中心，两个基本点”。“中心”即“以重力反转为中心”，而两个基本点则是“以元素结合、考验操作为基本点”。下面我来具体地介绍一下。</p><p>......</p><p>阅读全文：</p><h1><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-article" src=https://cowlevel.net/widget/article/1894682></iframe></span><br></h1><hr><h1><img src=https://pic1.cdncl.net/user/yoge/common_pic/d56aca514d64bae3a8a51c478349df3c.jpeg class=lazyload data-srcset=https://pic1.cdncl.net/user/yoge/common_pic/d56aca514d64bae3a8a51c478349df3c.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=d56aca514d64bae3a8a51c478349df3c.jpeg referrerpolicy=no-referrer></h1><h1>银河战士2重制版 Another Metroid 2 Remake 的评价 <a href=https://cowlevel.net/game/Another_Metroid_2_Remake/review/2148158 rel=nofollow target=_blank>>></a></h1><p>作者：<span class=atwho-inserted data-atwho-at-query=@omega><a href=https://cowlevel.net/people/ultimaweapon data-at-slug=ultimaweapon data-role=tip-window data-target=.user-card data-user-slug=ultimaweapon data-tpl=user-card-tpl-2>@OmegaBuster</a></span>‍</p><p>节选：</p><p>作为动作游戏，操作是重中之重。系列头三部作品（初代，原作，超银）的跳跃手感都比较飘忽，而到了零点任务和融合的时代，跳跃的下坠速度变快，一定程度上改善了飘忽的手感。本作的跳跃手感很明显是学习了零点任务的操作，比较瓷实，不飘。具体是怎么样玩过超银和零点任务的都明白。</p><p><img class="fr-dib fr-draggable lazyload" alt=你能灵活运用空间跳跃，无伤通过这片地区吗？ src=https://pic1.cdncl.net/user/ultimaweapon/common_pic/5e9f43e1f86619c58700589f79141daf.jpeg data-srcset=https://pic1.cdncl.net/user/ultimaweapon/common_pic/5e9f43e1f86619c58700589f79141daf.jpeg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p class=cl-img-alt-box>你能灵活运用空间跳跃，无伤通过这片地区吗？</p><p>进阶动作方面，弹墙跳与炸弹跳等全系列基本都有露面的进阶操作在本作都能够实现，并且实际操作难度比官方正作可能还要低些。至少我自己玩超银和融合时弹墙跳一直都不是很熟练，这里还算是挺好用的…当时融合官方故意拖慢了炸弹的爆炸速度使得无限炸弹跳变为不可能，零点任务的炸弹节奏使无限炸弹跳复活，本作的炸弹爆炸节奏与零点任务基本一致，使得无限炸弹跳再次成为可能，与本作登场的其他技能一起，可有效帮助玩家提前到达一些区域，或提前得到物品等。</p><p><img class="fr-dib fr-draggable lazyload" alt="使用蜘蛛球技能提前取得武器“Spazer Beam”路线一例" src=https://pic1.cdncl.net/user/ultimaweapon/common_pic/a520bae12d16aabdd55ab9ca5b02ae33.png data-srcset=https://pic1.cdncl.net/user/ultimaweapon/common_pic/a520bae12d16aabdd55ab9ca5b02ae33.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p class=cl-img-alt-box>使用蜘蛛球技能提前取得武器“Spazer Beam”路线一例</p><p>除此之外，著名的加速装置进阶操作“Shine Spark”本作同样能够使用，是否会运用这一技巧直接关系到能否取得部分道具。</p><p>与这些技能直接联动的就是本作的场景与关卡的设计，也是《密特罗德》系列一直为玩家所称道的地方。游戏内隐藏了许多对萨姆斯有利的物品（能量包，导弹包，超级导弹包，超级炸弹包），100%收集即是要取得游戏内所有的这些物品。虽然地图上会标注本处是否有道具（也是本作对原作的改良之一，学习了超银、零点任务与融合），很多都是“只能看不能吃”，即能看到这里有道具，但并没有明显的路线提示告诉玩家怎么拿，或以现有装备无法取得等。玩家是否会充分利用身上的道具，并仔细观察场景的设置，就成了能否得到这些道具的关键。这也正是《密特罗德》系列的核心之一：动作解谜。</p><p>本作在这方面做的好得令人惊叹，让人时常都感觉自己玩的是一款官方的重制，而不是粉丝的同人游戏。</p><p>......</p><p>阅读全文：</p><h1><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-review" src=https://cowlevel.net/widget/review/2148158></iframe></span><br></h1><hr><h1><img src=https://pic1.cdncl.net/user/yoge/common_pic/8cc26b40e9f89af3ebb94811a1461b27.gif class=lazyload data-srcset=https://pic1.cdncl.net/user/yoge/common_pic/8cc26b40e9f89af3ebb94811a1461b27.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:100%; alt=8cc26b40e9f89af3ebb94811a1461b27.gif referrerpolicy=no-referrer></h1><h1>铲子骑士：痛苦的幽灵DLC简评 <a href=https://cowlevel.net/article/1901094 rel=nofollow target=_blank>>></a></h1><p>作者：<span class=atwho-inserted data-atwho-at-query=@二叔><a href=https://cowlevel.net/people/UncleD data-at-slug=UncleD data-role=tip-window data-target=.user-card data-user-slug=UncleD data-tpl=user-card-tpl-2>@二叔</a></span>‍</p><p>节选：</p><p>铲子骑士系列在最初就存在古物（道具）克制BOSS这种设计，但不同于洛克人游戏只是使用某些武器能对BOSS造成更多的伤害，铲子骑士中则是利用道具特性来针对BOSS的部分特性，例如螺旋桨骑士会有一招在空中停留大量时间召唤舰炮支援的招式，就可以用船锚来补伤害。</p><p><img class="fr-dib fr-draggable lazyload" alt=使用船锚古物攻击空中的螺旋桨骑士 src=https://pic1.cdncl.net/user/UncleD/common_pic/4381cfd41426695f0d20d9a687f88cab.gif data-srcset=https://pic1.cdncl.net/user/UncleD/common_pic/4381cfd41426695f0d20d9a687f88cab.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p class=cl-img-alt-box>使用船锚古物攻击空中的螺旋桨骑士</p><p>这样的设计虽然隐性，但其实是一种非常好的思路，这需要玩家花更多的精力去熟悉古物性能和观察BOSS的行动方式。在这点上设计得最成功的是瘟疫骑士（因其蹩脚的手感和不稳定性，探索合理的搭配会使BOSS战的难度大幅度下降，同时也是最难找出最优方案的一位），而在这方面做得最崩坏的则是幽灵骑士，在大多数情况下配合骷髅古物都能轻松秒杀大多数BOSS。</p><p>......</p><p>阅读全文：</p><h1><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-article" src=https://cowlevel.net/widget/article/1901094></iframe></span><br></h1><hr><h1><img src=https://pic1.cdncl.net/user/yoge/common_pic/a1cad7497bd79f25807b576ce4ea226a.png class=lazyload data-srcset=https://pic1.cdncl.net/user/yoge/common_pic/a1cad7497bd79f25807b576ce4ea226a.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:100%; alt=a1cad7497bd79f25807b576ce4ea226a.png referrerpolicy=no-referrer></h1><h1>桃与多拉3 Momodora III 的评价 <a href=https://cowlevel.net/game/Momodora_3/review/1921681 rel=nofollow target=_blank>>></a></h1><p>经历了十几个年头的洗礼，市场对于游戏的分类定义不再像以前那样严谨，所有的游戏都朝着多元素的方向整合，很多RPG加入了动作设计、很多ACT也少不了RPG元素的熏染。“横版动作游戏”注定被未来融合多种元素、丰富的动作游戏所取代，这一类型正逐渐地步入衰退、消亡。</p><p>而正是这样一个被市场抛弃的”分类“，在较宽松的独立游戏界里容光焕发，焕发出了第二春。——Momodora III，正是这样一款古典的横版ACT GAME。</p><p>除了传统的横版设定外，本作融入了类ARPG的道具系统，丰富了战斗的体验；人物为二头身的Q版人物，小比例的模型可以轻松地做到较灵活细致的动作，桃与多拉的手感无可挑剔，作为Q版甚至能说趋向完美。</p><p>......</p><p>阅读全文：</p><p><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-review" src=https://cowlevel.net/widget/review/1921681></iframe></span></p><h1><br></h1><hr><h1><img src=https://pic1.cdncl.net/user/yoge/common_pic/25a8ac3d6938c1256f607819be9ca9cc.gif class=lazyload data-srcset=https://pic1.cdncl.net/user/yoge/common_pic/25a8ac3d6938c1256f607819be9ca9cc.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" style=width:100%; alt=25a8ac3d6938c1256f607819be9ca9cc.gif referrerpolicy=no-referrer></h1><h1>汐 Shio 的评价 <a href=https://cowlevel.net/game/Shio/review/2420377 rel=nofollow target=_blank>>></a></h1><p>作者：<span class=atwho-inserted data-atwho-at-query=@高数><a href=https://cowlevel.net/people/rjdimo data-at-slug=rjdimo data-role=tip-window data-target=.user-card data-user-slug=rjdimo data-tpl=user-card-tpl-2>@高数</a></span>‍</p><p><strong>强行增加死亡成本提高难度</strong></p><p>强行提高难度。对，真的是强行提高难度。</p><p>4-3前半段唯一的难点在最后最后，每次去试错都要浪费30秒在没有任何难度的过场上。第三章某几关和4-5隐藏关也有同样的问题，真的很难想象“最高规模”制作的游戏会一而再地犯如此低级的错误。（我怀疑游戏测试时关卡内插满了存盘点，完工后随意地拔掉了几个存盘点。当然，也可能是后两章的测试进行得不够充分。）</p><p>第三章断掌关反倒没有这个问题——全程高能，很纯粹。可以理解为超高难度的额外挑战，毕竟可以选择断掌进入第四章。</p><p><br></p><p><strong>单一的路线，无法钻研导致成就感缺失</strong></p><p>正如我之前所说，“好比石头剪刀布连赢了五盘”的感觉就是成就感缺失的体现。</p><p><img class="fr-dib fr-draggable lazyload" alt=0978394770217a44109806efd82740e7.png src=https://pic1.cdncl.net/user/rjdimo/common_pic/0978394770217a44109806efd82740e7.png data-srcset=https://pic1.cdncl.net/user/rjdimo/common_pic/0978394770217a44109806efd82740e7.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></p><p>说到这里，I Wanna玩家可能就不服了（？</p><p>I Wanna虽有万万吃瓜群众，核心玩家却非常非常少。《汐》显然是想面向小众群体（硬核）中的多数玩家，那这样的关卡设计就欠妥了。</p><p>先来看两个例子吧，节选自SMB 7-15和5-20X。</p><p>......</p><p>阅读全文：</p><p><span class="fr-video fr-fvc fr-dvb fr-draggable"><iframe frameborder=0 scrolling=no class="cl-iframe cl-iframe-cowlevel-review" src=https://cowlevel.net/widget/review/2420377></iframe></span></p><h1><br></h1><hr><h1><br></h1><p><em>*再次，希望大家进入每一篇内容的页面进行阅读，并<strong>将赞同点给原文</strong>而非本篇精选。</em></p><p><a href=https://cowlevel.net/article/1883303 rel=nofollow target=_blank>聊聊平台解谜游戏（一）</a></p><p><a href=https://cowlevel.net/article/1894682 rel=nofollow target=_blank>一个中心，两个基本点—— VVVVVV 关卡设计简析</a></p><p><a href=https://cowlevel.net/game/Another_Metroid_2_Remake/review/2148158 rel=nofollow target=_blank>银河战士2重制版 Another Metroid 2 Remake 的评价</a></p><p><a href=https://cowlevel.net/article/1901094 rel=nofollow target=_blank>铲子骑士：痛苦的幽灵DLC简评</a></p><p><a href=https://cowlevel.net/game/Momodora_3/review/1921681 rel=nofollow target=_blank>桃与多拉3 Momodora III 的评价</a></p><p><a href=https://cowlevel.net/game/Shio/review/2420377 rel=nofollow target=_blank>汐 Shio 的评价</a></p><h1><br></h1><h1><span>关于奶牛精选</span></h1><h1><span><img class="fr-dii fr-draggable lazyload" src=https://pic1.cdncl.net/user/user_upload_osl/yoge/fd92ece37ad08016f02f2c80506df55e.png data-srcset=https://pic1.cdncl.net/user/user_upload_osl/yoge/fd92ece37ad08016f02f2c80506df55e.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" referrerpolicy=no-referrer></span></h1><p><span>奶牛精选是奶牛关游戏社区（</span><span><a href="https://c/" rel=nofollow target=_blank>https://c</a></span><span><a href="https://cowlevel.net/" rel=nofollow target=_blank>owlevel.net</a></span><span>）</span><span>推出的策划，目的是将优质的游戏评测与文章分门别类，并推荐给尽量多的人。希望今后所有的精选，能成为大家根据类型<span>了解游戏、</span>选购游戏的最佳参考。也鼓励所有玩游戏的人，总结自己的游戏经验和见解。如果你有兴趣参与精选的选题、选文，或者推荐好文章进入精选，可以在网站内「反馈意见」中直接给我们留言，或发送邮件至 <a href=mailto:hi@cowlevel.net>hi@cowlevel.net</a></span></p><p><a href=https://cowlevel.net/element/1370 rel=nofollow target=_blank>所有奶牛精选看这里。</a></p></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/ed22.html>https://news.zfe.space/p/ed22.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:19+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/ed22.html&title=深入 Platformer 丨奶牛精选 Vol.17 - 小冰 RSSHub&pics=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/ed22.html&title=深入 Platformer 丨奶牛精选 Vol.17 - 小冰 RSSHub&pics=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/ed22.html&title=深入 Platformer 丨奶牛精选 Vol.17 - 小冰 RSSHub&pics=https://pic1.cdncl.net/user/Leesoar07/common_pic/79eacce4dd5b90016ee4bba57f7d6a41.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/ffa5.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>请病人不要死在走廊上——奶牛精选「模拟经营」主题征稿</p><p class=content>又到了新一期精选时间，已经是第18期精选，受到这篇文章：【游戏志】①根本停不下来 真·游戏毒品 城市营造（上） 的启发，以及其他社区成员的建议，这一次我们决定以「模拟经营」这个古老的游戏...</p></a><a class=next href=/p/7f8.html><p class=title>奶牛精选「Platformer」主题公开征集<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>不知不觉奶牛精选已经出了 16 期，不知道有多少人是第一次看到，奶牛精选旨在将社区中一些优秀的游戏评价聚集到一起，让更多的人看到。每一期的奶牛精选都有一个主题，也让对这个主题感兴趣的玩家...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="深入 Platformer 丨奶牛精选 Vol.17";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

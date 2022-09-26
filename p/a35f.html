@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture></a></div><div class=article-meta id=top><a title=【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 href=/p/a35f.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture></a><h1 class=title>【6000字长文】需求评审总是被怼？强烈推荐你试试这三招</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E4%BB%8A%E6%97%A5%E6%8E%A8%E8%8D%90-%E7%B2%BE%E9%80%89/">今日推荐 / 精选</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年5月17日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 data-path=/p/a35f.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div><style>
+#articleCont &#123;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+&#125;
+#articleCont :first-child &#123;
+  margin-top: 0 !important;
+&#125;
+#articleCont h1,
+#articleCont h2,
+#articleCont h3,
+#articleCont h4,
+#articleCont h5,
+#articleCont h6 &#123;
+  margin: 40px 0 20px;
+&#125;
+#articleCont h1 &#123;
+  font-size: 24px;
+&#125;
+#articleCont h2 &#123;
+  font-size: 22px;
+&#125;
+#articleCont h3 &#123;
+  font-size: 20px;
+&#125;
+#articleCont h4 &#123;
+  font-size: 18px;
+&#125;
+#articleCont h5 &#123;
+  font-size: 16px;
+&#125;
+#articleCont i &#123;
+  font-style: italic;
+&#125;
+#articleCont p,
+#articleCont div &#123;
+  word-wrap: break-word;
+  margin: 14px 0;
+  text-align: justify;
+&#125;
+#articleCont blockquote &#123;
+  border-left: 6px solid #ddd;
+  padding: 5px 0 5px 10px;
+&#125;
+#articleCont blockquote p:last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont .simditor-body blockquote :last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont a &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:visited &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:hover &#123;
+  color: #74a342;
+&#125;
+#articleCont img &#123;
+  max-width: 100%;
+  height: auto;
+&#125;
+#articleCont hr &#123;
+  margin: 19px 0;
+  border: none;
+  border-top: solid 1px #ddd;
+&#125;
+#articleCont ol &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ol li &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ul &#123;
+  list-style-type: disc;
+  padding-left: 40px;
+&#125;
+#articleCont ul li &#123;
+  list-style-type: disc;
+&#125;
+#articleCont table &#123;
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  line-height: 1.7;
+&#125;
+#articleCont table thead &#123;
+  background: #f9f9f9;
+&#125;
+#articleCont table th,
+#articleCont table td &#123;
+  border: solid 1px #ccc;
+  text-align: left;
+  vertical-align: top;
+  padding: 2px 4px;
+  height: 30px;
+  min-width: 40px;
+  box-sizing: border-box;
+&#125;
+#articleCont pre &#123;
+  white-space: pre-wrap;
+&#125;
+</style><p>前段时间和一个合作部门的产品新人沟通需求，结束的时候，他问了我一个问题，“你在产品新人阶段，最害怕做的事情是什么”？<br></p><p>我不假思索的回答说，<b>“需求评审</b>，是曾经最不想面对的环节，甚至在评审之前几个小时就开始心跳加速了。当然这也是产品修炼路上的必经之路，其实只要掌握正确的方法，那你会发现一切尽在掌握中。”</p><p>每一次需求评审，可以称得上是对产品经理的一次毒打，<b>心理素质好的产品经理，每次经历完需求评审，都能够客观的面对各方的质疑和挑战、认真反思，逐渐做到游刃有余；而玻璃心的产品经理，会感觉遭遇了一场“人身攻击”，真的有可能萌生退意。</b></p><p>不夸张的说，如果你想劝退一名准备入行的产品经理的话，那就带他去参加一次需求评审会吧。</p><p><b>对于产品新人，或者是刚刚加入一个新团队的产品经理来说，第一次需求评审不仅仅会决定团队对你的第一印象，更能决定你未来评审的过程是否顺利。</b></p><p>我们来想象下这样一个画面，如果你第一次评审准备充足，需求合理，问题对答如流，那研发、UI、测试不但会心甘情愿的满足你这个需求，更是对你的专业能力比较认可，那未来在面对你的需求时候，可能就会更宽容很多。</p><p>但如果在评审过程中，<b>需求不合理，解答不清晰，收益不明确</b>，被研发怼的体无完肤，那你在他们心目中的第一印象就不太好了，可想而知后面的日子肯定不好过，要知道改变第一印象是不容易的。</p><p>我在经历数十次需求评审之后，从最初面对需求评审的瑟瑟发抖，到现在能够从容的应对各方的“刁难”，这篇文章就和大家分享下我的故事，手把手教你如何准备一场需求评审，让你和大家“和谐相处”，顺利的把需求推进下去。</p><h2><b>一、需求评审的意义</b></h2><p>为什么有需求评审这个环节呢？需求评审的意义到底是什么呢？</p><p>盲人摸象的故事大家都知道，如果没有需求评审，那这个需求就变成了没有经过多方推敲的需求，只是从产品的视角评估的单一维度的需求，很难发现整个需求的全貌。</p><p>下面结合了我自己的初入职场的血泪史以及在工作中看到的一些案例，和大家分享两个没有经过评审造成的后果，希望大家不要重蹈覆辙。</p><p><b>第一，双方信息理解不一致，造成二次开发，影响和研发之间的关系。</b></p><p>一般这种不经过评审的需求往往是涉及的联动方不多，或者团队内部可以搞定需求，大家出于能节省时间，所以简单沟通下就行动起来了，但往往这个时候最容易出问题。</p><p>产品和研发之间往往是有认知差异的，你传达的信息研发不一定能接收完整且准确，然后就按照自己的理解照做了，到了上线之后，你却发现这不是我想要的呀，而研发说你就是这么说的呢。</p><p><b>这样带来的后果就是，不但没有节约时间，甚至还要返工重做，降低了开发效率，影响了产研同事间的信任关系。</b></p><p><b>第二，喜提“背锅侠”，在领导心目中的形象大打折扣。</b></p><p>其次，需求重新开发，必定会造成研发资源的调整，那大概率会惊动产研的领导，会被问起为什么会这样，这种情况下，产品的责任自然是最大的，这对你在领导以及业务方心目中的印象会很减分的。</p><p>无论都是简单或者紧急的需求，都不要省去需求评审的这个环节，哪怕就是拉上研发，对着文档1V1过一遍细节，就能很大程度上避免“<b>浪费时间、消耗信任、增加隔阂</b>”这类情况发生。</p><p>所以，需求评审有以下三点重要意义：</p><p><b>1、能够有效的传递需求准确性和评估需求可行性；</b></p><p><b>2、在多方之间达成需求的共识，做事留痕，明确权责利，避免背锅和甩锅；</b></p><p><b>3、能够在开发阶段高效的推进需求，防止相互扯皮，提高需求的开发效率。</b></p><p>那么，如何准备一场好的需求评审呢？下图就是评审前、评审中以及评审后应该注意的要点，接下来从这三方面展开和大家聊聊具体应该怎么做。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" alt=f865bb29fbe6c8acadff296a65b0cbad-picture coffee-w=820px coffee-h=272px coffee-format=png referrerpolicy=no-referrer></p><h2><b>二、需求评审之前</b></h2><p>这里我们主要讨论在业务逻辑上是合理的需求，那理所应当是可以进入到需求池的。那些和产品定位有冲突的需求，如果是这些需求，是需要我们产品提前识别出来，扼杀在萌芽当中，我们对这部分本次不做展开。</p><p>凡事预则立，不预则废。所以，在面对一场需求评审的时候，一定要做好充足的准备。</p><p><b>第一要准备一份需求文档，</b>描述清楚这次需求具体要实现哪些功能、达到什么目的。</p><p>这里需求文档不需要太复杂，只要描述清晰、重点突出即可，往往不同的公司都有对应的需求文档模板，或者提前和研发沟通，输出让他们看着最舒服的样式即可。</p><p>不同类型的需求文档差异还是比较大的，不过一般的需求文档是要包括这六部分内容的，<b>需求背景（现状、问题）、需求目标（预期收益和价值）、业务流程、竞品分析和调研结果、本次具体实现功能以及埋点管理。</b></p><p><b>第二是要进行需求预沟通</b>。</p><p>预沟通这个环节非常重要，能够帮助我们再次确认需求理解是否有误、以及需求逻辑和实现上有没有问题。</p><p>这里包括两个沟通方，第一个沟通方是业务方，<b>带着需求文档和提需求的业务方进行需求的二次确认</b>，作为过来人，一定要养成习惯，不要漏掉这个过程。</p><p>因为我们肯定遇到过这样的情况，需求上线后兴高采烈的给业务方验收，结果业务方生气的说，“这和我提的需求不太一样呀，我要的口径是这样的，你这个是按照那样实现的，不满足我的需求，再重新做一下吧”，然后潇洒的转身离开了，只留下在风中凌乱的你。</p><p>很多时候业务觉得他表达清楚了，你也觉得你听懂了，但是毕竟大家的视角不同，认知上有差异。而且业务往往是不懂技术的，只表达自己想要什么。所以一定要把需求以文字的形式展示给需求方，花上几分钟反讲下需求，这几分钟带来的收益，很有可能会给你带来数倍的回报。</p><p><b>另一个沟通方就是约上这次需求的主研发or研发负责人</b>，需要一起明确以下三个问题。</p><p><b>第一是这个需求的逻辑有没有问题</b>。需求的逻辑正确与否，是这个需求到底做不做的决定性因素，如果需求方案很好，但是逻辑上根本行不通，那就是理想很丰满，现实很骨感，这个方案不能实际落地。</p><p>举个例子，比如你承接了来自某视频app的用户增长部的一个需求，要求减少视频片头广告时间甚至去掉广告，如果只站在业务方的角度去看没有什么问题，但是这个需求会员部会答应吗？的确减少广告时长或者去掉广告，大概率能够带来一定的用户增长，但是也会大幅的减少收入，显然这个逻辑站在全局的视角来看是行不通的。</p><p><b>第二是这个需求能不能实现。</b>当明确的逻辑没问题之后，要明确需求能不能实现，也就是开发量的问题。比如这个需求确实不错，收益也预计很高，但是研发水平或者人力有限，可能半年都做不完，那就需要考虑下这个需求的ROI了，这时候就需要向上升级，让领导了解基本情况，至于是先实现MVP版本，还是申请额外资源全力开发，这是领导层来决定的问题。</p><p>比如需求背景中提到的搭建自动化营销系统，这个需求各方都很认可，但是技术上实现比较复杂，涉及到用户画像的构建、商品的个性化定价以及营销系统性能的提升。</p><p>最后也是按照功能的优先级和实现的难易程度，分期完成的。所以一个需求有时候并不能一次性就搞定，毕竟各个方向都是多线并行的，难免有资源的冲突。有了预计能够实现的部分，也要及时同步业务方，让其有个心理预期，千万不要等到交付的时候才告知砍了需求，这是很不职业的行为。</p><p><b>第三是如果实现会不会有什么负面影响或者影响其他方向</b>。在逻辑和实现都没问题的前提下，那也要让研发帮忙评估会有没有负面影响，如果是优化1个问题出现了3个新问题的需求，那也是没必要做的。另外，这个需求也有可能对上下游有潜在的影响，需要多方配合迭代，那就要求我们提前知会相关方，评估需求的影响范围，而不是到了正式评审的时候突然拉着对方来配合，这会让相关方留下对你不好印象，影响后续的合作。</p><p>当我们确定好以上三点之后，如果都没有问题，那就可以继续推进需求了，敲定评审时间之后，一定要给各个方向的负责人发会议邀请，至少要提前一天沟通确认会议时间，这样可以让大家有时间准备，可以极大的提高会议效率。</p><h2><b>三、需求评审之中</b></h2><p>好了，接下来就是进入到正式的需求评审环节了。</p><p>那我先问大家一个问题，需求评审这个过程，到底是要参与人员传递哪些信息？仅仅是和相关方同步需求是什么吗？</p><p>当然不仅仅是这个，其实这里是有先后逻辑顺序的，需求评审要传递的信息主要是这三个方向，<b>需求的价值和意义、需求具体是什么以及需求如何实现。</b></p><p>不要一上来就说，我要实现什么功能、达成什么目的、这个需求很简单、怎么实现我不管的这类话。</p><p><b>而是在整个评审会过程中，始终释放一个信号，让大家相信这个需求会有收益并且肯定能实现。</b></p><p>那具体怎么做呢？按照这四步走，可以帮助你可以更加从容地面对需求评审会议。</p><p><b>1、明确需求背景</b></p><p>我参与过一些合作部门的需求评审，发现有不少产品同事会忽略这部分，他们会直接进入需求是什么这部分，这并不是一个好习惯，还也会给研发同事一种被支配的感觉。</p><p><b>所以，开场白应该向大家介绍需求的背景是什么，也就是为什么要做这个需求，而且最好有数据说明现状是怎么样的，预计有多少的收益。这会给研发同事传递出信号，他们会感觉“这个需求是认真评估过的，而不是拍脑袋想出来的”。</b></p><p>举一个我最近组织的需求评审开场的例子，"最近我们和商业分析团队合作，定位了用户流失期间的商品转化变化情况，发现如果用户常买品的下单金额降低25%，那这个商户有84%的概率会流失。所以，经过线下的试点实验，把有流失趋势的用户核心品进行个性化促销，经过半个月的投放，数据表明实验组的流失率降低到37%，效果明显。所以接下来我们计划把这个项目推到全国范围，那就需要建设<b>一个能够识别流失用户核心品，自动化投放营销能力</b>"。</p><p>你瞧，<b>有背景、有实验、有数据、有结果、有期望</b>，可以说是有理有据，也能让大家知道这件事的来龙去脉了，只要彼此在认知和价值认可上达成一致，那这件事就好做了，毕竟强扭的瓜不甜，靠内驱和靠外界驱动，最终实现的效果可能是天壤之别。</p><p>这也就是所谓的“<b>信息差</b>”，产品经理每天和业务接触，会得到丰富的信息，那就可以多维度的来评估这个需求的合理性。而参与评审的其他人，之前是没有这些信息或者只有一部分信息的，就好比盲人摸象一样，从他们的视角来看，很有可能觉得这个需求是不合理的。</p><p>所以，<b>介绍背景，补齐大家的认知，对于需求评审来说，十分重要。</b></p><p>另外，即使是老板提出的需求，也别直接说“这是老板让做的”，不仅很多研发都很反感这句话，而且大家也会觉得你这个产品经理能力可能不太行，缺乏自己的思考。所以，遇到这种情况的时候，需要去发掘老板提出需求背后的业务诉求，让大家明白需求有价值。</p><p><b>2、明确需求范围</b></p><p>当和研发同事在认知和价值层面达成一致之后，那就趁热打铁，开始讲述这个需求到底要做什么。</p><p>作为需求评审最重要的一环，这里也是非常讲究技巧的，在阐述需求的过程中，<b>要先说从粗到细，先整体流程，再到具体功能，最后才是交互细节。</b></p><p>我相信大家都有同感，很多人都特别爱抠细节，如果一上来就直接说细节，那可能立刻引发多人的讨论了，反而会极大的降低评审的效率，造成了时间不可控的情况。</p><p>比如，我参与过几次和其他方向的联合评审，主负责的产品经理和设计同学、前端工程师，对于一个图标或者一种动画形式在会上争论不休，而且一旦开始抠细节，就会陷入怪圈，彼此在众人面前就都不愿妥协了，很难达成一致。</p><p>其实，这些只涉及到单方向的细节问题，往往可以会后下来再沟通的，这样既可以节省大家的时间，私下彼此的态度也会缓和很多，更容易换位思考，达成共识。</p><p>所以，切记，从粗到细，先让大家在脑海中有了需求整体的蓝图，再慢慢的沟通细节即可，而沟通细节这个环节，就可以放到下一环节了。</p><p>比如上文提到“实现自动化营销的能力”，首先需要在数据仓库获取流失的用户-商品关系，接下来把对应的数据传输到营销系统，营销系统根据规则进行适当的降价促销，最后再把数据传输到商城的对应模块，前端实现展示。这就是从整体的流程出发，涉及到数据仓库—营销系统—商城前端，让各个方向相关人员对自己的任务有个认知。</p><p>然后再重点和各个方向聚焦对于的细节，比如怎么获取用户-商品关系，按照什么规则进行促销，具体的展示形式是什么样的。</p><p><b>3、Q&A</b></p><p>需求评审往往会遇到很多问题，特别是需要多方合作的这种需求，更是大型"勾心斗角"的场面。有的会提出自己方向很难实现，有的会说需要依赖其他上游，有的会反馈没研发资源，还有那种直接硬刚质疑需求没意义的。</p><p>面对提问，首先不要慌张，也不要剑拔弩张。其实需求评审会议和面试很像，你面试的时候总不能硬怼面试官吧。所以，能回答的问题认真回答就好，比如需求的必要性、实现的交互、功能的优先级和必要性，都是可以讨论和评估的，以真诚换真心，那很少有人再继续咄咄逼人的。</p><p>同时，这里也要集思广益，如果其他人说的更有道理，那就要积极采纳意见，虚心接受。</p><p>对于回答不上来的细节问题，或者一时没想清楚的，那就暂时不回答，毕竟我们还有万能的话术：<b>"你说的有道理，这个问题我没考虑到，下来我思考一下，然后再找你单聊"。</b></p><p><b>千万不要为了面子，强行编造个说辞，那反而会把自己处于更不利的境地，毕竟大家这个场景下，大家带着自己的诉求，出于完善需求的目的，一旦需求有破绽，同事很容易被盯着不放。</b></p><p>切记，在需求评审过程中，产品经理的职责不仅仅是把需求同步给各个方向，另外你还有一个角色是作为会议的主讲人，也要控制整个流程的节奏，杜绝让会议进入一小部分人抠细节、大部分人围观的状态，更不要让会议跑偏，聊一些不相关的内容。</p><p>所以，一旦发现有些同学开始抠细节，要及时制止，记下todo，会后小范围单独讨论。如果是跑通了，那更要及时将大家的注意力拉回到需求上来。</p><p><b>4、达成结论，输出会议纪要</b></p><p>当完成了上面三步之后，如果这个需求没有问题的话，那就要明确以下三点，当面确定好，防止后续扯皮。</p><p><b>第一，哪些事情要做，哪些事情暂时不做；</b></p><p><b>第二，每个部分的负责人是谁；</b></p><p><b>第三，大概交付时间是什么时候</b>；</p><p>同时，在群里或者邮件的形式再次告知大家需求评审会议结论以及待办事项，一般的会议纪要的形式是这样的，大家可以参考下：</p><p>会议纪要—<b>关于自动化营销能力搭建的需求评审</b></p><p>时间：2022年5月10日，14：00-16：00</p><p>参会人：C罗、本泽马、贝尔、莫德里奇、克罗斯、卡塞米罗....</p><p>结论以及todo：</p><p>1、离线用户-商品关系数据有数据仓库@C罗提供；</p><p>2、营销系统的兼容和规则实现由@本泽马实现；</p><p>......</p><p>5、关于前端交互形式的细节待 <a href=https://coffee.pmcaff.com/profile/240932 target=_blank rel="noreferrer noopener">@贝尔</a>@克罗斯讨论后同步，时间在19:00之前；</p><p>以上，请各个方向评估产品和技术方案，在5月13日下班前完成内部评审，并同步排期，感谢各位。</p><h2><b>四、需求评审之后</b></h2><p>整个会议结束之后，算是完成了一场惊心动魄的面试，那到此就结束了吗？显然没有，面试之后你最好复盘和反思下，总结面试经验，思考自己面试过程中的不足，让自己下次能够发挥的更好。</p><p>所以，这时你需要处理会上遗留的问题，每一个都要输出个结论，形成闭环，同步给参会人员，因为很有可能这些问题会引发新的问题，那可能还需要进行小范围的二次评审。</p><p>直到所有的问题都搞清楚了，多方达成一致了，才能算得上需求评审告一段落了。</p><p>但是也不要以为就万事大吉了，需求评审只是整个过程的开始阶段，接下来要和各个方向确定开发和测试的排期，而且产品经理要及时的跟进需求开发进度，一旦遇到了风险要迅速反应，给出解决方案，同时相关人，确保需求能够按照计划正常推进。</p><h2><b>说在最后</b></h2><p>需求评审，就像是一场面试，不仅在考验我们的知识储备，也非常锻炼我们讲故事和随机应变的能力。</p><p>所以，每一场评审，都值得我们认真准备，因为这不仅仅能够让我们更好的深挖需求，了解业务背景，也能够为后续高效推进需求打下坚实的基础。同时也要坚持对每一次需求评审会议进行复盘，找到自己的优势继续发挥，发现自己的不足尽力弥补。</p><p>如果你按照上面提到的，评审之前的<b>准备文档和预沟通</b>，评审之中的<b>同步需求背景、明确需求范围、细节讨论和输出结论</b>，以及评审之后的<b>确认遗留问题</b>的流程进行了一场需求评审，那相信这大概率是一次成功的经历。</p><p>当你组织一次顺利的需求评审会议后，会让自己的信心倍增，也能积累研发对你的信任。那么久而久之，这个正向的闭环将会不断增强，逐渐你会发现需求评审会议对你来说也就变得不再可怕，而这时候你也就更能明白需求评审会议的价值了。</p><hr><p>关于我：Cris，3年经验的生鲜电商数据&策略产品经理，公众号【产品人Cris】，希望链接到优秀的你。<br></p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/a35f.html>https://news.zfe.space/p/a35f.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:12:45+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/a35f.html&title=【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/a35f.html&title=【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/a35f.html&title=【6000字长文】需求评审总是被怼？强烈推荐你试试这三招 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/f865bb29fbe6c8acadff296a65b0cbad-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/2565.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>妖世刃吊华【第16回 应战】</p><p class=content>Index：【连载】妖世刃吊华作者：草薙刃插画：こぞう 空气中响彻着内燃发动机的轰鸣，还有锐利的枪声。 武器奏响的多重奏，使山道的气氛逐渐化为了战场。 「诶呦！那帮家伙发现我了！出...</p></a><a class=next href=/p/c7d7.html><p class=title>AGON by AOC X Riot Games 聯名首款官方《英雄聯盟》電競顯示器限量上市<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>滑起來。</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>一、需求评审的意义</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>二、需求评审之前</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>三、需求评审之中</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>四、需求评审之后</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>说在最后</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="【6000字长文】需求评审总是被怼？强烈推荐你试试这三招";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

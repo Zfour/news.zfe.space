@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif></a></div><div class=article-meta id=top><a title="动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作" href=/p/8d21.html><img class=thumbnail src=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif></a><h1 class=title>动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/">少数派 sspai</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/%E5%B0%91%E6%95%B0%E6%B4%BE-sspai/%E4%BD%9C%E8%80%85/">作者</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2021年11月29日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title="动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作" data-path=/p/8d21.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div class=articleWidth-content data-v-557a067a><div class=update-wrap data-v-557a067a></div><div class="content wangEditor-txt minHeight" data-v-557a067a><h2>前言</h2><p>不知道你有没有设想过，躺在沙发上就能让卧室的电脑帮你下载想看的电影、说一句话就能让电脑打开想玩的游戏……这些看似「科幻」的操作，在智能家庭逐渐普及的当下，显然已经不是什么难事了。</p><p>不过，依赖第三方解决方案往往很难满足自身的所有需求。以我自己为例，我的 PC 作为家用游戏机，一直连接在电视上。想舒服的进行遥控，要么使用无线键鼠，要么使用远程桌面，终归费时费力。无意瞄到桌面摆放的 HomePod，开始思考能不能使用语音去进行遥控。呀，用语音进行控制 Windows 电脑，好像是个很酷的事情耶～</p><p>想到就做，但想法是美好的，事实是残酷的。就这样一个简单的需求，局限于设备平台以及系统权限，需要付出大量心血才能实现。愿意折腾的玩家或许会享受这个过程，但作为普通人的我们，就想简单快速的满足自己，那有没有好方案呢？</p><p>有的，而且很简单。下面请允许我将这个「魔法」剖析给你，助你成为家里的魔术师🪄</p><h2>工具介绍</h2><ul><li>Quicker：Windows 平台上的效率工具，亮点在于用户可以通过<strong>可视化编程</strong>的方式编写属于自己的动作；</li><li>快捷指令：Apple 生态中系统级效率「神器」；</li><li>Aria2c：跨平台的一款轻量级命令行下载工具。</li></ul><p>本文将以远程调用 Aria2c 下载，作为案例分享，发掘 Windows 远程自动化的潜力。</p><p>其中 Quicker 作为灵魂，实现动作组合、远程调用等功能。快捷指令作为触发器，实现自动化操作。</p><p>关于Aria2c，详细参考链接置于文章底部，简要介绍一下，在本文中 Aria2c 通过传入下载链接，进行高速下载。</p><p><strong>注</strong>：Quicker 免费版有调用限制，如果想拥有更好的服务，建议购买专业版。</p><h2>效果一览</h2><p>作为在我派的保留节目，不玩玩派派怎么行？为了实现远程打开游戏、电影的操作，于是我先做了一个「一键直达少数派」的 Demo。只需要对 Siri 说「Hi,Siri 打开少数派」，电脑便会自动通过默认浏览器打开少数派首页。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif referrerpolicy=no-referrer></figure><p>完成了「打开软件」这个基础操作后，觉得大材小用了，这么简单的操作简直是对不起 Quicker 提供的接口。</p><p>故从自己的需求出发，由于我自己没有做内网穿透，上班的时候想用家中的电脑下载一些大文件就无从谈起。回了家等下载的过程总是心痒痒得很。这样的事情，之前只能忍了，但是现在有了远程的法子，自然是可以玩玩的，于是我又写了一个「远程下载文件」的动作。</p><p>现在只需要在 iPhone 上复制一个链接，黏贴到快捷指令中，电脑便会自动将链接文件下载到指定位置。在这个自动化中，下载地址将会被 Quicker 接收，再调用 Aria2c 进行下载，在下载完成后使用 Bark 通知到手机。</p><p>你需要做的，仅仅只是复制，黏贴。当然，你也可以直接读取剪贴板，或是 Share Sheet 分享，也可以实现本操作。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f65b34teg89368fg.gif class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f65b34teg89368fg.gif srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f65b34teg89368fg.gif referrerpolicy=no-referrer></figure><h2>学会这个魔法 🪄</h2><p>光说不练怎么行。<s>不然做个酷酷的事情，把大家的兴趣勾起来了就跑，想想也是挺刺激的，不过为了防止被打，</s>以下将以远程调用 Aria2c 下载为例，抛砖引玉，让工具为你服务。</p><p>本文思路来自于<a href=https://getquicker.net/KC/Manual/Doc/connection target=_blank>Quicker 远程调用文档</a>。</p><h2>Quicker 配置远程连接</h2><h3>获取登录用户的验证码</h3><p>想实现远程控制 Quicker，我们首先要获取登陆用户的验证码。你可以将其理解为你的身份识别码，你的 Quicker 只会对你发出的指令响应。</p><p>在网页端登陆 Quicker 并打开 <a href=https://getquicker.net/Member/PushTools target=_blank>此链接</a>。页面右侧将会展示你的「推送验证码」。</p><p>该验证码将用于之后所有请求的校验，以确保你是你。不建议将其交予任何人，如若真意外泄露，你也可以点击<strong>「随机生成」</strong>按钮重置。这时不要忘记点击<strong>「保存」</strong>哟。</p><p>鉴于后续步骤还需频繁使用，建议暂时将它保存到其他地方。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f6db34teg0en2dc0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f6db34teg0en2dc0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f6db34teg0en2dc0.png referrerpolicy=no-referrer></figure><h3>打开推送服务</h3><p>获取推送验证码之后，请回到 Quicker 主程序中进行操作。或许是鉴于安全性考量，作者没有默认允许远程调用。我们手动将其打开，如下方贴图左侧，先点击 Quicker 右上角用户头像按钮，再展开「推送服务」菜单。会看到目前显示的是未开启状态，点击「连接到推送服务」即可将其打开。</p><p>当开启后，状态如右图所示，此时你的远程调用条件就设置完毕了。之后我们可以开始配置被调用的动作啦。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f6lb34teg6ocjchg.jpeg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f6lb34teg6ocjchg.jpeg?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f6lb34teg6ocjchg.jpeg referrerpolicy=no-referrer></figure><h2>Quicker 动作配置</h2><p>本文涉及的所有 Quicker 地址均贴在文末，根据内部注释配置后即可使用。</p><h3>新建动作</h3><p>在 Quicker 主面板中找到一个空位，鼠标右键点击后展开选项卡，你可根据需求选择相应的动作。例如打开少数派网页，你可以选择「打开网址」动作。或者打开 Steam 程序，请选择「启动软件」动作。在这里，为了实现复杂动作，我们选择「新建组合动作」。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f6tb34teg6ocjci0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f6tb34teg6ocjci0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f6tb34teg6ocjci0.png referrerpolicy=no-referrer></figure><h3>编辑 Quicker 动作</h3><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/9c3626ad17b9c03bffb99ec0a811b6cc?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/9c3626ad17b9c03bffb99ec0a811b6cc?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/9c3626ad17b9c03bffb99ec0a811b6cc referrerpolicy=no-referrer></figure><h4>区域描述</h4><ol><li><strong>变量区域</strong>：在本案例中，主要为「程序所在位置」与「下载文件夹」所在路径。</li><li><strong>程序步骤区</strong>：你可以从三号区域中拖动动作添加于此，该区域为 Quicker 的精华，可视化的鼎鼎大名绝离不开该区域的优质展示。「注：在指定动作上双击，即可打开编辑」</li><li><strong>动作区域</strong>：Quicker 提供的动作将于此展示。</li><li><strong>动作集区域</strong>：Quicker 根据不同功能点，将动作进行分组，你可以在此选择不同分组，动作区域会根据你选择的动作集切换不同的内容。</li></ol><h4>动作讲解</h4><p><strong>1. 配置 Aria2c 程序所在位置，将其输出到</strong> <code><strong>programPath</strong></code><strong>变量中。</strong></p><p>例如在我的电脑里，Aria2c 程序保存在桌面的某个路径中，复制出完整路径，黏贴到输入框中即可，需要注意的是，请确保该路径下包含 aria2c.exe 程序。已保证调用时候可以正确的找寻到 Aria2c 程序。</p><p>在填写完输入值后，在输出部分，将其输出到变量<code>programPath</code> 中。以方便后期调用。</p><p>「该步骤是为了方便未配置环境变量的用户，如果你明白环境变量的概念，该步骤可以忽略，但你也需要对应的调整一下之后命令行调用部分的命令」。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f7lb34teg0en2dcg.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f7lb34teg0en2dcg.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f7lb34teg0en2dcg.png referrerpolicy=no-referrer></figure><p><strong>2. 配置下载目录所在位置，将其输出到</strong> <code><strong>downloadPath</strong></code><strong>变量中。</strong></p><p>你需要将下载路径的全路径黏贴到输入中，再输出到 <code>downloadPath</code>中。这与第一步相似，也是为了方便后期调用。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f7tb34teg6ocjcig.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f7tb34teg6ocjcig.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f7tb34teg6ocjcig.png referrerpolicy=no-referrer></figure><p><strong>3. 配置 Windows 提醒</strong></p><p>如果远程调用，这东西用途不大😂<s>毕竟那时候我们不在电脑跟前，看不到提醒</s></p><p>但是谁能拒绝一个程序正确的 run 起来之后那成就感呢，这简直就是沙漠中的绿洲。它会告诉你，你现在在做的事情是对的，你的程序现在正在根据你的需求在运行～</p><p>所以哪怕浪费了一点篇幅我也要写出来，只为那一抹你懂我懂的会心一笑。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/editor/u_/c6i3f85b34teg0en2dd0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/editor/u_/c6i3f85b34teg0en2dd0.png?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/editor/u_/c6i3f85b34teg0en2dd0.png referrerpolicy=no-referrer></figure><p><strong>4. 调用 CMD 命令，执行下载</strong></p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/1c8fb0b6a045b66f21120298d09f728a?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/1c8fb0b6a045b66f21120298d09f728a?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/1c8fb0b6a045b66f21120298d09f728a referrerpolicy=no-referrer></figure><pre class=language-null><code>$$aria2c.exe "&#123;quicker_in_param&#125;" -d &#123;downloadPath&#125;</code></pre><p><strong>这句话的完整含义为，使用 aria2c 程序，下载指定的链接，并保存到指定的目录中。</strong></p><p>解释如下：</p><ul><li><code>$$</code> 为 Quicker 指定的语法。在调用变量时候，在开头写上<code>$$</code>，Quicker 会将变量内容替换到命令中。</li><li>例如此处，我们使用<code>downloadPath</code>作为下载路径，使用<code>&#123;&#125;</code>进行包裹，在运行的时候，该变量将被赋值为下载文件夹所在路径。</li><li><code>quicker_in_param</code>参数为 URL 请求中携带的 <code>data</code>字段，在此处意味着下载链接。<strong>「极为重要，请注意拼写正确，否则你将无法接收到传入的参数」</strong></li><li>脚本类型请选择「命令行CMD」，你在调试的时候可以选择「完成后关闭命令窗口」这个选项，调试更为直观。</li></ul><p>同时，请记得配置「工作目录」为程序所在位置，此处调用<code>ProgramPath</code>即可。</p><p><s>如果你清楚如何配置环境变量，「工作目录」就无需配置了。</s></p><p><strong>5. 通过 Bark 通知手机下载完毕</strong></p><p>请于 Bark App 中复制你的请求地址，稍作修改。</p><p>此处多啰嗦两句，Quicker 自身支持调用结果返回，在你远程调用之后，会返回一个调用结果。但其最大等待时间仅为 5 分钟。而下载通常是一个长耗时的操作，故更换思路，改让 Windows 去通知手机。</p><p><s>同时也可以避免快捷指令在那边傻等(´Д` )，影响后续手机的使用。</s></p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/006ab688b5e08e89d279e858daf4b029?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/006ab688b5e08e89d279e858daf4b029?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/006ab688b5e08e89d279e858daf4b029 referrerpolicy=no-referrer></figure><h3>复制动作 ID</h3><p>如图，在你编辑的动作保存后，回到主页面。在指定动作上点击鼠标右键，在弹出的菜单内找到「复制动作 ID 」。得到的 ID 大致如此「b7821721-aaaa-xxxx-yyyy-008d8c1ffde6」，该 ID 将作为该动作的唯一标识码，使该动作可以准确的被调用到。</p><p>重新编辑动作不影响其 ID，你可以放心的进行修改，修改后也可以通过原来的 ID 进行调用，有效减少我们调试时候的操作。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/8a038bea4d260429e33a404a269b4407?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/8a038bea4d260429e33a404a269b4407?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/8a038bea4d260429e33a404a269b4407 referrerpolicy=no-referrer></figure><p><strong>至此，Quicker 部分设置完毕。</strong></p><h2>快捷指令设置</h2><h3>配置基本参数</h3><p>在文末提供的案例中，我详细的注释了每一个参数的由来，你可以直接将前文中得到的参数填写到对应的文本框内，即可实现快捷指令的基本配置。主要配置项为「推送验证码」、「动作 ID 」、「Quicker 的登录邮箱」、「URL中的相关参数」。其中 URL 请求参数配置略微复杂，且千人千面，根据动作不同均有不同，故请根据文档进行相应配置。</p><p>你可以暂时根据下方截图去了解需要的参数，详细配置请下载文末的示例。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/dea306ca3d3c29aa2699b981e9e16ee8?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/dea306ca3d3c29aa2699b981e9e16ee8?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/dea306ca3d3c29aa2699b981e9e16ee8 referrerpolicy=no-referrer></figure><h3>URL 请求头配置详解</h3><p>下方图片为 Quicker 文档中贴出的参数说明，看上去有些复杂。不过对于我们这个示例来说，大部分用不到，为了简化操作说明，此处单独拎出几个来讲讲。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/54a4481109cd71408a9ae7cdfa7eb06a?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/54a4481109cd71408a9ae7cdfa7eb06a?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/54a4481109cd71408a9ae7cdfa7eb06a referrerpolicy=no-referrer></figure><ul><li><code>toUser（你的邮箱）</code> 和 <code>code（你的推送验证码）</code>，两个参数必选，此处不赘述。</li><li><code>operation</code> 请配置为 action，即告诉 Quicker ，该次访问将调用一个指定的动作，以做好接收参数的准备。</li><li><code>data</code> 为下载链接，作为参数传到 Quicker 中，将由 <code>quicker_in_param</code> 变量接收。</li><li><code>action</code> 请配置为 Quicker 设置中最后一步复制得到的动作 ID，以确保 Quicker 可以找到对应的动作。</li></ul><p>笔者自己配置好的参数如下图，仅供参考。其中链接来自于快捷指令最上方的「请求输入」组件，在调用的时候，我将黏贴一个地址进去，该地址将会被传递到 Quicker 中，由 Aria2c 进行调用。从而实现下载需求。</p><figure class="image ss-img-wrapper"><img src=https://cdn.sspai.com/2021/11/29/article/5a36d3a3980aec76f0d26beb86c6e227?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 class=lazyload data-srcset=https://cdn.sspai.com/2021/11/29/article/5a36d3a3980aec76f0d26beb86c6e227?imageView2/2/w/1120/q/40/interlace/1/ignore-error/1 srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://cdn.sspai.com/2021/11/29/article/5a36d3a3980aec76f0d26beb86c6e227 referrerpolicy=no-referrer></figure><h3>测试</h3><p>理论上，你现在可以执行测试了。如果遇到错误，Quicker 和快捷指令都会以一个友好的方式对你进行提示，你可以根据提示进行修改，以达到你期望的效果。</p><p>Debug 的过程是「痛苦」的，结局是美好的。就像一句话说的那样「成就感真的是一个折腾人的小妖精，得到后就无法自拔(´･ω･`)」——我编的</p><h2>尾巴</h2><p>最后，总结一下（・◇・）/~~~</p><p>文中从 Quicker 设置项开始讲起，贯穿了由快捷指令调取一个复杂动作的全流程，实现了远程调用下载这种原先需要内网穿透的才能实现的复杂操作。而这，也只是笔者自己不成熟的智能家庭使用场景中的一个小景，相信少数派的各位大神们会有比这个更好的想法，让工具更好的服务于我们。</p><p><s>毕竟，懒惰才是第一生产力呀。</s></p><p>希望这篇冗长的文章可以给各位朋友带来满足。祝好！</p><p><strong>本文参考链接</strong>：</p><ol><li><a href=https://www.icloud.com/shortcuts/adfcfedc493548c08d70c3ca25e56dc0 target=_blank>Quicker官方提供的快捷指令</a></li><li><a href=https://www.icloud.com/shortcuts/31cd6835a64949b6840ae8a67ac033ad target=_blank>笔者编辑的快捷指令模板</a></li><li><a href=https://www.icloud.com/shortcuts/2420d7e2579c4f6db5dadcbe6d021413 target=_blank>远程调用 Aria2c 的快捷指令</a></li><li><a href="https://getquicker.net/Sharedaction?code=438e12d0-7ff5-408c-82d9-08d9a96a6ccf" target=_blank>调用Aria2c下载 - 动作信息 - Quicker</a></li><li><a href=https://www.ecsoe.com/archives/43.html target=_blank>Aria2:windows上的详细使用方法 - EvansT's Blog</a></li><li><a href=https://sspai.com/tag/Quicker target=_blank>#Quicker - 少数派 (sspai.com)</a></li><li><a href=https://sspai.com/post/47776 target=_blank>Quicker -- 一种全新的 Windows 效率神器 - 少数派 (sspai.com)</a></li><li><a href=https://sspai.com/post/53336 target=_blank>在 Windows 里实现 6 个不为人知的文件操作 - 少数派</a></li></ol><p style=margin-left:0.0px;>> 下载 <a target=_blank rel=noopener href=https://sspai.com/page/client>少数派 2.0 客户端</a>、关注 <a target=_blank rel=noopener href=https://sspai.com/s/J71e>少数派公众号</a>，解锁全新阅读体验 📰</p><p style=margin-left:0.0px;>> 实用、好用的 <a target=_blank rel=noopener href=https://sspai.com/mall>正版软件</a>，少数派为你呈现 🚀</p></div><div class=update-details-wrap data-v-557a067a></div></div><div style="border:1px solid transparent;" data-v-557a067a></div><div class="article-side sideTop" style=display:none;left:0; data-v-cb5db094 data-v-557a067a><div class=download-guide-container data-v-12d5b4c4 data-v-cb5db094><div class=btn-wrapper data-v-12d5b4c4><button class="btn btn-view" data-v-12d5b4c4><i class="iconfont iconfont-phone" data-v-12d5b4c4></i></button></div><a href=https://sspai.com/s/JYjP target=_blank data-v-12d5b4c4></a></div><div class=item-wrapper data-v-cb5db094><button class="btn btn-charge" data-v-cb5db094><i class=iconfont data-v-cb5db094></i></button><span class=count data-v-cb5db094>59</span></div><div class=item-wrapper data-v-cb5db094><button class="btn-mini btn-comment" data-v-cb5db094><i class="iconfont iconfont-comment" data-v-cb5db094></i></button><span class=count data-v-cb5db094>14</span></div><div class=item-wrapper data-v-cb5db094><span data-v-cb5db094><div role=tooltip id=el-popover-7874 aria-hidden=true class="el-popover el-popper popper-share right ss-popper-dark-border" style=width:undefinedpx;display:none;><div class=article-side-share-btn><a href="https://service.weibo.com/share/share.php?url=null?ref=weibo&title=%E3%80%90%E5%8A%A8%E5%8A%A8%E5%98%B4%E5%B0%B1%E8%83%BD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%8C%E6%88%91%E7%94%A8%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4%20%2B%20Quicker%20%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C%E3%80%91%E5%89%8D%E8%A8%80%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E8%AE%BE%E6%83%B3%E8%BF%87%EF%BC%8C%E8%BA%BA%E5%9C%A8%E6%B2%99%E5%8F%91%E4%B8%8A%E5%B0%B1%E8%83%BD%E8%AE%A9%E5%8D%A7%E5%AE%A4%E7%9A%84%E7%94%B5%E8%84%91%E5%B8%AE%E4%BD%A0%E4%B8%8B%E8%BD%BD%E6%83%B3%E7%9C%8B%E7%9A%84%E7%94%B5%E5%BD%B1%E3%80%81%E8%AF%B4%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%B1%E8%83%BD%E8%AE%A9%E7%94%B5%E8%84%91%E6%89%93%E5%BC%80%E6%83%B3%E7%8E%A9%E7%9A%84%E6%B8%B8%E6%88%8F%E2%80%A6%E2%80%A6%E8%BF%99%E4%BA%9B%E7%9C%8B%E4%BC%BC%E3%80%8C%E7%A7%91%E5%B9%BB%E3%80%8D%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%9C%A8%E6%99%BA%E8%83%BD%E5%AE%B6%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&pic=https%3A%2F%2Fcdn.sspai.com%2Farticle%2F0171429b-9ec6-bf45-6fd8-7962e822b9bd.png%3FimageMogr2%2Fauto-orient%2Fquality%2F95%2Fthumbnail%2F!1420x708r%2Fgravity%2FCenter%2Fcrop%2F1420x708%2Finterlace%2F1&appkey=3196502474#" target=_blank><i class="iconfont iconfont-weibo-simple right-16"></i></a><span><div role=tooltip id=el-popover-7083 aria-hidden=true class="el-popover el-popper" style=width:undefinedpx;display:none;><div style=text-align:center;><div id=qr-code></div><small class=qr-small>扫码分享</small></div></div><span class=el-popover__reference-wrapper><i class="iconfont iconfont-wechat-simple right-16"></i></span></span><a href="https://twitter.com/share?text=%E3%80%90%E5%8A%A8%E5%8A%A8%E5%98%B4%E5%B0%B1%E8%83%BD%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6%EF%BC%8C%E6%88%91%E7%94%A8%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4%20%2B%20Quicker%20%E5%AE%9E%E7%8E%B0%E8%BF%9C%E7%A8%8B%E6%93%8D%E4%BD%9C%E3%80%91%E5%89%8D%E8%A8%80%E4%B8%8D%E7%9F%A5%E9%81%93%E4%BD%A0%E6%9C%89%E6%B2%A1%E6%9C%89%E8%AE%BE%E6%83%B3%E8%BF%87%EF%BC%8C%E8%BA%BA%E5%9C%A8%E6%B2%99%E5%8F%91%E4%B8%8A%E5%B0%B1%E8%83%BD%E8%AE%A9%E5%8D%A7%E5%AE%A4%E7%9A%84%E7%94%B5%E8%84%91%E5%B8%AE%E4%BD%A0%E4%B8%8B%E8%BD%BD%E6%83%B3%E7%9C%8B%E7%9A%84%E7%94%B5%E5%BD%B1%E3%80%81%E8%AF%B4%E4%B8%80%E5%8F%A5%E8%AF%9D%E5%B0%B1%E8%83%BD%E8%AE%A9%E7%94%B5%E8%84%91%E6%89%93%E5%BC%80%E6%83%B3%E7%8E%A9%E7%9A%84%E6%B8%B8%E6%88%8F%E2%80%A6%E2%80%A6%E8%BF%99%E4%BA%9B%E7%9C%8B%E4%BC%BC%E3%80%8C%E7%A7%91%E5%B9%BB%E3%80%8D%E7%9A%84%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%9C%A8%E6%99%BA%E8%83%BD%E5%AE%B6%EF%BC%88%E6%9D%A5%E8%87%AA%20%40%E5%B0%91%E6%95%B0%E6%B4%BEsspai%EF%BC%89%E5%85%A8%E6%96%87%EF%BC%9A&url=null" target=_blank class=twitter><i class="iconfont iconfont-twitter-simple right-16"></i></a></div></div><span class=el-popover__reference-wrapper><button class="btn-mini btn-share" data-v-cb5db094><i class="iconfont iconfont-share" data-v-cb5db094></i></button></span></span></div><div class=item-wrapper data-v-cb5db094><button class="btn-mini btn-collect" data-v-cb5db094><i class="iconfont iconfont-collect" data-v-cb5db094></i></button></div></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/8d21.html>https://news.zfe.space/p/8d21.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:07+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/8d21.html&title=动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作 - 小冰 RSSHub&pics=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/8d21.html&title=动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作 - 小冰 RSSHub&pics=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/8d21.html&title=动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作 - 小冰 RSSHub&pics=https://cdn.sspai.com/editor/u_/c6i3f5tb34teg0en2dbg.gif&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/9679.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>360网络安全周报第321期</p><p class=content>ByteCTF2021 MISC部分 解题思路和复现；浅析Linux Kernel[5.11.0]内存管理（一）；Intel AES-NI使用入门。</p></a><a class=next href=/p/6a78.html><p class=title>360网络安全周报第320期<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>黑客也摆烂 长密码再见；2021第四届强网拟态防御积分赛工控pwn eserver WP；Struts2 漏洞分析系列 - S2-003&S2-005/初识首个通用Struts2框架漏洞...</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>前言</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>工具介绍</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>效果一览</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>学会这个魔法 🪄</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Quicker 配置远程连接</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>获取登录用户的验证码</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>打开推送服务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>Quicker 动作配置</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>新建动作</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>编辑 Quicker 动作</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>区域描述</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>动作讲解</span></a></li></ol></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>复制动作 ID</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>快捷指令设置</span></a><ol class=toc-child><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>配置基本参数</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>URL 请求头配置详解</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>测试</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>尾巴</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="动动嘴就能下载文件，我用快捷指令 + Quicker 实现远程操作";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

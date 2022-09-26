@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>B端产品设计流程--如何进行产品架构设计（下） - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture></a></div><div class=article-meta id=top><a title=B端产品设计流程--如何进行产品架构设计（下） href=/p/5d77.html><img class=thumbnail src=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture></a><h1 class=title>B端产品设计流程--如何进行产品架构设计（下）</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E4%BB%8A%E6%97%A5%E6%8E%A8%E8%8D%90-%E7%B2%BE%E9%80%89/">今日推荐 / 精选</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年5月19日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=B端产品设计流程--如何进行产品架构设计（下） data-path=/p/5d77.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div><style>
+#articleCont &#123;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+&#125;
+#articleCont :first-child &#123;
+  margin-top: 0 !important;
+&#125;
+#articleCont h1,
+#articleCont h2,
+#articleCont h3,
+#articleCont h4,
+#articleCont h5,
+#articleCont h6 &#123;
+  margin: 40px 0 20px;
+&#125;
+#articleCont h1 &#123;
+  font-size: 24px;
+&#125;
+#articleCont h2 &#123;
+  font-size: 22px;
+&#125;
+#articleCont h3 &#123;
+  font-size: 20px;
+&#125;
+#articleCont h4 &#123;
+  font-size: 18px;
+&#125;
+#articleCont h5 &#123;
+  font-size: 16px;
+&#125;
+#articleCont i &#123;
+  font-style: italic;
+&#125;
+#articleCont p,
+#articleCont div &#123;
+  word-wrap: break-word;
+  margin: 14px 0;
+  text-align: justify;
+&#125;
+#articleCont blockquote &#123;
+  border-left: 6px solid #ddd;
+  padding: 5px 0 5px 10px;
+&#125;
+#articleCont blockquote p:last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont .simditor-body blockquote :last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont a &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:visited &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:hover &#123;
+  color: #74a342;
+&#125;
+#articleCont img &#123;
+  max-width: 100%;
+  height: auto;
+&#125;
+#articleCont hr &#123;
+  margin: 19px 0;
+  border: none;
+  border-top: solid 1px #ddd;
+&#125;
+#articleCont ol &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ol li &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ul &#123;
+  list-style-type: disc;
+  padding-left: 40px;
+&#125;
+#articleCont ul li &#123;
+  list-style-type: disc;
+&#125;
+#articleCont table &#123;
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  line-height: 1.7;
+&#125;
+#articleCont table thead &#123;
+  background: #f9f9f9;
+&#125;
+#articleCont table th,
+#articleCont table td &#123;
+  border: solid 1px #ccc;
+  text-align: left;
+  vertical-align: top;
+  padding: 2px 4px;
+  height: 30px;
+  min-width: 40px;
+  box-sizing: border-box;
+&#125;
+#articleCont pre &#123;
+  white-space: pre-wrap;
+&#125;
+</style><p><b><font>前言：</font></b></p><p><font>在上篇文章中我们重点讲述了业务调研，业务调研是我们架构设计的基础，只有了解清晰业务形态，整体流程及相互关系之后，才能设计出符合业务形态的产品架构<b>。</b></font><font>产品架构是将具体的业务功能按照一定规则组装成业务模块，将不同业务模块按照一定规则进行划分和归拢，并用图形或者文字把各模块之间的关系表达出来的逻辑模型</font><font>。</font><font>接下</font><font>来</font><font>这篇文章跟大家分享和交流我们如何设计出一份好的产品架构。</font></p><p><font><br></font></p><hr><h3><b><font>1、什么是好的产品架构</font></b></h3><p><font>一个好的产品架构需要<b>能够助力商业模式、体现公司目标、具备落地性，同时具备抽象能力和扩展能力</b>。抽象能力的适应性体现在其匹配的行业，抽象能力较好的产品架构可以适用于多个行业，支持其横向的覆盖范围。而扩展能力适应性体现在其可以包容接纳的领域，扩展性好的产品架构，各模块之间边界清晰，职能明确，兼容性强，可以在演进的过程中，将更多的领域纳入到自己的架构中，成为整个产品的一部分，并且可以实现接入过程，成本低，时间短，少出错。<b>总的来说产品架构的抽象能力能帮助产品适配多个行业，支持横向覆盖</b></font><b><font>；</font><font>能帮助产品适配更多的领域，支持纵向演进。抽象能力和扩展能力代表了一个产品在不同维度的适应性。</font></b></p><p><img alt=60c103fa7827f_05.jpg src=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture class=lazyload data-srcset=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=1200 coffee-w=2560px coffee-h=1440px coffee-format=jpeg referrerpolicy=no-referrer><br></p><p><br></p><hr><h3><b><font>2、产品架构的核心要素</font></b></h3><p><font>在进行架构设计之前我们需要了解产品架构所包含的要素，通过我们对上文产品架构是什么的理解，我们可以将<b>产品架构拆分成功能、模块、域、层、逻辑关系几个维度</b>。在架构设计过程中将不同的功能汇聚成模块，而模块的划分需要遵循一定的规则，根据角色、场景、交互操作等去进行功能块的聚合。而不同模块可以进一步聚合形成域，域是模块根据某个场景聚拢而形成的，域可以支撑某一个场景下的一系列操作，输出一个闭环的能力。而层则是某几个域和模块的组合，层实现了向下整合或向上支撑的统一化的能力。逻辑关系指层、域、模块之间需要有清晰地逻辑关系，包括输入输出、职能边界等等。产品架构是一个没有标准化量化好坏的东西，在做产品架构设计时不可避免</font><font>的</font><font>需要考虑多角色诉求，<b>产品经理在设计产品架构时一定要多角度，多维度去综合考虑，达到一个相对平衡的结果，这一点尤为重要；</b>其次产品架构设计时也需要充分考虑商业模式，这一点也至关重要。</font></p><p><font>同时我们在日常工作中也常听到技术人员说架构，技术架构与产品架构两者是两个层级的东西，产品架构</font><font>是</font><font>技术架构更上一层的逻辑，是进行技术架构的设计时所必须的业务依据，而技术架构是对产品架构的实现逻辑的反馈，是产品是否可以按照这样进行设计的技术依据，两者之间相辅相成，有依托也有支撑</font><font>。</font></p><p><img alt=60c103fa7827f_05.jpg src=https://img.pmcaff.com/FrWvMMZV5EzicOokcdv4CNje4xuM-picture class=lazyload data-srcset=https://img.pmcaff.com/FrWvMMZV5EzicOokcdv4CNje4xuM-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=1200 coffee-w=2560px coffee-h=1440px coffee-format=jpeg referrerpolicy=no-referrer><br></p><p><br></p><hr><h3><b><font>3、如何保证产品架构的抽象能力</font></b></h3><p><font>对于</font>SaaS产品来说其面对的客户是相对广泛的，不同的客户所处的发展阶段也不尽相同，甚至我们能够看到同一类型的客户，他们的诉求也会存在一定差别，正因为如此我们需要对服务客户的业务进行抽象，找到自己所面临的的客户群体，找到这些群里存在的共性、差异性。<b>那我们在产品架构设计中如何去解决个性化与标准化共存的问题，而解决这个问题我们需要去做三件事：拆分产品战略、抽象客户业务本质、实现高内聚低耦合。</b></p><p><b><font>3.1、拆分产品战略</font></b></p><p><font>我们之所以要拆分产品战略，因为产品架构需要体现客户的意志，明确客户想做什么，先做什么，后做什么，那些部分要做到什么程度，战略的拆分是想通过产品架构的设计来表达客户最终想要的样子，以及产品是按照什么路径演进到最终客户想要的样子。整个路径中</font><font>有</font><font>那些关键节点，而这些关键节点就是我们的里程碑，所以我们才需要去拆分产品战略。</font></p><p><font><b>拆分产品战略主要是指拆分企业的业务战略和企业的管理战略。</b>业务战略是以实现营收，节约成本作为目标的，业务战略相对清晰可衡量。而管理战略目标则相对模糊不易衡量，往往涉及企业内部管理。针对业务战略我们通过三表法的方式去分析和拆解，针对管理战略我们</font><font>以</font><font>场景代入的方法进行拆解，下面跟大家一起看看具体的执行方法</font><font>。</font></p><p><b>3.1.1、我们通过三表法拆分业务战略；</b></p><p><font><b>第一步：拆分内容，进行汇聚；</b></font></p><blockquote><p><font>目标表：要达成什么结果，这些结果</font><font>由</font><font>哪些小目标组成的，小目标对整体结果贡献度是什么；</font></p><p><font>策略表：策略表是针对需要实现的目标给出一对一或一对多的落地方案的解答，怎么达到我们预定的结果，分几步进行，每一步的玩法是什么，每一步阶段性成果如何衡量；</font></p><p><font>资源表：需要什么支持，需要多少，需要多久</font><font>。</font></p></blockquote><p><font><b>第二步：分类汇总，合并归纳；</b></font></p><blockquote><p><font>针对目标表：那些目标是相似的，那些目标是有因果关系的，那些目标是相互依赖或冲突的；</font></p><p><font>针对策略表：那些策略是相同或者相似的，那些策略是有先后顺序的，那些策略之间是冲突的；</font></p><p><font>针对资源表：那些资源是共享的，那些资源是独享的，那些资源是相互依赖的；</font></p></blockquote><p><font>根据相似相同的内容合并总结共性；无法合并的部分，分析其差异性，根据共性与差异性规划产品的大模块</font><font>。</font></p><p><font><b>第三步：建模；</b></font></p><blockquote><p>1.<font>组合产品大模块建立初步模型；</font></p><p>2.<font>组合职能相近模块，逐步拆分层、域、模块，在架构图中分层着色；</font></p><p>3.<font>串联模块关系，明确模块内部资源，依赖外部能力输出；</font></p><p>4.<font>标识整体及小目标，制定</font>roadmap，定各阶段的落地策略<font>。</font></p></blockquote><p style=text-align:justify;><font>通过上面三步我们就能获得初步的产品架构图，以及这个架构图也能初步体现出产品在不同阶段是什么样子，在之后我们不断反推，不断修正</font><font>。</font></p><p style=text-align:justify;><b>3.1.2、场景代入法拆分管理战略：</b></p><p><font><b>管理战略很多都是重视流程的，因为流程代表了标准化的流程和透明化的进展，以及明确的执行节点和确定的执行结果。</b>所以我们</font><font>场景代入法来思考。在场景代入法中代入一般会根据特定约束进行假设，比如假</font><font>如</font><font>我是管理者</font>/操作人，在XX情况下我<font>会</font><font>需要关注那些事情。在之前的文章中我们也提到过流程的五要素：典型场景、关键角色、操作行为、结果分支、数据沉淀。场景代入法则关注流程五要素中的三个要素</font><font>：</font><font>典型场景（正向场景、逆向场景）、典型角色（管理者的关注点、操作人的关注点）、典型行为（正常的行为、非正常的行为）。在做场景代入法时很多时候我们只考虑了正向场景，而</font><font>对</font><font>逆向场景会有忽视，同时也会出现遗落不同的关键角色而进行架构设计和规划</font><font>的情况</font><font>，所以<b>在做场景代入</b></font><b><font>时</font><font>我们要充分考虑正向与逆向的场景和与之对应的不同角色，尽可能考虑周全</font></b><font>。</font></p><p><font><img alt=60c103fa7827f_09.jpg src=https://img.pmcaff.com/Fv2h8WLR-3QuCWKMdwRPcpnkOZ3Q-picture class=lazyload data-srcset=https://img.pmcaff.com/Fv2h8WLR-3QuCWKMdwRPcpnkOZ3Q-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=1200 coffee-w=2560px coffee-h=1440px coffee-format=jpeg referrerpolicy=no-referrer><b>3.2、抽象客户业务本质：</b><br></font></p><p><font>在此之前我们分享过如何去做市场分析、产业链分析、商业模式分析，其本质还是回到我们如何去理解客户业务的本质，<b>需要明白客户是什么，他们通过什么去赚钱的，他们的玩法是什么，是需要什么样的产品来支撑他们日常运营管理的</b>。</font></p><p style=text-align:justify;><font><b>抽象客户本质是一个从现象到建模，再从模型回到业务本身的一个过程。</b>在上一步中我们通过拆分产品战略，将规划的产品模块进行组合，依据客户的商业模式建立符合客户战略的初步产品模型，其中客户的商业模式就是客户业务本质的体现，客户组织架构是管理本质的体现。<b>从业务角度来说产品的架构模型需要满足客户的商业模式，从管理角度来说产品的流程设计要符合行业通用的玩法。</b>而从模型回到业务本身，这</font><font>个过程是一个推演的过程，毕竟产品是要落地到最终的场景和具体的业务当中去，所以产品的架构要在模型的基础上考虑业务的实际场景，与此同时在产品功能模块设计上要针对客户的痛点。所以抽象客户业务本质我们需要站</font><font>在</font><font>一定的高度，同时也要接地气，要掌握好两者之间的平衡，这也是衡量一个产品经理产品设计能力好坏的一个标准。</font></p><p style=text-align:justify;><b><font>3.3、高内聚低耦合：</font></b></p><p style=text-align:justify;><font>高内聚低耦合在产品架构设计中是用来描述产品内部各模块之间的关联关系以及产品模块本身的能力的</font><font>。</font><font>具备高内聚低耦合的产品架构能够清晰地向客户描述产品是什么样的，也可以告诉技术人员怎么设计技术架构，所以他要</font><font>是</font><font>衔接技术语言与业务语言图形化的方式。实现高内聚低耦合我们需要在产品架构上做到<b>分层、分域、职能边界明确、输入输出清晰。</b></font></p><p style=text-align:justify;><font><b>分层：</b></font></p><p style=text-align:justify;><font>分层</font><font>是一个功能维度上的概念，可以按照服务的对象不同，分为用户层、业务层、数据层，用户层是将所有面向用户的功能集合在一个层级，用户层需要考虑不同的用户群体所享受的服务存在差异。业务层是将所有的业务处理规则和逻辑，集成在业务层，业务层对用户层有逻辑支撑，业务层在不同的场景下集成的规则和能力都是不同的，向上输出也不尽相同。数据层是将所有的数据沉淀，数据处理集成在了数据层，数据层提供基础的跟数据相关的增删改查服务，这些服务供业务层调用，在不同的场景下沉淀不同格式的数据。分层同时有上下游概念的，比如供应链电商他的产品架构是可以分为交易平台层、供应链层的，交易平台核心在于撮合交易由商品、会员、订单等组成，供应链层则主要负责售前的采购以及售后的履约行为等。</font></p><p style=text-align:justify;><font>产品架构是对业务分层设计的过程，不同的分层信息展示的侧重点也就不同，比如按照功能维度进行了分层，分成了用户层、业务层、数据层。用户层考虑如何更好的表达业务元素，如何能够更吸引用户的注意力和停留决策，千人千面或千客户千面是这一层想要达到的效果。业务层核心是解决产品核心功能设计</font><font>问题的，如何高效地完成场景下的业务需求，是这一层关注的重点</font><font>，</font><font>而数据层是与用户隔离的黑箱，决定了所有业务问题的集合。</font></p><p style=text-align:justify;><b>分域：</b></p><p style=text-align:justify;><font>分层之后我们进行分域，分域进一步降低耦合，再提升一部分的内聚。<b>域一般情况下可以考虑按照业务职能进行划分</b>，常规所见的比如</font>ERP域、交易域、流量域等等，与此同时<b>域也可以根据业务线或业务主体进行划分</b>，最常见的比如滴滴租车域、专车域、顺风车域等，这种划分<font>的</font><font>本质也是逐步在扩充我们业务边界，也是产品生态的不断扩容；这种划分主要是有利于企业内部跨主体，跨业务线之</font><font>间</font><font>的配合，<b>域也可以按照系统的关系来进行划分的</b>，支撑域、集成域、消费域这类划分方式，这种方式划分</font><font>域</font><font>能够把能力聚合在一起向外提供统一服务。而集成域更像是一种解决方案的聚合。<b>当然我们也能够按照技术职能进行划分的</b>。</font></p><p style=text-align:justify;><font>完成分层分域之后我们整体的架构相当于已经完成了一大半了，整体长什么样子基本清晰了，那么下一步就是我们对这个图进一步进行调整和优化了，确定清晰各职能边界和输入输出。<b>产品架构设计的粒度，从大到小应该是层、域、模块、功能这个顺序，其中分层分域主要解决降低耦合的问题也兼具解决了一部分内聚的问题，而职能边界与输入输出解决高度内聚的</b></font><b>问题，同时兼具降低耦合</b>。这两者侧重点是不同的，这也是我们产品设计时需要围绕的设计理念。接下来我们看看如何确认各模块之间的职能边界与输入输出：</p><p><img alt=60c103fa7827f_05.jpg src=https://img.pmcaff.com/FsZSxUyyKHKrRg2LbOzB6ro3pbo8-picture class=lazyload data-srcset=https://img.pmcaff.com/FsZSxUyyKHKrRg2LbOzB6ro3pbo8-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=1200 coffee-w=2560px coffee-h=1440px coffee-format=jpeg referrerpolicy=no-referrer><br></p><p><font>保持适当的抽象，满足客户的本质诉求，切莫流于表面，抽象和演绎是一个不断</font><font>循环的过程，内聚与耦合是一个相互平衡的结果。</font><br></p><p><font><br></font></p><hr><h3><b><font>4、如何保障产品架构的扩展能力</font></b></h3><p style=text-align:justify;><font><b>产品架构并非是一成不变的，需要随着业务的发展，商业模式的变化与时俱进。</b>不断迭代验证，优化更新，所以产品架构需要具备一定的扩展性。其次设计一个产品并不是一开始就将所有的功能模块全部落地，而是有先有后，有主有次的过程。所以产品架构需要考虑演进的路线和实际，也是需要扩展性的。</font>B端产品并非都是从0到1的，而是有可能出现从0.X到1或者是从1到X的情况，需要产品的设计者依托于现在的产品架构，思考如何演进到未来理想中的产品架构，所以<font>才需要我们的产品具备可扩展的能力，不具备扩展能力的产品容易在产品演进的过程中推倒重来，这对企业来说</font><font>是灾难性的，时间的成本远远大于金钱损失的成本。</font></p><p style=text-align:justify;><b><font>确保产品架构的扩展能力</font><font>我们需要做三件事，第一确认产品架构演进蓝图，第二明确产品架构的三个部分，第三取舍架构模块</font><font>。</font></b><font>其中确认产品架构的演进蓝图，是明确产品演进需要走得路，明确路上所需要</font><font>经历</font><font>的里程碑；明确产品架构的三个部分是将产品组件化、产品标准化，然后让产品像搭积木一样，有利于在产品演进过程中的拆分和新增重构。取舍架构的模块是</font><font>确定</font><font>产品做什么，不做什么，先做什么后做什么。需要做的部分我们</font><font>要做到什么程度，是做到极致还是取舍平衡。这</font><font>是考量产品经理格局的非常重要的一个点。</font></p><p style=text-align:justify;><b><font>4.1、确认产品架构演进蓝图：</font></b></p><p style=text-align:justify;><font>产品架构的演进需要考虑清晰我们产品现在的样子，产品未来的样子，产品每一步的样子。</font></p><p style=text-align:justify;><b>4.2、明确产品架构的三个部分：</b></p><p style=text-align:justify;><font>产品架构想要具备扩展性，就需要考虑将产品的模块按照其在架构中可能涉及到的变化频率分为三个类别：</font></p><p style=text-align:justify;><font><b>核心层：</b>作为不可变或低频可变的内容，用于设计产品最核心，最具竞争力的部分；大部分产品架构中数据层都是核心层，核心层提供的能力是最内聚的，是产品的底座。</font></p><p style=text-align:justify;><font><b>组合层：</b>是指将一些垂直的场景内聚到域当中，域内的能力是相对集中的，通过跨域的组合搭建不同的商业场景，组合层的能力决定了产品的灵活性。</font></p><p style=text-align:justify;><font><b>定制层：</b>定制层主要指差异化的部分，差异化的部分是可以进行定制的，定制出来的功能模块需要组合层的支撑，组合层提供的能力越多，那么定制层的定制能力则越强，扩展性就越好。</font></p><p style=text-align:justify;><font>还要一块边界相对模糊，大多用于模块之间的交互的部分归纳成其他部分，我们常见的比如</font>API层面；这几层之间是会随着业务的发展逐步转化的，比如定制层的业务在某一个<font>方向上他的体量有显著的增长，这时候产品的逻辑会固化起来，那么这些固化的内容就会逐步演变成支撑某些特定的商业场景的组合层，甚至某些组合</font><font>层</font><font>的能力进一步抽象，抽象出来的部分我们发现变成了低频可变的部分，这个部分</font><font>就可以</font><font>下沉</font><font>到核心层。<b>具备了这三个部分的能力的产品架构，已经具备相当不错的可扩展的能力了，主要体现在大部分业务的特性化诉求，都是可以通过定制层来满足的，少部分具备一定抽象能力的</b></font><b><font>诉</font><font>求，可以在组合层中来支持，这样我们核心层基本不动，这样产品改造，新模块进入都是相对比较快的，只有当出现大的技术变革或业务方向发生调整之后，核心层才会发生改变。</font></b></p><p style=text-align:justify;><b><font>4.3、取舍架构模块：</font></b></p><p style=text-align:justify;><font>产品架构是用来落地的，所以落地的过程就是要有先有后，不是同时开始的，</font>B端产品的设计需要考虑每一步的样子，所以在明确整体的产品架构以后，就要去想下一步要做什么，<b>我们产品要做的东西那么多，那么在设计时我们一定要做一定的取舍，什么<font>都</font></b><font><b>想做是产品设计的大忌</b>。但是产品设计在最初阶段遇到无法取舍，不好取舍，因为看上去每一个模块都是必须要，我不做什么都会产生影响，每一个模块之间都有关联关系，先做谁都不好，基于这种情况给出四个取舍维度：</font></p><p style=text-align:justify;><font><img alt=60c103fa7827f_05.jpg src=https://img.pmcaff.com/FjWhlkPdEMTwk7O2beyv2xNmgAsQ-picture class=lazyload data-srcset=https://img.pmcaff.com/FjWhlkPdEMTwk7O2beyv2xNmgAsQ-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 height=1200 coffee-w=2560px coffee-h=1440px coffee-format=jpeg referrerpolicy=no-referrer></font></p><p style=text-align:justify;><font><font>取舍的原则看上去确实很简单，或者别人告诉你这个需求紧，价值高，关联性强，落地性也好，也都可以去做取舍，<b>但是本质</b></font><font><b>却是</b></font><font><b>如何去判断需求紧不紧，模块价值大不大，关联性强不强，落地难不难。</b>有时候产品经理获取到的信息可能是所有人都说这个需求紧急，价值高需要优先去做，这两个模块之间关联性强应该要两个都做等等，这时候产品经理又该如何去做判断：遇到这种情况也给大家推荐两种取舍方式，正向：这个模块我取，有什么好处，落地难</font><font>度</font><font>如何？逆向：这个模块我不取，有什么坏处？在这里面逆向的推演需要考虑的东西更多比如这个模块舍弃对整个产品会造成什么影响，不上这个功能</font><font>之前</font><font>的解决方案是什么样的，产品不做这个，原有解决方案是不是还能用等等。在很多时候我们可能会有临时替代方案去做产品，但是在做临时方案设想时需要考虑清楚，解决方案的代价如何，是否能够满足一个阶段的运行，另外我们在何时进行临时方案的替代。<b>产品经理在取舍层面需要有自己的产品价值观，需要有自己的坚持和自己的判断。</b></font><br></font></p><p style=text-align:justify;><font><font><b><br></b></font></font></p><hr><p style=text-align:justify;><font><font><font><b>结尾：</b></font></font></font></p><p style=text-align:justify;><font><font><font>最后我们再一起回顾下通过文章可以了解到，我们如何去做一个好的产</font><font>品</font><font>架构，以及我们可以通过</font><font>助力商业模式、体现公司目标、落地性，抽象能力和扩展能力这五个维度去衡量一个架构的好坏，</font><font>那么</font><font>我们再串联一下之前的几篇文章，整个产品的架构设计流程我们从最初的市场及产业链分析再到现状与目标客户分析，再到确定模块与场景域，最后进行架构图设计，而产品架构设计的粒度，从大到小应从层、域、模块、功能。到这里</font>B端产品规划设计阶段就结束了。<br></font></font></p></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/5d77.html>https://news.zfe.space/p/5d77.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:12:45+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/5d77.html&title=B端产品设计流程--如何进行产品架构设计（下） - 小冰 RSSHub&pics=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/5d77.html&title=B端产品设计流程--如何进行产品架构设计（下） - 小冰 RSSHub&pics=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/5d77.html&title=B端产品设计流程--如何进行产品架构设计（下） - 小冰 RSSHub&pics=https://img.pmcaff.com/FhcP9mJggJ6pv1X9edWXqWzezqTz-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/139c.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>1.5万字深度雄文：这才是实际工作中的竞品分析</p><p class=content>#articleCont &#123; font-size: 16px; line-height: 1.6; color: #333; word-wrap: break...</p></a><a class=next href=/p/9a04.html><p class=title>AGON與Riot聯名推全球首款《英雄聯盟》電競螢幕，金色飾線搭配燈效還原海克斯科技<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>打 LOL 必備。</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>1、什么是好的产品架构</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>2、产品架构的核心要素</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>3、如何保证产品架构的抽象能力</span></a></li><li class="toc-item toc-level-3"><a class=toc-link><span class=toc-text>4、如何保障产品架构的扩展能力</span></a></li></ol></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="B端产品设计流程--如何进行产品架构设计（下）";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

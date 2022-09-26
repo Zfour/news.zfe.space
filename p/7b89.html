@@ -1,0 +1,773 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>实时渲染：给你两张法线图，你会如何混合它们？ - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png></a></div><div class=article-meta id=top><a title=实时渲染：给你两张法线图，你会如何混合它们？ href=/p/7b89.html><img class=thumbnail src=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png></a><h1 class=title>实时渲染：给你两张法线图，你会如何混合它们？</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/">游戏</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/">GameRes 游资网</a><span class=sep></span><a class=category-link href="/categories/%E6%B8%B8%E6%88%8F/GameRes-%E6%B8%B8%E8%B5%84%E7%BD%91/%E5%88%97%E8%A1%A8/">列表</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年7月27日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=实时渲染：给你两张法线图，你会如何混合它们？ data-path=/p/7b89.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div align=center><img aid=1047934 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png width=600 id=aimg_1047934 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png referrerpolicy=no-referrer></div><br>在游戏开发过程中我们常常会遇到需要混合法线的情况，如：长有青苔的山石；衣服布料的detailnormal；破损的墙面、锈渍的金属等。如何正确的混合它们并且保留原法线的细节是本文探讨的问题。<br><br><div align=center><img aid=1047935 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111656kk777xc7c7z73xzq.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111656kk777xc7c7z73xzq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111656kk777xc7c7z73xzq.png width=600 id=aimg_1047935 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111656kk777xc7c7z73xzq.png referrerpolicy=no-referrer></div><br>这时候可能会有人问，为什么要实时去混合它们呢？我提前把法线做好材质本来应该有的样子或是在SD、PS里混合好不就行了。而且还省了贴图张数，减少了采样的次数，减少混合的计算。但恰恰相反，实时的去混合法线恰恰是为了节省性能和更好的效果，例如我们在表现布料的时候如果我们想要表现非常细节的毛线穿插感。<br><br><div align=center><img aid=1047936 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111657pa1mtmaq15ltu31l.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111657pa1mtmaq15ltu31l.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111657pa1mtmaq15ltu31l.jpg width=600 id=aimg_1047936 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111657pa1mtmaq15ltu31l.jpg referrerpolicy=no-referrer></div><br>如果我们只用一张法线去表现，那可能需要一张4K甚至8K的法线贴图才能把表现出高精度的细节。但是这些微小的细节往往都是四方连续的，所以目前主流游戏的做法是用一张基础法线+非常小尺寸的detailnormal用比较高的tilling值进行混合。<br><br><div align=center><img aid=1047937 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111657pshtc6dr8c4hjb4v.jpg class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111657pshtc6dr8c4hjb4v.jpg srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111657pshtc6dr8c4hjb4v.jpg width=600 id=aimg_1047937 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111657pshtc6dr8c4hjb4v.jpg referrerpolicy=no-referrer></div><div align=center>+</div><div align=center><img aid=1047938 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111657l3j7mjj2j5czgu23.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111657l3j7mjj2j5czgu23.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111657l3j7mjj2j5czgu23.png width=455 id=aimg_1047938 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111657l3j7mjj2j5czgu23.png referrerpolicy=no-referrer></div><br>更别提大世界不同地形地貌之间的混合来获得自然的过渡和法线效果了。好，我们言归正传，重点介绍一下法线混合的方法，上图上代码 。<br><br><strong><font color=#ffffff><font style=background-color:darkred>Linear Blending</font></font></strong><br><br><div align=center><img aid=1047939 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111658y359d5bv9zyi9i7d.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111658y359d5bv9zyi9i7d.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111658y359d5bv9zyi9i7d.png width=398 id=aimg_1047939 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111658y359d5bv9zyi9i7d.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047940 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111658oxexca6f6zw6fxac.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111658oxexca6f6zw6fxac.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111658oxexca6f6zw6fxac.png width=398 id=aimg_1047940 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111658oxexca6f6zw6fxac.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047941 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111658cwzckvad494n024z.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111658cwzckvad494n024z.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111658cwzckvad494n024z.png width=397 id=aimg_1047941 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111658cwzckvad494n024z.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz * 2 - 1;<br><br>float3 n2 = tex2D(texDetail, uv).xyz * 2 - 1;<br><br>float3 r = normalize(n1 + n2);<br><br>线性混合是非常简单粗暴的方法，可能也是我们大多数时候所使用的的方法，直接相加采样出的法线，进行线性的插值。这种方法输出的结果会往两种输入的normal进行平均，导致的结果就是，变平，细节变模糊。<br><br>这是因为法线图存储的并不是颜色，而是当前像素的法线信息，用处理颜色的方式一样去处理法线必然会造成数据被平均。<br><br><strong><font color=#ffffff><font style=background-color:darkred>Overlay Blending</font></font></strong><br><br><div align=center><img aid=1047942 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111659xa8etuavas1as008.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111659xa8etuavas1as008.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111659xa8etuavas1as008.png width=398 id=aimg_1047942 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111659xa8etuavas1as008.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047943 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111659t5e3l66umozq8a8u.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111659t5e3l66umozq8a8u.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111659t5e3l66umozq8a8u.png width=398 id=aimg_1047943 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111659t5e3l66umozq8a8u.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047944 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111659nn88nfnhpnzbzn8f.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111659nn88nfnhpnzbzn8f.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111659nn88nfnhpnzbzn8f.png width=397 id=aimg_1047944 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111659nn88nfnhpnzbzn8f.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz;<br><br>float3 n2 = tex2D(texDetail, uv).xyz;<br><br>float3 r = n1<0.5 1 2 ? * n1 n2 : – (1 - n1) n2);<br><br>r = normalize(r * 2 - 1);<br><br>overlay虽然整体有改进，但是输出的结果还是不太正确的，它和linear blending的方式一样都是对通道独立处理，这种方法基本相当于放到PS里混合。<br><br><strong><font color=#ffffff><font style=background-color:darkred>Partial Derivative Blending</font></font></strong><br><br><div align=center><img aid=1047945 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111659jhhqks39887zv1va.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111659jhhqks39887zv1va.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111659jhhqks39887zv1va.png width=398 id=aimg_1047945 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111659jhhqks39887zv1va.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047946 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111700j9xvhj1vxij6x1xj.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111700j9xvhj1vxij6x1xj.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111700j9xvhj1vxij6x1xj.png width=398 id=aimg_1047946 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111700j9xvhj1vxij6x1xj.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047947 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111700gokczivv8h814hnv.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111700gokczivv8h814hnv.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111700gokczivv8h814hnv.png width=398 id=aimg_1047947 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111700gokczivv8h814hnv.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz*2 - 1;<br><br>float3 n2 = tex2D(texDetail, uv).xyz*2 - 1;<br><br>float2 pd = n1.xy/n1.z + n2.xy/n2.z; //Add the PDs<br><br>float3 r = normalize(float3(pd, 1));<br><br>通过计算偏导数混合的方式可以看出已经到了很多，至少我们的椎体明显感觉立起来了，可以推敲的点是椎体表面的detailnormal看起来还是太柔和了，但在处理淡入和淡出的时候不失为一种好方法。<br><br><strong><font color=#ffffff><font style=background-color:darkred>Whiteout Blending</font></font></strong><br><br><div align=center><img aid=1047948 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111700m5zlgz53ncd7vu5u.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111700m5zlgz53ncd7vu5u.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111700m5zlgz53ncd7vu5u.png width=398 id=aimg_1047948 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111700m5zlgz53ncd7vu5u.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047949 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111701hccdgswxpec66jgr.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111701hccdgswxpec66jgr.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111701hccdgswxpec66jgr.png width=398 id=aimg_1047949 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111701hccdgswxpec66jgr.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047950 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111701hmjmupxmurzpaja2.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111701hmjmupxmurzpaja2.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111701hmjmupxmurzpaja2.png width=398 id=aimg_1047950 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111701hmjmupxmurzpaja2.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz * 2 - 1;<br><br>float3 n2 = tex2D(texDetail, uv).xyz * 2 - 1;<br><br>float3 r = normalize(float3(n1.xy + n2.xy, n1.z * n2.z));<br><br>Whiteout Blending 是SIGGRAPH 07 提出的，跟Partial Derivative Blending方法很相似，只是分量没有按Z进行缩放，可以看到椎体面上的法线细节更多了，而且保留了椎体本身的信息。<br><br><strong><font color=#ffffff><font style=background-color:darkred>UDK</font></font></strong><br><br><div align=center><img aid=1047951 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111701z531qklbqhq3xnlm.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111701z531qklbqhq3xnlm.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111701z531qklbqhq3xnlm.png width=398 id=aimg_1047951 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111701z531qklbqhq3xnlm.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047952 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111701sej5cgiv3eez8ikr.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111701sej5cgiv3eez8ikr.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111701sej5cgiv3eez8ikr.png width=398 id=aimg_1047952 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111701sej5cgiv3eez8ikr.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047953 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111702fmyzu9l4uck9u55b.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111702fmyzu9l4uck9u55b.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111702fmyzu9l4uck9u55b.png width=398 id=aimg_1047953 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111702fmyzu9l4uck9u55b.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz*2 - 1;<br><br>float3 n2 = tex2D(texDetail, uv).xyz*2 - 1;<br><br>float3 r = normalize(float3(n1.xy+ n2.xy, n1.z));<br><br>这个方法也比较老了，是UDK时期的东西，其实基本和Whiteout的方法一致，他是在Z方向上直接只用了N1的Z的信息，减少一点指令数，与white几乎看不出区别，仔细看的话能看到细节上会模糊一点。<br><br><strong><font color=#ffffff><font style=background-color:darkred>Reoriented Normal Mapping</font></font></strong><br><br>接下来到了本文要说的重点了，这算是目前效果最好，也是主流引擎都在使用的思路，咱们先看效果<br><br><div align=center><img aid=1047954 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111702nq4qqxzjwxlqxzw0.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111702nq4qqxzjwxlqxzw0.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111702nq4qqxzjwxlqxzw0.png width=398 id=aimg_1047954 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111702nq4qqxzjwxlqxzw0.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047955 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111702x2hvid4ybdho5hi2.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111702x2hvid4ybdho5hi2.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111702x2hvid4ybdho5hi2.png width=398 id=aimg_1047955 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111702x2hvid4ybdho5hi2.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047956 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111703l6n4yy4h1sa1tkov.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111703l6n4yy4h1sa1tkov.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111703l6n4yy4h1sa1tkov.png width=398 id=aimg_1047956 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111703l6n4yy4h1sa1tkov.png referrerpolicy=no-referrer></div><br>可以明显法线这种方法混合出来的normal，无论是basenormal 还是 detailnormal的信息都被很好的保留了下来，混合的结果非常nice。下面简单讲一下它是怎么样的一个原理。<br><br><div align=center><img aid=1047957 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111703dfcmpmrr00armrm5.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111703dfcmpmrr00armrm5.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111703dfcmpmrr00armrm5.png width=600 id=aimg_1047957 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111703dfcmpmrr00armrm5.png referrerpolicy=no-referrer></div><br>●大概原理是这样的，我们先看左边的图，白色虚线是我们的模型平面，S为这个模型平面的法线方向，U为我们希望给到的detail normal的法线方向。<br><br>●右边的图t线为base法线方向，也就是我们主法线方向，这个算法的原理就是通过计算模型面法线S转到T的角度，来重定向detail normal u 得到法线r。原作者用了一个四元数进行推导，具体推导过程如图下：<br><br><div align=center><img aid=1047958 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111703z3bbox32e182vnto.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111703z3bbox32e182vnto.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111703z3bbox32e182vnto.png width=600 id=aimg_1047958 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111703z3bbox32e182vnto.png referrerpolicy=no-referrer></div><br>看不懂推导过程也没关系，咱们直接看代码，也只有短短三行<br><br>float3<br><br>t = tex2D(texBase, uv).xyz*float3( 2, 2, 2) + float3(-1, -1, 0);<br><br>float3 u = tex2D(texDetail, uv).xyz*float3(-2, -2, 2) + float3( 1, 1, -1);<br><br>float3 r = t*dot(t, u)/t.z - u;<br><br>这个方法我们UE4已经实装了，该节点名字叫BlendAngleCorrectedNormals，点开这个function可以看到用的就是该作者提出的方案。<br><br><div align=center><img aid=1047959 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111703jlez4q46qq4qq6bq.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111703jlez4q46qq4qq6bq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111703jlez4q46qq4qq6bq.png width=600 id=aimg_1047959 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111703jlez4q46qq4qq6bq.png referrerpolicy=no-referrer></div><br><strong><font color=#ffffff><font style=background-color:darkred>Unity Shader Graph</font></font></strong><br><br><div align=center><img aid=1047960 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111703hkdzmj5p06el92dl.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111703hkdzmj5p06el92dl.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111703hkdzmj5p06el92dl.png width=398 id=aimg_1047960 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111703hkdzmj5p06el92dl.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047961 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111704q7jfr9p49lp97c3t.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111704q7jfr9p49lp97c3t.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111704q7jfr9p49lp97c3t.png width=398 id=aimg_1047961 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111704q7jfr9p49lp97c3t.png referrerpolicy=no-referrer></div><br><div align=center><img aid=1047962 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111704j0o07z3x7glop60g.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111704j0o07z3x7glop60g.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111704j0o07z3x7glop60g.png width=398 id=aimg_1047962 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111704j0o07z3x7glop60g.png referrerpolicy=no-referrer></div><br>float3 n1 = tex2D(texBase, uv).xyz*2 - 1;<br><br>float3 n2 = tex2D(texDetail, uv).xyz*2 - 1;<br><br>float3x3 nBasis = float3x3(<br><br>float3(n1.z, n1.y, -n1.x),<br><br>float3(n1.x, n1.z, -n1.y),<br><br>float3(n1.x, n1.y, n1.z));<br><br>float3 r = normalize(n2.x*nBasis[0] + n2.y*nBasis[1] + n2.z*nBasis[2]);<br><br>我们来看下unity的shader graph里自带的法线融合方法，其实思路是一样的，只不过unity使用的是矩阵。而且计算要比前者稍微复杂许多。效果让我觉得也有点怪怪的。<br><br><div align=center><img aid=1047963 zoomfile=https://di.gameres.com/attachment/forum/202207/27/111704ogg7gssdr577uhp8.png class=lazyload data-srcset=https://di.gameres.com/attachment/forum/202207/27/111704ogg7gssdr577uhp8.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" data-original=https://di.gameres.com/attachment/forum/202207/27/111704ogg7gssdr577uhp8.png width=600 id=aimg_1047963 inpost=1 src=https://di.gameres.com/attachment/forum/202207/27/111704ogg7gssdr577uhp8.png referrerpolicy=no-referrer></div><br>最后我们看一下几个效果的对比。可以看出重定向法线的方法的细节保留程度是最好的，Whiteout虽然detailnormal表现上弱了很多，但胜在算法廉价，融合后basenormal并没有被平均。图片<br><br><font size=2>【注】本文结合了国外大佬的博客和目前主流引擎在使用的方法简略的进行了介绍和对比，有兴趣看原博可以通过下方链接查看：</font><br><font size=2>https://blog.selfshadow.com/publications/blending-in-detail/?tdsourcetag=s_pcqq_aiomsg</font><br><font size=2><br></font><br><font size=2></font><br><font size=2>来源：腾讯游戏学堂</font><br><br><font size=2>原文：https://mp.weixin.qq.com/s/3cGThckJ3WE-SPnarjjPyA</font><br><font size=2><br></font><br><br></0.5></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/7b89.html>https://news.zfe.space/p/7b89.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:13:23+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/7b89.html&title=实时渲染：给你两张法线图，你会如何混合它们？ - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/7b89.html&title=实时渲染：给你两张法线图，你会如何混合它们？ - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/7b89.html&title=实时渲染：给你两张法线图，你会如何混合它们？ - 小冰 RSSHub&pics=https://di.gameres.com/attachment/forum/202207/27/111655lvcva9azka74cqq9.png&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/e980.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>独行月球 评分：9.2</p><p class=content>评分：9.2 演员：沈腾,马丽,常远 上映信息：今天215家影院放映987场</p></a><a class=next href=/p/c423.html><p class=title>英国旅游VLOG _ 英格兰湖区<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>🗓 2022 年 4 月 10 日 - 2022 年 4 月 14 日📍 The Lake District in North West England前往 bilibili 一键三...</p></a></div></article></div><aside class=l_side></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="实时渲染：给你两张法线图，你会如何混合它们？";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>

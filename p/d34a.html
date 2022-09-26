@@ -1,0 +1,878 @@
+<!DOCTYPE html><html lang=zh-CN><head hexo-theme=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1><meta charset=utf-8><meta http-equiv=x-dns-prefetch-control content=on><link rel=dns-prefetch href=https://cdn.jsdelivr.net><link rel=preconnect href=https://cdn.jsdelivr.net crossorigin><meta name=renderer content=webkit><meta name=force-rendering content=webkit><meta http-equiv=X-UA-Compatible content="IE=Edge,chrome=1"><meta name=HandheldFriendly content=True><meta name=apple-mobile-web-app-capable content=yes><meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1"><link rel=preload href=/css/first.css as=style><title>原型绘制提效技巧分享 - 小冰 RSSHub</title><link rel=alternate href=/atom.xml title="小冰 RSSHub" type=application/atom+xml><meta name=referrer content=no-referrer><link rel=stylesheet href=/css/diy.css><link rel=stylesheet href=/css/first.css><link rel=stylesheet href=/css/style.css media=print onload="this.media='all';this.onload=null"><noscript><link rel=stylesheet href=/css/style.css></noscript><script id=loadcss></script><script>
+if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode))
+    document.write(
+	'<style>'+
+		'html{'+
+			'overflow-x: hidden !important;'+
+			'overflow-y: hidden !important;'+
+		'}'+
+		'.kill-ie{'+
+			'text-align:center;'+
+			'height: 100%;'+
+			'margin-top: 15%;'+
+			'margin-bottom: 5500%;'+
+		'}'+
+	'</style>'+
+    '<div class="kill-ie">'+
+        '<h1><b>抱歉，您的浏览器无法访问本站</b></h1>'+
+        '<h3>微软已经于2016年终止了对 Internet Explorer (IE) 10 及更早版本的支持，<br/>'+
+        '继续使用存在极大的安全隐患，请使用当代主流的浏览器进行访问。</h3><br/>'+
+        '<a target="_blank" rel="noopener" href="https://www.microsoft.com/zh-cn/WindowsForBusiness/End-of-IE-support"><strong>了解详情 ></strong></a>'+
+    '</div>');
+</script><noscript><style>
+		html{
+			overflow-x: hidden !important;
+			overflow-y: hidden !important;
+		}
+		.kill-noscript{
+			text-align:center;
+			height: 100%;
+			margin-top: 15%;
+			margin-bottom: 5500%;
+		}
+	</style><div class=kill-noscript><h1><b>抱歉，您的浏览器无法访问本站</b></h1><h3>本页面需要浏览器支持（启用）JavaScript</h3><br><a target=_blank rel=noopener href="https://www.baidu.com/s?wd=启用JavaScript"><strong>了解详情 ></strong></a></div></noscript></head><body><header id=l_header class="l_header always shadow blur show"><div class=container><div id=wrapper><div class=nav-sub><p class=title></p><ul class="switcher nav-list-h m-phone" id=pjax-header-nav-list><li><a id=s-comment class="fas fa-comments fa-fw" target=_self href=javascript:void(0)></a></li><li><a id=s-toc class="s-toc fas fa-list fa-fw" target=_self href=javascript:void(0)></a></li></ul></div><div class=nav-main><a class="title flat-box" target=_self href="/"><img no-lazy class=logo src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/blog/Logo-NavBar@3x.png></a><div class="menu navigation"><ul class="nav-list-h m-pc"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></div><div class=m_search><form name=searchform class="form u-search-form"><i class="icon fas fa-search fa-fw"></i> <input type=text class="input u-search-input" placeholder=Search...></form></div><ul class="switcher nav-list-h m-phone"><li><a class="s-search fas fa-search fa-fw" target=_self href=javascript:void(0)></a></li><li><a class="s-menu fas fa-bars fa-fw" target=_self href=javascript:void(0)></a><ul class="menu-phone list-v navigation white-box"><li><a class="menuitem flat-box faa-parent animated-hover" href="/" id=home><i class="fas fa-home fa-fw fa-fw"></i> 主页</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%8D%9A%E5%AE%A2/" id=categoriesE58D9AE5AEA2><i class="fas fa-rss fa-fw"></i> 博客订阅</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/" id=categoriesE696B0E5AA92E4BD93><i class="fas fa-podcast fa-fw fa-fw"></i> 新媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E4%BA%8C%E6%AC%A1%E5%85%83/" id=categoriesE4BA8CE6ACA1E58583><i class="fas fa-heart fa-fw fa-fw"></i> 二次元</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E6%B8%B8%E6%88%8F/" id=categoriesE6B8B8E6888F><i class="fa fa-gamepad fa-fw fa-fw"></i> 游戏</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%9B%BE%E7%89%87/" id=categoriesE59BBEE78987><i class="fas fa-puzzle-piece fa-fw fa-fw"></i> 图片</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E8%AE%BE%E8%AE%A1/" id=categoriesE8AEBEE8AEA1><i class="fas fa-magic fa-fw fa-fw"></i> 设计</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%BC%96%E7%A8%8B/" id=categoriesE7BC96E7A88B><i class="fas fa-code fa-fw fa-fw"></i> 编程</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%87%91%E8%9E%8D/" id=categoriesE98791E89E8D><i class="fas fa-key fa-fw fa-fw"></i> 金融</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E7%A4%BE%E4%BA%A4%E5%AA%92%E4%BD%93/" id=categoriesE7A4BEE4BAA4E5AA92E4BD93><i class="fas fa-users fa-fw fa-fw"></i> 社交媒体</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E9%98%85%E8%AF%BB/" id=categoriesE99885E8AFBB><i class="fas fa-book fa-fw fa-fw"></i> 阅读</a></li><li><a class="menuitem flat-box faa-parent animated-hover" href="/categories/%E5%AD%A6%E4%B9%A0/" id=categoriesE5ADA6E4B9A0><i class="fas fa-graduation-cap fa-fw fa-fw"></i> 学习</a></li></ul></li></ul></div></div></div></header><div id=l_body><div id=l_cover><div id=full class="cover-wrapper post dock" style="display: none;"><div class="cover-bg lazyload placeholder" data-bg="https://uploadbeta.com/api/pictures/random/?key=BingEverydayWallpaperPicture"></div><div class=cover-body><div class=top><p class=title>Volantis</p></div><div class=bottom><div class="menu navigation"><div class=list-h><a href="/v4/getting-started/" id=v4getting-started><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f5c3.svg><p>文档</p></a> <a href="/faqs/" id=faqs><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f516.svg><p>帮助</p></a> <a href="/examples/" id=examples><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f396.svg><p>示例</p></a> <a href="/contributors/" id=contributors><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f389.svg><p>社区</p></a> <a href="/archives/" id=archives><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f4f0.svg><p>博客</p></a> <a target=_blank rel=noopener href="https://github.com/volantis-x/hexo-theme-volantis/" id=https:githubcomvolantis-xhexo-theme-volantis><img src=https://cdn.jsdelivr.net/gh/twitter/twemoji@13.0/assets/svg/1f9ec.svg><p>源码</p></a></div></div></div></div><div id=scroll-down style="display: none;"><i class="fa fa-chevron-down scroll-down-effects"></i></div></div></div><div id=safearea><div class=body-wrapper id=pjax-container><div class=l_main><article class="article post white-box reveal md shadow article-type-post" id=post itemscope itemprop=blogPost><div class=headimg-div><a class=headimg-a><img class=headimg src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture></a></div><div class=article-meta id=top><a title=原型绘制提效技巧分享 href=/p/d34a.html><img class=thumbnail src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture></a><h1 class=title>原型绘制提效技巧分享</h1><div class=new-meta-box><div class="new-meta-item author"><a class=author target=_blank href="https://docs.rsshub.app/" rel="nofollow noopener"><img no-lazy src=https://i.loli.net/2019/04/23/5cbeb7e41414c.png><p>RSSHub</p></a></div><div class="new-meta-item category"><a class=notlink><i class="fas fa-folder-open fa-fw" aria-hidden=true></i> <a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/">新媒体</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/">PMCAFF</a><span class=sep></span><a class=category-link href="/categories/%E6%96%B0%E5%AA%92%E4%BD%93/PMCAFF/%E4%BB%8A%E6%97%A5%E6%8E%A8%E8%8D%90-%E7%B2%BE%E9%80%89/">今日推荐 / 精选</a></a></div><div class="new-meta-item date"><a class=notlink><i class="fas fa-calendar-alt fa-fw" aria-hidden=true></i><p>发布于：2022年5月11日</p></a></div><div class="new-meta-item browse leancloud"><a class=notlink><div id=lc-pv data-title=原型绘制提效技巧分享 data-path=/p/d34a.html><i class="fas fa-eye fa-fw" aria-hidden=true></i><span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次浏览</div></a></div></div></div><div><div><style>
+#articleCont &#123;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  word-wrap: break-word;
+&#125;
+#articleCont :first-child &#123;
+  margin-top: 0 !important;
+&#125;
+#articleCont h1,
+#articleCont h2,
+#articleCont h3,
+#articleCont h4,
+#articleCont h5,
+#articleCont h6 &#123;
+  margin: 40px 0 20px;
+&#125;
+#articleCont h1 &#123;
+  font-size: 24px;
+&#125;
+#articleCont h2 &#123;
+  font-size: 22px;
+&#125;
+#articleCont h3 &#123;
+  font-size: 20px;
+&#125;
+#articleCont h4 &#123;
+  font-size: 18px;
+&#125;
+#articleCont h5 &#123;
+  font-size: 16px;
+&#125;
+#articleCont i &#123;
+  font-style: italic;
+&#125;
+#articleCont p,
+#articleCont div &#123;
+  word-wrap: break-word;
+  margin: 14px 0;
+  text-align: justify;
+&#125;
+#articleCont blockquote &#123;
+  border-left: 6px solid #ddd;
+  padding: 5px 0 5px 10px;
+&#125;
+#articleCont blockquote p:last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont .simditor-body blockquote :last-child &#123;
+  margin-bottom: 0;
+&#125;
+#articleCont a &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:visited &#123;
+  color: #82b64a;
+&#125;
+#articleCont a:hover &#123;
+  color: #74a342;
+&#125;
+#articleCont img &#123;
+  max-width: 100%;
+  height: auto;
+&#125;
+#articleCont hr &#123;
+  margin: 19px 0;
+  border: none;
+  border-top: solid 1px #ddd;
+&#125;
+#articleCont ol &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ol li &#123;
+  list-style-type: decimal;
+&#125;
+#articleCont ul &#123;
+  list-style-type: disc;
+  padding-left: 40px;
+&#125;
+#articleCont ul li &#123;
+  list-style-type: disc;
+&#125;
+#articleCont table &#123;
+  width: 100%;
+  font-size: 12px;
+  border-collapse: collapse;
+  line-height: 1.7;
+&#125;
+#articleCont table thead &#123;
+  background: #f9f9f9;
+&#125;
+#articleCont table th,
+#articleCont table td &#123;
+  border: solid 1px #ccc;
+  text-align: left;
+  vertical-align: top;
+  padding: 2px 4px;
+  height: 30px;
+  min-width: 40px;
+  box-sizing: border-box;
+&#125;
+#articleCont pre &#123;
+  white-space: pre-wrap;
+&#125;
+</style><p>不管是前台PM还是后台PM，在工作中或多或少都要进行原型设计。原型可以说是产品、开发、测试之间进行交流沟通最重要的文档之一，那么怎么把原型画得又快又好呢？</p><p>从设计流程上看，原型设计节点包括但不限于梳理需求大纲、规划页面结构、完善信息结构、绘制原型及进行说明标注。前面三个节点个人有个人的方法，今天主要想和大家分享一下后两个——绘制原型及说明标注的提效小技巧，希望对你有帮助。</p><h2>一、制作全局说明</h2><p>通俗地说，全局说明就是<strong>那些你懒得写第二次的东西</strong>。比如说网络异常/加载失败/没有数据，这些这是任意页面都可能会碰出现的情况，如果分开写，每个页面都要写一次，改的话得同时改很多地方，费事费力而且不利于需求的统一管理。所有，把这些通用性的东西写在一个地方，既可以简洁原型文档，降低开发、测试、设计等人员的阅读成本，又可以少写点字，何乐不为呢(๑•̀ㅂ•́) ✧</p><p>全局说明可以是适用于全文档的，也可以是适用于某个迭代的。像是一些和迭代相关度高的名词解释。写在全文档性的说明里就有些冗余，写在迭代内全局说明中就刚刚好（个人见解）。</p><p>根据通用性，可以将<b>全局说明分成两种：通用说明和业务说明</b>。通用说明是在大多数产品/页面内都可以通用的，比如页面状态、加载状态、通用手势、弹窗遮罩等；而业务说明则不同，这类说明和业务高度相关，相同内容在不同业务间有较大差异，比如时间展示规则、昵称长度等。下面给大家举几个栗子：</p><h4>通用说明</h4><p>移动端全局说明具体可见浪子写的文章，很详细<a href=https://zhuanlan.zhihu.com/p/22270169 target=_blank rel="noreferrer noopener">（查看）</a></p><h4><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=600 alt=1d8e50dd4c843f85773d8c9d770d9fab-picture coffee-w=1158px coffee-h=5364px coffee-format=png referrerpolicy=no-referrer></h4><h4>业务说明</h4><ul><li>最近一条消息时间展示规则</li></ul><p>图中是微信的展示规则。手动试出来的，不对的地方欢迎指正</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/bac9894ae74e58682f632da90acbe046-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/bac9894ae74e58682f632da90acbe046-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=539 alt=bac9894ae74e58682f632da90acbe046-picture coffee-w=1078px coffee-h=354px coffee-format=png referrerpolicy=no-referrer></p><ul><li>最近一条消息展示规则</li></ul><p>图中微信的展示规则。手动试出来的，不对的地方欢迎指正</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1f4ff084f72f2d96dccdc7ebf3fba5ea-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1f4ff084f72f2d96dccdc7ebf3fba5ea-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=435 alt=1f4ff084f72f2d96dccdc7ebf3fba5ea-picture coffee-w=870px coffee-h=1020px coffee-format=png referrerpolicy=no-referrer></p><ul><li>产品上架/下架/浏览时间展示规则</li></ul><p>第一版设计的规则里跨年时间也是带「时时:分分」的，后来因为产品列表地皮实在放不下，就把后面的具体时间砍掉了（都跨年了，具体时间没那么重要了叭）。所以具体的展示规则是和实际系统密切相关的。</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a4542ff00111baf6fbaf40e0b11a786e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/a4542ff00111baf6fbaf40e0b11a786e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=429 alt=a4542ff00111baf6fbaf40e0b11a786e-picture coffee-w=858px coffee-h=354px coffee-format=png referrerpolicy=no-referrer></p><h2>二、建立字段说明表</h2><p>可以把用到的数据用表格的形式罗列出来，清晰且一目了然。</p><h2><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/09287c77dedd9dbbbbcd72a2a4a839e3-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/09287c77dedd9dbbbbcd72a2a4a839e3-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 alt=09287c77dedd9dbbbbcd72a2a4a839e3-picture coffee-w=2096px coffee-h=422px coffee-format=png referrerpolicy=no-referrer></h2><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/84d178477822bb754915d19150624447-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/84d178477822bb754915d19150624447-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 alt=84d178477822bb754915d19150624447-picture coffee-w=2906px coffee-h=838px coffee-format=png referrerpolicy=no-referrer></p><h2>三、取用元件库进行原型绘制</h2><p>在绘制原型时，有一些控件会被经常用到。如果每次用到都重新制作，不仅无法保证交互效果的统一性，而且会占用很多工作时间。为了咱岌岌可危的发际线，我向大家使用Axure元件库功能。</p><p>什么，你说Axure自带的元件库丑？</p><p>网上有不少大公司的设计的元件库，找个你喜欢的导入就行。比如<span style=color:rgb(0,0,0);>蚂蚁金服、饿了么、有赞</span><span style=color:rgb(0,0,0);>等</span><span style=color:rgb(0,58,140);>。</span></p><p>什么，你说懒得找？</p><p>那我这给大家推荐几个。</p><h4>Vant 移动端组件库</h4><p>非常全面的一个组件库，自带交互。除了通用组件，还有带有电商业务组件，用来绘制移动端原型很方便。</p><p>设计网站：Zan Design <a href=https://design.youzan.com/resource/resource.html target=_blank rel="noreferrer noopener">（查看）</a></p><p>资源下载：Zan Design 移动端元件库</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/094fc0473166d9f9427b4748cecbac7a-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/094fc0473166d9f9427b4748cecbac7a-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=600 alt=094fc0473166d9f9427b4748cecbac7a-picture coffee-w=1596px coffee-h=1246px coffee-format=png referrerpolicy=no-referrer></p><h4>Ant Design 移动端组件库</h4><p>支付宝风格的组件库，组件没有Vant那么多，但是通用性强。</p><p>设计网站：Ant Design <a href=https://ant.design/docs/resources-cn target=_blank rel="noreferrer noopener">（查看）</a></p><p>资源下载：Ant Design 移动端元件库</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/48709540372345de446e66cd727591a4-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/48709540372345de446e66cd727591a4-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=600 alt=48709540372345de446e66cd727591a4-picture coffee-w=1612px coffee-h=1246px coffee-format=png referrerpolicy=no-referrer></p><h4>Ant Design 后台组件库</h4><p>这个不用多说了吧，后台产品必备。UI 样式可配置，拓展性强，大多数产品风格都能轻松适应。</p><p>设计网站：Ant Design <a href=https://ant.design/docs/resources-cn target=_blank rel="noreferrer noopener">（查看）</a></p><p>资源下载：Ant Design 移动端元件库</p><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/198061045e5b57cfd1e0d0574aacb3cf-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/198061045e5b57cfd1e0d0574aacb3cf-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 alt=198061045e5b57cfd1e0d0574aacb3cf-picture coffee-w=2880px coffee-h=1388px coffee-format=png referrerpolicy=no-referrer></p><p>大厂设计的组件库当然不错，但是用起来也会碰到一些问题。比如和自己的设计风格不一致呀，有无用的组件呀，部分组件需要微调等等。所以建议每个PM都自己积累元件并长期更新。不用一次完成，平时工作中碰到新的就维护进去，这样不会占用很多时间，而且可以保证原型整体的视觉统一。</p><p>我司后台部分用的是蚂蚁金服组件库，基本不用修改，所以没有制作元件库。APP端因为有些特殊组件，通用组件库里没有就积累了一些，基本是Ant Design 和Vant 的混合版，这里就不献丑了<span style=color:rgb(0,0,0);>.....((/- -)/</span></p><h2>四、建立交互需求说明库</h2><p>如果系统用的是某个开源的UI项目的话，组件的交互基本都是确定好了的，交互说明文档可以少些甚至不用写。如果没有用开源项目，所有的轮子都是百度或者自己造的话，那交互说明文档就必不可少了。碰到一些常见、使用频率高的组件，可以建立一个“交互说明库”，用到的时候贴一个链接或者copy一下，可以减少开发的理解成本。</p><p>PM或多或少会碰到被开发围攻的情况，大部分情形可能都是因为需求描述不准确导致的。如果有一个规则模板参考，是不是就可以减少遗漏的情况呢？</p><p>需求说明基本分为三个部分：需求说明、交互说明、交互预览。</p><ul><li>需求说明一般包含：前置事件、后置事件、初始化、加载/分页、排序、正常和异常结果等，具体看组件类型；</li><li>交互说明一般包含：不同组件的说明会有较大差异，如果想描述得很详细，可以参考开源项目的API文档；</li><li>交互预览一般包含：输入状态/选中状态/聚焦状态、禁止状态、加载状态等等。</li></ul><p><img src=https://cors.zfour.workers.dev/?http://img.pmcaff.com/86aca52cfc7e3690b96cd5e27a978f8e-picture class=lazyload data-srcset=https://cors.zfour.workers.dev/?http://img.pmcaff.com/86aca52cfc7e3690b96cd5e27a978f8e-picture srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII=" width=1200 alt=86aca52cfc7e3690b96cd5e27a978f8e-picture coffee-w=2752px coffee-h=4664px coffee-format=png referrerpolicy=no-referrer></p><h2>五、进行交互自查</h2><p>输出完后先对照交互自查表把每个细节梳理一遍，让原型更加更加全面和缜密。</p><p>自查表是之前存的，忘记是哪篇文章了。如果你知道的话欢迎补充～</p><table><colgroup></colgroup><tbody><tr><td><p>需求类型</p></td><td colspan=2><p style=text-align:center;>检查模块</p></td><td><p style=text-align:center;>自查问题</p></td><td><p style=text-align:center;>自查结果<br>（示例）</p></td><td><p>辅助理解举例</p></td></tr><tr><td rowspan=31><p style=text-align:center;>前端需求<br>（用户能得见的需求）</p></td><td colspan=2 rowspan=4><p style=text-align:center;>前置判断<br>（进入界面时的判断）</p></td><td><p>是否考虑不同账号的区别</p></td><td><p style=text-align:center;>是</p></td><td><p>银行App上【我的】页面：已注册账号与游客账号展示差异</p></td></tr><tr><td><p>是否考虑不同权限的区别</p></td><td><p style=text-align:center;>是</p></td><td><p>流程审批的界面，审核者权限有审核与查看按钮；但提交者，只有查看按钮</p></td></tr><tr><td><p>是否考虑同账号不同时间进入的区别</p></td><td><p style=text-align:center;>否</p></td><td><p>同一个用户晚上登录自动开启夜间模式，如读书类App</p></td></tr><tr><td><p>是否考虑同账号不同状态的区别</p></td><td><p style=text-align:center;>否</p></td><td><p>同一个用户也会有前后状态的差异。如优惠券列表，领券前后；活动页面，达标前后</p></td></tr><tr><td rowspan=12><p style=text-align:center;>展示内容</p></td><td rowspan=5><p style=text-align:center;>展示逻辑</p></td><td><p>是否考虑内容为空显示什么？</p></td><td><p style=text-align:center;>是</p></td><td><p>用户的购物车为空的时候，该如何展示</p></td></tr><tr><td><p>是否考虑横竖屏问题</p></td><td><p style=text-align:center;>是</p></td><td><p>微信公众号横屏和竖屏查看情况下的兼容</p></td></tr><tr><td><p>是有有考虑单位/计量单位/位置的统一</p></td><td><p style=text-align:center;>否</p></td><td><p>积分商品的价格，是统一用：99元+100积分，还是：¥99+100积分；积分价在前还是在后</p></td></tr><tr><td><p>是否考虑文字过多的换行或者....</p></td><td><p style=text-align:center;>否</p></td><td><p>商品列表页，商品名称过长的展示处理方案</p></td></tr><tr><td><p>是否考虑特殊符号、敏感信息的处理</p></td><td><p style=text-align:center;>是</p></td><td><p>部分场景，用户手机号展示需要脱敏，如加上***</p></td></tr><tr><td rowspan=2><p style=text-align:center;>排序逻辑</p></td><td><p>是否考虑内容排序的逻辑：时间/热度/相关度</p></td><td><p style=text-align:center;>是</p></td><td><p>优惠券列表，以用户获取时间还是附近可用的优惠券</p></td></tr><tr><td><p>是否考虑内容展示方式：翻页/瀑布流</p></td><td><p style=text-align:center;>否</p></td><td><p>电商商品的为你推荐区，一般使用瀑布流的方式</p></td></tr><tr><td rowspan=3><p style=text-align:center;>刷新逻辑</p></td><td><p>是否考虑刷新方式：是自动刷新还是手动刷新</p></td><td><p style=text-align:center;>否</p></td><td><p>支付宝首页的信息览，用户可手动下拉刷新</p></td></tr><tr><td><p>是否考虑刷新数量：一次刷新多少/多久，如何刷更多</p></td><td><p style=text-align:center;>是</p></td><td><p>交易记录页面，上滑动刷新最多拉取数据库8条信息，最久能够拉取到近3个月的数据</p></td></tr><tr><td><p>是否考虑刷新异常：当刷不出新内容时提示什么</p></td><td><p style=text-align:center;>是</p></td><td><p>刷不出内容，页面提示已经到底啦～已经是最新数据啦～等</p></td></tr><tr><td rowspan=2><p style=text-align:center;>缓存逻辑</p></td><td><p>是否考虑页面的缓存数据，存储地方</p></td><td><p style=text-align:center;>否</p></td><td><p>表单类录入产品，出现返回上一页面操作时，当前页面信息也需要保存</p></td></tr><tr><td><p>是否考虑缓存触发场景，清理数据逻辑</p></td><td><p style=text-align:center;>否</p></td><td><p>当下操作场景信息对用户很重要，或对平台校验、分析有用时，需要缓存</p></td></tr><tr><td rowspan=6><p style=text-align:center;>用户操作</p></td><td><p style=text-align:center;>跳转操作</p></td><td><p>是否考虑返回：如物理、home键、侧边栏返回</p></td><td><p style=text-align:center;>是</p></td><td><p>不同的返回按键需要考虑到与用户预期一致</p></td></tr><tr><td rowspan=3><p style=text-align:center;>录入操作</p></td><td><p>是否考虑录入的进度提示</p></td><td><p style=text-align:center;>是</p></td><td><p>表单填写信息较多时，会给用户展示进度条</p></td></tr><tr><td><p>是否考虑录入时候的控件变化</p></td><td><p style=text-align:center;>否</p></td><td><p>输入框，录入时候边框高亮展示</p></td></tr><tr><td><p>是否考虑录入的结果反馈</p></td><td><p style=text-align:center;>否</p></td><td><p>录入信息不正确，toast/页面引导用户正确录入</p></td></tr><tr><td rowspan=2><p style=text-align:center;>查询操作</p></td><td><p>是否考虑查询中的状态提示：loading、进度</p></td><td><p style=text-align:center;>是</p></td><td><p>输入准考证，查询成绩单过程的进度条展示</p></td></tr><tr><td><p>是否考虑查询结果的展示：查询中/成功/失败</p></td><td><p style=text-align:center;>是</p></td><td><p>百度搜索查不到相关信息场景下的猜你想查</p></td></tr><tr><td rowspan=7><p style=text-align:center;>异常场景</p></td><td rowspan=2><p style=text-align:center;>操作异常</p></td><td><p>是否考虑用户连续操作异常的情况</p></td><td><p style=text-align:center;>否</p></td><td><p>连续5次输错手势密码要求验证用户身份</p></td></tr><tr><td><p>是否考虑用户高频操作的禁用逻辑</p></td><td><p style=text-align:center;>否</p></td><td><p>连续用户连续点击优惠券领取按钮提示：你已经领取过啦/优惠券置灰不可点</p></td></tr><tr><td rowspan=3><p style=text-align:center;>网络异常</p></td><td><p>是否考虑没网场景下的页面提示</p></td><td><p style=text-align:center;>是</p></td><td><p>支付宝无网络状态下的提示：当前网络不可用，请检查你的网络设置</p></td></tr><tr><td><p>是否考虑弱网场景下的页面展示</p></td><td><p style=text-align:center;>是</p></td><td><p>网络太慢，建议用户切换网络</p></td></tr><tr><td><p>是否考虑网络差，重新加载的按钮</p></td><td><p style=text-align:center;>否</p></td><td><p>当页面加载不出来，给用户提供重新加载按钮</p></td></tr><tr><td><p style=text-align:center;>版本异常</p></td><td><p>是否考虑新旧版本兼容/强制更新/显示版本更新提示</p></td><td><p style=text-align:center;>是</p></td><td><p>功能需要最新版本才能体验到，需要引导用户更新版本</p></td></tr><tr><td><p style=text-align:center;>接口异常</p></td><td><p>是否考虑接口异常：查不到数据的情况</p></td><td><p style=text-align:center;>否</p></td><td><p>服务器挂掉了，功能不可用情况下的页面提示</p></td></tr><tr><td rowspan=2><p style=text-align:center;>其他</p></td><td><p style=text-align:center;>数据埋点</p></td><td><p>是否考虑页面埋点，增加操作行为上报</p></td><td><p style=text-align:center;>是</p></td><td><p>页面的PV/UV，按钮的PV数据上报，方便数据分析</p></td></tr><tr><td><p style=text-align:center;>新手引导</p></td><td><p>是否考虑新手引导，方便新用户了解新功能</p></td><td><p style=text-align:center;>否</p></td><td><p>人人都是产品经理App上的新功能引导：朕知道了</p></td></tr><tr><td rowspan=7><p style=text-align:center;>后端需求</p></td><td rowspan=3><p style=text-align:center;>数据处理</p></td><td><p style=text-align:center;>新增字段</p></td><td><p>是否考虑新增字段后，新老数据如何兼容</p></td><td><p style=text-align:center;>是</p></td><td><p>商品表增加了积分价字段后，在查询时要对老数据进行特殊对兼容处理</p></td></tr><tr><td><p style=text-align:center;>系统迁移</p></td><td><p>是否考虑升级服务器后，老数据如何迁移：全量/增量</p></td><td><p style=text-align:center;>是</p></td><td><p>系统升级后，用户历史的积分交易数据也需要同步迁移过去，</p></td></tr><tr><td><p style=text-align:center;>数据更新</p></td><td><p>是否考虑数据的更新机制：更新频率/更新方式/更新量</p></td><td><p style=text-align:center;>是</p></td><td><p>对方系统推数、还是主动拉取，多久更新一次，更新是增量还是全量</p></td></tr><tr><td colspan=2><p style=text-align:center;>系统解耦合</p></td><td><p>是否考虑单个接口已经包含足够的业务功能</p></td><td><p style=text-align:center;>是</p></td><td><p>会员查询，应该尽可能将会员相关的信息通过一个接口查询出来</p></td></tr><tr><td colspan=2><p style=text-align:center;>性能保障</p></td><td><p>是否考虑系统的性能：支持多大的并发量</p></td><td><p style=text-align:center;>否</p></td><td><p>秒杀功能，订单系统支持多大并发量</p></td></tr><tr><td colspan=2><p style=text-align:center;>权限考虑</p></td><td><p>是否考虑权限的拆分：查询、编辑、审核等</p></td><td><p style=text-align:center;>是</p></td><td><p>积分管理后台，业务配置和财务对账区分用户角色</p></td></tr><tr><td colspan=2><p style=text-align:center;>异常场景</p></td><td><p>是否考虑业务流程异常情况的处理</p></td><td><p style=text-align:center;>否</p></td><td><p>订单取消后，用户支付已取消订单成功会怎样</p></td></tr><tr><td rowspan=6><p style=text-align:center;>数据需求</p></td><td rowspan=3><p style=text-align:center;>数据埋点类</p></td><td><p style=text-align:center;>必要性</p></td><td><p>是否以真实的业务分析需求提交埋点位置</p></td><td><p style=text-align:center;>是</p></td><td><p>不以实际分析需求出发的数据埋点都是不负责任的</p></td></tr><tr><td><p style=text-align:center;>完整性</p></td><td><p>是否包含用户、页面、行为、区域、内容，来源等信息</p></td><td><p style=text-align:center;>是</p></td><td><p>数据埋点都会把用户的设备信息、操作行为、操作时间、页面、具体位置详尽记录</p></td></tr><tr><td><p style=text-align:center;>可追溯</p></td><td><p>是否埋点之后可以追溯用户的上一级页面来源</p></td><td><p style=text-align:center;>否</p></td><td><p>无法追溯来源就分析漏斗，难以看出转化效果</p></td></tr><tr><td rowspan=3><p style=text-align:center;>数据报表类</p></td><td><p style=text-align:center;>数据时效</p></td><td><p>是否考虑不同表之间数据获取差异而设定跑批时间</p></td><td><p style=text-align:center;>否</p></td><td><p>过早的跑批时间，会导致有数据依赖的表无法获得数据</p></td></tr><tr><td><p style=text-align:center;>数据安全</p></td><td><p>是否有考虑敏感信息应该脱敏处理</p></td><td><p style=text-align:center;>是</p></td><td><p>姓名、手机号、身份证号一般会进行加密，如哈希加密</p></td></tr><tr><td><p style=text-align:center;>数据获取</p></td><td><p>是否考虑所需数据字段已经从业务库下传至数据仓库</p></td><td><p style=text-align:center;>否</p></td><td><p>数据未下传无法满足数据报表需求，因此首先要确认</p></td></tr></tbody></table><p><span style=color:rgba(0,0,0,.84);>好了，以上就是个人平时画原型积累的一些技巧和感悟，完全是出于个人习惯和主观经验得来的，可能不太对，如果你有补充或者不一样的看法，欢迎一起探讨~</span></p><p>参考文章<br>1、浪子，善用Axure写PRD，全局规范一个都不能少</p><p>2、交互设计自查表</p><h1><br></h1></div></div><div class=footer><div class=copyright><blockquote><p>博客内容遵循 署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</p><p>本文永久链接是：<a href=https://news.zfe.space/p/d34a.html>https://news.zfe.space/p/d34a.html</a></p></blockquote></div></div><div class=article-meta id=bottom><div class=new-meta-box><div class="new-meta-item date" itemprop=dateUpdated datetime=2022-09-26T15:12:45+00:00><a class=notlink><i class="fas fa-edit fa-fw" aria-hidden=true></i><p>更新于：2022年9月26日</p></a></div><div class="new-meta-item share -mob-share-list"><div class="-mob-share-list share-body"><a class=-mob-share-qq rel="external nofollow noopener noreferrer noopener" target=_blank href="http://connect.qq.com/widget/shareqq/index.html?url=https://news.zfe.space/p/d34a.html&title=原型绘制提效技巧分享 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qq.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-qzone rel="external nofollow noopener noreferrer noopener" target=_blank href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://news.zfe.space/p/d34a.html&title=原型绘制提效技巧分享 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/qzone.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a> <a class=-mob-share-weibo rel="external nofollow noopener noreferrer noopener" target=_blank href="http://service.weibo.com/share/share.php?url=https://news.zfe.space/p/d34a.html&title=原型绘制提效技巧分享 - 小冰 RSSHub&pics=https://cors.zfour.workers.dev/?http://img.pmcaff.com/1d8e50dd4c843f85773d8c9d770d9fab-picture&summary="><img src=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png class=lazyload data-srcset=https://cdn.jsdelivr.net/gh/volantis-x/cdn-org/logo/128/weibo.png srcset="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAABGdBTUEAALGPC/xhBQAAADhlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAAqACAAQAAAABAAAAAaADAAQAAAABAAAAAQAAAADa6r/EAAAAC0lEQVQIHWNgAAIAAAUAAY27m/MAAAAASUVORK5CYII="></a></div></div></div></div><div class=prev-next><a class=prev href=/p/956b.html><p class=title><i class="fas fa-chevron-left" aria-hidden=true></i>万字长文 _ 十个模型，总结产品经理沟通方法论</p><p class=content>#articleCont &#123; font-size: 16px; line-height: 1.6; color: #333; word-wrap: break...</p></a><a class=next href=/p/c514.html><p class=title>@大道无形我有型 关注了股票 贝壳<i class="fas fa-chevron-right" aria-hidden=true></i></p><p class=content>@大道无形我有型 在5/11/2022, 4:42:09 PM 关注了 贝壳(NYSE:BEKE)。</p></a></div></article></div><aside class=l_side><section class="widget toc-wrapper shadow desktop mobile" id=toc-div><header><i class="fas fa-list fa-fw" aria-hidden=true></i> <span class=name>本文目录</span></header><div class=content><ol class=toc><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>一、制作全局说明</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>通用说明</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>业务说明</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>二、建立字段说明表</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text></span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>三、取用元件库进行原型绘制</span></a><ol class=toc-child><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>Vant 移动端组件库</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>Ant Design 移动端组件库</span></a></li><li class="toc-item toc-level-4"><a class=toc-link><span class=toc-text>Ant Design 后台组件库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>四、建立交互需求说明库</span></a></li><li class="toc-item toc-level-2"><a class=toc-link><span class=toc-text>五、进行交互自查</span></a></li></div></section></aside><script>
+  window.pdata={}
+  pdata.ispage=true;
+  pdata.postTitle="原型绘制提效技巧分享";
+  pdata.commentPath="";
+  pdata.commentPlaceholder="";
+  // header 这里无论是否开启pjax都需要
+  var l_header=document.getElementById("l_header");
+  
+  l_header.classList.add("show");
+  
+  
+    // cover
+    var cover_wrapper=document.querySelector('.cover-wrapper');
+    
+    cover_wrapper.id="none";
+    cover_wrapper.style.display="none";
+    
+  
+</script></div><footer class="footer clearfix"><br><br><div class=aplayer-container></div><br><div class=social-wrapper></div><div><p>博客内容遵循 <a target=_blank rel=noopener href=https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh>署名-非商业性使用-相同方式共享 4.0 国际 (CC BY-NC-SA 4.0) 协议</a></p></div><div><p><span id=lc-sv>本站总访问量为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 次</span> <span id=lc-uv>访客数为<span id=number><i class="fas fa-circle-notch fa-spin fa-fw" aria-hidden=true></i></span> 人</span></p></div>本站使用 <a href=https://github.com/volantis-x/hexo-theme-volantis/tree/4.3.1 target=_blank class=codename>Volantis</a> 作为主题<div class=copyright><p><a href="/">Copyright © 2017-2020 XXX</a></p></div></footer><a id=s-top class="fas fa-arrow-up fa-fw" href=javascript:void(0)></a></div></div><div><script>
+/************这个文件存放不需要重载的全局变量和全局函数*********/
+window.volantis={};
+window.volantis.loadcss=document.getElementById("loadcss");
+/******************** Pjax ********************************/
+function VPjax(){
+	this.list=[] // 存放回调函数
+	this.start=()=>{
+	  for(var i=0;i<this.list.length;i++){
+		this.list[i].run();
+	  }
+	}
+	this.push=(fn,name)=>{
+		var f=new PjaxItem(fn,name);
+		this.list.push(f);
+	}
+	// 构造一个可以run的对象
+	function PjaxItem(fn,name){
+		// 函数名称
+		this.name = name || fn.name
+		// run方法
+		this.run=()=>{
+			fn()
+		}
+	}
+}
+volantis.pjax={}
+volantis.pjax.method={
+	complete: new VPjax(),
+	error: new VPjax(),
+	send: new VPjax()
+}
+volantis.pjax={
+	...volantis.pjax,
+	push: volantis.pjax.method.complete.push,
+	error: volantis.pjax.method.error.push,
+	send: volantis.pjax.method.send.push
+}
+/********************脚本懒加载函数********************************/
+// 已经加入了setTimeout
+function loadScript(src, cb) {
+	setTimeout(function() {
+		var HEAD = document.getElementsByTagName('head')[0] || document.documentElement;
+		var script = document.createElement('script');
+		script.setAttribute('type','text/javascript');
+		if (cb) script.onload = cb;
+		script.setAttribute('src', src);
+		HEAD.appendChild(script);
+	});
+}
+//https://github.com/filamentgroup/loadCSS
+var loadCSS = function( href, before, media, attributes ){
+	var doc = window.document;
+	var ss = doc.createElement( "link" );
+	var ref;
+	if( before ){
+		ref = before;
+	}
+	else {
+		var refs = ( doc.body || doc.getElementsByTagName( "head" )[ 0 ] ).childNodes;
+		ref = refs[ refs.length - 1];
+	}
+	var sheets = doc.styleSheets;
+	if( attributes ){
+		for( var attributeName in attributes ){
+			if( attributes.hasOwnProperty( attributeName ) ){
+				ss.setAttribute( attributeName, attributes[attributeName] );
+			}
+		}
+	}
+	ss.rel = "stylesheet";
+	ss.href = href;
+	ss.media = "only x";
+	function ready( cb ){
+		if( doc.body ){
+			return cb();
+		}
+		setTimeout(function(){
+			ready( cb );
+		});
+	}
+	ready( function(){
+		ref.parentNode.insertBefore( ss, ( before ? ref : ref.nextSibling ) );
+	});
+	var onloadcssdefined = function( cb ){
+		var resolvedHref = ss.href;
+		var i = sheets.length;
+		while( i-- ){
+			if( sheets[ i ].href === resolvedHref ){
+				return cb();
+			}
+		}
+		setTimeout(function() {
+			onloadcssdefined( cb );
+		});
+	};
+	function loadCB(){
+		if( ss.addEventListener ){
+			ss.removeEventListener( "load", loadCB );
+		}
+		ss.media = media || "all";
+	}
+	if( ss.addEventListener ){
+		ss.addEventListener( "load", loadCB);
+	}
+	ss.onloadcssdefined = onloadcssdefined;
+	onloadcssdefined( loadCB );
+	return ss;
+};
+</script><script>
+  
+  loadCSS("https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14/css/all.min.css", window.volantis.loadcss);
+  
+  
+  
+  
+</script><script src=https://cdn.jsdelivr.net/npm/jquery@3.5/dist/jquery.min.js></script><script>
+  function pjax_fancybox() {
+    $(".md .gallery").find("img").each(function () { //渲染 fancybox
+      var element = document.createElement("a"); // a 标签
+      $(element).attr("class", "fancybox");
+      $(element).attr("pjax-fancybox", "");  // 过滤 pjax
+      $(element).attr("href", $(this).attr("src"));
+      if ($(this).attr("data-original")) {
+        $(element).attr("href", $(this).attr("data-original"));
+      }
+      $(element).attr("data-fancybox", "images");
+      var caption = "";   // 描述信息
+      if ($(this).attr('alt')) {  // 判断当前页面是否存在描述信息
+        $(element).attr('data-caption', $(this).attr('alt'));
+        caption = $(this).attr('alt');
+      }
+      var div = document.createElement("div");
+      $(div).addClass("fancybox");
+      $(this).wrap(div); // 最外层套 div ，其实主要作用还是 class 样式
+      var span = document.createElement("span");
+      $(span).addClass("image-caption");
+      $(span).text(caption); // 加描述
+      $(this).after(span);  // 再套一层描述
+      $(this).wrap(element);  // 最后套 a 标签
+    })
+    $(".md .gallery").find("img").fancybox({
+      selector: '[data-fancybox="images"]',
+      hash: false,
+      loop: false,
+      closeClick: true,
+      helpers: {
+        overlay: {closeClick: true}
+      },
+      buttons: [
+        "zoom",
+        "close"
+      ]
+    });
+  };
+  function SCload_fancybox() {
+    if ($(".md .gallery").find("img").length == 0) return;
+    loadCSS("https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css", document.getElementById("loadcss"));
+    loadScript('https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js', pjax_fancybox)
+  };
+  $(function () {
+    SCload_fancybox();
+  });
+  function Pjax_SCload_fancybox(){
+	if (typeof $.fancybox == "undefined") {
+	 SCload_fancybox();
+    } else {
+	 pjax_fancybox();
+    }
+  }
+  volantis.pjax.push(Pjax_SCload_fancybox)
+  volantis.pjax.send(()=>{
+      if (typeof $.fancybox != "undefined") {
+        $.fancybox.close();    // 关闭弹窗
+      }
+  },'fancybox')
+</script><script>
+  function loadIssuesJS() {
+    if ($(".md").find(".issues-api").length == 0) return;
+	
+	  loadScript('/js/issues.js');
+	
+  };
+  $(function () {
+    loadIssuesJS();
+  });
+  volantis.pjax.push(()=>{
+	if (typeof IssuesAPI == "undefined") {
+	  loadIssuesJS();
+	}
+  },"IssuesJS")
+</script><script defer src=https://cdn.jsdelivr.net/npm/vanilla-lazyload@17.1.0/dist/lazyload.min.js></script><script>
+  // https://www.npmjs.com/package/vanilla-lazyload
+  // Set the options globally
+  // to make LazyLoad self-initialize
+  window.lazyLoadOptions = {
+    elements_selector: ".lazyload",
+    threshold: 0
+  };
+  // Listen to the initialization event
+  // and get the instance of LazyLoad
+  window.addEventListener(
+    "LazyLoad::Initialized",
+    function (event) {
+      window.lazyLoadInstance = event.detail.instance;
+    },
+    false
+  );
+  document.addEventListener('DOMContentLoaded', function () {
+    lazyLoadInstance.update();
+  });
+  document.addEventListener('pjax:complete', function () {
+    lazyLoadInstance.update();
+  });
+</script><script>
+  window.FPConfig = {
+	delay: 0,
+	ignoreKeywords: [],
+	maxRPS: 5,
+	hoverDelay: 25
+  };
+</script><script defer src=https://cdn.jsdelivr.net/gh/gijo-varghese/flying-pages@2.1.2/flying-pages.min.js></script><script src=/js/valine.js></script><script>
+  function emoji(path, idx, ext) {
+    return path + "/" + path + "-" + idx + "." + ext;
+  }
+  var emojiMaps = {};
+  for (var i = 1; i <= 54; i++) {
+    emojiMaps['tieba-' + i] = emoji('tieba', i, 'png');
+  }
+  for (var i = 1; i <= 101; i++) {
+    emojiMaps['qq-' + i] = emoji('qq', i, 'gif');
+  }
+  for (var i = 1; i <= 116; i++) {
+    emojiMaps['aru-' + i] = emoji('aru', i, 'gif');
+  }
+  for (var i = 1; i <= 125; i++) {
+    emojiMaps['twemoji-' + i] = emoji('twemoji', i, 'png');
+  }
+  for (var i = 1; i <= 4; i++) {
+    emojiMaps['weibo-' + i] = emoji('weibo', i, 'png');
+  }
+  function pjax_valine() {
+    if(!document.querySelectorAll("#valine_container")[0])return;
+    let pagePlaceholder = pdata.commentPlaceholder || "快来评论吧~";
+    let path = pdata.commentPath;
+    if (path.length == 0) {
+      let defaultPath = '';
+      path = defaultPath || decodeURI(window.location.pathname);
+    }
+    var valine = new Valine();
+    valine.init(Object.assign({"path":null,"placeholder":"快来评论吧~","appId":null,"appKey":null,"meta":["nick","mail","link"],"requiredFields":["nick","mail"],"enableQQ":true,"recordIP":false,"avatar":"robohash","pageSize":10,"lang":"zh-cn","highlight":true,"mathJax":false}, {
+      el: '#valine_container',
+      path: path,
+      placeholder: pagePlaceholder,
+      emojiCDN: 'https://cdn.jsdelivr.net/gh/volantis-x/cdn-emoji/valine/',
+      emojiMaps: emojiMaps,
+    }))
+  }
+  $(function () {
+    pjax_valine();
+  });
+  volantis.pjax.push(pjax_valine);
+</script><script src=/js/app.js></script><script>
+const SearchServiceimagePath="https://cdn.jsdelivr.net/gh/volantis-x/cdn-volantis@master/img/";
+const ROOT =  ("/" || "/").endsWith('/') ? ("/" || "/") : ("//" || "/" );
+
+$('.input.u-search-input').one('focus',function(){
+	
+		loadScript('/js/search/hexo.js',setSearchService);
+	
+})
+
+function listenSearch(){
+  
+    customSearch = new HexoSearch({
+      imagePath: SearchServiceimagePath
+    });
+  
+}
+function setSearchService() {
+	listenSearch();
+	
+}
+</script><script defer>
+
+  const LCCounter = {
+    app_id: 'u9j57bwJod4EDmXWdxrwuqQT-MdYXbMMI',
+    app_key: 'jfHtEKVE24j0IVCGHbvuFClp',
+    custom_api_server: '',
+
+    // 查询存储的记录
+    getRecord(Counter, url, title) {
+      return new Promise(function (resolve, reject) {
+        Counter('get', '/classes/Counter?where=' + encodeURIComponent(JSON.stringify({url})))
+          .then(resp => resp.json())
+          .then(({results, code, error}) => {
+            if (code === 401) {
+              throw error;
+            }
+            if (results && results.length > 0) {
+              var record = results[0];
+              resolve(record);
+            } else {
+              Counter('post', '/classes/Counter', {url, title: title, times: 0})
+                .then(resp => resp.json())
+                .then((record, error) => {
+                  if (error) {
+                    throw error;
+                  }
+                  resolve(record);
+                }).catch(error => {
+                console.error('Failed to create', error);
+                reject(error);
+              });
+            }
+          }).catch((error) => {
+          console.error('LeanCloud Counter Error:', error);
+          reject(error);
+        });
+      })
+    },
+
+    // 发起自增请求
+    increment(Counter, incrArr) {
+      return new Promise(function (resolve, reject) {
+        Counter('post', '/batch', {
+          "requests": incrArr
+        }).then((res) => {
+          res = res.json();
+          if (res.error) {
+            throw res.error;
+          }
+          resolve(res);
+        }).catch((error) => {
+          console.error('Failed to save visitor count', error);
+          reject(error);
+        });
+      });
+    },
+
+    // 构建自增请求体
+    buildIncrement(objectId) {
+      return {
+        "method": "PUT",
+        "path": `/1.1/classes/Counter/${ objectId }`,
+        "body": {
+          "times": {
+            '__op': 'Increment',
+            'amount': 1
+          }
+        }
+      }
+    },
+
+    // 校验是否为有效的 UV
+    validUV() {
+      var key = 'LeanCloudUVTimestamp';
+      var flag = localStorage.getItem(key);
+      if (flag) {
+        // 距离标记小于 24 小时则不计为 UV
+        if (new Date().getTime() - parseInt(flag) <= 86400000) {
+          return false;
+        }
+      }
+      localStorage.setItem(key, new Date().getTime().toString());
+      return true;
+    },
+
+    addCount(Counter) {
+      var enableIncr = '' === 'true' && window.location.hostname !== 'localhost';
+      enableIncr = true;
+      var getterArr = [];
+      var incrArr = [];
+      // 请求 PV 并自增
+      var pvCtn = document.querySelector('#lc-sv');
+      if (pvCtn || enableIncr) {
+        var pvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-sv', 'Visits').then((record) => {
+          incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-sv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + 1;
+              if (pvCtn) {
+                pvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(pvGetter);
+      }
+
+      // 请求 UV 并自增
+      var uvCtn = document.querySelector('#lc-uv');
+      if (uvCtn || enableIncr) {
+        var uvGetter = this.getRecord(Counter, 'https://news.zfe.space' + '/#lc-uv', 'Visitors').then((record) => {
+          var vuv = this.validUV();
+          vuv && incrArr.push(this.buildIncrement(record.objectId))
+          var eles = document.querySelectorAll('#lc-uv #number');
+          if (eles.length > 0) {
+            eles.forEach((el,index,array)=>{
+              el.innerText = record.times + (vuv ? 1 : 0);
+              if (uvCtn) {
+                uvCtn.style.display = 'inline';
+              }
+            })
+          }
+        });
+        getterArr.push(uvGetter);
+      }
+
+      // 请求文章的浏览数，如果是当前页面就自增
+      var allPV = document.querySelectorAll('#lc-pv');
+      if (allPV.length > 0 || enableIncr) {
+        for (i = 0; i < allPV.length; i++) {
+          let pv = allPV[i];
+          let title = pv.getAttribute('data-title');
+          var url = 'https://news.zfe.space' + pv.getAttribute('data-path');
+          if (url) {
+            var viewGetter = this.getRecord(Counter, url, title).then((record) => {
+              // 是当前页面就自增
+              let curPath = window.location.pathname;
+              if (curPath.includes('index.html')) {
+                curPath = curPath.substring(0, curPath.lastIndexOf('index.html'));
+              }
+              if (pv.getAttribute('data-path') == curPath) {
+                incrArr.push(this.buildIncrement(record.objectId));
+              }
+              if (pv) {
+                var ele = pv.querySelector('#lc-pv #number');
+                if (ele) {
+                  if (pv.getAttribute('data-path') == curPath) {
+                    ele.innerText = (record.times || 0) + 1;
+                  } else {
+                    ele.innerText = record.times || 0;
+                  }
+                  pv.style.display = 'inline';
+                }
+              }
+            });
+            getterArr.push(viewGetter);
+          }
+        }
+      }
+
+      // 如果启动计数自增，批量发起自增请求
+      if (enableIncr) {
+        Promise.all(getterArr).then(() => {
+          incrArr.length > 0 && this.increment(Counter, incrArr);
+        })
+      }
+
+    },
+
+
+    fetchData(api_server) {
+      var Counter = (method, url, data) => {
+        return fetch(`${ api_server }/1.1${ url }`, {
+          method,
+          headers: {
+            'X-LC-Id': this.app_id,
+            'X-LC-Key': this.app_key,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+      };
+      this.addCount(Counter);
+    },
+
+    refreshCounter() {
+      var api_server = this.app_id.slice(-9) !== '-MdYXbMMI' ? this.custom_api_server : `https://${ this.app_id.slice(0, 8).toLowerCase() }.api.lncldglobal.com`;
+      if (api_server) {
+        this.fetchData(api_server);
+      } else {
+        fetch('https://app-router.leancloud.cn/2/route?appId=' + this.app_id)
+          .then(resp => resp.json())
+          .then(({api_server}) => {
+            this.fetchData('https://' + api_server);
+          });
+      }
+    }
+
+  };
+
+  LCCounter.refreshCounter();
+
+  document.addEventListener('pjax:complete', function () {
+    LCCounter.refreshCounter();
+  });
+</script><script>
+const rootElement = document.documentElement;
+const darkModeStorageKey = "user-color-scheme";
+const rootElementDarkModeAttributeName = "data-user-color-scheme";
+
+const setLS = (k, v) => {
+    localStorage.setItem(k, v);
+};
+
+const removeLS = (k) => {
+    localStorage.removeItem(k);
+};
+
+const getLS = (k) => {
+    return localStorage.getItem(k);
+};
+
+const getModeFromCSSMediaQuery = () => {
+  return window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+};
+
+const resetRootDarkModeAttributeAndLS = () => {
+  rootElement.removeAttribute(rootElementDarkModeAttributeName);
+  removeLS(darkModeStorageKey);
+};
+
+const validColorModeKeys = {
+  dark: true,
+  light: true,
+};
+
+const applyCustomDarkModeSettings = (mode) => {
+  const currentSetting = mode || getLS(darkModeStorageKey);
+
+  if (currentSetting === getModeFromCSSMediaQuery()) {
+    resetRootDarkModeAttributeAndLS();
+  } else if (validColorModeKeys[currentSetting]) {
+    rootElement.setAttribute(rootElementDarkModeAttributeName, currentSetting);
+  } else {
+    resetRootDarkModeAttributeAndLS();
+  }
+};
+
+const invertDarkModeObj = {
+  dark: "light",
+  light: "dark",
+};
+
+/**
+ * get target mode
+ */
+const toggleCustomDarkMode = () => {
+  let currentSetting = getLS(darkModeStorageKey);
+
+  if (validColorModeKeys[currentSetting]) {
+    currentSetting = invertDarkModeObj[currentSetting];
+  } else if (currentSetting === null) {
+    currentSetting = invertDarkModeObj[getModeFromCSSMediaQuery()];
+  } else {
+    return;
+  }
+  setLS(darkModeStorageKey, currentSetting);
+  return currentSetting;
+};
+
+/**
+ * bind click event for toggle button
+ */
+var btn=$("#wrapper .toggle-mode-btn,#rightmenu-wrapper .toggle-mode-btn");
+function bindToggleButton() {
+    btn.on('click',(e) => {
+      const mode = toggleCustomDarkMode();
+      applyCustomDarkModeSettings(mode);
+    });
+}
+
+applyCustomDarkModeSettings();
+document.addEventListener("DOMContentLoaded", bindToggleButton);
+volantis.pjax.push(bindToggleButton);
+volantis.pjax.send(()=>{
+	btn.unbind('click');
+},'toggle-mode-btn-unbind');
+</script><script>
+function listennSidebarTOC() {
+  const navItems = document.querySelectorAll(".toc li");
+  if (!navItems.length) return;
+  const sections = [...navItems].map((element) => {
+    const link = element.querySelector(".toc-link");
+    const target = document.getElementById(
+      decodeURI(link.getAttribute("href")).replace("#", "")
+    );
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      window.scrollTo({
+		top: target.offsetTop + 100,
+		
+		behavior: "smooth"
+		
+	  });
+    });
+    return target;
+  });
+
+  function activateNavByIndex(target) {
+    if (target.classList.contains("active-current")) return;
+
+    document.querySelectorAll(".toc .active").forEach((element) => {
+      element.classList.remove("active", "active-current");
+    });
+    target.classList.add("active", "active-current");
+    let parent = target.parentNode;
+    while (!parent.matches(".toc")) {
+      if (parent.matches("li")) parent.classList.add("active");
+      parent = parent.parentNode;
+    }
+  }
+
+  function findIndex(entries) {
+    let index = 0;
+    let entry = entries[index];
+    if (entry.boundingClientRect.top > 0) {
+      index = sections.indexOf(entry.target);
+      return index === 0 ? 0 : index - 1;
+    }
+    for (; index < entries.length; index++) {
+      if (entries[index].boundingClientRect.top <= 0) {
+        entry = entries[index];
+      } else {
+        return sections.indexOf(entry.target);
+      }
+    }
+    return sections.indexOf(entry.target);
+  }
+
+  function createIntersectionObserver(marginTop) {
+    marginTop = Math.floor(marginTop + 10000);
+    let intersectionObserver = new IntersectionObserver(
+      (entries, observe) => {
+        let scrollHeight = document.documentElement.scrollHeight + 100;
+        if (scrollHeight > marginTop) {
+          observe.disconnect();
+          createIntersectionObserver(scrollHeight);
+          return;
+        }
+        let index = findIndex(entries);
+        activateNavByIndex(navItems[index]);
+      },
+      {
+        rootMargin: marginTop + "px 0px -100% 0px",
+        threshold: 0,
+      }
+    );
+    sections.forEach((element) => {
+      element && intersectionObserver.observe(element);
+    });
+  }
+  createIntersectionObserver(document.documentElement.scrollHeight);
+}
+
+document.addEventListener("DOMContentLoaded", listennSidebarTOC);
+document.addEventListener("pjax:success", listennSidebarTOC);
+</script><script src=https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.min.js></script><script>
+    var pjax;
+    document.addEventListener('DOMContentLoaded', function () {
+      pjax = new Pjax({
+        elements: 'a[href]:not([href^="#"]):not([href="javascript:void(0)"]):not([pjax-fancybox])',
+        selectors: [
+          "title",
+          
+          "#pjax-container",
+          "#pjax-header-nav-list"
+        ],
+        cacheBust: false,   // url 地址追加时间戳，用以避免浏览器缓存
+        timeout: 5000
+      });
+    });
+
+    document.addEventListener('pjax:send', function (e) {
+      //window.stop(); // 相当于点击了浏览器的停止按钮
+
+      try {
+        var currentUrl = window.location.pathname;
+        var targetUrl = e.triggerElement.href;
+        var banUrl = [""];
+        if (banUrl[0] != "") {
+          banUrl.forEach(item => {
+            if(currentUrl.indexOf(item) != -1 || targetUrl.indexOf(item) != -1) {
+              window.location.href = targetUrl;
+            }
+          });
+        }
+      } catch (error) {}
+
+      window.subData = null; // 移除标题（用于一二级导航栏切换处）
+
+      volantis.$switcher.removeClass('active'); // 关闭移动端激活的搜索框
+      volantis.$header.removeClass('z_search-open'); // 关闭移动端激活的搜索框
+      volantis.$wrapper.removeClass('sub'); // 跳转页面时关闭二级导航
+
+      // 解绑事件 避免重复监听
+      volantis.$topBtn.unbind('click');
+      $('.menu a').unbind('click');
+      $(window).unbind('resize');
+      $(window).unbind('scroll');
+      $(document).unbind('scroll');
+      $(document).unbind('click');
+      $('body').unbind('click');
+	  // 使用 volantis.pjax.send 方法传入pjax:send回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.send.start();
+    });
+
+    document.addEventListener('pjax:complete', function () {
+      $('.nav-main').find('.list-v').not('.menu-phone').removeAttr("style",""); // 移除小尾巴的移除
+      $('.menu-phone.list-v').removeAttr("style",""); // 移除小尾巴的移除
+      $('script[data-pjax], .pjax-reload script').each(function () {
+        $(this).parent().append($(this).remove());
+      });
+      try{
+		// 使用 volantis.pjax.push 方法传入重载函数 参见layout/_partial/scripts/global.ejs
+		volantis.pjax.method.complete.start();
+      } catch (e) {
+        console.log(e);
+      }
+    });
+
+    document.addEventListener('pjax:error', function (e) {
+	  // 使用 volantis.pjax.error 方法传入pjax:error回调函数 参见layout/_partial/scripts/global.ejs
+	  volantis.pjax.method.error.start();
+      window.location.href = e.triggerElement.href;
+    });
+</script></div></body></html>
